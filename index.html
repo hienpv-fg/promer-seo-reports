@@ -223,13 +223,6 @@
   .callout li b{ color: var(--ink); font-weight: 600; }
 
   footer{ margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11.5px; font-family:"IBM Plex Mono",monospace; }
-
-  /* ---- per-section comments (giscus) ---- */
-  .section-comments{ margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); }
-  .section-comments .comments-label{
-    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 8px;
-  }
 </style>
 
 <div class="wrap">
@@ -315,26 +308,6 @@
       </div>
     </div>
     <p class="lowvol">Note: several events run on single-digit counts per channel — treat percentage deltas there as directional, not statistically firm.</p>
-
-    <div class="section-comments">
-      <div class="comments-label">Comments on this section</div>
-      <script src="https://giscus.app/client.js"
-        data-repo="hienpv-fg/promer-seo-reports"
-        data-repo-id="R_kgDOUbxfhw"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOUbxfh84DFp6a"
-        data-mapping="specific"
-        data-term="section-acquisition"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </div>
   </section>
 
   <section id="gsc">
@@ -372,26 +345,6 @@
       </div>
     </div>
     <p class="lowvol">Ranked by largest gain in clicks. "NEW" = zero clicks in the prior period.</p>
-
-    <div class="section-comments">
-      <div class="comments-label">Comments on this section</div>
-      <script src="https://giscus.app/client.js"
-        data-repo="hienpv-fg/promer-seo-reports"
-        data-repo-id="R_kgDOUbxfhw"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOUbxfh84DFp6a"
-        data-mapping="specific"
-        data-term="section-search-console"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </div>
   </section>
 
   <section id="keywords">
@@ -400,26 +353,6 @@
       <span class="section-note" id="kwNote"></span>
     </div>
     <div id="kwGroups"></div>
-
-    <div class="section-comments">
-      <div class="comments-label">Comments on this section</div>
-      <script src="https://giscus.app/client.js"
-        data-repo="hienpv-fg/promer-seo-reports"
-        data-repo-id="R_kgDOUbxfhw"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOUbxfh84DFp6a"
-        data-mapping="specific"
-        data-term="section-keyword-rank-tracking"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </div>
   </section>
 
   <section id="gaps">
@@ -433,6 +366,28 @@
         <li><b>On-page content audit</b> — title/meta/heading structure, keyword cannibalization across pages.</li>
       </ul>
     </div>
+  </section>
+
+  <section id="discussion">
+    <div class="section-head">
+      <h2>Discussion</h2>
+      <span class="section-note">Comment with your GitHub account</span>
+    </div>
+    <script src="https://giscus.app/client.js"
+      data-repo="hienpv-fg/promer-seo-reports"
+      data-repo-id="R_kgDOUbxfhw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOUbxfh84DFp6a"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="en"
+      crossorigin="anonymous"
+      async>
+    </script>
   </section>
 
   <footer id="footerLine"></footer>
