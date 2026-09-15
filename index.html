@@ -1,0 +1,1034 @@
+<!doctype html>
+<title>Growth &amp; Visibility Pulse</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    color-scheme: light;
+    --page:      #f7f7f5;
+    --surface:   #ffffff;
+    --surface-2: #fbfbf9;
+    --ink:       #14140f;
+    --ink-2:     #52514e;
+    --muted:     #898781;
+    --line:      #e1e0d9;
+    --baseline:  #c3c2b7;
+    --accent:    #2a78d6;
+    --accent-ink:#184f95;
+    --organic:   #2a78d6;
+    --organic-soft: rgba(42,120,214,0.16);
+    --ai:        #eb6834;
+    --ai-soft:   rgba(235,104,52,0.16);
+    --good:      #006300;
+    --serious:   #ec835a;
+    --card-shadow: 0 1px 2px rgba(11,11,11,0.04), 0 1px 0 rgba(11,11,11,0.03);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --page:      #0d0d0d;
+      --surface:   #1a1a19;
+      --surface-2: #202020;
+      --ink:       #ffffff;
+      --ink-2:     #c3c2b7;
+      --muted:     #898781;
+      --line:      #2c2c2a;
+      --baseline:  #383835;
+      --accent:    #3987e5;
+      --accent-ink:#86b6ef;
+      --organic:   #3987e5;
+      --organic-soft: rgba(57,135,229,0.18);
+      --ai:        #d95926;
+      --ai-soft:   rgba(217,89,38,0.20);
+      --good:      #0ca30c;
+      --serious:   #ec835a;
+      --card-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --page:      #0d0d0d;
+    --surface:   #1a1a19;
+    --surface-2: #202020;
+    --ink:       #ffffff;
+    --ink-2:     #c3c2b7;
+    --muted:     #898781;
+    --line:      #2c2c2a;
+    --baseline:  #383835;
+    --accent:    #3987e5;
+    --accent-ink:#86b6ef;
+    --organic:   #3987e5;
+    --organic-soft: rgba(57,135,229,0.18);
+    --ai:        #d95926;
+    --ai-soft:   rgba(217,89,38,0.20);
+    --good:      #0ca30c;
+    --serious:   #ec835a;
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    padding-inline: 20px;
+  }
+  .wrap{ max-width: 980px; margin: 0 auto; padding-block: 40px 64px; }
+
+  h1,h2,h3{ font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; }
+  .eyebrow{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin: 0 0 10px;
+  }
+  .num{ font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+
+  /* ---- masthead ---- */
+  header.masthead{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end;
+    gap: 20px; padding-bottom: 22px; margin-bottom: 32px; border-bottom: 1px solid var(--line);
+  }
+  header.masthead h1{ font-size: 30px; font-weight: 700; }
+  .masthead-meta{ text-align: right; }
+  .masthead-meta .period{ font-size: 13px; color: var(--ink-2); font-weight: 500; }
+  .masthead-meta .sources{
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted);
+    margin-top: 4px; letter-spacing: 0.02em;
+  }
+
+  section{ margin-bottom: 52px; }
+  section > .section-head{ display:flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+  section > .section-head h2{ font-size: 21px; font-weight: 600; }
+  section > .section-head .section-note{ font-size: 12.5px; color: var(--muted); }
+
+  /* ---- channel cards ---- */
+  .channel-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 620px){ .channel-grid{ grid-template-columns: 1fr; } }
+  .channel-card{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px; box-shadow: var(--card-shadow); border-top: 3px solid var(--dot,var(--organic));
+  }
+  .channel-card.ai{ --dot: var(--ai); }
+  .channel-card.organic{ --dot: var(--organic); }
+  .channel-card .chan-label{
+    display:flex; align-items:center; gap:8px; font-weight:600; font-size:14px; margin-bottom:14px;
+  }
+  .chan-swatch{ width:9px; height:9px; border-radius:2px; background: var(--dot); flex:none; }
+  .chan-desc{ color: var(--muted); font-size: 12px; font-weight: 400; }
+  .chan-metrics{ display:flex; gap: 24px; margin-bottom: 12px; }
+  .chan-hosts{ border-top: 1px solid var(--line); padding-top: 10px; display:flex; flex-direction:column; gap: 5px; }
+  .host-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; font-size: 12px; }
+  .host-name{ color: var(--ink-2); font-family: "IBM Plex Mono", monospace; }
+  .host-val{ font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; margin-right: auto; padding-left: 10px; }
+  .chan-metric .v{ font-size: 26px; font-weight: 600; display:flex; align-items:baseline; gap:8px; }
+  .chan-metric .l{ font-size: 11.5px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .delta{ font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 600; }
+  .delta.up{ color: var(--good); }
+  .delta.down{ color: var(--serious); }
+
+  /* ---- stat tiles (GSC) ---- */
+  .tile-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 22px; }
+  @media (max-width: 760px){ .tile-grid{ grid-template-columns: 1fr 1fr; } }
+  .tile{ background: var(--surface); border:1px solid var(--line); border-radius: 10px; padding: 16px 18px; box-shadow: var(--card-shadow); }
+  .tile .l{ font-size: 11.5px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .tile .v{ font-size: 24px; font-weight: 600; }
+  .tile .prev{ font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+
+  /* ---- charts ---- */
+  .chart-card{ background: var(--surface); border:1px solid var(--line); border-radius: 10px; padding: 18px 20px 8px; box-shadow: var(--card-shadow); margin-bottom: 14px; position: relative; }
+  .chart-card .chart-title{ font-size: 12.5px; font-weight: 600; color: var(--ink-2); display:flex; justify-content: space-between; margin-bottom: 4px; }
+  .chart-card .chart-title .hint{ font-weight: 400; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 10.5px; }
+  svg.chart{ width: 100%; height: auto; overflow: visible; display:block; }
+  .gridline{ stroke: var(--line); stroke-width: 1; }
+  .baseline{ stroke: var(--baseline); stroke-width: 1; }
+  .axislabel{ fill: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 10px; }
+  .split-line{ stroke: var(--baseline); stroke-width: 1; stroke-dasharray: 3 3; }
+  .split-label{ fill: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 9.5px; }
+  .hover-guide{ stroke: var(--ink-2); stroke-width: 1; opacity: 0; pointer-events: none; }
+  .hover-dot{ opacity: 0; pointer-events: none; }
+  .tooltip{
+    position:absolute; pointer-events:none; background: var(--ink); color: var(--page);
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; padding: 6px 9px; border-radius: 6px;
+    transform: translate(-50%,-115%); white-space:nowrap; opacity:0; transition: opacity .08s; z-index: 5;
+    line-height: 1.45;
+  }
+  .chart-hit{ fill: transparent; }
+
+  /* ---- bar comparison ---- */
+  .bar-legend{ display:flex; gap:16px; font-size: 12px; color: var(--ink-2); margin: 6px 0 12px; }
+  .bar-legend .item{ display:flex; align-items:center; gap:6px; }
+  .swatch-lg{ width:12px; height:12px; border-radius:3px; }
+  .swatch-lg.prev{ background: var(--baseline); }
+  .swatch-lg.cur-organic{ background: var(--organic); }
+  .swatch-lg.cur-ai{ background: var(--ai); }
+
+  /* ---- tables ---- */
+  table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  thead th{
+    text-align:left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line);
+  }
+  thead th.num, tbody td.num{ text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric: tabular-nums; }
+  tbody td{ padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tbody tr:last-child td{ border-bottom: none; }
+  tbody tr:nth-child(odd){ background: var(--surface-2); }
+  .table-card{ background: var(--surface); border:1px solid var(--line); border-radius: 10px; overflow:hidden; box-shadow: var(--card-shadow); }
+  .table-scroll{ overflow-x:auto; }
+  .new-badge{
+    font-family:"IBM Plex Mono",monospace; font-size: 9.5px; font-weight:600; color: var(--good);
+    border: 1px solid var(--good); border-radius: 4px; padding: 1px 5px; margin-left: 7px; letter-spacing: 0.03em;
+  }
+  .qcell{ display:flex; align-items:center; }
+  .lowvol{ color: var(--muted); font-style: italic; font-size: 11.5px; }
+
+  /* ---- keyword rank tracking ---- */
+  .kw-group{ margin-bottom: 28px; }
+  .kw-group-title{ font-size: 15px; font-weight: 600; margin-bottom: 12px; font-family: "IBM Plex Sans", sans-serif; }
+  .kw-dist{ display:flex; flex-direction:column; gap:7px; margin-bottom: 16px; }
+  .kw-dist-row{ display:flex; align-items:center; gap:10px; }
+  .kw-dist-label{ width: 112px; flex:none; font-size: 11.5px; color: var(--ink-2); }
+  .kw-dist-track{ flex:1; background: var(--surface-2); border-radius: 4px; height: 14px; overflow:hidden; }
+  .kw-dist-fill{ height:100%; border-radius: 4px; background: var(--organic); }
+  .kw-dist-count{ width: 30px; flex:none; text-align:right; font-family:"IBM Plex Mono",monospace; font-size: 11.5px; color: var(--ink-2); }
+  .kw-controls{ display:flex; flex-wrap:wrap; gap: 10px; align-items:center; margin-bottom: 10px; }
+  .kw-search{
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; padding: 7px 11px;
+    border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); min-width: 200px;
+  }
+  .kw-search:focus{ outline: 2px solid var(--accent); outline-offset: 1px; }
+  .kw-filters{ display:flex; flex-wrap:wrap; gap: 6px; }
+  .kw-chip{
+    font-size: 11px; font-family: "IBM Plex Mono", monospace; padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer;
+  }
+  .kw-chip:focus-visible{ outline: 2px solid var(--accent); outline-offset: 1px; }
+  .kw-chip.active{ background: var(--accent); border-color: var(--accent); color: #fff; }
+  th[data-sort]{ cursor:pointer; user-select:none; }
+  th[data-sort]:hover{ color: var(--ink); }
+  .rank-good{ color: var(--good); font-weight: 600; }
+  .rank-mid{ color: var(--ink-2); }
+  .rank-none{ color: var(--muted); font-style: italic; }
+
+  /* ---- callout ---- */
+  .callout{
+    background: var(--surface-2); border: 1px dashed var(--baseline); border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .callout h3{ font-size: 14px; font-weight: 600; margin-bottom: 10px; font-family: "IBM Plex Sans", sans-serif; }
+  .callout ul{ margin: 0; padding-left: 18px; color: var(--ink-2); }
+  .callout li{ margin-bottom: 6px; }
+  .callout li b{ color: var(--ink); font-weight: 600; }
+
+  footer{ margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11.5px; font-family:"IBM Plex Mono",monospace; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <p class="eyebrow" id="eyebrow"></p>
+      <h1 id="reportTitle"></h1>
+    </div>
+    <div class="masthead-meta">
+      <div class="period" id="periodLabel"></div>
+      <div class="sources" id="sourcesLabel"></div>
+    </div>
+  </header>
+
+  <section id="acquisition">
+    <div class="section-head">
+      <h2>1. Acquisition</h2>
+      <span class="section-note" id="acqNote"></span>
+    </div>
+
+    <div class="channel-grid">
+      <div class="channel-card organic">
+        <div class="chan-label"><span class="chan-swatch"></span>Organic Search</div>
+        <div class="chan-metrics">
+          <div class="chan-metric">
+            <div class="l">Sessions</div>
+            <div class="v"><span id="v-org-sessions"></span> <span class="delta" id="d-org-sessions"></span></div>
+          </div>
+          <div class="chan-metric">
+            <div class="l">Active users</div>
+            <div class="v"><span id="v-org-users"></span> <span class="delta" id="d-org-users"></span></div>
+          </div>
+        </div>
+        <div class="chan-hosts" id="h-org-hosts"></div>
+      </div>
+      <div class="channel-card ai">
+        <div class="chan-label">
+          <span class="chan-swatch"></span>AI Assistant
+          <span class="chan-desc">— referrals from chat/answer engines</span>
+        </div>
+        <div class="chan-metrics">
+          <div class="chan-metric">
+            <div class="l">Sessions</div>
+            <div class="v"><span id="v-ai-sessions"></span> <span class="delta" id="d-ai-sessions"></span></div>
+          </div>
+          <div class="chan-metric">
+            <div class="l">Active users</div>
+            <div class="v"><span id="v-ai-users"></span> <span class="delta" id="d-ai-users"></span></div>
+          </div>
+        </div>
+        <div class="chan-hosts" id="h-ai-hosts"></div>
+      </div>
+    </div>
+    <p class="lowvol">Sessions is cross-domain — a visit that starts on promer.ai and continues into app.promer.ai is counted under both hostnames, so the two rows can sum to more than the card total above.</p>
+
+    <div class="chart-card">
+      <div class="chart-title"><span>Sessions — prior period vs. current period</span><span class="hint">hover a bar</span></div>
+      <div class="bar-legend">
+        <span class="item"><span class="swatch-lg prev"></span>Prior period</span>
+        <span class="item"><span class="swatch-lg cur-organic"></span>Organic Search (current)</span>
+        <span class="item"><span class="swatch-lg cur-ai"></span>AI Assistant (current)</span>
+      </div>
+      <svg class="chart" id="barChart" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Conversion event</th>
+            <th class="num">Organic — prior</th>
+            <th class="num">Organic — current</th>
+            <th class="num">Δ</th>
+            <th class="num">AI Assistant — prior</th>
+            <th class="num">AI Assistant — current</th>
+            <th class="num">Δ</th>
+          </tr>
+        </thead>
+        <tbody id="eventTableBody"></tbody>
+      </table>
+      </div>
+    </div>
+    <p class="lowvol">Note: several events run on single-digit counts per channel — treat percentage deltas there as directional, not statistically firm.</p>
+  </section>
+
+  <section id="gsc">
+    <div class="section-head">
+      <h2>2. Search Console visibility</h2>
+      <span class="section-note" id="gscNote"></span>
+    </div>
+
+    <div class="tile-grid" id="tileGrid"></div>
+
+    <div class="chart-card">
+      <div class="chart-title"><span>Daily clicks</span><span class="hint">hover for a date</span></div>
+      <svg class="chart" id="clicksChart" viewBox="0 0 900 180" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><span>Daily impressions</span><span class="hint">hover for a date</span></div>
+      <svg class="chart" id="imprChart" viewBox="0 0 900 150" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+
+    <div class="table-card" style="margin-top:16px;">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="num">Clicks</th>
+            <th class="num">Δ clicks</th>
+            <th class="num">Impr. Δ%</th>
+            <th class="num">CTR</th>
+            <th class="num">Avg. pos.</th>
+          </tr>
+        </thead>
+        <tbody id="queryTableBody"></tbody>
+      </table>
+      </div>
+    </div>
+    <p class="lowvol">Ranked by largest gain in clicks. "NEW" = zero clicks in the prior period.</p>
+  </section>
+
+  <section id="keywords">
+    <div class="section-head">
+      <h2>3. Keyword rank tracking</h2>
+      <span class="section-note" id="kwNote"></span>
+    </div>
+    <div id="kwGroups"></div>
+  </section>
+
+  <section id="gaps">
+    <div class="callout">
+      <h3>What this report can't tell you yet</h3>
+      <ul>
+        <li><b>Technical SEO</b> — Core Web Vitals, crawl errors, broken links. Needs PageSpeed Insights / Screaming Frog.</li>
+        <li><b>Backlink profile</b> — referring domains, authority, toxic links. Needs Ahrefs / SEMrush / Moz.</li>
+        <li><b>True SERP rank tracking</b> — GSC gives averaged position, not a daily rank per keyword.</li>
+        <li><b>Competitor benchmark</b> — no comparison source connected yet.</li>
+        <li><b>On-page content audit</b> — title/meta/heading structure, keyword cannibalization across pages.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer id="footerLine"></footer>
+
+</div>
+
+<script>
+/* ==========================================================================
+   REPORT DATA — this is the only block to edit for a new reporting period.
+   Pull the numbers from GA4 (run_report, sessionDefaultChannelGroup +
+   eventName) and Search Console (get_performance_overview / compare_search_periods)
+   and drop them in here. Everything below this object renders automatically.
+   ========================================================================== */
+const REPORT_DATA = {
+  meta: {
+    subject: 'promer.ai & app.promer.ai',
+    title: 'Organic & AI-Assistant Pulse',
+    windowDays: 28,
+    currentRange: 'Aug 18 – Sep 14, 2026',
+    priorRange: 'Jul 21 – Aug 17, 2026',
+    ga4Property: '517415274',
+    gscProperty: 'sc-domain:promer.ai',
+    generatedDate: '2026-09-15',
+    ga4PropertyLabel: '517415274 (WebApp app.promer.ai V2.0)',
+  },
+
+  // sessionDefaultChannelGroup breakdown, GA4 run_report — sessions & activeUsers, current vs. prior
+  channels: {
+    organic: {
+      sessions: { cur: 3818, prev: 1404 }, users: { cur: 2600, prev: 737 },
+      // sessionDefaultChannelGroup x hostName — sessions only (cross-domain visits
+      // count under each hostname they touch, so these two rows can outsum the total above)
+      byHost: [
+        { host: 'promer.ai',     cur: 3140, prev: 1000 },
+        { host: 'app.promer.ai', cur: 1124, prev: 690 },
+      ],
+    },
+    ai: {
+      sessions: { cur: 410,  prev: 72   }, users: { cur: 317,  prev: 29  },
+      byHost: [
+        { host: 'promer.ai',     cur: 364, prev: 69 },
+        { host: 'app.promer.ai', cur: 90,  prev: 18 },
+      ],
+    },
+  },
+
+  // [eventName, organicPrior, organicCurrent, aiPrior, aiCurrent]
+  events: [
+    ['complete_sign_up_google', 25, 34, 3, 15],
+    ['complete_sign_up_email', 9, 8, 1, 1],
+    ['complete_plan_upgrade_on_billing_detail', 3, 3, 1, 0],
+    ['complete_add_credit_on_side_bar', 2, 1, 0, 0],
+    ['complete_add_credit_on_billing_detail', 0, 1, 0, 0],
+  ],
+
+  gsc: {
+    // get_performance_overview totals, current vs. prior 28d
+    totals: {
+      clicks:      { cur: 1682,  prev: 511 },
+      impressions: { cur: 84852, prev: 35987 },
+      ctr:         { cur: 1.98,  prev: 1.42 },   // percent
+      position:    { cur: 9.3,   prev: 9.1 },    // lower is better
+    },
+    // daily_trend from get_performance_overview (days=56): [date, clicks, impressions]
+    // splitDate marks where the "current" window begins.
+    splitDate: '08-18',
+    daily: [
+      ['07-21',21,939],['07-22',10,990],['07-23',21,867],['07-24',14,809],['07-25',9,712],
+      ['07-26',11,834],['07-27',16,1085],['07-28',6,1150],['07-29',17,1201],['07-30',16,1205],
+      ['07-31',7,992],['08-01',11,851],['08-02',13,1003],['08-03',14,1273],['08-04',17,1169],
+      ['08-05',19,1246],['08-06',22,1183],['08-07',14,1096],['08-08',15,1182],['08-09',20,1456],
+      ['08-10',22,1880],['08-11',25,1859],['08-12',37,1755],['08-13',22,1864],['08-14',24,1606],
+      ['08-15',22,1271],['08-16',26,1686],['08-17',40,2823],['08-18',49,3114],['08-19',56,3159],
+      ['08-20',42,3105],['08-21',45,2839],['08-22',39,2310],['08-23',62,2872],['08-24',74,3486],
+      ['08-25',81,3327],['08-26',71,3057],['08-27',62,3300],['08-28',72,2903],['08-29',55,2642],
+      ['08-30',62,2842],['08-31',57,3439],['09-01',55,3560],['09-02',71,3326],['09-03',66,3061],
+      ['09-04',61,2822],['09-05',64,2464],['09-06',54,2625],['09-07',46,3240],['09-08',60,3192],
+      ['09-09',43,3353],['09-10',68,3300],['09-11',72,3512],['09-12',62,2855],['09-13',76,2778],
+      ['09-14',57,2369],
+    ],
+    // compare_search_periods (dimensions: query), sorted by click_diff desc.
+    // [query, clicksCurrent, clicksDelta, impressionsDeltaPct|null, ctrCurrent(decimal), avgPositionCurrent, isNew]
+    queries: [
+      ['ugc ads', 70, 60, 7.5, 0.0304, 11.4, false],
+      ['promer ai', 52, 22, 57.1, 0.2781, 1.0, false],
+      ['ai photoshoot prompt', 20, 17, 610.5, 0.1481, 5.3, false],
+      ['photoshoot prompt', 14, 12, 348.0, 0.1250, 4.3, false],
+      ['ad prompt', 23, 11, 69.1, 0.1679, 4.0, false],
+      ['photoshoot ai prompt', 7, 7, 1050.0, 0.1014, 4.1, true],
+      ['fashion prompts generator', 6, 6, null, 0.2222, 5.9, true],
+      ['ai photo shoot prompt', 6, 6, 1000.0, 0.1818, 3.3, true],
+      ['promer', 75, 5, -14.1, 0.0309, 4.8, false],
+    ],
+  },
+
+  // Per-keyword rank tracking, pulled from the SEO Master File sheet.
+  // [keyword, volume, rank] — rank '' means not ranking in the tracked window.
+  keywordRankings: [
+    {
+      key: 'feature',
+      label: 'Feature-page keywords',
+      source: 'feature-page-kws — latest snapshot: Sep, W1 (column N)',
+      rows: [
+      ["ai ad generator​","1,900","100"],
+      ["ai ad maker​","880","100"],
+      ["ai advertisement generator","720","100"],
+      ["ai product photography","480","100"],
+      ["ai product photography for ecommerce​","40","100"],
+      ["ai generated product photography​","40","100"],
+      ["product photography ai​","170","100"],
+      ["product image photography​","110","100"],
+      ["ai product photoshoot","20","100"],
+      ["product photoshoot ai","20","100"],
+      ["ai photoshoot generator","140","100"],
+      ["ai for photoshoot","30","100"],
+      ["ai animation ads","10","6"],
+      ["ai ad prompt","10","100"],
+      ["ad prompt ai","0","5"],
+      ["ad prompt","20","4"],
+      ["ad clone","30","16"],
+      ["clone ad","20","12"],
+      ["clone ads","20","12"],
+      ["ad spy","390",""],
+      ["ads spy","320",""],
+      ["ai ugc video generator","590","100"],
+      ["ai product ugc​","20",""],
+      ["ugc ai","880",""],
+      ["make ugc ai","590",""],
+      ["ai ugc ads","390",""],
+      ["ugc ads ai","210",""],
+      ["ai ugc video","90",""],
+      ["ai for ugc content","70",""],
+      ["ugc ai generator","70",""],
+      ["ai ugc video ads","50",""],
+      ["ai generated ugc ads","40",""],
+      ["simplified ai ugc video generator","40",""],
+      ["ai ugc ad generator","30",""],
+      ["ugc video ads ai","50",""],
+      ["ai ugc examples","20",""],
+      ["ai generated ugc examples​","10",""],
+      ["ugc ad library","",""],
+      ["ai ugc tiktok","50",""],
+      ["ai ugc tiktok shop","20",""],
+      ["ai video ad generator","390",""],
+      ["ai video generator for ecommerce​","20",""],
+      ["ai ad video generator","210",""],
+      ["ai video advertisement generator","170",""],
+      ["ad ai generator","70",""],
+      ["ai video generator ads","30",""],
+      ["ai video generator for ads","30",""],
+      ["generate video ads with ai","30",""],
+      ["ai video ads maker","260",""],
+      ["ai video ad maker","210",""],
+      ["ai video ads generator","140",""],
+      ["create video ads with ai","90",""],
+      ["ai ad video maker","40",""],
+      ["ai marketing video generator","170",""],
+      ["ai video generator for marketing","170",""],
+      ["ai facebook ad generator","480",""],
+      ["ai facebook ads generator","70",""],
+      ["facebook ads ai generator​","90",""],
+      ["facebook ad maker ai","50",""],
+      ["ai facebook ad maker​","20",""],
+      ["ai ad generator for shopify","40",""],
+      ["ai instagram ad generator​","40","44"],
+      ["ai instagram ads generator​","40",""],
+      ["ai instagram ad maker","30",""],
+      ["tiktok ads ai generator​","50",""],
+      ["ai generated tiktok ads​","20",""],
+      ["ai tiktok ad generator​","20",""],
+      ["ai video generator for tiktok ads​","10",""],
+      ["ai social media ad generator","140",""],
+      ["ai product video generator​","390","100"],
+      ["ai product video​","170",""],
+      ["ai advertising video production​","70",""],
+      ["product video ai generator​","50",""],
+      ["ai video generator for product advertising​","30",""],
+      ["ai product demo video generator​","20",""],
+      ["ai product marketing video generator​","20",""],
+      ["ai product review video generator​","20",""],
+      ["ai product image generator​","260",""],
+      ["image ad generator","30",""],
+      ["product ai image generator​","70",""],
+      ["ai product lifestyle image generator​","40",""],
+      ["ai image generator for product design​","20",""],
+      ["product image to video ai","30",""],
+      ["product image to video ai free","40",""],
+      ["ai product image to video","20",""],
+      ["product image to video","20",""],
+      ["product image to video ai","20",""],
+      ["product image to video generator","10",""],
+      ["ai product generator​","110",""],
+      ["ai ugc actors​","40",""],
+      ["ai avatar ugc​","30",""],
+      ["ai ugc avatars​","20",""],
+      ["ugc ai avatars​","20",""],
+      ],
+    },
+    {
+      key: 'blog',
+      label: 'Blog keywords',
+      source: 'blog-keywords — latest snapshot: Sep, W2 (column S)',
+      rows: [
+      ["what is a winning ad","","100"],
+      ["performance creative vs ad design","20","1"],
+      ["best practices for changing ad creatives effectively​","40","1"],
+      ["ad creative strategy","70","100"],
+      ["ad creative testing","170","100"],
+      ["what is a static ad","170","100"],
+      ["static vs dynamic ads","110","100"],
+      ["dynamic ads vs static","110","100"],
+      ["static vs animated ads","20","100"],
+      ["static vs animated banner ads","20","100"],
+      ["static vs video ads","20","100"],
+      ["how to make product ads with ai","20","100"],
+      ["how to spy on competitors ads","140","100"],
+      ["how to spy on competitors facebook ads","20","100"],
+      ["how to spy on facebook ads","20","100"],
+      ["dropshipping ad spy","20",""],
+      ["product photo to ad generator for solopreneurs","210",""],
+      ["how to generate ads with ai","40",""],
+      ["ads for products","210",""],
+      ["product ad examples","210",""],
+      ["what is a product listing ad","210",""],
+      ["how to take good etsy product photos with ai","70","3"],
+      ["how to scale ad production for different markets","30","1"],
+      ["how to scale ad production without increasing design costs","10","100"],
+      ["how to make ads for dropshipping products","20",""],
+      ["how to create ads for dropshipping products","20",""],
+      ["creating ads for dropshipping","20",""],
+      ["how to make video ads for dropshipping","30","100"],
+      ["ai product photography optimized for ads","30",""],
+      ["ai generated ads​","770",""],
+      ["compare ai avatar software for e-commerce product ads​","590",""],
+      ["turn url to video with ai","30","100"],
+      ["ai tool that creates ads from product links","",""],
+      ["how to create animated ads","20","63"],
+      ["ai prompts for photoshoot","50","100"],
+      ["ai prompts for product photography","30","21"],
+      ["ai generated fashion prompts​","110","15"],
+      ["ai photoshoot ideas","20",""],
+      ["prompts for ai photoshoot","20",""],
+      ["studio photoshoot ai prompt","20",""],
+      ["how to optimize video ad campaigns with ai editors","50",""],
+      ["what are ugc ads​","140","1"],
+      ["different styles of ugc ads","50","1"],
+      ["how to spot high-converting ugc ads​","50","2"],
+      ["how to create effective ugc ads​","40","6"],
+      ["tips for creating genuine ugc-style ads","10","62"],
+      ["performance benchmarks for ugc ads","40","3"],
+      ["how to scale ugc ad creative production","20","2"],
+      ["generate ugc ads at scale","20","57"],
+      ["how to make ai ugc","40","100"],
+      ["how to make ai ugc videos","30","100"],
+      ["how to evaluate roi of ai-generated ugc ads","10","1"],
+      ["how to measure roi from ugc ads","10","1"],
+      ["what is ai ugc","110","100"],
+      ["ai ugc what is it​","30","100"],
+      ["ugc facebook ads","50","15"],
+      ["instagram ugc ads","40","2"],
+      ["ugc for instagram ads","","20"],
+      ["tips for using ugc-style templates for no-shoot ads","10",""],
+      ["ugc ad examples","30","100"],
+      ["ugc ad strategy","20",""],
+      ["ugc product ads","",""],
+      ["how to source ugc for paid social ads","","100"],
+      ["how do brands use ugc in paid ads","",""],
+      ["ugc ads vs static ads","","2"],
+      ["influencer-style ads vs ugc ads","",""],
+      ["brand created vs ugc video ads","",""],
+      ["how do teams keep ugc ads fresh","",""],
+      ["ugc for beginners","70","100"],
+      ["ugc for restaurants","70",""],
+      ["ugc for small business","70",""],
+      ["ugc for sme","50",""],
+      ["ugc for tourism marketing","50",""],
+      ["ugc for travel","50",""],
+      ["ugc for travel brands","50",""],
+      ["ugc for ott platforms","40",""],
+      ["ugc marketing strategies for cpg","40",""],
+      ["user generated content for brands","40",""],
+      ["visual consistency standards for ugc","40",""],
+      ["what kpis matter most for ugc","40",""],
+      ["how to do ugc for brands","30",""],
+      ["how to get ugc for your brand","30",""],
+      ["clone ads","20",""],
+      ["scrape amazon product ads","50",""],
+      ["create instagram ads with ai​","30",""],
+      ],
+    },
+  ],
+};
+
+function render(data){
+
+  // ---- formatting + delta helpers ----
+  const intFmt = n => Math.round(n).toLocaleString();
+  const fmtSigned = (v, digits, suffix='') => (v>=0?'+':'') + v.toFixed(digits) + suffix;
+
+  function deltaBadge(raw, {kind='pct', invert=false, digits=0, suffix=''}={}){
+    const good = invert ? raw <= 0 : raw >= 0;
+    const arrow = good ? '▲' : '▼';
+    const text = kind === 'pct' ? fmtSigned(raw, digits, '%') : fmtSigned(raw, digits, suffix);
+    return `<span class="delta ${good?'up':'down'}">${arrow} ${text}</span>`;
+  }
+  function pctDelta(cur, prev, opts={}){
+    if(prev === 0 && cur === 0) return '<span class="lowvol">flat</span>';
+    if(prev === 0) return '<span class="delta up">▲ new</span>';
+    return deltaBadge(((cur-prev)/prev)*100, {kind:'pct', digits: opts.digits ?? 0, invert: opts.invert});
+  }
+  function absDelta(cur, prev, opts={}){
+    return deltaBadge(cur-prev, {kind:'abs', digits: opts.digits ?? 1, suffix: opts.suffix ?? '', invert: opts.invert});
+  }
+  const $ = id => document.getElementById(id);
+
+  // ---- masthead ----
+  $('eyebrow').textContent = `Growth & SEO Report — ${data.meta.subject}`;
+  $('reportTitle').textContent = data.meta.title;
+  $('periodLabel').textContent = `${data.meta.currentRange} vs. ${data.meta.priorRange}`;
+  $('sourcesLabel').textContent = `SOURCE: GA4 (${data.meta.ga4Property}) · SEARCH CONSOLE (${data.meta.gscProperty})`;
+  $('acqNote').textContent = `Sessions & conversions by channel, current ${data.meta.windowDays}d vs. prior ${data.meta.windowDays}d`;
+  $('gscNote').textContent = `${data.meta.gscProperty} — ${data.meta.windowDays}d totals, current vs. prior`;
+  $('kwNote').textContent = 'Per-keyword SERP position from the SEO Master File sheet — searchable & filterable';
+  $('footerLine').textContent = `Generated ${data.meta.generatedDate} · GA4 property ${data.meta.ga4PropertyLabel} · GSC property ${data.meta.gscProperty}`;
+
+  // ---- channel cards ----
+  const ch = data.channels;
+  $('v-org-sessions').textContent = intFmt(ch.organic.sessions.cur);
+  $('d-org-sessions').innerHTML   = pctDelta(ch.organic.sessions.cur, ch.organic.sessions.prev);
+  $('v-org-users').textContent    = intFmt(ch.organic.users.cur);
+  $('d-org-users').innerHTML      = pctDelta(ch.organic.users.cur, ch.organic.users.prev);
+  $('v-ai-sessions').textContent  = intFmt(ch.ai.sessions.cur);
+  $('d-ai-sessions').innerHTML    = pctDelta(ch.ai.sessions.cur, ch.ai.sessions.prev);
+  $('v-ai-users').textContent     = intFmt(ch.ai.users.cur);
+  $('d-ai-users').innerHTML       = pctDelta(ch.ai.users.cur, ch.ai.users.prev);
+
+  function renderHosts(elId, byHost){
+    $(elId).innerHTML = byHost.map(h => `
+      <div class="host-row">
+        <span class="host-name">${h.host}</span>
+        <span class="host-val">${intFmt(h.cur)}</span>
+        ${pctDelta(h.cur, h.prev)}
+      </div>`).join('');
+  }
+  renderHosts('h-org-hosts', ch.organic.byHost);
+  renderHosts('h-ai-hosts', ch.ai.byHost);
+
+  // ---- GSC stat tiles ----
+  const t = data.gsc.totals;
+  const tiles = [
+    { l:'Clicks',       v:intFmt(t.clicks.cur),                    prev:`prior ${intFmt(t.clicks.prev)}`,           delta:pctDelta(t.clicks.cur, t.clicks.prev) },
+    { l:'Impressions',  v:intFmt(t.impressions.cur),                prev:`prior ${intFmt(t.impressions.prev)}`,      delta:pctDelta(t.impressions.cur, t.impressions.prev) },
+    { l:'Avg. CTR',     v:`${t.ctr.cur.toFixed(2)}%`,                prev:`prior ${t.ctr.prev.toFixed(2)}%`,          delta:absDelta(t.ctr.cur, t.ctr.prev, {digits:2, suffix:'pp'}) },
+    { l:'Avg. position',v:t.position.cur.toFixed(1),                 prev:`prior ${t.position.prev.toFixed(1)}`,      delta:absDelta(t.position.cur, t.position.prev, {digits:1, invert:true}) },
+  ];
+  $('tileGrid').innerHTML = tiles.map(tile => `
+    <div class="tile">
+      <div class="l">${tile.l}</div>
+      <div class="v num">${tile.v}</div>
+      <div class="prev">${tile.prev} · ${tile.delta}</div>
+    </div>`).join('');
+
+  // ---- event table ----
+  const evBody = $('eventTableBody');
+  evBody.innerHTML = data.events.map(([name,op,oc,ap,ac]) => `
+    <tr>
+      <td style="text-align:left;font-family:'IBM Plex Mono',monospace;font-size:12px;">${name}</td>
+      <td class="num">${op}</td><td class="num">${oc}</td><td class="num">${pctDelta(oc,op)}</td>
+      <td class="num">${ap}</td><td class="num">${ac}</td><td class="num">${pctDelta(ac,ap)}</td>
+    </tr>`).join('');
+
+  // ---- query movers table ----
+  const qBody = $('queryTableBody');
+  qBody.innerHTML = data.gsc.queries.map(([q,clicks,dclicks,imprPct,ctr,pos,isNew]) => {
+    const imprCell = imprPct === null ? '<span class="lowvol">new</span>' : fmtSigned(imprPct,0,'%');
+    return `<tr>
+      <td><span class="qcell">${q}${isNew?'<span class="new-badge">NEW</span>':''}</span></td>
+      <td class="num">${clicks}</td>
+      <td class="num">${pctDelta(clicks, clicks-dclicks)}</td>
+      <td class="num">${imprCell}</td>
+      <td class="num">${(ctr*100).toFixed(1)}%</td>
+      <td class="num">${pos.toFixed(1)}</td>
+    </tr>`;
+  }).join('');
+
+  // ---- keyword rank tracking ----
+  const BUCKET_ORDER = ['Top 1-3','Top 4-10','Top 11-20','Top 21-50','Top 51-100','not ranking'];
+  function bucketOf(rankStr){
+    const n = Number(rankStr);
+    if(rankStr === '' || rankStr === undefined || Number.isNaN(n)) return 'not ranking';
+    if(n <= 3) return 'Top 1-3';
+    if(n <= 10) return 'Top 4-10';
+    if(n <= 20) return 'Top 11-20';
+    if(n <= 50) return 'Top 21-50';
+    if(n <= 100) return 'Top 51-100';
+    return 'not ranking';
+  }
+  function parseNum(s){
+    const n = Number(String(s).replace(/,/g,''));
+    return Number.isNaN(n) ? null : n;
+  }
+  function rankCellClass(bucket){
+    if(bucket==='Top 1-3' || bucket==='Top 4-10' || bucket==='Top 11-20') return 'rank-good';
+    if(bucket==='not ranking') return 'rank-none';
+    return 'rank-mid';
+  }
+
+  const kwGroupsEl = $('kwGroups');
+  data.keywordRankings.forEach(group => {
+    const rows = group.rows.map(([kw,vol,rank]) => {
+      const bucket = bucketOf(rank);
+      return { kw, vol, rank, volNum: parseNum(vol), rankNum: rank===''?null:Number(rank), bucket };
+    });
+
+    const dist = {};
+    BUCKET_ORDER.forEach(b => dist[b] = 0);
+    rows.forEach(r => dist[r.bucket]++);
+    const maxDist = Math.max(...Object.values(dist), 1);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'kw-group';
+    wrap.innerHTML = `
+      <h3 class="kw-group-title">${group.label} <span class="lowvol" style="font-weight:400;">— ${group.source}</span></h3>
+      <div class="kw-dist">
+        ${BUCKET_ORDER.map(b => `
+          <div class="kw-dist-row">
+            <div class="kw-dist-label">${b}</div>
+            <div class="kw-dist-track"><div class="kw-dist-fill" style="width:${(dist[b]/maxDist*100).toFixed(1)}%"></div></div>
+            <div class="kw-dist-count">${dist[b]}</div>
+          </div>`).join('')}
+      </div>
+      <div class="kw-controls">
+        <input type="search" class="kw-search" placeholder="Search keyword…">
+        <div class="kw-filters">
+          <span class="kw-chip active" data-bucket="all">All (${rows.length})</span>
+          ${BUCKET_ORDER.map(b => `<span class="kw-chip" data-bucket="${b}">${b} (${dist[b]})</span>`).join('')}
+        </div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead><tr>
+              <th data-sort="kw">Keyword</th>
+              <th class="num" data-sort="volNum">Volume</th>
+              <th class="num" data-sort="rankNum">Rank</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="lowvol"></p>
+    `;
+    kwGroupsEl.appendChild(wrap);
+
+    const tbody = wrap.querySelector('tbody');
+    const countLine = wrap.querySelector('p.lowvol');
+    const searchInput = wrap.querySelector('.kw-search');
+    const chips = [...wrap.querySelectorAll('.kw-chip')];
+    const headers = [...wrap.querySelectorAll('th[data-sort]')];
+
+    const state = { bucket: 'all', search: '', sortKey: 'rankNum', sortDir: 'asc' };
+
+    function draw(){
+      let filtered = rows.filter(r =>
+        (state.bucket === 'all' || r.bucket === state.bucket) &&
+        (!state.search || r.kw.toLowerCase().includes(state.search))
+      );
+      filtered.sort((a,b) => {
+        let av = a[state.sortKey], bv = b[state.sortKey];
+        if(state.sortKey === 'kw'){ av = av.toLowerCase(); bv = bv.toLowerCase(); }
+        else { av = av === null ? Infinity : av; bv = bv === null ? Infinity : bv; }
+        const cmp = av < bv ? -1 : av > bv ? 1 : 0;
+        return state.sortDir === 'asc' ? cmp : -cmp;
+      });
+      tbody.innerHTML = filtered.map(r => `
+        <tr>
+          <td>${r.kw}</td>
+          <td class="num">${r.vol || '—'}</td>
+          <td class="num ${rankCellClass(r.bucket)}">${r.rank || 'not ranking'}</td>
+        </tr>`).join('') || `<tr><td colspan="3" class="lowvol" style="text-align:center;padding:20px;">No keywords match.</td></tr>`;
+      countLine.textContent = `Showing ${filtered.length} of ${rows.length} keywords.`;
+      headers.forEach(h => {
+        const base = h.textContent.replace(/ [▲▼]$/, '');
+        h.textContent = h.dataset.sort === state.sortKey ? `${base} ${state.sortDir === 'asc' ? '▲' : '▼'}` : base;
+      });
+    }
+
+    searchInput.addEventListener('input', () => { state.search = searchInput.value.trim().toLowerCase(); draw(); });
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      state.bucket = chip.dataset.bucket;
+      draw();
+    }));
+    headers.forEach(h => h.addEventListener('click', () => {
+      if(state.sortKey === h.dataset.sort){ state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc'; }
+      else { state.sortKey = h.dataset.sort; state.sortDir = 'asc'; }
+      draw();
+    }));
+
+    draw();
+  });
+
+  // ================= CHARTS =================
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs){
+    const e = document.createElementNS(NS, tag);
+    for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function makeTooltip(container){
+    const tip = document.createElement('div');
+    tip.className = 'tooltip';
+    container.style.position = 'relative';
+    container.appendChild(tip);
+    return tip;
+  }
+  // Converts a point in an SVG's own viewBox units into px relative to `container`
+  // (which is the tooltip's offsetParent) — needed because the SVG sits inset
+  // inside the card's padding, so its own rect doesn't share the card's origin.
+  function placeTooltip(tip, svg, container, vx, vy, vbW, vbH){
+    const svgRect = svg.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const clientX = svgRect.left + (vx/vbW) * svgRect.width;
+    const clientY = svgRect.top + (vy/vbH) * svgRect.height;
+    tip.style.left = (clientX - containerRect.left) + 'px';
+    tip.style.top = (clientY - containerRect.top) + 'px';
+  }
+
+  const daily = data.gsc.daily;
+  const splitIdx = daily.findIndex(d => d[0] === data.gsc.splitDate);
+
+  function lineChart(svgId, values, opts){
+    const svg = document.getElementById(svgId);
+    const vb = svg.viewBox.baseVal;
+    const W = vb.width, H = vb.height;
+    const padL = 46, padR = 14, padT = 14, padB = 22;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const max = Math.max(...values) * 1.12;
+    const min = 0;
+    const n = values.length;
+    const x = i => padL + (i/(n-1)) * innerW;
+    const y = v => padT + innerH - ((v-min)/(max-min)) * innerH;
+
+    const steps = 4;
+    for(let s=0;s<=steps;s++){
+      const val = min + (max-min)*(s/steps);
+      const yy = y(val);
+      svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:yy,y2:yy,class:'gridline'}));
+      const lbl = el('text',{x:padL-8,y:yy+3,class:'axislabel','text-anchor':'end'});
+      lbl.textContent = opts.fmt ? opts.fmt(val) : Math.round(val);
+      svg.appendChild(lbl);
+    }
+    svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+innerH,y2:padT+innerH,class:'baseline'}));
+
+    if(splitIdx > 0){
+      const sx = x(splitIdx-0.5);
+      svg.appendChild(el('line',{x1:sx,x2:sx,y1:padT,y2:padT+innerH,class:'split-line'}));
+      const stxt = el('text',{x:sx,y:padT-3,class:'split-label','text-anchor':'middle'});
+      stxt.textContent = 'period split';
+      svg.appendChild(stxt);
+    }
+
+    let d = `M ${x(0)} ${y(values[0])}`;
+    for(let i=1;i<n;i++) d += ` L ${x(i)} ${y(values[i])}`;
+    const areaD = d + ` L ${x(n-1)} ${padT+innerH} L ${x(0)} ${padT+innerH} Z`;
+    svg.appendChild(el('path',{d:areaD, fill:opts.color, 'fill-opacity':0.12, stroke:'none'}));
+    svg.appendChild(el('path',{d:d, fill:'none', stroke:opts.color, 'stroke-width':2, 'stroke-linejoin':'round','stroke-linecap':'round'}));
+
+    [0, Math.max(splitIdx,0), n-1].forEach(i=>{
+      const t = el('text',{x:x(i),y:H-4,class:'axislabel','text-anchor':'middle'});
+      t.textContent = daily[i][0];
+      svg.appendChild(t);
+    });
+
+    const guide = el('line',{class:'hover-guide',y1:padT,y2:padT+innerH});
+    svg.appendChild(guide);
+    const dot = el('circle',{class:'hover-dot', r:4, fill:opts.color, stroke:'var(--surface)', 'stroke-width':2});
+    svg.appendChild(dot);
+    const hit = el('rect',{x:padL,y:padT,width:innerW,height:innerH,class:'chart-hit'});
+    svg.appendChild(hit);
+
+    const card = svg.closest('.chart-card');
+    const tip = makeTooltip(card);
+    hit.addEventListener('mousemove', (ev)=>{
+      const rect = svg.getBoundingClientRect();
+      const relX = ((ev.clientX-rect.left)/rect.width)*W;
+      let i = Math.round(((relX-padL)/innerW)*(n-1));
+      i = Math.max(0, Math.min(n-1, i));
+      const px = x(i), py = y(values[i]);
+      guide.setAttribute('x1',px); guide.setAttribute('x2',px); guide.style.opacity=1;
+      dot.setAttribute('cx',px); dot.setAttribute('cy',py); dot.style.opacity=1;
+      tip.style.opacity = 1;
+      placeTooltip(tip, svg, card, px, py, W, H);
+      tip.textContent = `${daily[i][0]}  ·  ${opts.fmt ? opts.fmt(values[i]) : values[i].toLocaleString()}`;
+    });
+    hit.addEventListener('mouseleave', ()=>{ guide.style.opacity=0; dot.style.opacity=0; tip.style.opacity=0; });
+  }
+
+  lineChart('clicksChart', daily.map(d=>d[1]), {color:'var(--accent)'});
+  lineChart('imprChart', daily.map(d=>d[2]), {color:'var(--accent)', fmt:v=>Math.round(v).toLocaleString()});
+
+  // ---- grouped bar chart: sessions prior vs current, organic & AI ----
+  (function(){
+    const svg = document.getElementById('barChart');
+    const vb = svg.viewBox.baseVal;
+    const W = vb.width, H = vb.height;
+    const padL = 56, padR = 20, padT = 16, padB = 26;
+    const innerW = W-padL-padR, innerH = H-padT-padB;
+    const groups = [
+      {label:'Organic Search', prev:ch.organic.sessions.prev, cur:ch.organic.sessions.cur, color:'var(--organic)'},
+      {label:'AI Assistant', prev:ch.ai.sessions.prev, cur:ch.ai.sessions.cur, color:'var(--ai)'},
+    ];
+    const max = Math.max(...groups.flatMap(g=>[g.prev,g.cur])) * 1.15;
+    const y = v => padT + innerH - (v/max)*innerH;
+
+    const steps=4;
+    for(let s=0;s<=steps;s++){
+      const val = max*(s/steps);
+      const yy = y(val);
+      svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:yy,y2:yy,class:'gridline'}));
+      const lbl = el('text',{x:padL-8,y:yy+3,class:'axislabel','text-anchor':'end'});
+      lbl.textContent = Math.round(val).toLocaleString();
+      svg.appendChild(lbl);
+    }
+    svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+innerH,y2:padT+innerH,class:'baseline'}));
+
+    const groupW = innerW/groups.length;
+    const barW = 54, gap=14;
+    const card = svg.closest('.chart-card');
+    const tip = makeTooltip(card);
+
+    groups.forEach((g,gi)=>{
+      const cx = padL + groupW*gi + groupW/2;
+      const barPrevX = cx - barW - gap/2;
+      const barCurX  = cx + gap/2;
+      [
+        {x:barPrevX, v:g.prev, color:'var(--baseline)', label:'Prior period'},
+        {x:barCurX, v:g.cur, color:g.color, label:'Current period'},
+      ].forEach(b=>{
+        const by = y(b.v);
+        const rect = el('rect',{x:b.x, y:by, width:barW, height:(padT+innerH-by), fill:b.color, rx:3, ry:3});
+        svg.appendChild(rect);
+        const lbl = el('text',{x:b.x+barW/2, y:by-6, class:'axislabel','text-anchor':'middle'});
+        lbl.setAttribute('fill','var(--ink-2)');
+        lbl.textContent = b.v.toLocaleString();
+        svg.appendChild(lbl);
+
+        rect.addEventListener('mousemove', ()=>{
+          tip.style.opacity=1;
+          placeTooltip(tip, svg, card, b.x+barW/2, by, W, H);
+          tip.textContent = `${g.label} — ${b.label}: ${b.v.toLocaleString()} sessions`;
+        });
+        rect.addEventListener('mouseleave', ()=>{ tip.style.opacity=0; });
+      });
+      const glabel = el('text',{x:cx,y:H-6,class:'axislabel','text-anchor':'middle'});
+      glabel.textContent = g.label;
+      glabel.setAttribute('font-weight','600');
+      svg.appendChild(glabel);
+    });
+  })();
+
+}
+
+render(REPORT_DATA);
+</script>
