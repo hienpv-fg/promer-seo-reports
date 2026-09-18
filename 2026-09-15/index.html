@@ -275,7 +275,6 @@
           </div>
         </div>
         <div class="chan-hosts" id="h-ai-hosts"></div>
-        <div class="chan-hosts" id="h-ai-sources" style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);"></div>
       </div>
     </div>
     <p class="lowvol">Sessions is cross-domain — a visit that starts on promer.ai and continues into app.promer.ai is counted under both hostnames, so the two rows can sum to more than the card total above.</p>
@@ -345,28 +344,7 @@
       </table>
       </div>
     </div>
-    <p class="lowvol">Ranked by largest gain in clicks. "NEW" = zero clicks in the prior period. The last two rows are the largest losers.</p>
-
-    <div class="table-card" style="margin-top:16px;">
-      <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Landing page</th>
-            <th>Published</th>
-            <th class="num">Clicks — prior</th>
-            <th class="num">Clicks — current</th>
-            <th class="num">&Delta;</th>
-            <th class="num">Impr.</th>
-            <th class="num">CTR</th>
-            <th class="num">Avg. pos.</th>
-          </tr>
-        </thead>
-        <tbody id="pageTableBody"></tbody>
-      </table>
-      </div>
-    </div>
-    <p class="lowvol">Same two 28-day windows, grouped by landing page. Average position is current, prior in parentheses. Publish dates come from the blog-keywords sheet.</p>
+    <p class="lowvol">Ranked by largest gain in clicks. "NEW" = zero clicks in the prior period.</p>
   </section>
 
   <section id="keywords">
@@ -374,7 +352,6 @@
       <h2>3. Keyword rank tracking</h2>
       <span class="section-note" id="kwNote"></span>
     </div>
-    <div class="tile-grid" id="kwTiles"></div>
     <div id="kwGroups"></div>
   </section>
 
@@ -429,306 +406,276 @@ const REPORT_DATA = {
     subject: 'promer.ai & app.promer.ai',
     title: 'Organic & AI-Assistant Pulse',
     windowDays: 28,
-    currentRange: 'Aug 20 \u2013 Sep 16, 2026',
-    priorRange: 'Jul 23 \u2013 Aug 19, 2026',
+    currentRange: 'Aug 18 – Sep 14, 2026',
+    priorRange: 'Jul 21 – Aug 17, 2026',
     ga4Property: '517415274',
     gscProperty: 'sc-domain:promer.ai',
-    generatedDate: '2026-09-17',
+    generatedDate: '2026-09-15',
     ga4PropertyLabel: '517415274 (WebApp app.promer.ai V2.0)',
   },
 
-  // sessionDefaultChannelGroup breakdown, GA4 run_report — sessions & activeUsers
+  // sessionDefaultChannelGroup breakdown, GA4 run_report — sessions & activeUsers, current vs. prior
   channels: {
     organic: {
-      sessions: { cur: 4044, prev: 1529 }, users: { cur: 2767, prev: 829 },
+      sessions: { cur: 3818, prev: 1404 }, users: { cur: 2600, prev: 737 },
+      // sessionDefaultChannelGroup x hostName — sessions only (cross-domain visits
+      // count under each hostname they touch, so these two rows can outsum the total above)
       byHost: [
-        { host: 'promer.ai',     cur: 3379, prev: 1103 },
-        { host: 'app.promer.ai', cur: 1130, prev: 713  },
+        { host: 'promer.ai',     cur: 3140, prev: 1000 },
+        { host: 'app.promer.ai', cur: 1124, prev: 690 },
       ],
     },
     ai: {
-      sessions: { cur: 469, prev: 74 }, users: { cur: 371, prev: 31 },
+      sessions: { cur: 410,  prev: 72   }, users: { cur: 317,  prev: 29  },
       byHost: [
-        { host: 'promer.ai',     cur: 422, prev: 71 },
-        { host: 'app.promer.ai', cur: 97,  prev: 19 },
-      ],
-      // sessionSource inside the AI Assistant channel
-      bySource: [
-        { host: 'chatgpt.com',       cur: 392, prev: 58 },
-        { host: 'gemini.google.com', cur: 39,  prev: 5  },
-        { host: 'claude.ai',         cur: 33,  prev: 11 },
-        { host: 'perplexity.ai',     cur: 4,   prev: 0  },
-        { host: 'grok.com',          cur: 1,   prev: 0  },
+        { host: 'promer.ai',     cur: 364, prev: 69 },
+        { host: 'app.promer.ai', cur: 90,  prev: 18 },
       ],
     },
   },
 
   // [eventName, organicPrior, organicCurrent, aiPrior, aiCurrent]
   events: [
-    ['complete_sign_up_google', 24, 38, 3, 16],
-    ['complete_sign_up_email', 9, 7, 1, 1],
-    ['complete_plan_upgrade_on_billing_detail', 4, 2, 1, 0],
+    ['complete_sign_up_google', 25, 34, 3, 15],
+    ['complete_sign_up_email', 9, 8, 1, 1],
+    ['complete_plan_upgrade_on_billing_detail', 3, 3, 1, 0],
     ['complete_add_credit_on_side_bar', 2, 1, 0, 0],
     ['complete_add_credit_on_billing_detail', 0, 1, 0, 0],
   ],
 
   gsc: {
+    // get_performance_overview totals, current vs. prior 28d
     totals: {
-      clicks:      { cur: 1718,  prev: 585 },
-      impressions: { cur: 86354, prev: 40331 },
-      ctr:         { cur: 1.99,  prev: 1.45 },
-      position:    { cur: 9.0,   prev: 9.4 },
+      clicks:      { cur: 1682,  prev: 511 },
+      impressions: { cur: 84852, prev: 35987 },
+      ctr:         { cur: 1.98,  prev: 1.42 },   // percent
+      position:    { cur: 9.3,   prev: 9.1 },    // lower is better
     },
-    splitDate: '08-20',
+    // daily_trend from get_performance_overview (days=56): [date, clicks, impressions]
+    // splitDate marks where the "current" window begins.
+    splitDate: '08-18',
     daily: [
-      ['07-23',21,867],['07-24',14,809],['07-25',9,712],['07-26',11,834],['07-27',16,1085],
-      ['07-28',6,1150],['07-29',17,1201],['07-30',16,1205],['07-31',7,992],['08-01',11,851],
-      ['08-02',13,1003],['08-03',14,1273],['08-04',17,1169],['08-05',19,1246],['08-06',22,1183],
-      ['08-07',14,1096],['08-08',15,1182],['08-09',20,1456],['08-10',22,1880],['08-11',25,1859],
-      ['08-12',37,1755],['08-13',22,1864],['08-14',24,1606],['08-15',22,1271],['08-16',26,1686],
-      ['08-17',40,2823],['08-18',49,3114],['08-19',56,3159],['08-20',42,3105],['08-21',45,2839],
-      ['08-22',39,2310],['08-23',62,2872],['08-24',74,3486],['08-25',81,3327],['08-26',71,3057],
-      ['08-27',62,3300],['08-28',72,2903],['08-29',55,2642],['08-30',62,2842],['08-31',57,3439],
-      ['09-01',55,3560],['09-02',71,3326],['09-03',66,3061],['09-04',61,2822],['09-05',64,2464],
-      ['09-06',54,2625],['09-07',46,3240],['09-08',60,3192],['09-09',43,3353],['09-10',68,3300],
-      ['09-11',72,3512],['09-12',62,2855],['09-13',76,2777],['09-14',75,3374],['09-15',66,3604],
-      ['09-16',57,3167],
+      ['07-21',21,939],['07-22',10,990],['07-23',21,867],['07-24',14,809],['07-25',9,712],
+      ['07-26',11,834],['07-27',16,1085],['07-28',6,1150],['07-29',17,1201],['07-30',16,1205],
+      ['07-31',7,992],['08-01',11,851],['08-02',13,1003],['08-03',14,1273],['08-04',17,1169],
+      ['08-05',19,1246],['08-06',22,1183],['08-07',14,1096],['08-08',15,1182],['08-09',20,1456],
+      ['08-10',22,1880],['08-11',25,1859],['08-12',37,1755],['08-13',22,1864],['08-14',24,1606],
+      ['08-15',22,1271],['08-16',26,1686],['08-17',40,2823],['08-18',49,3114],['08-19',56,3159],
+      ['08-20',42,3105],['08-21',45,2839],['08-22',39,2310],['08-23',62,2872],['08-24',74,3486],
+      ['08-25',81,3327],['08-26',71,3057],['08-27',62,3300],['08-28',72,2903],['08-29',55,2642],
+      ['08-30',62,2842],['08-31',57,3439],['09-01',55,3560],['09-02',71,3326],['09-03',66,3061],
+      ['09-04',61,2822],['09-05',64,2464],['09-06',54,2625],['09-07',46,3240],['09-08',60,3192],
+      ['09-09',43,3353],['09-10',68,3300],['09-11',72,3512],['09-12',62,2855],['09-13',76,2778],
+      ['09-14',57,2369],
     ],
-
-    // compare_search_periods (query), sorted by click_diff desc.
-    // [query, clicksCur, clicksDelta, imprDeltaPct|null, ctrCur, avgPosCur, isNew]
+    // compare_search_periods (dimensions: query), sorted by click_diff desc.
+    // [query, clicksCurrent, clicksDelta, impressionsDeltaPct|null, ctrCurrent(decimal), avgPositionCurrent, isNew]
     queries: [
-      ['ugc ads', 73, 63, 17.2, 0.0287, 10.9, false],
-      ['promer ai', 60, 31, 62.1, 0.2985, 1.0, false],
-      ['ai photoshoot prompt', 21, 17, 491.7, 0.1479, 5.5, false],
-      ['ad prompt', 25, 13, 75.6, 0.1736, 3.8, false],
-      ['photoshoot prompt', 14, 12, 200.0, 0.1333, 4.5, false],
-      ['promer', 79, 10, -9.1, 0.0312, 4.9, false],
-      ['photoshoot ai prompt', 7, 7, 600.0, 0.1000, 4.2, true],
-      ['fashion prompts generator', 7, 7, null, 0.2000, 5.8, true],
-      ['ai ad prompt', 6, 5, 125.0, 0.2222, 4.8, false],
-      ['ai photoshoot prompts', 5, 5, 2200.0, 0.2174, 5.8, true],
-      ['prompt for clothing brand', 5, 5, null, 0.1667, 6.6, true],
-      ['model photoshoot prompt', 4, 4, null, 0.2105, 8.5, true],
-      ['ai prompts for clothing brand', 4, 4, null, 0.1905, 7.9, true],
-      ['ugc ads meaning', 4, 4, 14.1, 0.0040, 6.8, true],
-      ['furniture ad template', 0, -2, -10.0, 0.0000, 8.5, false],
-      ['prompt for ads', 0, -2, -100.0, 0.0000, 0.0, false],
-    ],
-    // compare_search_periods (page), sorted by click_diff desc.
-    // [path, clicksCur, clicksPrev, imprCur, ctrCur, posCur, posPrior|null, publishedDate|null]
-    pages: [
-      ['/blog/ai-generated-fashion-prompts', 448, 0, 7470, 0.0600, 6.1, null, '21 Aug 2026'],
-      ['/blog/ai-prompts-for-photoshoot', 218, 49, 2238, 0.0974, 6.5, 4.8, '14 Aug 2026'],
-      ['/blog/what-are-ugc-ads', 103, 19, 17593, 0.0059, 8.8, 9.7, '1 Jun 2026'],
-      ['/blog/ai-product-photography-prompts', 93, 0, 2395, 0.0388, 7.3, null, '25 Aug 2026'],
-      ['/', 188, 127, 3336, 0.0564, 4.1, 4.4, null],
-      ['/winning-ad-library/coffee', 17, 2, 414, 0.0411, 6.4, 6.6, null],
-      ['/ad-animation', 28, 16, 2283, 0.0123, 10.1, 9.1, null],
-      ['/winning-ad-library/shoes/running-shoes', 16, 5, 857, 0.0187, 6.4, 6.3, null],
-      ['/winning-ad-library/cosmetics/perfume', 15, 4, 332, 0.0452, 6.3, 6.1, null],
-      ['/blog/ugc-ad-examples', 7, 0, 169, 0.0414, 6.5, null, '31 Aug 2026'],
-      ['/ad-clone', 9, 13, 656, 0.0137, 6.9, 7.0, null],
-      ['/winning-ad-library/hair-care', 1, 6, 54, 0.0185, 5.6, 7.4, null],
-      ['/winning-ad-library', 1, 5, 178, 0.0056, 11.2, 9.7, null],
-      ['/winning-ad-library/beverage/tea', 1, 5, 28, 0.0357, 7.8, 6.2, null],
+      ['ugc ads', 70, 60, 7.5, 0.0304, 11.4, false],
+      ['promer ai', 52, 22, 57.1, 0.2781, 1.0, false],
+      ['ai photoshoot prompt', 20, 17, 610.5, 0.1481, 5.3, false],
+      ['photoshoot prompt', 14, 12, 348.0, 0.1250, 4.3, false],
+      ['ad prompt', 23, 11, 69.1, 0.1679, 4.0, false],
+      ['photoshoot ai prompt', 7, 7, 1050.0, 0.1014, 4.1, true],
+      ['fashion prompts generator', 6, 6, null, 0.2222, 5.9, true],
+      ['ai photo shoot prompt', 6, 6, 1000.0, 0.1818, 3.3, true],
+      ['promer', 75, 5, -14.1, 0.0309, 4.8, false],
     ],
   },
 
-  // Blog posts live, by publish date in the sheet (blog-keywords, col P).
-  contentShipped: { cur: 19, prev: 2, trackedKeywords: 178, inTop20: { cur: 25, prev: 23 } },
-
+  // Per-keyword rank tracking, pulled from the SEO Master File sheet.
+  // [keyword, volume, rank] — rank '' means not ranking in the tracked window.
   keywordRankings: [
     {
       key: 'feature',
       label: 'Feature-page keywords',
-      source: 'feature-page-kws — Sep W2 (col O) vs. Sep W1 (col N)',
+      source: 'feature-page-kws — latest snapshot: Sep, W1 (column N)',
       rows: [
-      ["ai ad generator","1,900","",""],
-      ["ai ad maker","880","",""],
-      ["ai advertisement generator","720","",""],
-      ["ai product photography","480","",""],
-      ["ai product photography for ecommerce","40","",""],
-      ["ai generated product photography","40","",""],
-      ["product photography ai","170","",""],
-      ["product image photography","110","",""],
-      ["ai product photoshoot","20","",""],
-      ["product photoshoot ai","20","",""],
-      ["ai photoshoot generator","140","",""],
-      ["ai for photoshoot","30","",""],
-      ["ai animation ads","10","6","6"],
-      ["ai ad prompt","10","11",""],
-      ["ad prompt ai","0","","5"],
-      ["ad prompt","20","4","4"],
-      ["ad clone","30","13","16"],
-      ["clone ad","20","12","12"],
-      ["clone ads","20","13","12"],
-      ["ad spy","390","",""],
-      ["ads spy","320","n/a",""],
-      ["ai ugc video generator","590","",""],
-      ["ai product ugc","20","",""],
-      ["ugc ai","880","",""],
-      ["make ugc ai","590","",""],
-      ["ai ugc ads","390","",""],
-      ["ugc ads ai","210","",""],
-      ["ai ugc video","90","",""],
-      ["ai for ugc content","70","",""],
-      ["ugc ai generator","70","",""],
-      ["ai ugc video ads","50","",""],
-      ["ai generated ugc ads","40","",""],
-      ["simplified ai ugc video generator","40","",""],
-      ["ai ugc ad generator","30","",""],
-      ["ugc video ads ai","50","",""],
-      ["ai ugc examples","20","",""],
-      ["ai generated ugc examples","10","n/a",""],
-      ["ugc ad library","","n/a",""],
-      ["ai ugc tiktok","50","",""],
-      ["ai ugc tiktok shop","20","",""],
-      ["ai video ad generator","390","n/a",""],
-      ["ai video generator for ecommerce","20","n/a",""],
-      ["ai ad video generator","210","n/a",""],
-      ["ai video advertisement generator","170","n/a",""],
-      ["ad ai generator","70","n/a",""],
-      ["ai video generator ads","30","n/a",""],
-      ["ai video generator for ads","30","n/a",""],
-      ["generate video ads with ai","30","n/a",""],
-      ["ai video ads maker","260","n/a",""],
-      ["ai video ad maker","210","n/a",""],
-      ["ai video ads generator","140","n/a",""],
-      ["create video ads with ai","90","n/a",""],
-      ["ai ad video maker","40","n/a",""],
-      ["ai marketing video generator","170","n/a",""],
-      ["ai video generator for marketing","170","n/a",""],
-      ["ai facebook ad generator","480","",""],
-      ["ai facebook ads generator","70","",""],
-      ["facebook ads ai generator","90","",""],
-      ["facebook ad maker ai","50","37",""],
-      ["ai facebook ad maker","20","",""],
-      ["ai ad generator for shopify","40","",""],
-      ["ai instagram ad generator","40","27","44"],
-      ["ai instagram ads generator","40","25",""],
-      ["ai instagram ad maker","30","25",""],
-      ["tiktok ads ai generator","50","52",""],
-      ["ai generated tiktok ads","20","",""],
-      ["ai tiktok ad generator","20","",""],
-      ["ai video generator for tiktok ads","10","",""],
-      ["ai social media ad generator","140","26",""],
-      ["ai product video generator","390","",""],
-      ["ai product video","170","",""],
-      ["ai advertising video production","70","",""],
-      ["product video ai generator","50","",""],
-      ["ai video generator for product advertising","30","",""],
-      ["ai product demo video generator","20","",""],
-      ["ai product marketing video generator","20","",""],
-      ["ai product review video generator","20","",""],
-      ["ai product image generator","260","",""],
-      ["image ad generator","30","n/a",""],
-      ["product ai image generator","70","n/a",""],
-      ["ai product lifestyle image generator","40","n/a",""],
-      ["ai image generator for product design","20","n/a",""],
-      ["product image to video ai","30","",""],
-      ["product image to video ai free","40","n/a",""],
-      ["ai product image to video","20","n/a",""],
-      ["product image to video","20","n/a",""],
-      ["product image to video ai","20","n/a",""],
-      ["product image to video generator","10","n/a",""],
-      ["ai product generator","110","",""],
-      ["ai ugc actors","40","",""],
-      ["ai avatar ugc","30","n/a",""],
-      ["ai ugc avatars","20","n/a",""],
-      ["ugc ai avatars","20","n/a",""],
+      ["ai ad generator​","1,900","100"],
+      ["ai ad maker​","880","100"],
+      ["ai advertisement generator","720","100"],
+      ["ai product photography","480","100"],
+      ["ai product photography for ecommerce​","40","100"],
+      ["ai generated product photography​","40","100"],
+      ["product photography ai​","170","100"],
+      ["product image photography​","110","100"],
+      ["ai product photoshoot","20","100"],
+      ["product photoshoot ai","20","100"],
+      ["ai photoshoot generator","140","100"],
+      ["ai for photoshoot","30","100"],
+      ["ai animation ads","10","6"],
+      ["ai ad prompt","10","100"],
+      ["ad prompt ai","0","5"],
+      ["ad prompt","20","4"],
+      ["ad clone","30","16"],
+      ["clone ad","20","12"],
+      ["clone ads","20","12"],
+      ["ad spy","390",""],
+      ["ads spy","320",""],
+      ["ai ugc video generator","590","100"],
+      ["ai product ugc​","20",""],
+      ["ugc ai","880",""],
+      ["make ugc ai","590",""],
+      ["ai ugc ads","390",""],
+      ["ugc ads ai","210",""],
+      ["ai ugc video","90",""],
+      ["ai for ugc content","70",""],
+      ["ugc ai generator","70",""],
+      ["ai ugc video ads","50",""],
+      ["ai generated ugc ads","40",""],
+      ["simplified ai ugc video generator","40",""],
+      ["ai ugc ad generator","30",""],
+      ["ugc video ads ai","50",""],
+      ["ai ugc examples","20",""],
+      ["ai generated ugc examples​","10",""],
+      ["ugc ad library","",""],
+      ["ai ugc tiktok","50",""],
+      ["ai ugc tiktok shop","20",""],
+      ["ai video ad generator","390",""],
+      ["ai video generator for ecommerce​","20",""],
+      ["ai ad video generator","210",""],
+      ["ai video advertisement generator","170",""],
+      ["ad ai generator","70",""],
+      ["ai video generator ads","30",""],
+      ["ai video generator for ads","30",""],
+      ["generate video ads with ai","30",""],
+      ["ai video ads maker","260",""],
+      ["ai video ad maker","210",""],
+      ["ai video ads generator","140",""],
+      ["create video ads with ai","90",""],
+      ["ai ad video maker","40",""],
+      ["ai marketing video generator","170",""],
+      ["ai video generator for marketing","170",""],
+      ["ai facebook ad generator","480",""],
+      ["ai facebook ads generator","70",""],
+      ["facebook ads ai generator​","90",""],
+      ["facebook ad maker ai","50",""],
+      ["ai facebook ad maker​","20",""],
+      ["ai ad generator for shopify","40",""],
+      ["ai instagram ad generator​","40","44"],
+      ["ai instagram ads generator​","40",""],
+      ["ai instagram ad maker","30",""],
+      ["tiktok ads ai generator​","50",""],
+      ["ai generated tiktok ads​","20",""],
+      ["ai tiktok ad generator​","20",""],
+      ["ai video generator for tiktok ads​","10",""],
+      ["ai social media ad generator","140",""],
+      ["ai product video generator​","390","100"],
+      ["ai product video​","170",""],
+      ["ai advertising video production​","70",""],
+      ["product video ai generator​","50",""],
+      ["ai video generator for product advertising​","30",""],
+      ["ai product demo video generator​","20",""],
+      ["ai product marketing video generator​","20",""],
+      ["ai product review video generator​","20",""],
+      ["ai product image generator​","260",""],
+      ["image ad generator","30",""],
+      ["product ai image generator​","70",""],
+      ["ai product lifestyle image generator​","40",""],
+      ["ai image generator for product design​","20",""],
+      ["product image to video ai","30",""],
+      ["product image to video ai free","40",""],
+      ["ai product image to video","20",""],
+      ["product image to video","20",""],
+      ["product image to video ai","20",""],
+      ["product image to video generator","10",""],
+      ["ai product generator​","110",""],
+      ["ai ugc actors​","40",""],
+      ["ai avatar ugc​","30",""],
+      ["ai ugc avatars​","20",""],
+      ["ugc ai avatars​","20",""],
       ],
     },
     {
       key: 'blog',
       label: 'Blog keywords',
-      source: 'blog-keywords — Sep W3 (col T) vs. Sep W2 (col S)',
+      source: 'blog-keywords — latest snapshot: Sep, W2 (column S)',
       rows: [
-      ["what is a winning ad","","",""],
-      ["performance creative vs ad design","20","5","1"],
-      ["best practices for changing ad creatives effectively","40","2","1"],
-      ["ad creative strategy","70","",""],
-      ["ad creative testing","170","",""],
-      ["what is a static ad","170","",""],
-      ["static vs dynamic ads","110","",""],
-      ["dynamic ads vs static","110","",""],
-      ["static vs animated ads","20","",""],
-      ["static vs animated banner ads","20","",""],
-      ["static vs video ads","20","",""],
-      ["how to make product ads with ai","20","",""],
-      ["how to spy on competitors ads","140","",""],
-      ["how to spy on competitors facebook ads","20","",""],
-      ["how to spy on facebook ads","20","",""],
-      ["dropshipping ad spy","20","n/a",""],
-      ["product photo to ad generator for solopreneurs","210","n/a",""],
-      ["how to generate ads with ai","40","n/a",""],
-      ["ads for products","210","n/a",""],
-      ["product ad examples","210","n/a",""],
-      ["what is a product listing ad","210","n/a",""],
-      ["how to take good etsy product photos with ai","70","8","3"],
-      ["how to scale ad production for different markets","30","1","1"],
-      ["how to scale ad production without increasing design costs","10","",""],
-      ["how to make ads for dropshipping products","20","15",""],
-      ["how to create ads for dropshipping products","20","",""],
-      ["creating ads for dropshipping","20","",""],
-      ["how to make video ads for dropshipping","30","",""],
-      ["ai product photography optimized for ads","30","n/a",""],
-      ["ai generated ads","770","n/a",""],
-      ["compare ai avatar software for e-commerce product ads","590","n/a",""],
-      ["turn url to video with ai","30","",""],
-      ["ai tool that creates ads from product links","","30",""],
-      ["how to create animated ads","20","14","63"],
-      ["ai prompts for photoshoot","50","2",""],
-      ["ai prompts for product photography","30","2","21"],
-      ["ai generated fashion prompts","110","","15"],
-      ["ai photoshoot ideas","20","n/a",""],
-      ["prompts for ai photoshoot","20","n/a",""],
-      ["studio photoshoot ai prompt","20","n/a",""],
-      ["how to optimize video ad campaigns with ai editors","50","n/a",""],
-      ["what are ugc ads","140","1","1"],
-      ["different styles of ugc ads","50","2","1"],
-      ["how to spot high-converting ugc ads","50","2","2"],
-      ["how to create effective ugc ads","40","20","6"],
-      ["tips for creating genuine ugc-style ads","10","","62"],
-      ["performance benchmarks for ugc ads","40","2","3"],
-      ["how to scale ugc ad creative production","20","13","2"],
-      ["generate ugc ads at scale","20","25","57"],
-      ["how to make ai ugc","40","",""],
-      ["how to make ai ugc videos","30","",""],
-      ["how to evaluate roi of ai-generated ugc ads","10","","1"],
-      ["how to measure roi from ugc ads","10","","1"],
-      ["what is ai ugc","110","",""],
-      ["ai ugc what is it","30","",""],
-      ["ugc facebook ads","50","16","15"],
-      ["instagram ugc ads","40","4","2"],
-      ["ugc for instagram ads","","7","20"],
-      ["tips for using ugc-style templates for no-shoot ads","10","n/a",""],
-      ["ugc ad examples","30","3",""],
-      ["ugc ad strategy","20","n/a",""],
-      ["ugc product ads","","n/a",""],
-      ["how to source ugc for paid social ads","","",""],
-      ["how do brands use ugc in paid ads","","n/a",""],
-      ["ugc ads vs static ads","","3","2"],
-      ["influencer-style ads vs ugc ads","","n/a",""],
-      ["brand created vs ugc video ads","","n/a",""],
-      ["how do teams keep ugc ads fresh","","n/a",""],
-      ["ugc for beginners","70","",""],
-      ["ugc for restaurants","70","n/a",""],
-      ["ugc for small business","70","n/a",""],
-      ["ugc for sme","50","n/a",""],
-      ["ugc for tourism marketing","50","n/a",""],
-      ["ugc for travel","50","n/a",""],
-      ["ugc for travel brands","50","n/a",""],
-      ["ugc for ott platforms","40","n/a",""],
-      ["ugc marketing strategies for cpg","40","n/a",""],
-      ["user generated content for brands","40","n/a",""],
-      ["visual consistency standards for ugc","40","n/a",""],
-      ["what kpis matter most for ugc","40","n/a",""],
-      ["how to do ugc for brands","30","n/a",""],
-      ["how to get ugc for your brand","30","n/a",""],
-      ["clone ads","20","n/a",""],
-      ["scrape amazon product ads","50","n/a",""],
-      ["create instagram ads with ai","30","",""],
+      ["what is a winning ad","","100"],
+      ["performance creative vs ad design","20","1"],
+      ["best practices for changing ad creatives effectively​","40","1"],
+      ["ad creative strategy","70","100"],
+      ["ad creative testing","170","100"],
+      ["what is a static ad","170","100"],
+      ["static vs dynamic ads","110","100"],
+      ["dynamic ads vs static","110","100"],
+      ["static vs animated ads","20","100"],
+      ["static vs animated banner ads","20","100"],
+      ["static vs video ads","20","100"],
+      ["how to make product ads with ai","20","100"],
+      ["how to spy on competitors ads","140","100"],
+      ["how to spy on competitors facebook ads","20","100"],
+      ["how to spy on facebook ads","20","100"],
+      ["dropshipping ad spy","20",""],
+      ["product photo to ad generator for solopreneurs","210",""],
+      ["how to generate ads with ai","40",""],
+      ["ads for products","210",""],
+      ["product ad examples","210",""],
+      ["what is a product listing ad","210",""],
+      ["how to take good etsy product photos with ai","70","3"],
+      ["how to scale ad production for different markets","30","1"],
+      ["how to scale ad production without increasing design costs","10","100"],
+      ["how to make ads for dropshipping products","20",""],
+      ["how to create ads for dropshipping products","20",""],
+      ["creating ads for dropshipping","20",""],
+      ["how to make video ads for dropshipping","30","100"],
+      ["ai product photography optimized for ads","30",""],
+      ["ai generated ads​","770",""],
+      ["compare ai avatar software for e-commerce product ads​","590",""],
+      ["turn url to video with ai","30","100"],
+      ["ai tool that creates ads from product links","",""],
+      ["how to create animated ads","20","63"],
+      ["ai prompts for photoshoot","50","100"],
+      ["ai prompts for product photography","30","21"],
+      ["ai generated fashion prompts​","110","15"],
+      ["ai photoshoot ideas","20",""],
+      ["prompts for ai photoshoot","20",""],
+      ["studio photoshoot ai prompt","20",""],
+      ["how to optimize video ad campaigns with ai editors","50",""],
+      ["what are ugc ads​","140","1"],
+      ["different styles of ugc ads","50","1"],
+      ["how to spot high-converting ugc ads​","50","2"],
+      ["how to create effective ugc ads​","40","6"],
+      ["tips for creating genuine ugc-style ads","10","62"],
+      ["performance benchmarks for ugc ads","40","3"],
+      ["how to scale ugc ad creative production","20","2"],
+      ["generate ugc ads at scale","20","57"],
+      ["how to make ai ugc","40","100"],
+      ["how to make ai ugc videos","30","100"],
+      ["how to evaluate roi of ai-generated ugc ads","10","1"],
+      ["how to measure roi from ugc ads","10","1"],
+      ["what is ai ugc","110","100"],
+      ["ai ugc what is it​","30","100"],
+      ["ugc facebook ads","50","15"],
+      ["instagram ugc ads","40","2"],
+      ["ugc for instagram ads","","20"],
+      ["tips for using ugc-style templates for no-shoot ads","10",""],
+      ["ugc ad examples","30","100"],
+      ["ugc ad strategy","20",""],
+      ["ugc product ads","",""],
+      ["how to source ugc for paid social ads","","100"],
+      ["how do brands use ugc in paid ads","",""],
+      ["ugc ads vs static ads","","2"],
+      ["influencer-style ads vs ugc ads","",""],
+      ["brand created vs ugc video ads","",""],
+      ["how do teams keep ugc ads fresh","",""],
+      ["ugc for beginners","70","100"],
+      ["ugc for restaurants","70",""],
+      ["ugc for small business","70",""],
+      ["ugc for sme","50",""],
+      ["ugc for tourism marketing","50",""],
+      ["ugc for travel","50",""],
+      ["ugc for travel brands","50",""],
+      ["ugc for ott platforms","40",""],
+      ["ugc marketing strategies for cpg","40",""],
+      ["user generated content for brands","40",""],
+      ["visual consistency standards for ugc","40",""],
+      ["what kpis matter most for ugc","40",""],
+      ["how to do ugc for brands","30",""],
+      ["how to get ugc for your brand","30",""],
+      ["clone ads","20",""],
+      ["scrape amazon product ads","50",""],
+      ["create instagram ads with ai​","30",""],
       ],
     },
   ],
@@ -763,7 +710,7 @@ function render(data){
   $('sourcesLabel').textContent = `SOURCE: GA4 (${data.meta.ga4Property}) · SEARCH CONSOLE (${data.meta.gscProperty})`;
   $('acqNote').textContent = `Sessions & conversions by channel, current ${data.meta.windowDays}d vs. prior ${data.meta.windowDays}d`;
   $('gscNote').textContent = `${data.meta.gscProperty} — ${data.meta.windowDays}d totals, current vs. prior`;
-  $('kwNote').textContent = 'Per-keyword SERP position from the SEO Master File sheet, latest weekly snapshot vs. the one before';
+  $('kwNote').textContent = 'Per-keyword SERP position from the SEO Master File sheet — searchable & filterable';
   $('footerLine').textContent = `Generated ${data.meta.generatedDate} · GA4 property ${data.meta.ga4PropertyLabel} · GSC property ${data.meta.gscProperty}`;
 
   // ---- channel cards ----
@@ -787,7 +734,6 @@ function render(data){
   }
   renderHosts('h-org-hosts', ch.organic.byHost);
   renderHosts('h-ai-hosts', ch.ai.byHost);
-  renderHosts('h-ai-sources', ch.ai.bySource);
 
   // ---- GSC stat tiles ----
   const t = data.gsc.totals;
@@ -827,44 +773,16 @@ function render(data){
     </tr>`;
   }).join('');
 
-  // ---- page movers table ----
-  $('pageTableBody').innerHTML = data.gsc.pages.map(([p,cc,cp,impr,ctr,pos,pprev,pub]) => `
-    <tr>
-      <td><span class="qcell">${p}${cp===0?'<span class="new-badge">NEW</span>':''}</span></td>
-      <td class="lowvol" style="font-style:normal;">${pub || '—'}</td>
-      <td class="num">${intFmt(cp)}</td>
-      <td class="num">${intFmt(cc)}</td>
-      <td class="num">${pctDelta(cc, cp)}</td>
-      <td class="num">${intFmt(impr)}</td>
-      <td class="num">${(ctr*100).toFixed(2)}%</td>
-      <td class="num">${pos.toFixed(1)}${pprev===null?'':` <span class="lowvol">(${pprev.toFixed(1)})</span>`}</td>
-    </tr>`).join('');
-
-  // ---- content shipped tiles ----
-  const cs = data.contentShipped;
-  $('kwTiles').innerHTML = [
-    { l:'Blog posts published', v:intFmt(cs.cur),  prev:`prior window ${cs.prev}`, delta:pctDelta(cs.cur, cs.prev) },
-    { l:'Keywords tracked',     v:intFmt(cs.trackedKeywords), prev:'feature-page + blog tabs', delta:'' },
-    { l:'Ranking in top 20',    v:intFmt(cs.inTop20.cur), prev:`prior snapshot ${cs.inTop20.prev}`, delta:pctDelta(cs.inTop20.cur, cs.inTop20.prev) },
-    { l:'Share of tracked set', v:`${(cs.inTop20.cur/cs.trackedKeywords*100).toFixed(1)}%`, prev:'in top 20', delta:'' },
-  ].map(tile => `
-    <div class="tile">
-      <div class="l">${tile.l}</div>
-      <div class="v num">${tile.v}</div>
-      <div class="prev">${tile.prev}${tile.delta?' · '+tile.delta:''}</div>
-    </div>`).join('');
-
   // ---- keyword rank tracking ----
-  const BUCKET_ORDER = ['Top 1-3','Top 4-10','Top 11-20','Top 21-50','Top 51-99','not ranking','no data'];
+  const BUCKET_ORDER = ['Top 1-3','Top 4-10','Top 11-20','Top 21-50','Top 51-100','not ranking'];
   function bucketOf(rankStr){
-    if(rankStr === 'n/a') return 'no data';
     const n = Number(rankStr);
     if(rankStr === '' || rankStr === undefined || Number.isNaN(n)) return 'not ranking';
     if(n <= 3) return 'Top 1-3';
     if(n <= 10) return 'Top 4-10';
     if(n <= 20) return 'Top 11-20';
     if(n <= 50) return 'Top 21-50';
-    if(n < 100) return 'Top 51-99';
+    if(n <= 100) return 'Top 51-100';
     return 'not ranking';
   }
   function parseNum(s){
@@ -873,22 +791,15 @@ function render(data){
   }
   function rankCellClass(bucket){
     if(bucket==='Top 1-3' || bucket==='Top 4-10' || bucket==='Top 11-20') return 'rank-good';
-    if(bucket==='not ranking' || bucket==='no data') return 'rank-none';
+    if(bucket==='not ranking') return 'rank-none';
     return 'rank-mid';
   }
 
   const kwGroupsEl = $('kwGroups');
   data.keywordRankings.forEach(group => {
-    const rows = group.rows.map(([kw,vol,rank,prev]) => {
+    const rows = group.rows.map(([kw,vol,rank]) => {
       const bucket = bucketOf(rank);
-      const cur = (rank==='' || rank==='n/a') ? null : Number(rank);
-      const old = (prev==='' || prev===undefined) ? null : Number(prev);
-      let move = null, moveNum = 0;
-      if(cur !== null && old !== null){ move = old - cur; moveNum = -move; }
-      else if(cur !== null && old === null && rank !== 'n/a'){ move = 'new';  moveNum = -1000; }
-      else if(cur === null && old !== null){ move = 'lost'; moveNum = 1000; }
-      return { kw, vol, rank, prev, move, moveNum,
-               volNum: parseNum(vol), rankNum: cur, bucket };
+      return { kw, vol, rank, volNum: parseNum(vol), rankNum: rank===''?null:Number(rank), bucket };
     });
 
     const dist = {};
@@ -922,7 +833,6 @@ function render(data){
               <th data-sort="kw">Keyword</th>
               <th class="num" data-sort="volNum">Volume</th>
               <th class="num" data-sort="rankNum">Rank</th>
-              <th class="num" data-sort="moveNum">&Delta; vs. last</th>
             </tr></thead>
             <tbody></tbody>
           </table>
@@ -952,21 +862,12 @@ function render(data){
         const cmp = av < bv ? -1 : av > bv ? 1 : 0;
         return state.sortDir === 'asc' ? cmp : -cmp;
       });
-      tbody.innerHTML = filtered.map(r => {
-        let mv;
-        if(r.move === null)        mv = '<span class="lowvol">—</span>';
-        else if(r.move === 'new')  mv = '<span class="delta up">▲ entered</span>';
-        else if(r.move === 'lost') mv = '<span class="delta down">▼ dropped</span>';
-        else if(r.move === 0)      mv = '<span class="lowvol">0</span>';
-        else                       mv = `<span class="delta ${r.move>0?'up':'down'}">${r.move>0?'▲':'▼'} ${Math.abs(r.move)}</span>`;
-        return `
+      tbody.innerHTML = filtered.map(r => `
         <tr>
           <td>${r.kw}</td>
           <td class="num">${r.vol || '—'}</td>
-          <td class="num ${rankCellClass(r.bucket)}">${r.rank === 'n/a' ? 'no data' : (r.rank || 'not ranking')}</td>
-          <td class="num">${mv}</td>
-        </tr>`;
-      }).join('') || `<tr><td colspan="4" class="lowvol" style="text-align:center;padding:20px;">No keywords match.</td></tr>`;
+          <td class="num ${rankCellClass(r.bucket)}">${r.rank || 'not ranking'}</td>
+        </tr>`).join('') || `<tr><td colspan="3" class="lowvol" style="text-align:center;padding:20px;">No keywords match.</td></tr>`;
       countLine.textContent = `Showing ${filtered.length} of ${rows.length} keywords.`;
       headers.forEach(h => {
         const base = h.textContent.replace(/ [▲▼]$/, '');
@@ -1152,17 +1053,4 @@ function render(data){
 }
 
 render(REPORT_DATA);
-
-/* giscus loads fine on GitHub Pages but is blocked by the artifact viewer's CSP.
-   Drop the Discussion section when it fails rather than leave an empty heading. */
-(function(){
-  const section = document.getElementById('discussion');
-  if(!section) return;
-  const drop = () => {
-    if(!section.querySelector('iframe.giscus-frame, .giscus')) section.remove();
-  };
-  const tag = document.querySelector('script[src*="giscus.app"]');
-  if(tag) tag.addEventListener('error', drop);
-  setTimeout(drop, 10000);   // backstop for a silent failure
-})();
 </script>
