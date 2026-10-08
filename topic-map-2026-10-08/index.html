@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Topic Map promer.ai</title>
+<style>
+  :root{
+    color-scheme: light;
+    --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --border:rgba(11,11,11,.10);
+    --series-1:#2a78d6; --neutral:#b9b8b0; --track:#cde2fb;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --base:#383835; --border:rgba(255,255,255,.10);
+      --series-1:#3987e5; --neutral:#55544f; --track:#0d366b;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --border:rgba(255,255,255,.10);
+    --series-1:#3987e5; --neutral:#55544f; --track:#0d366b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+  main{max-width:960px;margin:0 auto;padding:24px 16px 64px}
+  h1{font-size:24px;margin:0 0 4px}
+  .sub{color:var(--ink-2);margin:0 0 16px}
+  .note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:var(--ink-2);font-size:13px;margin-bottom:16px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
+  .bar-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .tabs{display:flex;gap:4px}
+  .tabs button,.tog{font:inherit;font-size:13px;color:var(--ink-2);background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer}
+  .tabs button[aria-selected="true"]{background:var(--series-1);color:#fff;border-color:var(--series-1)}
+  .tog{display:flex;gap:6px;align-items:center}
+  .tog[hidden]{display:none}
+  .grow{flex:1}
+  .stats{display:flex;gap:24px;flex-wrap:wrap;margin:4px 0 16px}
+  .stat b{display:block;font-size:22px;font-weight:600}
+  .stat span{font-size:12px;color:var(--muted)}
+  .row{display:grid;grid-template-columns:minmax(120px,230px) 1fr;gap:12px;align-items:center;padding:6px 0;cursor:pointer;border-radius:6px}
+  .row:hover{background:color-mix(in srgb,var(--series-1) 6%,transparent)}
+  .lbl{font-size:13px;color:var(--ink);line-height:1.3}
+  .lbl small{display:block;color:var(--muted);font-size:11px}
+  .track{display:flex;align-items:center;gap:8px;min-width:0}
+  .bar{height:20px;border-radius:0 4px 4px 0;background:var(--series-1);min-width:2px}
+  .bar.n{background:var(--neutral)}
+  .val{font-size:13px;color:var(--ink);white-space:nowrap}
+  .val i{font-style:normal;color:var(--muted)}
+  .det{grid-column:1/-1;font-size:12px;color:var(--ink-2);padding:2px 0 8px;display:none}
+  .row.open .det{display:block}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--ink-2);margin:0 0 8px}
+  .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;background:var(--series-1)}
+  .legend .n::before{background:var(--neutral)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--grid)}
+  th{color:var(--muted);font-weight:500}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  details summary{cursor:pointer;color:var(--ink-2);font-size:13px}
+  .foot{color:var(--muted);font-size:12px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Topic Map promer.ai</h1>
+  <p class="sub">Google đang hiển thị promer.ai cho những chủ đề nào. Bản thử nghiệm, tách riêng khỏi báo cáo tuần.</p>
+  <div class="note">
+    Nguồn: Google Search Console, <code>sc-domain:promer.ai</code>, tìm kiếm WEB, không filter, <b>2026-07-08 đến 2026-10-06</b>. Đây là xấp xỉ từ dữ liệu hiển thị của Google, không phải điểm thực thể nội bộ của Google. Cụm query được gán bằng quy tắc từ khóa (mỗi query vào 1 cụm đầu tiên khớp), chưa kiểm tay.
+    Khoảng 65% impressions không có query hiển thị (Google ẩn query hiếm), nên tab Query chỉ phản ánh phần nhìn thấy được.
+  </div>
+
+  <div class="card">
+    <div class="bar-row">
+      <div class="tabs" role="tablist">
+        <button role="tab" id="t-page" aria-selected="true">Theo page</button>
+        <button role="tab" id="t-query" aria-selected="false">Theo query</button>
+      </div>
+      <div class="grow"></div>
+      <label class="tog" id="brandTog" hidden><input type="checkbox" id="nobrand"> Ẩn brand "promer"</label>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="legend"><span>Chủ đề</span><span class="n">Brand / chưa phân loại</span></div>
+    <div id="chart"></div>
+    <p class="foot">Bấm vào một dòng để xem ví dụ. Thanh dài theo % impressions, số trong ngoặc là % clicks.</p>
+  </div>
+
+  <div class="card">
+    <details>
+      <summary>Xem dạng bảng</summary>
+      <table id="tbl"></table>
+    </details>
+  </div>
+
+  <p class="foot">Giới hạn: số query có ≥10 impressions chỉ 742 nên cụm dưới 1% chưa đáng tin; query nhiễu như "bioma price" nằm trong nhóm chưa phân loại; GSC trễ khoảng 1 ngày.</p>
+</main>
+
+<script>
+const DATA = {
+  page: {
+    impr: 235094, clicks: 4134, count: "13.565 page",
+    rows: [
+      {n:"AI Ad Library (/winning-ad-library, 13.409 trang)", i:94736, c:1054, ex:"Trang theo ngành: furniture, bakery, running-shoes, lipstick, coffee"},
+      {n:"Blog: UGC ads", i:63967, c:310, ex:"what-are-ugc-ads, different-styles-of-ugc-ads, performance-benchmarks-for-ugc-ads, what-is-ai-ugc"},
+      {n:"Blog: prompts (fashion, photo)", i:25262, c:1632, ex:"ai-generated-fashion-prompts, ai-product-photography-prompts, ai-prompts-for-photoshoot"},
+      {n:"Trang chủ + About", i:13749, c:561, ex:"promer.ai/, promer.ai/about", brand:true},
+      {n:"Blog: review đối thủ", i:10668, c:51, ex:"zeely-review, higgsfield-review, holo-ai-review"},
+      {n:"AI Ad Prompt", i:6109, c:288, ex:"/ad-prompt"},
+      {n:"AI Ad Animation", i:5724, c:65, ex:"/ad-animation"},
+      {n:"Tools (/tools/*)", i:3796, c:58, ex:"ai-ugc-video-generator, instagram-ad-generator, ai-ad-generator-for-shopify"},
+      {n:"AI Ad Clone", i:2436, c:44, ex:"/ad-clone"},
+      {n:"Blog khác", i:2331, c:20, ex:"24 bài còn lại"},
+      {n:"AI Ad Concept", i:1736, c:12, ex:"/ad-concept"},
+      {n:"Pricing", i:1197, c:5, ex:"/pricing"},
+      {n:"AI Photoshoot", i:990, c:0, ex:"/photoshoot"},
+      {n:"Khác", i:2393, c:34, ex:"58 trang", neutral:true}
+    ]
+  },
+  query: {
+    impr: 82125, clicks: 1094, count: "5.325 query",
+    rows: [
+      {n:"UGC ads (định nghĩa, thông tin)", i:41639, c:184, ex:"ugc ads; ugc ads meaning; what is ugc ads; ugc vs professional video ads for fitness sales performance; ugc ad"},
+      {n:"Chưa phân loại", i:10586, c:31, ex:"bioma price; metal wallet 30; cyber monday advertisement maker; ad clone; red light therapy advertising", neutral:true},
+      {n:"Brand (promer)", i:9374, c:431, ex:"promer; promer ai; e promer; site:promer.ai; promer ia", brand:true, neutral:true},
+      {n:"AI prompts (ad, photo, fashion)", i:6539, c:396, ex:"on prompt ads; ad prompt; ai photoshoot prompt; prompt ads; one prompt ads"},
+      {n:"Review đối thủ, công cụ", i:4778, c:17, ex:"zeely ai reviews; bonkers ugc ads; zeely reviews; holo ai reviews; is zeely ai free"},
+      {n:"Ý tưởng quảng cáo theo ngành", i:4694, c:15, ex:"meal prep containers black friday; ai burrito ad; bakery ads; colonbroom black friday; furniture ads"},
+      {n:"Ad animation, video ads", i:2099, c:3, ex:"animated ad creative platform; animated mobile ad creator; animated social ad creator; ai animated character ads; loop animation ad generator"},
+      {n:"AI ad generator, creative tools", i:1528, c:10, ex:"furniture creative ads; creative furniture ads; ai instagram ad generator"},
+      {n:"Ad copy, hooks", i:560, c:0, ex:"instagram ad copy for luxury furniture customization whatsapp cta; black friday hooks; hook lip balm"},
+      {n:"Ad library, winning ads", i:169, c:6, ex:"furniture ad template; furniture ad templates; top performing meta ad examples for luxury handbags and sets"}
+    ]
+  }
+};
+const fmt = n => n.toLocaleString("vi-VN");
+const pct = (a,b) => b ? (100*a/b) : 0;
+const pf = x => x.toFixed(1).replace(".", ",") + "%";
+let view = "page";
+const $ = id => document.getElementById(id);
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+
+function render(){
+  const d = DATA[view];
+  const hide = view==="query" && $("nobrand").checked;
+  const rows = d.rows.filter(r => !(hide && r.brand));
+  const TI = rows.reduce((s,r)=>s+r.i,0), TC = rows.reduce((s,r)=>s+r.c,0);
+  const sorted = rows.slice().sort((a,b)=>b.i-a.i);
+  const max = Math.max(...sorted.map(r=>pct(r.i,TI)));
+  $("stats").innerHTML =
+    `<div class="stat"><b>${fmt(TI)}</b><span>impressions${hide?" (không brand)":""}</span></div>`+
+    `<div class="stat"><b>${fmt(TC)}</b><span>clicks</span></div>`+
+    `<div class="stat"><b>${d.count}</b><span>trong mẫu</span></div>`;
+  $("chart").innerHTML = sorted.map(r=>{
+    const p = pct(r.i,TI), pc = pct(r.c,TC);
+    return `<div class="row" tabindex="0"><div class="lbl">${esc(r.n)}</div>`+
+      `<div class="track"><div class="bar${r.neutral?" n":""}" style="width:${(p/max*100*0.78).toFixed(1)}%"></div>`+
+      `<div class="val">${pf(p)} <i>(${pf(pc)} clicks)</i></div></div>`+
+      `<div class="det">Ví dụ: ${esc(r.ex)}. ${fmt(r.i)} impressions, ${fmt(r.c)} clicks.</div></div>`;
+  }).join("");
+  document.querySelectorAll(".row").forEach(el=>{
+    const t=()=>el.classList.toggle("open");
+    el.addEventListener("click",t);
+    el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t();}});
+  });
+  $("tbl").innerHTML = `<tr><th>Cụm</th><th class="num">Impr</th><th class="num">% impr</th><th class="num">Clicks</th><th class="num">% clicks</th></tr>`+
+    sorted.map(r=>`<tr><td>${esc(r.n)}</td><td class="num">${fmt(r.i)}</td><td class="num">${pf(pct(r.i,TI))}</td><td class="num">${fmt(r.c)}</td><td class="num">${pf(pct(r.c,TC))}</td></tr>`).join("");
+}
+function setView(v){
+  view=v;
+  $("t-page").setAttribute("aria-selected",v==="page");
+  $("t-query").setAttribute("aria-selected",v==="query");
+  $("brandTog").hidden = v!=="query";
+  render();
+}
+$("t-page").onclick=()=>setView("page");
+$("t-query").onclick=()=>setView("query");
+$("nobrand").onchange=render;
+render();
+</script>
+</body>
+</html>
