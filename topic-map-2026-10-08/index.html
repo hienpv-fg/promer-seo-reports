@@ -10,6 +10,7 @@
     --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
     --grid:#e1e0d9; --base:#c3c2b7; --border:rgba(11,11,11,.10);
     --series-1:#2a78d6; --neutral:#b9b8b0; --track:#cde2fb;
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -17,6 +18,7 @@
       --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
       --grid:#2c2c2a; --base:#383835; --border:rgba(255,255,255,.10);
       --series-1:#3987e5; --neutral:#55544f; --track:#0d366b;
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
     }
   }
   :root[data-theme="dark"]{
@@ -24,6 +26,7 @@
     --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --base:#383835; --border:rgba(255,255,255,.10);
     --series-1:#3987e5; --neutral:#55544f; --track:#0d366b;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -62,6 +65,21 @@
   td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   details summary{cursor:pointer;color:var(--ink-2);font-size:13px}
   .foot{color:var(--muted);font-size:12px}
+  .why h2,.trend h2{font-size:16px;margin:0 0 8px}
+  .why ul{margin:8px 0 0;padding-left:18px;color:var(--ink-2);font-size:13px}
+  .why li{margin-bottom:6px}
+  .why b{color:var(--ink)}
+  .lg{display:flex;gap:6px 16px;flex-wrap:wrap;margin:8px 0}
+  .lg button{font:inherit;font-size:12px;color:var(--ink-2);background:transparent;border:0;padding:2px 0;cursor:pointer;display:flex;gap:6px;align-items:center}
+  .lg button i{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .lg button.off{opacity:.35}
+  #lc{position:relative}
+  #lc svg{width:100%;height:auto;display:block}
+  #lc text{fill:var(--muted);font-size:11px;font-family:inherit}
+  #tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.12);display:none;min-width:150px;z-index:2}
+  #tip div{display:flex;gap:6px;align-items:center;justify-content:space-between}
+  #tip span.k{display:flex;gap:6px;align-items:center;color:var(--ink-2)}
+  #tip i{width:8px;height:8px;border-radius:50%;display:inline-block}
   @media(max-width:560px){.row{grid-template-columns:1fr}}
 </style>
 </head>
@@ -70,8 +88,8 @@
   <h1>Topic Map promer.ai</h1>
   <p class="sub">Google đang hiển thị promer.ai cho những chủ đề nào. Bản thử nghiệm, tách riêng khỏi báo cáo tuần.</p>
   <div class="note">
-    Nguồn: Google Search Console, <code>sc-domain:promer.ai</code>, tìm kiếm WEB, không filter, <b>2026-07-08 đến 2026-10-06</b>. Đây là xấp xỉ từ dữ liệu hiển thị của Google, không phải điểm thực thể nội bộ của Google. Cụm query được gán bằng quy tắc từ khóa (mỗi query vào 1 cụm đầu tiên khớp), chưa kiểm tay.
-    Khoảng 65% impressions không có query hiển thị (Google ẩn query hiếm), nên tab Query chỉ phản ánh phần nhìn thấy được.
+    Nguồn: Google Search Console, <code>sc-domain:promer.ai</code>, tìm kiếm WEB, không filter, <b>2026-07-08 đến 2026-10-06</b>. Đây là xấp xỉ từ dữ liệu hiển thị của Google, không phải điểm thực thể nội bộ của Google. Ở tab Query, mỗi query được gán cho nhóm của trang mà nó dẫn tới (không đoán theo từ khóa), riêng query chứa "promer" tách thành Brand. Nhóm "Khác" là trang không thuộc nhóm nào ở trên.
+    Khoảng 60% impressions không có query hiển thị (Google ẩn query hiếm), nên tab Query chỉ phản ánh phần nhìn thấy được.
   </div>
 
   <div class="card">
@@ -89,6 +107,29 @@
     <p class="foot">Bấm vào một dòng để xem ví dụ. Thanh dài theo % impressions, số trong ngoặc là % clicks.</p>
   </div>
 
+  <div class="card why">
+    <h2>Vì sao tab Page và tab Query ra hai kết quả khác nhau?</h2>
+    <p class="sub" style="margin:0">AI Ad Library đứng đầu theo page (40,3%) nhưng chỉ chiếm khoảng 17% theo query. UGC ads đứng đầu theo query. Hai tab đo hai phần khác nhau của cùng dữ liệu.</p>
+    <ul>
+      <li><b>Query chỉ thấy khoảng 35% đến 40% impressions.</b> Cùng khoảng 08/07 đến 06/10, theo page có 235.094 impr, trong khi tổng các query nhìn thấy chỉ 82.125 (94.066 nếu tính theo từng cặp query-page). Google ẩn các query hiếm để bảo vệ riêng tư.</li>
+      <li><b>AI Ad Library là đuôi dài.</b> Hơn 13.400 trang, mỗi trang chỉ xuất hiện cho vài truy vấn lẻ. Trong 94.736 impr của nhóm này, chỉ khoảng 16.000 (17%) gắn được với một query nhìn thấy. Có 3.180 query dẫn tới các trang này nhưng phần lớn chỉ có 1 đến 2 impr, nên Google ẩn gần hết.</li>
+      <li><b>UGC là vài query đầu rất lớn.</b> "ugc ads" (8,6k impr), "ugc ads meaning" (3,3k), "what is ugc ads" (1,8k) đều đủ lớn để Google không ẩn. Khoảng 2/3 impr của các trang blog UGC (42.369 trong 63.967) gắn được với query nhìn thấy.</li>
+      <li><b>Page cộng trùng.</b> Một lượt tìm kiếm có thể hiện nhiều URL của site, và mỗi URL được tính riêng. Vì vậy tổng theo page lớn hơn tổng toàn site theo ngày.</li>
+      <li><b>Cách đọc.</b> Tab Page cho biết Google đưa trang nào ra nhiều nhất. Tab Query cho biết người dùng gõ gì khi query đủ lớn. Muốn nói "chủ đề của site" thì đọc Page làm chính, Query để hiểu ý định tìm kiếm.</li>
+    </ul>
+  </div>
+
+  <div class="card trend">
+    <div class="bar-row">
+      <h2 style="margin:0">Xu hướng theo tuần</h2>
+    </div>
+    <p class="sub" style="margin:0" id="ltitle"></p>
+    <div class="lg" id="lg"></div>
+    <div id="lc"><svg id="lsvg" role="img" aria-label="Biểu đồ đường impressions theo tuần"></svg><div id="tip"></div></div>
+    <p class="foot" id="lnote"></p>
+    <details><summary>Xem dạng bảng</summary><table id="ltbl"></table></details>
+  </div>
+
   <div class="card">
     <details>
       <summary>Xem dạng bảng</summary>
@@ -96,7 +137,7 @@
     </details>
   </div>
 
-  <p class="foot">Giới hạn: số query có ≥10 impressions chỉ 742 nên cụm dưới 1% chưa đáng tin; query nhiễu như "bioma price" nằm trong nhóm chưa phân loại; GSC trễ khoảng 1 ngày.</p>
+  <p class="foot">Giới hạn: chỉ 742 query có ≥10 impressions nên cụm dưới 1% chưa đáng tin; query dẫn tới trang ad detail như "bioma price" hay "ai burrito ad" thuộc AI Ad Library; ở tab Query, Brand bị cộng trùng khi một query hiện nhiều URL; GSC trễ khoảng 1 ngày.</p>
 </main>
 
 <script>
@@ -121,18 +162,23 @@ const DATA = {
     ]
   },
   query: {
-    impr: 82125, clicks: 1094, count: "5.325 query",
+    impr: 94066, clicks: 1099, count: "7.134 cặp query-page",
     rows: [
-      {n:"UGC ads (định nghĩa, thông tin)", i:41639, c:184, ex:"ugc ads; ugc ads meaning; what is ugc ads; ugc vs professional video ads for fitness sales performance; ugc ad"},
-      {n:"Chưa phân loại", i:10586, c:31, ex:"bioma price; metal wallet 30; cyber monday advertisement maker; ad clone; red light therapy advertising", neutral:true},
-      {n:"Brand (promer)", i:9374, c:431, ex:"promer; promer ai; e promer; site:promer.ai; promer ia", brand:true, neutral:true},
-      {n:"AI prompts (ad, photo, fashion)", i:6539, c:396, ex:"on prompt ads; ad prompt; ai photoshoot prompt; prompt ads; one prompt ads"},
-      {n:"Review đối thủ, công cụ", i:4778, c:17, ex:"zeely ai reviews; bonkers ugc ads; zeely reviews; holo ai reviews; is zeely ai free"},
-      {n:"Ý tưởng quảng cáo theo ngành", i:4694, c:15, ex:"meal prep containers black friday; ai burrito ad; bakery ads; colonbroom black friday; furniture ads"},
-      {n:"Ad animation, video ads", i:2099, c:3, ex:"animated ad creative platform; animated mobile ad creator; animated social ad creator; ai animated character ads; loop animation ad generator"},
-      {n:"AI ad generator, creative tools", i:1528, c:10, ex:"furniture creative ads; creative furniture ads; ai instagram ad generator"},
-      {n:"Ad copy, hooks", i:560, c:0, ex:"instagram ad copy for luxury furniture customization whatsapp cta; black friday hooks; hook lip balm"},
-      {n:"Ad library, winning ads", i:169, c:6, ex:"furniture ad template; furniture ad templates; top performing meta ad examples for luxury handbags and sets"}
+      {n:"Blog: UGC ads (query dẫn tới)", i:42369, c:164, ex:"ugc ads; fashion resale marketplace ad creative best practices hooks ugc testimonial format; ugc ads meaning; what is ugc ads; ugc vs professional video ads for fitness sales performance"},
+      {n:"Brand (query chứa \"promer\")", i:20041, c:434, ex:"promer; promer ai; site:promer.ai; e promer; promer ia", brand:true, neutral:true},
+      {n:"AI Ad Library (trang ad detail)", i:15997, c:49, ex:"meal prep containers black friday; instagram ad copy for luxury furniture customization whatsapp cta; bioma price; ai burrito ad; jewelry ads"},
+      {n:"Blog: review đối thủ", i:4693, c:17, ex:"zeely ai reviews; zeely reviews; holo ai reviews; is zeely ai free; is zeely legit"},
+      {n:"Blog: prompts", i:3912, c:256, ex:"ai photoshoot prompt; photoshoot prompt; fashion prompts; fashion prompt; photoshoot ai prompt"},
+      {n:"AI Ad Prompt", i:2558, c:136, ex:"on prompt ads; ad prompt; prompt ads; one prompt ads; ads prompt"},
+      {n:"AI Ad Animation", i:2087, c:2, ex:"animated ad creative platform; animated mobile ad creator; animated social ad creator; loop animation ad generator; ai animated character ads"},
+      {n:"Tools", i:985, c:25, ex:"ai instagram ad generator; tiktok ad generator; instagram ad generator; ai instagram ads generator; ai ugc"},
+      {n:"Trang chủ + About", i:345, c:1, ex:"adscreative; promaker ai; prompteer ai; برومير; adgineer"},
+      {n:"Blog khác", i:337, c:0, ex:"how to scale ad production for different markets; how to spy on winning competitors google ads; ai animated character ads; how to spy on competitors ads; how to create animated ads"},
+      {n:"AI Ad Clone", i:328, c:11, ex:"ad clone; ai ad clone; clone ads; add clone; ad-clone"},
+      {n:"Khác", i:233, c:3, ex:"apakah tokopedia punya wa; ugc actor; instagram ad generator; ugc actors; ai ugc actors", neutral:true},
+      {n:"AI Ad Concept", i:135, c:1, ex:"ad concept; concept ad; which ai tools generate multiple ad concepts?; generate ad variations; ad concepts"},
+      {n:"Pricing", i:36, c:0, ex:"prome ai price; prome ai pricing; pro mer; promeai pricing; promorepublic pricing"},
+      {n:"AI Photoshoot", i:10, c:0, ex:"product anyshoot; pro mer; e commerce marketing; product imagery without a photoshoot"}
     ]
   }
 };
@@ -180,6 +226,79 @@ $("t-page").onclick=()=>setView("page");
 $("t-query").onclick=()=>setView("query");
 $("nobrand").onchange=render;
 render();
+
+const WK = (()=>{const o=[];const d0=new Date(Date.UTC(2026,5,1));for(let i=0;i<18;i++){const d=new Date(d0.getTime()+i*7*864e5);o.push(d.getUTCDate()+"/"+(d.getUTCMonth()+1));}return o;})();
+const LINES = {
+  page: {
+    title:"Impressions mỗi tuần theo nhóm trang (tuần bắt đầu thứ Hai, 01/06 đến 28/09/2026).",
+    note:"Nguồn GSC, WEB, lọc theo URL của từng nhóm. Tuần 05/10 chưa đủ 7 ngày nên không vẽ. Chưa vẽ nhóm Trang chủ và các trang sản phẩm. Nhóm review đối thủ chỉ có impressions từ 21/09.",
+    series:[
+      {n:"AI Ad Library", c:"--s1", v:[0,0,0,0,201,814,1035,1152,2106,3416,6039,14111,13487,11637,9251,9662,11619,8518]},
+      {n:"Blog: UGC ads", c:"--s2", v:[573,1599,1663,1959,1474,3373,3027,3257,3728,3681,4043,4486,4117,5381,8729,8609,6612,4878]},
+      {n:"Blog: prompts", c:"--s3", v:[0,0,0,0,0,0,0,0,0,0,98,847,3354,3553,3111,3525,4751,4715]},
+      {n:"Blog: review đối thủ", c:"--s4", v:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3752,4095]}
+    ]
+  }
+};
+let lview="page", hidden=new Set(), hov=-1;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function drawLines(){
+  const L=LINES[lview], svg=$("lsvg"), W=900, H=340, m={l:48,r:16,t:12,b:28};
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  const vis=L.series.filter(s=>!hidden.has(s.n));
+  const max0=Math.max(1,...vis.flatMap(s=>s.v));
+  const step=max0>8000?4000:max0>3000?2000:max0>1200?500:200;
+  const max=Math.ceil(max0/step)*step;
+  const X=i=>m.l+(W-m.l-m.r)*i/17, Y=v=>H-m.b-(H-m.t-m.b)*v/max;
+  let g="";
+  for(let t=0;t<=max;t+=step){g+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+Y(t)+'" y2="'+Y(t)+'" stroke="'+css('--grid')+'" stroke-width="1"/><text x="'+(m.l-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+fmt(t)+'</text>';}
+  for(let i=0;i<18;i+=2){g+='<text x="'+X(i)+'" y="'+(H-8)+'" text-anchor="middle">'+WK[i]+'</text>';}
+  g+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="'+css('--base')+'"/>';
+  vis.forEach(s=>{
+    const first=s.v.findIndex(x=>x>0); if(first<0) return;
+    const pts=s.v.map((v,i)=>[i,v]).filter(([i])=>i>=first);
+    const col=css(s.c);
+    g+='<polyline fill="none" stroke="'+col+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="'+pts.map(([i,v])=>X(i)+","+Y(v)).join(" ")+'"/>';
+    pts.forEach(([i,v],k)=>{ if(k===pts.length-1||pts.length<=3) g+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="4" fill="'+col+'" stroke="'+css('--surface')+'" stroke-width="2"/>'; });
+  });
+  if(hov>=0){
+    g+='<line x1="'+X(hov)+'" x2="'+X(hov)+'" y1="'+m.t+'" y2="'+Y(0)+'" stroke="'+css('--base')+'" stroke-width="1"/>';
+    vis.forEach(s=>{const f=s.v.findIndex(x=>x>0); if(f>=0&&hov>=f) g+='<circle cx="'+X(hov)+'" cy="'+Y(s.v[hov])+'" r="4" fill="'+css(s.c)+'" stroke="'+css('--surface')+'" stroke-width="2"/>';});
+  }
+  g+='<rect x="'+m.l+'" y="'+m.t+'" width="'+(W-m.l-m.r)+'" height="'+(H-m.t-m.b)+'" fill="transparent" id="hit"/>';
+  svg.innerHTML=g;
+  const hit=$("hit");
+  const move=e=>{
+    const r=svg.getBoundingClientRect(), px=(e.clientX-r.left)/r.width*W;
+    const i=Math.max(0,Math.min(17,Math.round((px-m.l)/(W-m.l-m.r)*17)));
+    if(i!==hov){hov=i; drawLines();}
+    showTip(i,e);
+  };
+  hit.addEventListener("mousemove",move);
+  hit.addEventListener("mouseleave",()=>{hov=-1;$("tip").style.display="none";drawLines();});
+  hit.addEventListener("touchmove",e=>move(e.touches[0]),{passive:true});
+}
+function showTip(i,e){
+  const L=LINES[lview], t=$("tip"), vis=L.series.filter(s=>!hidden.has(s.n));
+  const end=new Date(Date.UTC(2026,5,1+i*7+6));
+  t.innerHTML='<div style="color:var(--muted);margin-bottom:4px">Tuần '+WK[i]+' đến '+end.getUTCDate()+'/'+(end.getUTCMonth()+1)+'</div>'+
+    vis.map(s=>'<div><span class="k"><i style="background:var('+s.c+')"></i>'+esc(s.n)+'</span><b>'+fmt(s.v[i])+'</b></div>').join("");
+  t.style.display="block";
+  const host=$("lc").getBoundingClientRect();
+  let x=e.clientX-host.left+14; if(x>host.width-190) x=e.clientX-host.left-190;
+  t.style.left=x+"px"; t.style.top=Math.max(0,e.clientY-host.top-20)+"px";
+}
+function renderLines(){
+  const L=LINES[lview];
+  $("ltitle").textContent=L.title; $("lnote").textContent=L.note;
+  $("lg").innerHTML=L.series.map(s=>'<button data-n="'+esc(s.n)+'" class="'+(hidden.has(s.n)?'off':'')+'"><i style="background:var('+s.c+')"></i>'+esc(s.n)+'</button>').join("");
+  document.querySelectorAll("#lg button").forEach(b=>b.onclick=()=>{const n=b.dataset.n; hidden.has(n)?hidden.delete(n):hidden.add(n); renderLines();});
+  $("ltbl").innerHTML='<tr><th>Tuần</th>'+L.series.map(s=>'<th class="num">'+esc(s.n)+'</th>').join("")+'</tr>'+
+    WK.map((w,i)=>'<tr><td>'+w+'</td>'+L.series.map(s=>'<td class="num">'+fmt(s.v[i])+'</td>').join("")+'</tr>').join("");
+  hov=-1; $("tip").style.display="none"; drawLines();
+}
+renderLines();
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",renderLines);
 </script>
 </body>
 </html>
