@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en">
-<title>Growth &amp; Visibility Pulse</title>
+<html lang="vi">
+<title>Báo cáo SEO tuần</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -265,7 +265,7 @@
       <h1 id="reportTitle"></h1>
     </div>
     <div class="masthead-meta">
-      <nav class="lang-switch" aria-label="Language"><a href="./" aria-current="page" lang="en">EN</a><a href="vi.html" lang="vi">VI</a></nav>
+      <nav class="lang-switch" aria-label="Language"><a href="./" lang="en">EN</a><a href="vi.html" aria-current="page" lang="vi">VI</a></nav>
       <div class="period" id="periodLabel"></div>
       <div class="sources" id="sourcesLabel"></div>
     </div>
@@ -273,7 +273,7 @@
 
   <section id="readout">
     <div class="section-head">
-      <h2>Read-out</h2>
+      <h2>Tóm tắt & insight</h2>
       <span class="section-note" id="readoutNote"></span>
     </div>
     <div class="insight-grid" id="insightGrid"></div>
@@ -281,7 +281,7 @@
 
   <section id="acquisition">
     <div class="section-head">
-      <h2>1. Acquisition</h2>
+      <h2>1. Traffic & chuyển đổi</h2>
       <span class="section-note" id="acqNote"></span>
     </div>
 
@@ -294,7 +294,7 @@
             <div class="v"><span id="v-org-sessions"></span> <span class="delta" id="d-org-sessions"></span></div>
           </div>
           <div class="chan-metric">
-            <div class="l">Active users</div>
+            <div class="l">Người dùng</div>
             <div class="v"><span id="v-org-users"></span> <span class="delta" id="d-org-users"></span></div>
           </div>
         </div>
@@ -303,7 +303,7 @@
       <div class="channel-card ai">
         <div class="chan-label">
           <span class="chan-swatch"></span>AI Assistant
-          <span class="chan-desc">— referrals from chat/answer engines</span>
+          <span class="chan-desc">— traffic giới thiệu từ các AI chat / answer engine</span>
         </div>
         <div class="chan-metrics">
           <div class="chan-metric">
@@ -311,7 +311,7 @@
             <div class="v"><span id="v-ai-sessions"></span> <span class="delta" id="d-ai-sessions"></span></div>
           </div>
           <div class="chan-metric">
-            <div class="l">Active users</div>
+            <div class="l">Người dùng</div>
             <div class="v"><span id="v-ai-users"></span> <span class="delta" id="d-ai-users"></span></div>
           </div>
         </div>
@@ -319,14 +319,14 @@
         <div class="chan-hosts" id="h-ai-sources" style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);"></div>
       </div>
     </div>
-    <p class="lowvol">Sessions is cross-domain — a visit that starts on promer.ai and continues into app.promer.ai is counted under both hostnames, so the two rows can sum to more than the card total above.</p>
+    <p class="lowvol">Sessions tính chéo domain: một lượt bắt đầu ở promer.ai rồi sang app.promer.ai được đếm ở cả hai hostname, nên tổng hai dòng có thể lớn hơn con số của card.</p>
 
     <div class="chart-card">
-      <div class="chart-title"><span>Sessions — prior period vs. current period</span><span class="hint">hover a bar</span></div>
+      <div class="chart-title"><span>Sessions — kỳ trước so với kỳ này</span><span class="hint">rê chuột lên cột</span></div>
       <div class="bar-legend">
-        <span class="item"><span class="swatch-lg prev"></span>Prior period</span>
-        <span class="item"><span class="swatch-lg cur-organic"></span>Organic Search (current)</span>
-        <span class="item"><span class="swatch-lg cur-ai"></span>AI Assistant (current)</span>
+        <span class="item"><span class="swatch-lg prev"></span>Kỳ trước</span>
+        <span class="item"><span class="swatch-lg cur-organic"></span>Organic Search (kỳ này)</span>
+        <span class="item"><span class="swatch-lg cur-ai"></span>AI Assistant (kỳ này)</span>
       </div>
       <svg class="chart" id="barChart" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
@@ -336,12 +336,12 @@
       <table>
         <thead>
           <tr>
-            <th>Conversion event</th>
-            <th class="num">Organic — prior</th>
-            <th class="num">Organic — current</th>
+            <th>Sự kiện chuyển đổi</th>
+            <th class="num">Organic — kỳ trước</th>
+            <th class="num">Organic — kỳ này</th>
             <th class="num">Δ</th>
-            <th class="num">AI Assistant — prior</th>
-            <th class="num">AI Assistant — current</th>
+            <th class="num">AI Assistant — kỳ trước</th>
+            <th class="num">AI Assistant — kỳ này</th>
             <th class="num">Δ</th>
           </tr>
         </thead>
@@ -349,7 +349,7 @@
       </table>
       </div>
     </div>
-    <p class="lowvol">Note: several events run on single-digit counts per channel — treat percentage deltas there as directional, not statistically firm.</p>
+    <p class="lowvol">Lưu ý: nhiều event chỉ có số đếm một chữ số mỗi kênh. Phần trăm thay đổi ở đó chỉ mang tính tham khảo, chưa có ý nghĩa thống kê.</p>
 
     <div class="table-card" style="margin-top:16px;">
       <div class="table-scroll">
@@ -357,8 +357,8 @@
         <thead>
           <tr>
             <th>Landing page</th>
-            <th class="num">Sign-ups — prior</th>
-            <th class="num">Sign-ups — current</th>
+            <th class="num">Sign-up — kỳ trước</th>
+            <th class="num">Sign-up — kỳ này</th>
             <th class="num">&Delta;</th>
           </tr>
         </thead>
@@ -366,23 +366,23 @@
       </table>
       </div>
     </div>
-    <p class="lowvol">Where the sign-ups came from: <code>complete_sign_up_google</code> + <code>complete_sign_up_email</code>, organic and AI Assistant only, grouped by the page the session started on.</p>
+    <p class="lowvol">Sign-up đến từ đâu: <code>complete_sign_up_google</code> + <code>complete_sign_up_email</code>, chỉ tính Organic và AI Assistant, nhóm theo trang mà session bắt đầu.</p>
   </section>
 
   <section id="gsc">
     <div class="section-head">
-      <h2>2. Search Console visibility</h2>
+      <h2>2. Hiển thị trên Search Console</h2>
       <span class="section-note" id="gscNote"></span>
     </div>
 
     <div class="tile-grid" id="tileGrid"></div>
 
     <div class="chart-card">
-      <div class="chart-title"><span>Daily clicks</span><span class="hint">hover for a date</span></div>
+      <div class="chart-title"><span>Click theo ngày</span><span class="hint">rê chuột để xem ngày</span></div>
       <svg class="chart" id="clicksChart" viewBox="0 0 900 180" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><span>Daily impressions</span><span class="hint">hover for a date</span></div>
+      <div class="chart-title"><span>Impressions theo ngày</span><span class="hint">rê chuột để xem ngày</span></div>
       <svg class="chart" id="imprChart" viewBox="0 0 900 150" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
 
@@ -392,18 +392,18 @@
         <thead>
           <tr>
             <th>Query</th>
-            <th class="num">Clicks</th>
-            <th class="num">Δ clicks</th>
+            <th class="num">Click</th>
+            <th class="num">Δ click</th>
             <th class="num">Impr. Δ%</th>
             <th class="num">CTR</th>
-            <th class="num">Avg. pos.</th>
+            <th class="num">Vị trí TB</th>
           </tr>
         </thead>
         <tbody id="queryTableBody"></tbody>
       </table>
       </div>
     </div>
-    <p class="lowvol">Ranked by largest gain in clicks; the bottom rows are the largest losses. "NEW" = zero clicks in the prior week.</p>
+    <p class="lowvol">Xếp theo mức tăng click lớn nhất; các dòng cuối là mức giảm lớn nhất. "NEW" = tuần trước 0 click.</p>
 
     <div class="table-card" style="margin-top:16px;">
       <div class="table-scroll">
@@ -411,76 +411,76 @@
         <thead>
           <tr>
             <th>Landing page</th>
-            <th>Published</th>
-            <th class="num">Clicks — prior</th>
-            <th class="num">Clicks — current</th>
+            <th>Ngày đăng</th>
+            <th class="num">Click — kỳ trước</th>
+            <th class="num">Click — kỳ này</th>
             <th class="num">&Delta;</th>
             <th class="num">Impr.</th>
             <th class="num">CTR</th>
-            <th class="num">Avg. pos.</th>
+            <th class="num">Vị trí TB</th>
           </tr>
         </thead>
         <tbody id="pageTableBody"></tbody>
       </table>
       </div>
     </div>
-    <p class="lowvol">Same two 7-day windows, grouped by landing page. Average position is current, prior in parentheses.</p>
+    <p class="lowvol">Cùng hai khoảng 7 ngày, nhóm theo landing page. Vị trí trung bình là kỳ này, kỳ trước trong ngoặc.</p>
 
-    <h3 style="font-size:15px;font-weight:600;margin:28px 0 6px;font-family:'IBM Plex Sans',sans-serif;">Traffic validity check</h3>
-    <p class="lowvol" style="margin:0 0 12px;">Search Console is Google's own record of clicks from its results, so it cannot be inflated by a forged referrer. Comparing it with the sessions GA4 labels <code>google / organic</code> for the same page and window exposes traffic that only claims to come from Google. Genuine pages land within about 1.3&times;; anything at 3&times; or above is flagged.</p>
+    <h3 style="font-size:15px;font-weight:600;margin:28px 0 6px;font-family:'IBM Plex Sans',sans-serif;">Kiểm tra độ tin cậy của traffic</h3>
+    <p class="lowvol" style="margin:0 0 12px;">Search Console là số click do chính Google ghi lại từ trang kết quả, nên không thể bị thổi phồng bằng referrer giả. So với số sessions GA4 gắn nhãn <code>google / organic</code> cho cùng trang và cùng khoảng thời gian sẽ lộ ra traffic chỉ giả danh đến từ Google. Trang bình thường lệch khoảng 1.3&times;; từ 3&times; trở lên bị đánh dấu.</p>
     <div class="table-card">
       <div class="table-scroll">
       <table>
         <thead>
           <tr>
-            <th>Page</th>
+            <th>Trang</th>
             <th class="num">GA4 google / organic</th>
-            <th class="num">GSC clicks</th>
-            <th class="num">Ratio</th>
+            <th class="num">Click GSC</th>
+            <th class="num">Tỷ lệ</th>
           </tr>
         </thead>
         <tbody id="crossCheckBody"></tbody>
       </table>
       </div>
     </div>
-    <p class="lowvol">The same two pages are still carrying traffic that Search Console never saw. <code>/blog/ai-prompts-for-photoshoot</code> jumped from about 4 organic sessions a day to 160–200 on Oct 1 and stayed there until Oct 7; 92% of its google / organic sessions are desktop and only a third are engaged. <code>/tools/ai-ugc-video-generator</code> has run at about 9× since Sep 21. Removing both pages, organic sessions went 1,023 → 950 (−7%), not +62%.</p>
+    <p class="lowvol">Vẫn là hai trang này đang nhận traffic mà Search Console không hề ghi nhận. <code>/blog/ai-prompts-for-photoshoot</code> nhảy từ khoảng 4 organic sessions/ngày lên 160–200 từ ngày 1/10 và giữ mức đó tới 7/10; 92% google / organic sessions là desktop và chỉ một phần ba là engaged. <code>/tools/ai-ugc-video-generator</code> lệch khoảng 9× từ 21/9. Bỏ cả hai trang ra thì organic sessions là 1,023 → 950 (−7%), không phải +62%.</p>
   </section>
 
   <section id="keywords">
     <div class="section-head">
-      <h2>3. Keyword rank tracking</h2>
+      <h2>3. Theo dõi thứ hạng keyword</h2>
       <span class="section-note" id="kwNote"></span>
     </div>
-    <p class="lowvol" style="margin:-4px 0 20px;">The sheet's weekly rank snapshots have not been filled since the Sep 17 edition, so the two tables below are unchanged. The keyword and entity analysis for this period is in section 4, built from Search Console.</p>
+    <p class="lowvol" style="margin:-4px 0 20px;">Sheet chưa được cập nhật rank hàng tuần từ bản 17/9, nên hai bảng dưới đây giữ nguyên. Phân tích keyword và entity của kỳ này nằm ở mục 4, lấy từ Search Console.</p>
     <div id="kwGroups"></div>
   </section>
 
   <section id="deepdive">
     <div class="section-head">
-      <h2>4. Where the next clicks are</h2>
-      <span class="section-note">GSC query-level rows, 28 days Sep 10 – Oct 7 vs. Aug 13 – Sep 9</span>
+      <h2>4. Click tiếp theo sẽ đến từ đâu</h2>
+      <span class="section-note">GSC ở cấp query, 28 ngày 10/9 – 7/10 so với 13/8 – 9/9</span>
     </div>
-    <p class="lowvol" style="margin:-4px 0 8px;">Query-level rows leave out the queries Google anonymises, so the totals in this section are lower than the property totals in section 2. Judge new pages on page-level clicks, not query rows: the new shoe-prompt post shows 7 impressions at query level against 214 at page level.</p>
+    <p class="lowvol" style="margin:-4px 0 8px;">Dữ liệu cấp query không gồm các query bị Google ẩn danh, nên tổng ở mục này thấp hơn tổng property ở mục 2. Hãy đánh giá bài mới theo click ở cấp trang, không theo từng query: bài shoe-prompt mới chỉ có 7 impressions ở cấp query nhưng 214 ở cấp trang.</p>
     <div id="deepDives"></div>
   </section>
 
   <section id="gaps">
     <div class="callout">
-      <h3>What this report can't tell you yet</h3>
+      <h3>Những gì report này chưa trả lời được</h3>
       <ul>
-        <li><b>Technical SEO</b> — Core Web Vitals, crawl errors, broken links. Needs PageSpeed Insights / Screaming Frog.</li>
-        <li><b>Backlink profile</b> — referring domains, authority, toxic links. Needs Ahrefs / SEMrush / Moz.</li>
-        <li><b>True SERP rank tracking</b> — GSC gives averaged position, not a daily rank per keyword.</li>
-        <li><b>Competitor benchmark</b> — no comparison source connected yet.</li>
-        <li><b>On-page content audit</b> — title/meta/heading structure, keyword cannibalization across pages.</li>
+        <li><b>Technical SEO</b> — Core Web Vitals, lỗi crawl, link hỏng. Cần PageSpeed Insights / Screaming Frog.</li>
+        <li><b>Backlink profile</b> — referring domains, authority, link xấu. Cần Ahrefs / SEMrush / Moz.</li>
+        <li><b>Theo dõi thứ hạng SERP thật</b> — GSC chỉ cho vị trí trung bình, không phải thứ hạng hằng ngày của từng keyword.</li>
+        <li><b>So sánh với đối thủ</b> — chưa kết nối nguồn dữ liệu so sánh.</li>
+        <li><b>Audit nội dung on-page</b> — cấu trúc title/meta/heading, cannibalization keyword giữa các trang.</li>
       </ul>
     </div>
   </section>
 
   <section id="discussion">
     <div class="section-head">
-      <h2>Discussion</h2>
-      <span class="section-note">Comment with your GitHub account</span>
+      <h2>Thảo luận</h2>
+      <span class="section-note">Bình luận bằng tài khoản GitHub</span>
     </div>
     <script src="https://giscus.app/client.js"
       data-repo="hienpv-fg/promer-seo-reports"
@@ -493,7 +493,7 @@
       data-emit-metadata="0"
       data-input-position="top"
       data-theme="preferred_color_scheme"
-      data-lang="en"
+      data-lang="vi"
       crossorigin="anonymous"
       async>
     </script>
@@ -515,12 +515,12 @@ const REPORT_DATA = {
     "subject": "promer.ai & app.promer.ai",
     "title": "Organic & AI-Assistant Pulse",
     "windowDays": 7,
-    "currentRange": "Oct 1 – Oct 7, 2026",
-    "priorRange": "Sep 24 – Sep 30",
-    "ga4Range": "Oct 1 – Oct 7, 2026",
-    "ga4PriorRange": "Sep 24 – Sep 30, 2026",
-    "gscRange": "Oct 1 – Oct 7, 2026",
-    "gscPriorRange": "Sep 24 – Sep 30, 2026",
+    "currentRange": "1/10 – 7/10/2026",
+    "priorRange": "24/9 – 30/9",
+    "ga4Range": "1/10 – 7/10/2026",
+    "ga4PriorRange": "24/9 – 30/9/2026",
+    "gscRange": "1/10 – 7/10/2026",
+    "gscPriorRange": "24/9 – 30/9/2026",
     "ga4Property": "517415274",
     "gscProperty": "sc-domain:promer.ai",
     "generatedDate": "2026-10-09",
@@ -529,87 +529,87 @@ const REPORT_DATA = {
   insights: [
     {
       "kind": "risk",
-      "title": "GA4 says organic grew 62%. Most of that growth comes from two pages Google never sent",
+      "title": "GA4 báo organic tăng 62%, nhưng phần lớn mức tăng đến từ 2 trang mà Google không hề gửi traffic",
       "evidence": [
-        "GA4 Organic Search sessions <b>1,389 → 2,256</b>. Search Console clicks <b>568 → 639</b> (+12.5%).",
-        "/blog/ai-prompts-for-photoshoot: <b>1,061</b> organic sessions against <b>96</b> GSC clicks. It went from 8 sessions a day to 162 on Oct 1, and 92% of them are desktop.",
-        "/tools/ai-ugc-video-generator is still running at <b>8.8×</b> its GSC clicks, the same pattern it has shown since Sep 21.",
-        "Without those two pages, organic sessions went <b>1,023 → 950</b> (−7%)."
+        "GA4 Organic Search sessions <b>1,389 → 2,256</b>. Click trên Search Console chỉ <b>568 → 639</b> (+12.5%).",
+        "/blog/ai-prompts-for-photoshoot: <b>1,061</b> organic sessions so với <b>96</b> click GSC. Ngày 1/10 trang này nhảy từ 8 lên 162 sessions/ngày, 92% là desktop.",
+        "/tools/ai-ugc-video-generator vẫn chạy ở mức <b>8.8×</b> số click GSC, giống từ 21/9 tới nay.",
+        "Bỏ 2 trang này ra thì organic sessions là <b>1,023 → 950</b> (−7%)."
       ],
-      "action": "Quote Search Console clicks for organic growth this week, not GA4 sessions. The photoshoot spike began the day the post was refreshed. Check whether the update added anything that could start extra sessions, such as an embed, a redirect or a script, before the next edition."
+      "action": "Tuần này dùng số click Search Console khi nói về tăng trưởng organic, không dùng GA4 sessions. Traffic ảo của bài photoshoot bắt đầu đúng ngày bài được update. Trước bản report sau, cần kiểm tra bản update có thêm gì có thể tạo session thừa không, ví dụ embed, redirect hay script."
     },
     {
       "kind": "win",
-      "title": "Refreshing posts and writing from WAL gaps both pay off in Search Console",
+      "title": "Update bài cũ và viết bài từ các trang WAL chưa có click đều mang lại click thật trên Search Console",
       "evidence": [
-        "photoshoot post (refreshed): GSC clicks <b>22 → 96</b>, CTR 4.9% → <b>11.2%</b>, position 5.2 → 4.3.",
-        "/blog/ai-prompts-for-shoe-advertisement was written after finding WAL shoe pages with impressions and no clicks. In its first week: <b>214</b> impressions, <b>17</b> clicks, position 4.5.",
-        "Prompt-intent queries are the site's best clicks: 10.2% of impressions, <b>45%</b> of query-level clicks (227 of 505, 28 days)."
+        "Bài photoshoot sau khi update: click GSC <b>22 → 96</b>, CTR 4.9% → <b>11.2%</b>, vị trí 5.2 → 4.3.",
+        "/blog/ai-prompts-for-shoe-advertisement được viết sau khi thấy các trang WAL giày có impressions nhưng không có click. Tuần đầu: <b>214</b> impressions, <b>17</b> click, vị trí 4.5.",
+        "Query dạng prompt mang lại click tốt nhất site: 10.2% impressions nhưng <b>45%</b> số click ở cấp query (227/505, 28 ngày)."
       ],
-      "action": "Make this the default way to pick new posts: find a WAL page with prompt impressions and no clicks, then write the blog post for it. Section 4 lists the niches with demand."
+      "action": "Lấy cách này làm quy trình chọn bài mặc định: tìm trang WAL có impressions cho query prompt nhưng chưa có click, rồi viết blog cho nó. Mục 4 liệt kê các niche đang có nhu cầu."
     },
     {
       "kind": "win",
-      "title": "Sign-ups rose in both channels, and organic paid for the first time in weeks",
+      "title": "Sign-up tăng ở cả hai kênh, organic có payment trở lại sau nhiều tuần",
       "evidence": [
-        "Organic sign-ups <b>17 → 31</b>. AI Assistant <b>27 → 31</b>.",
-        "Organic payment events: <b>0 → 3</b> (2 plan upgrades, 1 credit top-up).",
-        "Homepage-started sign-ups <b>1 → 14</b>. /tools/product-image-to-video-ai is still the top source at 18.",
+        "Sign-up organic <b>17 → 31</b>. AI Assistant <b>27 → 31</b>.",
+        "Payment event từ organic: <b>0 → 3</b> (2 lần nâng gói, 1 lần nạp credit).",
+        "Sign-up bắt đầu từ homepage <b>1 → 14</b>. /tools/product-image-to-video-ai vẫn dẫn đầu với 18.",
         "AI Assistant sessions <b>305 → 690</b>. ChatGPT 283 → 582, claude.ai 13 → 62, gemini 9 → 35."
       ],
-      "action": "The inflated photoshoot traffic produced 1 sign-up from 1,061 sessions, so these gains come from real visitors. The counts are small, so read them as direction, not trend."
+      "action": "Traffic ảo của bài photoshoot chỉ ra 1 sign-up trên 1,061 sessions, nên mức tăng sign-up đến từ người dùng thật. Số tuyệt đối còn nhỏ, chỉ nên xem là tín hiệu hướng đi, chưa phải xu hướng."
     },
     {
       "kind": "watch",
-      "title": "“Ad generator” is the weakest entity, and that is why /tools/ pages struggle",
+      "title": "“Ad generator” là entity yếu nhất, đó là lý do các trang /tools/ khó rank",
       "evidence": [
-        "Ad-generator queries: <b>3%</b> of impressions, average position <b>20.1</b>, <b>3</b> clicks in 28 days. Prompt queries average 6.6, UGC 7.4, reviews 8.5.",
-        "Demand is growing, though: impressions <b>427 → 1,149</b> (+169%), distinct queries 19 → 101.",
-        "“ai ad generator” is split across 4 /tools/ pages. /tools/instagram-ad-generator fell from position <b>7.3 → 13.6</b>. Its old URL now 301-redirects to it.",
-        "The closest to page 1 are the animated ad creator/maker queries: about 335 impressions at position 11–16, on /ad-animation."
+        "Query ad generator: <b>3%</b> impressions, vị trí trung bình <b>20.1</b>, <b>3</b> click trong 28 ngày. Prompt trung bình 6.6, UGC 7.4, review 8.5.",
+        "Nhu cầu thì đang tăng: impressions <b>427 → 1,149</b> (+169%), số query 19 → 101.",
+        "“ai ad generator” đang bị chia cho 4 trang /tools/. /tools/instagram-ad-generator tụt từ vị trí <b>7.3 → 13.6</b>. URL cũ đã được 301 về trang này.",
+        "Gần trang 1 nhất là nhóm animated ad creator/maker: khoảng 335 impressions ở vị trí 11–16, trên /ad-animation."
       ],
-      "action": "Give “ai ad generator” one owning page and point the other /tools/ pages to it. Push /ad-animation first, since it is the nearest to page 1."
+      "action": "Chọn một trang duy nhất sở hữu “ai ad generator” và cho các trang /tools/ còn lại trỏ về đó. Đẩy /ad-animation trước vì đây là trang gần trang 1 nhất."
     },
     {
       "kind": "watch",
-      "title": "Eight niche “generator” queries already rank top 2–7 with the wrong page",
+      "title": "8 query “generator” theo niche đã ở top 2–7 nhưng Google hiển thị sai trang",
       "evidence": [
-        "Examples: perfume product image generator (position 3.5–5.9), jewelry lifestyle image generator (2–3), ai pendant generator (3.8), lingerie generator (5), ai underwear generator (7).",
-        "The page Google shows for them is a single Winning Ad Library creative with a UUID URL. Nothing on that page matches “generator”, so none of them get clicks.",
-        "Together: about <b>90</b> impressions in 28 days and <b>0</b> clicks."
+        "Ví dụ: perfume product image generator (vị trí 3.5–5.9), jewelry lifestyle image generator (2–3), ai pendant generator (3.8), lingerie generator (5), ai underwear generator (7).",
+        "Trang Google đang hiển thị là một creative lẻ trong Winning Ad Library với URL dạng UUID. Trang đó không có gì khớp với “generator”, nên không query nào có click.",
+        "Tổng cộng: khoảng <b>90</b> impressions trong 28 ngày, <b>0</b> click."
       ],
-      "action": "Landing pages for all eight are in Figma now and ship the week of Oct 12. Link each creative page that ranks today to its new landing page so the ranking moves over. Expect a small test, not a traffic source, at this volume."
+      "action": "Landing page cho cả 8 cụm đang được làm trên Figma và sẽ ra trong tuần 12/10. Gắn link từ mỗi trang creative đang rank sang landing page mới để chuyển thứ hạng sang. Với volume này, đây là một bài test, chưa phải nguồn traffic."
     },
     {
       "kind": "watch",
-      "title": "In the Winning Ad Library, prompt queries convert 8× better than “ad ideas” queries",
+      "title": "Trong Winning Ad Library, query prompt có CTR cao gấp 8 lần query “ad ideas”",
       "evidence": [
-        "WAL total: <b>7,404</b> impressions, <b>21</b> clicks (0.28%). Creative pages carry 65% of impressions at position 15.9.",
-        "Prompt intent: 114 impressions, <b>5.3%</b> CTR. Ideas/templates intent: 913 impressions, <b>0.66%</b> CTR.",
-        "Perfume prompts are confirmed: 79 impressions, 4 clicks on /cosmetics/perfume. “perfume ad ideas” has just <b>1</b> impression.",
-        "/blog/ai-prompts-for-perfume-advertisement already exists but has had only 2 impressions in 60 days. The WAL page is winning those queries."
+        "Tổng WAL: <b>7,404</b> impressions, <b>21</b> click (0.28%). Các trang creative chiếm 65% impressions, vị trí trung bình 15.9.",
+        "Intent prompt: 114 impressions, CTR <b>5.3%</b>. Intent ideas/templates: 913 impressions, CTR <b>0.66%</b>.",
+        "Đã xác nhận nhu cầu prompt cho perfume: 79 impressions, 4 click trên /cosmetics/perfume. “perfume ad ideas” chỉ có <b>1</b> impression.",
+        "/blog/ai-prompts-for-perfume-advertisement đã có từ trước nhưng chỉ được 2 impressions trong 60 ngày. Trang WAL đang thắng chính bài blog cho các query này."
       ],
-      "action": "Write one post per niche with the angle the data supports: prompt posts for perfume and shoes, ideas posts for furniture, bakery and lipstick. Link each post to its WAL niche page and give it an app CTA. Update the perfume post rather than writing a second one."
+      "action": "Mỗi niche viết một bài theo hướng mà dữ liệu ủng hộ: bài prompt cho perfume và giày, bài ad ideas cho furniture, bakery và lipstick. Mỗi bài gắn link về trang WAL của niche đó và có CTA vào app. Với perfume thì update bài cũ, không viết bài thứ hai."
     },
     {
       "kind": "risk",
-      "title": "Seasonal demand has started, but it is shopping intent",
+      "title": "Nhu cầu seasonal đã bắt đầu, nhưng là intent mua hàng",
       "evidence": [
-        "<b>1,016</b> seasonal impressions on WAL in 28 days, <b>0</b> clicks.",
-        "“meal prep containers black friday” alone accounts for 574. Shoppers are finding a creative page.",
-        "The only ad-maker query is “cyber monday advertisement maker”: 79 impressions at position 12.5 on /cyber-monday.",
-        "Black Friday is Nov 27. The product team is free from Oct 16."
+        "<b>1,016</b> impressions seasonal trên WAL trong 28 ngày, <b>0</b> click.",
+        "Riêng “meal prep containers black friday” đã chiếm 574. Đây là người đi mua hàng vô tình gặp trang creative.",
+        "Query duy nhất có intent làm ad là “cyber monday advertisement maker”: 79 impressions ở vị trí 12.5, trên /cyber-monday.",
+        "Black Friday là 27/11. Product team rảnh từ 16/10."
       ],
-      "action": "Search Console has no data yet for “black friday ad ideas / prompts”, so pick keywords from Semrush, not GSC. Posts need to be live by about Oct 31 to be indexed in time. Tune /cyber-monday now."
+      "action": "Search Console chưa có dữ liệu cho “black friday ad ideas / prompts”, nên phải chọn keyword từ Semrush chứ không dựa vào GSC. Bài cần lên trước khoảng 31/10 để kịp index. Tối ưu /cyber-monday ngay từ bây giờ."
     },
     {
       "kind": "risk",
-      "title": "Clicks on the bare brand term halved",
+      "title": "Click cho từ khoá thương hiệu “promer” giảm một nửa",
       "evidence": [
-        "“promer”: clicks <b>22 → 10</b>, position <b>4.7 → 6.4</b>, impressions +15%.",
-        "“promer ai” improved: position 2.1 → <b>1.0</b>, clicks 8 → 17."
+        "“promer”: click <b>22 → 10</b>, vị trí <b>4.7 → 6.4</b>, impressions +15%.",
+        "“promer ai” thì tốt lên: vị trí 2.1 → <b>1.0</b>, click 8 → 17."
       ],
-      "action": "“promer” on its own is ambiguous, and other businesses share the name. Check that SERP by hand. If it is a name clash, it matters less than the “promer ai” recovery."
+      "action": "“promer” đứng một mình là từ mơ hồ, có doanh nghiệp khác trùng tên. Cần xem tay trang kết quả tìm kiếm. Nếu chỉ là trùng tên thì việc này ít quan trọng hơn việc “promer ai” đã lên lại #1."
     }
   ],
   channels: {
@@ -794,7 +794,7 @@ const REPORT_DATA = {
       0
     ],
     [
-      "/winning-ad-library/* (2 creative pages)",
+      "/winning-ad-library/* (2 trang creative)",
       2,
       0
     ]
@@ -1057,7 +1057,7 @@ const REPORT_DATA = {
         0.1124,
         4.3,
         5.2,
-        "14 Aug 2026 (refreshed ~Oct 1)"
+        "14/8/2026 (update ~1/10)"
       ],
       [
         "/blog/ai-product-photography-prompts",
@@ -1067,7 +1067,7 @@ const REPORT_DATA = {
         0.0612,
         6.3,
         6.8,
-        "25 Aug 2026"
+        "25/8/2026"
       ],
       [
         "/blog/ai-prompts-for-shoe-advertisement",
@@ -1077,7 +1077,7 @@ const REPORT_DATA = {
         0.0794,
         4.5,
         null,
-        "new this week"
+        "mới tuần này"
       ],
       [
         "/tools/ai-ugc-video-generator",
@@ -1157,7 +1157,7 @@ const REPORT_DATA = {
         0.0037,
         7.5,
         6.4,
-        "1 Jun 2026"
+        "1/6/2026"
       ],
       [
         "/blog/zeely-review",
@@ -1197,7 +1197,7 @@ const REPORT_DATA = {
         0.0638,
         6.2,
         6.1,
-        "21 Aug 2026"
+        "21/8/2026"
       ]
     ]
   },
@@ -1212,16 +1212,16 @@ const REPORT_DATA = {
   },
   deepDives: [
     {
-      "title": "Search demand by key entity",
-      "note": "Every query sorted into one entity bucket (first match wins). Position is impression-weighted.",
+      "title": "Nhu cầu tìm kiếm theo key entity",
+      "note": "Mỗi query được xếp vào đúng một nhóm entity (khớp nhóm nào trước thì tính nhóm đó). Vị trí là trung bình có trọng số theo impressions.",
       "cols": [
         "Entity",
-        "Impr. (prior)",
+        "Impr. (kỳ trước)",
         "Impr.",
-        "Share",
-        "Clicks",
+        "Tỷ trọng",
+        "Click",
         "CTR",
-        "Avg. pos."
+        "Vị trí TB"
       ],
       "num": [
         0,
@@ -1243,7 +1243,7 @@ const REPORT_DATA = {
           "7.4"
         ],
         [
-          "Competitor / reviews",
+          "Review đối thủ",
           "166",
           "4,966",
           "12.9%",
@@ -1261,7 +1261,7 @@ const REPORT_DATA = {
           "6.6"
         ],
         [
-          "Promer brand",
+          "Brand Promer",
           "2,876",
           "2,615",
           "6.8%",
@@ -1288,7 +1288,7 @@ const REPORT_DATA = {
           "13.3"
         ],
         [
-          "Product photo / image",
+          "Ảnh sản phẩm",
           "8",
           "110",
           "0.3%",
@@ -1306,7 +1306,7 @@ const REPORT_DATA = {
           "13.1"
         ],
         [
-          "Other",
+          "Khác",
           "7,605",
           "7,301",
           "19.0%",
@@ -1315,16 +1315,16 @@ const REPORT_DATA = {
           "11.8"
         ]
       ],
-      "foot": "Prompts and brand together are 17% of impressions and 75% of clicks. Ad generator has the worst position of any entity, even though its impressions grew 169%."
+      "foot": "Prompt và brand chỉ chiếm 17% impressions nhưng mang về 75% click. Ad generator có vị trí tệ nhất trong các entity, dù impressions đã tăng 169%."
     },
     {
-      "title": "Ad-generator queries: where they land",
+      "title": "Query ad generator: đang rơi vào trang nào",
       "cols": [
         "Query",
         "Impr.",
-        "Clicks",
-        "Pos.",
-        "Ranking page"
+        "Click",
+        "Vị trí",
+        "Trang đang rank"
       ],
       "num": [
         0,
@@ -1416,19 +1416,19 @@ const REPORT_DATA = {
           "14",
           "1",
           "39.4",
-          "split across 4 /tools/ pages"
+          "bị chia cho 4 trang /tools/"
         ]
       ]
     },
     {
-      "title": "Landing pages shipping week of Oct 12 — baseline",
-      "note": "28 days Sep 10 – Oct 7. Every row has 0 clicks today. This is the baseline the new pages will be measured against.",
+      "title": "Landing page ra mắt tuần 12/10: số liệu baseline",
+      "note": "28 ngày, 10/9 – 7/10. Hiện tại tất cả các dòng đều 0 click. Đây là mốc để đo các trang mới.",
       "cols": [
-        "Target query cluster",
+        "Cụm query mục tiêu",
         "Impr.",
-        "Pos. today",
-        "Ranking page today",
-        "Planned URL"
+        "Vị trí hiện tại",
+        "Trang đang rank",
+        "URL dự kiến"
       ],
       "num": [
         0,
@@ -1442,7 +1442,7 @@ const REPORT_DATA = {
           "perfume product image generator",
           "19",
           "3.5–5.9",
-          "2 WAL perfume creatives",
+          "2 creative perfume trong WAL",
           "/tools/perfume-product-image-generator"
         ],
         [
@@ -1456,21 +1456,21 @@ const REPORT_DATA = {
           "jewelry lifestyle image · ai pendant · text to jewelry · jewelry animation · jewelry product video generator",
           "23",
           "2–26",
-          "WAL jewelry creatives",
+          "các creative jewelry trong WAL",
           "/tools/jewelry-lifestyle-image-generator"
         ],
         [
           "lingerie generator",
           "3",
           "5",
-          "WAL bra creative",
+          "creative bra trong WAL",
           "/tools/lingerie-generator"
         ],
         [
           "ai underwear generator",
           "2",
           "7",
-          "WAL underwear creative",
+          "creative underwear trong WAL",
           "/tools/ai-underwear-generator"
         ],
         [
@@ -1484,7 +1484,7 @@ const REPORT_DATA = {
           "fashion aesthetic generator",
           "2",
           "18–67",
-          "fashion-prompts blog / WAL fashion",
+          "blog fashion prompts / WAL fashion",
           "/tools/fashion-aesthetic-generator"
         ],
         [
@@ -1495,17 +1495,17 @@ const REPORT_DATA = {
           "/tools/ai-ad-variations-generator"
         ]
       ],
-      "foot": "URLs are placeholders until the pages ship. Watch two overlaps: the Instagram story page must not split rankings with /tools/instagram-ad-generator, and lingerie and underwear could be one page."
+      "foot": "URL chỉ là tạm thời cho tới khi trang lên. Cần để ý hai chỗ trùng: trang Instagram story không được chia thứ hạng với /tools/instagram-ad-generator, và lingerie với underwear có thể gộp làm một trang."
     },
     {
-      "title": "Winning Ad Library: what the impressions are for",
+      "title": "Winning Ad Library: impressions đến từ intent nào",
       "cols": [
-        "Trigger intent",
+        "Loại trigger",
         "Impr.",
-        "Clicks",
+        "Click",
         "CTR",
-        "Pos.",
-        "Lands mostly on"
+        "Vị trí",
+        "Chủ yếu rơi vào"
       ],
       "num": [
         0,
@@ -1522,7 +1522,7 @@ const REPORT_DATA = {
           "6",
           "<b>5.26%</b>",
           "8.1",
-          "product-type pages (94%)"
+          "trang product type (94%)"
         ],
         [
           "Ad ideas / templates / examples",
@@ -1533,7 +1533,7 @@ const REPORT_DATA = {
           "category 53%, creative 31%"
         ],
         [
-          "Generic ad (“jewelry ads”)",
+          "Ad chung chung (“jewelry ads”)",
           "2,720",
           "6",
           "0.22%",
@@ -1541,31 +1541,31 @@ const REPORT_DATA = {
           "creative 42%, category 38%"
         ],
         [
-          "Seasonal (Black Friday etc.)",
+          "Seasonal (Black Friday…)",
           "1,016",
           "0",
           "0%",
           "12.5",
-          "creative pages (100%)"
+          "trang creative (100%)"
         ],
         [
-          "Other / product names",
+          "Khác / tên sản phẩm",
           "2,757",
           "3",
           "0.11%",
           "16.5",
-          "creative pages (90%)"
+          "trang creative (90%)"
         ]
       ],
-      "foot": "WAL total 7,404 impressions and 21 clicks. The 1,476 creative pages carry 65% of impressions at position 15.9 and earn 6 clicks."
+      "foot": "Tổng WAL: 7,404 impressions, 21 click. 1,476 trang creative chiếm 65% impressions ở vị trí 15.9 và chỉ có 6 click."
     },
     {
-      "title": "Which niches have blog-worthy demand",
+      "title": "Niche nào đáng viết blog",
       "cols": [
-        "Niche (WAL page)",
-        "Prompt impr. / pos.",
-        "Ideas+templates impr. / pos.",
-        "Blog angle"
+        "Niche (trang WAL)",
+        "Impr. prompt / vị trí",
+        "Impr. ideas+templates / vị trí",
+        "Hướng viết blog"
       ],
       "num": [
         0,
@@ -1595,34 +1595,34 @@ const REPORT_DATA = {
         [
           "lipstick",
           "—",
-          "76 / 4.5 (0 clicks)",
-          "ad ideas + fix the WAL title/snippet"
+          "76 / 4.5 (0 click)",
+          "ad ideas + sửa title/snippet trang WAL"
         ],
         [
           "perfume",
           "79 / 7.8",
           "29 / 7.8",
-          "prompts — update the existing post"
+          "prompts — update bài đã có"
         ],
         [
           "running shoes",
           "26 / 7.8",
           "2 / 3.5",
-          "prompts — post live Oct 1"
+          "prompts — bài đã lên ngày 1/10"
         ],
         [
           "cyber monday",
           "—",
-          "82 (generic) / 13.1",
-          "tune /cyber-monday before November"
+          "82 (chung chung) / 13.1",
+          "tối ưu /cyber-monday trước tháng 11"
         ]
       ],
-      "foot": "The perfume ideas angle has 1 impression, so it does not justify a separate post. Pick each niche's angle from the data, not by default."
+      "foot": "Hướng ad ideas cho perfume chỉ có 1 impression, chưa đủ để viết bài riêng. Chọn hướng cho từng niche theo dữ liệu, không làm mặc định cả hai."
     },
     {
-      "title": "Plan and ownership",
+      "title": "Kế hoạch và phân công",
       "cols": [
-        "When",
+        "Thời gian",
         "SEO",
         "Product team"
       ],
@@ -1633,19 +1633,19 @@ const REPORT_DATA = {
       ],
       "rows": [
         [
-          "Oct 12–16",
-          "Figma design for the 8 landing pages, using Product Design's existing templates. Seasonal keyword research: BF / CM / Christmas × ad ideas / prompts / templates. Map each niche to a prompt or ideas angle.",
-          "Finish the competitor-review posts (done Thu Oct 15)"
+          "12–16/10",
+          "Design 8 landing page trên Figma, dùng template có sẵn của Product Design. Research keyword seasonal: BF / CM / Christmas × ad ideas / prompts / templates. Chọn hướng prompt hay ideas cho từng niche.",
+          "Hoàn thành các bài review đối thủ (xong T5 15/10)"
         ],
         [
-          "Oct 19–30",
-          "Briefs for each post: target keyword, link to the WAL niche page, CTA placement. Adjust WAL titles so they do not compete with the posts. Tune /cyber-monday.",
-          "Write the seasonal posts first (BF, CM). Target: live by about Oct 31."
+          "19–30/10",
+          "Viết brief cho từng bài: keyword chính, link về trang WAL của niche, vị trí CTA. Chỉnh title các trang WAL để không trùng với bài blog. Tối ưu /cyber-monday.",
+          "Viết bài seasonal trước (BF, CM). Mục tiêu: lên trước khoảng 31/10."
         ],
         [
-          "November",
-          "Track the posts in GSC at page level and compare the landing pages against the baseline above",
-          "Write the niche ideas/prompts posts: furniture, bakery, lipstick, perfume (update), shoes"
+          "Tháng 11",
+          "Theo dõi các bài trên GSC ở cấp trang và so các landing page với baseline ở trên",
+          "Viết các bài ideas/prompts theo niche: furniture, bakery, lipstick, perfume (update), giày"
         ]
       ]
     }
@@ -1654,8 +1654,8 @@ const REPORT_DATA = {
   keywordRankings: [
     {
       key: 'feature',
-      label: 'Feature-page keywords',
-      source: 'feature-page-kws — Sep W2 (col O) — no new snapshot since the Sep 17 edition',
+      label: 'Keyword cho feature page',
+      source: 'feature-page-kws — tuần 2 tháng 9 (cột O) — chưa có snapshot mới từ bản 17/9',
       rows: [
       ["ai ad generator","1,900","",""],
       ["ai ad maker","880","",""],
@@ -1772,8 +1772,8 @@ const REPORT_DATA = {
     },
     {
       key: 'blog',
-      label: 'Blog keywords',
-      source: 'blog-keywords — Sep W3 (col T) — no new snapshot since the Sep 17 edition',
+      label: 'Keyword cho blog',
+      source: 'blog-keywords — tuần 3 tháng 9 (cột T) — chưa có snapshot mới từ bản 17/9',
       rows: [
       ["what is a winning ad","","",""],
       ["performance creative vs ad design","20","5","1"],
@@ -1879,8 +1879,8 @@ function render(data){
     return `<span class="delta ${good?'up':'down'}">${arrow} ${text}</span>`;
   }
   function pctDelta(cur, prev, opts={}){
-    if(prev === 0 && cur === 0) return '<span class="lowvol">flat</span>';
-    if(prev === 0) return '<span class="delta up">▲ new</span>';
+    if(prev === 0 && cur === 0) return '<span class="lowvol">không đổi</span>';
+    if(prev === 0) return '<span class="delta up">▲ mới</span>';
     return deltaBadge(((cur-prev)/prev)*100, {kind:'pct', digits: opts.digits ?? 0, invert: opts.invert});
   }
   function absDelta(cur, prev, opts={}){
@@ -1889,11 +1889,11 @@ function render(data){
   const $ = id => document.getElementById(id);
 
   // ---- read-out ----
-  $('readoutNote').textContent = 'What moved in the week to Oct 7, and what it implies';
+  $('readoutNote').textContent = 'Những gì thay đổi trong tuần tới 7/10 và ý nghĩa của nó';
   $('insightGrid').innerHTML = (data.insights || []).map(i =>
     '<div class="insight ' + i.kind + '"><span class="tag">' + i.kind + '</span><h3>' + i.title + '</h3>' +
     '<ul>' + i.evidence.map(e => '<li>' + e + '</li>').join('') + '</ul>' +
-    '<div class="act"><b>So what:</b> ' + i.action + '</div></div>').join('');
+    '<div class="act"><b>Cần làm gì:</b> ' + i.action + '</div></div>').join('');
 
   // ---- deep dives ----
   $('deepDives').innerHTML = (data.deepDives || []).map(d => `
@@ -1906,14 +1906,14 @@ function render(data){
     ${d.foot ? `<p class="lowvol">${d.foot}</p>` : ''}`).join('');
 
   // ---- masthead ----
-  $('eyebrow').textContent = `Growth & SEO Report — ${data.meta.subject}`;
+  $('eyebrow').textContent = `Báo cáo Growth & SEO — ${data.meta.subject}`;
   $('reportTitle').textContent = data.meta.title;
-  $('periodLabel').textContent = `${data.meta.currentRange} vs. ${data.meta.priorRange}`;
-  $('sourcesLabel').textContent = `SOURCE: GA4 (${data.meta.ga4Property}) · SEARCH CONSOLE (${data.meta.gscProperty})`;
-  $('acqNote').textContent = `GA4 · ${data.meta.ga4Range} vs. ${data.meta.ga4PriorRange} — session counts include the flagged traffic; see the validity check in section 2`;
-  $('gscNote').textContent = `${data.meta.gscProperty} · ${data.meta.gscRange} vs. ${data.meta.gscPriorRange} — same calendar week as GA4`;
-  $('kwNote').textContent = 'SEO Master File sheet — snapshot unchanged since Sep 17 (not updated this week)';
-  $('footerLine').textContent = `Generated ${data.meta.generatedDate} · GA4 property ${data.meta.ga4PropertyLabel} · GSC property ${data.meta.gscProperty}`;
+  $('periodLabel').textContent = `${data.meta.currentRange} so với ${data.meta.priorRange}`;
+  $('sourcesLabel').textContent = `NGUỒN: GA4 (${data.meta.ga4Property}) · SEARCH CONSOLE (${data.meta.gscProperty})`;
+  $('acqNote').textContent = `GA4 · ${data.meta.ga4Range} so với ${data.meta.ga4PriorRange} — số sessions vẫn gồm traffic bị đánh dấu; xem phần kiểm tra ở mục 2`;
+  $('gscNote').textContent = `${data.meta.gscProperty} · ${data.meta.gscRange} so với ${data.meta.gscPriorRange} — cùng tuần với GA4`;
+  $('kwNote').textContent = 'Sheet SEO Master File — giữ nguyên từ 17/9 (tuần này chưa cập nhật)';
+  $('footerLine').textContent = `Tạo ngày ${data.meta.generatedDate} · GA4 property ${data.meta.ga4PropertyLabel} · GSC property ${data.meta.gscProperty}`;
 
   // ---- channel cards ----
   const ch = data.channels;
@@ -1941,10 +1941,10 @@ function render(data){
   // ---- GSC stat tiles ----
   const t = data.gsc.totals;
   const tiles = [
-    { l:'Clicks',       v:intFmt(t.clicks.cur),                    prev:`prior ${intFmt(t.clicks.prev)}`,           delta:pctDelta(t.clicks.cur, t.clicks.prev) },
-    { l:'Impressions',  v:intFmt(t.impressions.cur),                prev:`prior ${intFmt(t.impressions.prev)}`,      delta:pctDelta(t.impressions.cur, t.impressions.prev) },
-    { l:'Avg. CTR',     v:`${t.ctr.cur.toFixed(2)}%`,                prev:`prior ${t.ctr.prev.toFixed(2)}%`,          delta:absDelta(t.ctr.cur, t.ctr.prev, {digits:2, suffix:'pp'}) },
-    { l:'Avg. position',v:t.position.cur.toFixed(1),                 prev:`prior ${t.position.prev.toFixed(1)}`,      delta:absDelta(t.position.cur, t.position.prev, {digits:1, invert:true}) },
+    { l:'Click',       v:intFmt(t.clicks.cur),                    prev:`kỳ trước ${intFmt(t.clicks.prev)}`,           delta:pctDelta(t.clicks.cur, t.clicks.prev) },
+    { l:'Impressions',  v:intFmt(t.impressions.cur),                prev:`kỳ trước ${intFmt(t.impressions.prev)}`,      delta:pctDelta(t.impressions.cur, t.impressions.prev) },
+    { l:'CTR TB',     v:`${t.ctr.cur.toFixed(2)}%`,                prev:`kỳ trước ${t.ctr.prev.toFixed(2)}%`,          delta:absDelta(t.ctr.cur, t.ctr.prev, {digits:2, suffix:'pp'}) },
+    { l:'Vị trí TB',v:t.position.cur.toFixed(1),                 prev:`kỳ trước ${t.position.prev.toFixed(1)}`,      delta:absDelta(t.position.cur, t.position.prev, {digits:1, invert:true}) },
   ];
   $('tileGrid').innerHTML = tiles.map(tile => `
     <div class="tile">
@@ -1988,7 +1988,7 @@ function render(data){
   // ---- query movers table ----
   const qBody = $('queryTableBody');
   qBody.innerHTML = data.gsc.queries.map(([q,clicks,dclicks,imprPct,ctr,pos,isNew]) => {
-    const imprCell = imprPct === null ? '<span class="lowvol">new</span>' : fmtSigned(imprPct,0,'%');
+    const imprCell = imprPct === null ? '<span class="lowvol">mới</span>' : fmtSigned(imprPct,0,'%');
     return `<tr>
       <td><span class="qcell">${q}${isNew?'<span class="new-badge">NEW</span>':''}</span></td>
       <td class="num">${clicks}</td>
@@ -2013,17 +2013,17 @@ function render(data){
     </tr>`).join('');
 
   // ---- keyword rank tracking ----
-  const BUCKET_ORDER = ['Top 1-3','Top 4-10','Top 11-20','Top 21-50','Top 51-99','not ranking','no data'];
+  const BUCKET_ORDER = ['Top 1-3','Top 4-10','Top 11-20','Top 21-50','Top 51-99','chưa rank','không có dữ liệu'];
   function bucketOf(rankStr){
-    if(rankStr === 'n/a') return 'no data';
+    if(rankStr === 'n/a') return 'không có dữ liệu';
     const n = Number(rankStr);
-    if(rankStr === '' || rankStr === undefined || Number.isNaN(n)) return 'not ranking';
+    if(rankStr === '' || rankStr === undefined || Number.isNaN(n)) return 'chưa rank';
     if(n <= 3) return 'Top 1-3';
     if(n <= 10) return 'Top 4-10';
     if(n <= 20) return 'Top 11-20';
     if(n <= 50) return 'Top 21-50';
     if(n < 100) return 'Top 51-99';
-    return 'not ranking';
+    return 'chưa rank';
   }
   function parseNum(s){
     const n = Number(String(s).replace(/,/g,''));
@@ -2031,7 +2031,7 @@ function render(data){
   }
   function rankCellClass(bucket){
     if(bucket==='Top 1-3' || bucket==='Top 4-10' || bucket==='Top 11-20') return 'rank-good';
-    if(bucket==='not ranking' || bucket==='no data') return 'rank-none';
+    if(bucket==='chưa rank' || bucket==='không có dữ liệu') return 'rank-none';
     return 'rank-mid';
   }
 
@@ -2067,9 +2067,9 @@ function render(data){
           </div>`).join('')}
       </div>
       <div class="kw-controls">
-        <input type="search" class="kw-search" placeholder="Search keyword…">
+        <input type="search" class="kw-search" placeholder="Tìm keyword…">
         <div class="kw-filters">
-          <span class="kw-chip active" data-bucket="all">All (${rows.length})</span>
+          <span class="kw-chip active" data-bucket="all">Tất cả (${rows.length})</span>
           ${BUCKET_ORDER.map(b => `<span class="kw-chip" data-bucket="${b}">${b} (${dist[b]})</span>`).join('')}
         </div>
       </div>
@@ -2079,8 +2079,8 @@ function render(data){
             <thead><tr>
               <th data-sort="kw">Keyword</th>
               <th class="num" data-sort="volNum">Volume</th>
-              <th class="num" data-sort="rankNum">Rank</th>
-              <th class="num" data-sort="moveNum">&Delta; vs. prior</th>
+              <th class="num" data-sort="rankNum">Thứ hạng</th>
+              <th class="num" data-sort="moveNum">&Delta; so với kỳ trước</th>
             </tr></thead>
             <tbody></tbody>
           </table>
@@ -2113,19 +2113,19 @@ function render(data){
       tbody.innerHTML = filtered.map(r => {
         let mv;
         if(r.move === null)        mv = '<span class="lowvol">—</span>';
-        else if(r.move === 'new')  mv = '<span class="delta up">▲ entered</span>';
-        else if(r.move === 'lost') mv = '<span class="delta down">▼ dropped</span>';
+        else if(r.move === 'new')  mv = '<span class="delta up">▲ vào top</span>';
+        else if(r.move === 'lost') mv = '<span class="delta down">▼ rớt</span>';
         else if(r.move === 0)      mv = '<span class="lowvol">0</span>';
         else                       mv = `<span class="delta ${r.move>0?'up':'down'}">${r.move>0?'▲':'▼'} ${Math.abs(r.move)}</span>`;
         return `
         <tr>
           <td>${r.kw}</td>
           <td class="num">${r.vol || '—'}</td>
-          <td class="num ${rankCellClass(r.bucket)}">${r.rank === 'n/a' ? 'no data' : (r.rank || 'not ranking')}</td>
+          <td class="num ${rankCellClass(r.bucket)}">${r.rank === 'n/a' ? 'không có dữ liệu' : (r.rank || 'chưa rank')}</td>
           <td class="num">${mv}</td>
         </tr>`;
-      }).join('') || `<tr><td colspan="4" class="lowvol" style="text-align:center;padding:20px;">No keywords match.</td></tr>`;
-      countLine.textContent = `Showing ${filtered.length} of ${rows.length} keywords.`;
+      }).join('') || `<tr><td colspan="4" class="lowvol" style="text-align:center;padding:20px;">Không có keyword nào khớp.</td></tr>`;
+      countLine.textContent = `Đang hiển thị ${filtered.length} / ${rows.length} keyword.`;
       headers.forEach(h => {
         const base = h.textContent.replace(/ [▲▼]$/, '');
         h.textContent = h.dataset.sort === state.sortKey ? `${base} ${state.sortDir === 'asc' ? '▲' : '▼'}` : base;
@@ -2204,7 +2204,7 @@ function render(data){
       const sx = x(splitIdx-0.5);
       svg.appendChild(el('line',{x1:sx,x2:sx,y1:padT,y2:padT+innerH,class:'split-line'}));
       const stxt = el('text',{x:sx,y:padT-3,class:'split-label','text-anchor':'middle'});
-      stxt.textContent = 'period split';
+      stxt.textContent = 'chia kỳ';
       svg.appendChild(stxt);
     }
 
@@ -2282,8 +2282,8 @@ function render(data){
       const barPrevX = cx - barW - gap/2;
       const barCurX  = cx + gap/2;
       [
-        {x:barPrevX, v:g.prev, color:'var(--baseline)', label:'Prior period'},
-        {x:barCurX, v:g.cur, color:g.color, label:'Current period'},
+        {x:barPrevX, v:g.prev, color:'var(--baseline)', label:'Kỳ trước'},
+        {x:barCurX, v:g.cur, color:g.color, label:'Kỳ này'},
       ].forEach(b=>{
         const by = y(b.v);
         const rect = el('rect',{x:b.x, y:by, width:barW, height:(padT+innerH-by), fill:b.color, rx:3, ry:3});

@@ -1,4 +1,5 @@
 <!doctype html>
+<html lang="en">
 <title>Growth &amp; Visibility Pulse</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -250,6 +251,10 @@
   .dd-title{ font-size:15px;font-weight:600;margin:30px 0 4px;font-family:'IBM Plex Sans',sans-serif; }
   .dd-note{ margin:0 0 12px; }
   td.txt{ text-align:left; font-size:12.5px; }
+  .lang-switch{ display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; margin-bottom:8px; }
+  .lang-switch a{ font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600; letter-spacing:0.06em;
+    padding:4px 12px; color: var(--ink-2); text-decoration:none; background: var(--surface); }
+  .lang-switch a[aria-current]{ background: var(--ink); color: var(--surface); }
 </style>
 
 <div class="wrap">
@@ -260,6 +265,7 @@
       <h1 id="reportTitle"></h1>
     </div>
     <div class="masthead-meta">
+      <nav class="lang-switch" aria-label="Language"><a href="./" aria-current="page" lang="en">EN</a><a href="vi.html" lang="vi">VI</a></nav>
       <div class="period" id="periodLabel"></div>
       <div class="sources" id="sourcesLabel"></div>
     </div>
