@@ -937,7 +937,22 @@ const CHARTS={
       const h=document.createElement('div');h.className='sid';h.textContent='#'+s.dataset.sid;
       h.onclick=()=>{s.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>openPop(s),350)};g.appendChild(h);
       list.forEach(c=>g.appendChild(cmEl(c)));pl.appendChild(g)});
+    // comments whose block id no longer exists (block was rebuilt in a newer version): keep them visible
+    const live=new Set(secs.map(s=>s.dataset.sid));
+    const orphan=Object.keys(by).filter(k=>!live.has(k));
+    if(orphan.length){
+      const t=document.createElement('p');t.className='note';t.textContent='Khối cũ: các khối dưới đây đã được làm lại trong bản mới. Comment vẫn giữ nguyên.';pl.appendChild(t);
+      orphan.forEach(k=>{
+        const g=document.createElement('div');g.className='pgrp';
+        const h=document.createElement('div');h.className='sid';const to=SID_MOVED[k];
+        h.textContent='#'+k+(to?' → nay là #'+to:' (đã bỏ)');
+        if(to){const s=document.querySelector('[data-sid="'+to+'"]');if(s)h.onclick=()=>s.scrollIntoView({behavior:'smooth',block:'center'})}
+        g.appendChild(h);
+        by[k].forEach(c=>g.appendChild(cmEl(c,async()=>{await delC(c.id);await refresh()})));pl.appendChild(g);
+      });
+    }
   }
+  const SID_MOVED={'seo-summary':'seo-deck','seo-funnel':'seo-deck','seo-groups':'seo-deck','seo-charts':'seo-deck','meta-ads-summary':'meta-ads-kpi'};
   let pop=null;
   function closePop(){if(pop){pop.remove();pop=null}}
   function openPop(s){
@@ -996,6 +1011,12 @@ const CHARTS={
           c.files.forEach(f=>{const path='attachments/'+c.id+'-'+safeName(f.name);
             parts.push(withLinks?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});
           parts.push('')}});
+    });
+    const live=new Set(secs.map(s=>s.dataset.sid));
+    Object.keys(by).filter(k=>!live.has(k)).forEach(k=>{
+      parts.push('## Section cũ `#'+k+'`'+(SID_MOVED[k]?' (nay là `#'+SID_MOVED[k]+'`)':' (đã bỏ)'),'','Khối này đã được làm lại trong bản mới; comment viết trên bản cũ.','');
+      by[k].forEach(c=>{parts.push('### '+(c.author||'Ẩn danh')+' · '+c.at,'',c.text||'(không có chữ)','');
+        if(c.files&&c.files.length){parts.push('Đính kèm:');c.files.forEach(f=>{const path='attachments/'+c.id+'-'+safeName(f.name);parts.push(withLinks?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});parts.push('')}});
     });
     return parts.join('\n');
   }
