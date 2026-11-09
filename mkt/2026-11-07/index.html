@@ -120,6 +120,13 @@ ul.plain{margin:6px 0;padding-left:20px}
 .src summary{cursor:pointer;font-size:12.5px;color:var(--ink-2)}
 .src .note{margin-top:6px}
 @media (max-width:860px){.fx{grid-template-columns:minmax(0,1fr)}.frow{grid-template-columns:96px minmax(0,1fr)}.frate{margin-left:108px}.fbar{width:100%!important}}
+/* week-over-week colour: up green, down red */
+:root{--up:#0F7B3E;--down:#C0262D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--up:#4ADE80;--down:#F87171}}
+:root[data-theme="dark"]{--up:#4ADE80;--down:#F87171}
+.dv{font-weight:600}
+.dv.up{color:var(--up)} .dv.down{color:var(--down)}
+.dv i{font-style:normal;font-size:9px;margin-right:3px;vertical-align:1px}
 /* feedback comments */
 [data-sid]:hover{outline:1px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:6px;border-radius:6px}
 [data-sid].has-c{outline:1px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:6px;border-radius:6px}
@@ -875,6 +882,19 @@ const CHARTS={
     if(!armed){armed=true;b.textContent='Bấm lần nữa để xoá';setTimeout(()=>{armed=false;b.textContent='Xoá hết'},3000);return}
     for(const c of cache)await delC(c.id);armed=false;b.textContent='Xoá hết';await refresh();toast('Đã xoá hết comment')};
   openDB().then(d=>{db=d;refresh()});
+
+  // colour each table value against last week (in brackets): up green, down red
+  document.querySelectorAll('td.n').forEach(td=>{
+    const p=td.querySelector('.prev'),t=td.firstChild;
+    if(!p||!t||t.nodeType!==3)return;
+    const cur=parseFloat(t.textContent.replace(/,/g,'')),prev=parseFloat(p.textContent.replace(/[()¹²³,\s]/g,''));
+    if(isNaN(cur)||isNaN(prev)||cur===prev)return;
+    const up=cur>prev,sp=document.createElement('span');
+    sp.className='dv '+(up?'up':'down');sp.innerHTML='<i aria-hidden="true">'+(up?'▲':'▼')+'</i>';
+    sp.appendChild(document.createTextNode(t.textContent.trimEnd()));
+    sp.title=(up?'Tăng':'Giảm')+' so với tuần trước';
+    td.replaceChild(sp,t);td.insertBefore(document.createTextNode(' '),p);
+  });
   $('#bCopyAll').onclick=()=>copy(fullMd(),'Đã copy md toàn bộ report');
   // highlight current nav item
   const links=[...document.querySelectorAll('#toc a')];
