@@ -168,6 +168,8 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
 .atts:empty{display:none}
 .att{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:3px 6px;font-size:11.5px;max-width:100%;background:var(--bg)}
 .att img{width:44px;height:44px;object-fit:cover;border-radius:5px;display:block}
+.att a{display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
+.cm .st{font-size:11px;color:var(--muted);margin-left:6px}
 .att span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px}
 .att button{border:none;background:none;padding:0 2px;color:var(--muted)}
 #panel{position:fixed;top:0;right:0;width:400px;max-width:100%;height:100%;background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .2s;z-index:80;display:flex;flex-direction:column}
@@ -254,16 +256,16 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
   </nav>
 </aside>
 
-<main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
+<main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html" data-api="https://script.google.com/macros/s/AKfycbyYfYKow93G7q5pjY9P8IG69jdNWe7QHxmPP-L_JLiV11_h6Wq1EaOz9WarqLVb89JsuQ/exec">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v14</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v15</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
     </div>
   </div>
   <h1>Marketing Promer · tuần 1–7/11/2026</h1>
-  <div class="period">So với tuần 25–31/10/2026. Rê chuột vào một khối rồi bấm 💬 để góp ý, có thể dán ảnh hoặc đính kèm file.</div>
+  <div class="period">So với tuần 25–31/10/2026. Rê chuột vào một khối rồi bấm 💬 để góp ý, có thể dán ảnh hoặc đính kèm file. Góp ý được lưu chung, mọi người mở report đều thấy.</div>
 
   <!-- OVERVIEW -->
   <div class="block" id="overview">
@@ -1081,6 +1083,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v15, comment lưu chung qua Google Sheet: mọi người thấy góp ý của nhau, ảnh đính kèm lưu trên Drive, không cần gửi file zip. Comment đã viết trên máy trước đó có nút gửi lên chung.</li>
         <li><span class="mono">2026-11-09</span> · v14, Shopify App Store Ads dùng BigQuery đủ 1–7/11 (dev đồng bộ lại 9/11): chart chi phí và install theo ngày tách Search và Category, bảng theo loại campaign và nhóm keyword so với 25–31/10, thêm khối thay đổi Shopify Ads và ASO kèm install rate Sales Channels theo giai đoạn. Cập nhật 2 thẻ Shopify trong mục Task → kết quả.</li>
         <li><span class="mono">2026-11-09</span> · v13, làm lại phần Google Ads từ report Google Ads API: chi tiêu, click, Sign Up, chi phí mỗi Sign Up, 5 điểm chính, bảng theo campaign và tier, ngân sách và impression share, YouTube Ads, quốc gia, search term, change history và kết quả sau mỗi mốc, việc tiếp theo. Cột chi phí mỗi Sign Up tô ngược màu (tăng là đỏ). Cập nhật bảng tổng quan, Điểm chính và mục Task → kết quả theo số Google Ads.</li>
         <li><span class="mono">2026-11-09</span> · v12, phần tổng quan chia 2 tab Web app (GA4) và Shopify App vì hai bên đo khác chỉ số: tab Shopify có bảng theo nguồn (listing session, install, paid install, doanh thu), chart install và gỡ cài theo ngày, install và paid install theo nguồn. Thêm chi phí Google Ads từ GA4 vào bảng web.</li>
@@ -1104,6 +1107,8 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
   <header><b>Comment</b><input id="author" type="text" placeholder="Tên người góp ý" aria-label="Tên người góp ý"><button id="bClose">Đóng</button></header>
   <div id="plist"></div>
   <footer>
+    <button id="bSync" class="primary" hidden>Gửi comment trên máy này lên chung</button>
+    <button id="bReload" hidden>Tải lại</button>
     <button id="bZip" class="primary">Tải feedback .zip</button>
     <button id="bCopyC">Copy md (chỉ chữ)</button>
     <button id="bClear">Xoá hết</button>
@@ -1336,9 +1341,34 @@ const CHARTS={
   let db=null,mem=[],cache=[];
   const openDB=()=>new Promise(res=>{try{const r=indexedDB.open(DBN,1);r.onupgradeneeded=()=>r.result.createObjectStore(ST,{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>res(null)}catch(e){res(null)}});
   const store=m=>db.transaction(ST,m).objectStore(ST);
-  const allC=()=>!db?Promise.resolve(mem.filter(c=>c.rid===RID)):new Promise(res=>{const r=store('readonly').getAll();r.onsuccess=()=>res(r.result.filter(c=>c.rid===RID).sort((a,b)=>a.at.localeCompare(b.at)));r.onerror=()=>res([])});
-  const putC=c=>{if(!db){mem=mem.filter(x=>x.id!==c.id).concat(c);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').put(c);r.onsuccess=r.onerror=()=>res()})};
-  const delC=id=>{if(!db){mem=mem.filter(x=>x.id!==id);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').delete(id);r.onsuccess=r.onerror=()=>res()})};
+  const API=(root.dataset.api||'').trim();
+  const TOKK='promer-mkt-tokens';
+  const tokens=()=>{try{return JSON.parse(localStorage.getItem(TOKK)||'{}')}catch(e){return {}}};
+  const saveTok=(id,t)=>{const m=tokens();m[id]=t;try{localStorage.setItem(TOKK,JSON.stringify(m))}catch(e){}};
+  const canDel=c=>!API||!!tokens()[c.id];
+  const b64=blob=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]||'');r.onerror=rej;r.readAsDataURL(blob)});
+  let remoteOk=false;
+  async function rAll(){
+    const r=await fetch(API+'?rid='+encodeURIComponent(RID),{cache:'no-store'});const j=await r.json();
+    if(!j.ok)throw new Error(j.error||'api');remoteOk=true;
+    return j.comments.sort((a,b)=>String(a.at).localeCompare(String(b.at)));
+  }
+  async function rPost(body){
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+    const j=await r.json();if(!j.ok)throw new Error(j.error||'api');return j;
+  }
+  async function rPut(c){
+    const token=Math.random().toString(36).slice(2)+Date.now().toString(36);
+    const files=[];for(const f of (c.files||[]))files.push({name:f.name,type:f.type,size:f.size,b64:await b64(f.blob)});
+    await rPost({action:'add',id:c.id,rid:c.rid,sid:c.sid,author:c.author,text:c.text,at:c.at,token,files});
+    saveTok(c.id,token);
+  }
+  const lAll=()=>!db?Promise.resolve(mem.filter(c=>c.rid===RID)):new Promise(res=>{const r=store('readonly').getAll();r.onsuccess=()=>res(r.result.filter(c=>c.rid===RID).sort((a,b)=>a.at.localeCompare(b.at)));r.onerror=()=>res([])});
+  const allC=async()=>{if(!API)return lAll();try{return await rAll()}catch(e){remoteOk=false;toast('Không tải được comment chung, đang dùng bản trên máy');return lAll()}};
+  const lPut=c=>{if(!db){mem=mem.filter(x=>x.id!==c.id).concat(c);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').put(c);r.onsuccess=r.onerror=()=>res()})};
+  const putC=async c=>{if(API&&remoteOk){await rPut(c);return}return lPut(c)};
+  const lDel=id=>{if(!db){mem=mem.filter(x=>x.id!==id);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').delete(id);r.onsuccess=r.onerror=()=>res()})};
+  const delC=async id=>{if(API&&remoteOk){const t=tokens()[id];if(!t){toast('Chỉ xoá được comment do máy này gửi');return}await rPost({action:'delete',id,token:t});return}return lDel(id)};
   const lsGet=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}};
   const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
   const authorEl=$('#author'); authorEl.value=lsGet('promer-mkt-author');
@@ -1347,9 +1377,12 @@ const CHARTS={
   const safeName=n=>n.replace(/[^\w.\-]+/g,'_').slice(-80);
   function attEl(f,onRemove){
     const d=document.createElement('div');d.className='att';
-    if(f.type.startsWith('image/')){const im=document.createElement('img');im.src=URL.createObjectURL(f.blob);im.alt=f.name;d.appendChild(im)}
-    else{const ic=document.createElement('span');ic.textContent='📎';d.appendChild(ic)}
-    const n=document.createElement('span');n.textContent=f.name;n.title=f.name;d.appendChild(n);
+    const host=f.driveId?document.createElement('a'):d;
+    if(f.driveId){host.href='https://drive.google.com/file/d/'+encodeURIComponent(f.driveId)+'/view';host.target='_blank';host.rel='noopener';d.appendChild(host)}
+    const isImg=(f.type||'').startsWith('image/');
+    if(isImg&&(f.blob||f.driveId)){const im=document.createElement('img');im.src=f.blob?URL.createObjectURL(f.blob):'https://drive.google.com/thumbnail?id='+encodeURIComponent(f.driveId)+'&sz=w400';im.alt=f.name;im.loading='lazy';host.appendChild(im)}
+    else{const ic=document.createElement('span');ic.textContent='📎';host.appendChild(ic)}
+    const n=document.createElement('span');n.textContent=f.name;n.title=f.name;host.appendChild(n);
     if(onRemove){const x=document.createElement('button');x.type='button';x.textContent='✕';x.title='Bỏ file';x.onclick=onRemove;d.appendChild(x)}
     return d;
   }
@@ -1357,7 +1390,8 @@ const CHARTS={
     const d=document.createElement('div');d.className='cm';
     d.innerHTML='<div class="meta"><span></span></div><div class="txt"></div>';
     d.querySelector('.meta span').textContent=(c.author||'Ẩn danh')+' · '+fmtT(c.at);
-    if(onDel){const b=document.createElement('button');b.type='button';b.textContent='Xoá';b.onclick=e=>{e.stopPropagation();onDel()};d.querySelector('.meta').appendChild(b)}
+    if(c.status){const st=document.createElement('span');st.className='st';st.textContent='✓ '+c.status;d.querySelector('.meta').appendChild(st)}
+    if(onDel&&canDel(c)){const b=document.createElement('button');b.type='button';b.textContent='Xoá';b.onclick=e=>{e.stopPropagation();onDel()};d.querySelector('.meta').appendChild(b)}
     d.querySelector('.txt').textContent=c.text;
     if(c.files&&c.files.length){const a=document.createElement('div');a.className='atts';c.files.forEach(f=>a.appendChild(attEl(f)));d.appendChild(a)}
     return d;
@@ -1368,7 +1402,9 @@ const CHARTS={
     secs.forEach(s=>{const n=(by[s.dataset.sid]||[]).length;s.classList.toggle('has-c',n>0);const b=s.querySelector(':scope>.cbtn');b.classList.toggle('on',n>0);b.textContent=n?'💬 '+n:'💬'});
     $('#cCount').textContent=cache.length;
     const pl=$('#plist');pl.innerHTML='';
-    if(!cache.length){pl.innerHTML='<p class="note">Chưa có comment. Rê chuột vào một khối rồi bấm 💬. Comment chỉ lưu trong trình duyệt này. Muốn gửi cho người khác thì bấm "Tải feedback .zip".</p>';return}
+    if(API&&remoteOk){const loc=await lAll();const sb=$('#bSync');sb.hidden=!loc.length;sb.textContent='Gửi '+loc.length+' comment trên máy này lên chung'}
+    if(!cache.length){pl.innerHTML=API&&remoteOk?'<p class="note">Chưa có comment. Rê chuột vào một khối rồi bấm 💬. Comment được lưu chung: mọi người mở report đều thấy.</p>':'<p class="note">Chưa có comment. Rê chuột vào một khối rồi bấm 💬. Comment chỉ lưu trong trình duyệt này. Muốn gửi cho người khác thì bấm "Tải feedback .zip".</p>';return}
+    if(API&&remoteOk){const t=document.createElement('p');t.className='note';t.textContent='Comment lưu chung: mọi người đều thấy. Chỉ xoá được comment do máy này gửi.';pl.appendChild(t)}
     secs.forEach(s=>{const list=by[s.dataset.sid];if(!list)return;
       const g=document.createElement('div');g.className='pgrp';
       const h=document.createElement('div');h.className='sid';h.textContent='#'+s.dataset.sid;
@@ -1422,8 +1458,11 @@ const CHARTS={
     pop.querySelector('.s').onclick=async()=>{
       const v=ta.value.trim();if(!v&&!pending.length){closePop();return}
       let slideNo='';const fr=s.querySelector('iframe');if(fr){try{slideNo=(fr.contentWindow.location.hash||'').replace('#','')}catch(_){}}
-      await putC({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),rid:RID,sid,author:authorEl.value.trim(),text:(slideNo?'[Slide '+slideNo+'] ':'')+v,at:new Date().toISOString(),files:pending.slice()});
-      await refresh();closePop();toast('Đã lưu comment');
+      if(API&&remoteOk&&!authorEl.value.trim()){toast('Điền tên người góp ý ở khung Comment trước');$('#panel').classList.add('open');authorEl.focus();return}
+      const sb=pop.querySelector('.s');sb.disabled=true;sb.textContent='Đang gửi…';
+      try{await putC({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),rid:RID,sid,author:authorEl.value.trim(),text:(slideNo?'[Slide '+slideNo+'] ':'')+v,at:new Date().toISOString(),files:pending.slice()})}
+      catch(e){sb.disabled=false;sb.textContent='Lưu';toast('Gửi không được, thử lại');return}
+      await refresh();closePop();toast(API&&remoteOk?'Đã gửi comment, mọi người đều thấy':'Đã lưu comment');
     };
     ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey))pop.querySelector('.s').click();if(e.key==='Escape')closePop()});
     pop.addEventListener('click',e=>e.stopPropagation());
@@ -1445,15 +1484,15 @@ const CHARTS={
       parts.push('## Section `#'+s.dataset.sid+'`','','Nội dung hiện tại:','','```md',body,'```','');
       list.forEach(c=>{parts.push('### '+(c.author||'Ẩn danh')+' · '+c.at,'',c.text||'(không có chữ)','');
         if(c.files&&c.files.length){parts.push('Đính kèm:');
-          c.files.forEach(f=>{const path='attachments/'+c.id+'-'+safeName(f.name);
-            parts.push(withLinks?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});
+          c.files.forEach(f=>{const path=f.driveId?'https://drive.google.com/file/d/'+f.driveId+'/view':'attachments/'+c.id+'-'+safeName(f.name);
+            parts.push(withLinks||f.driveId?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});
           parts.push('')}});
     });
     const live=new Set(secs.map(s=>s.dataset.sid));
     Object.keys(by).filter(k=>!live.has(k)).forEach(k=>{
       parts.push('## Section cũ `#'+k+'`'+(SID_MOVED[k]?' (nay là `#'+SID_MOVED[k]+'`)':' (đã bỏ)'),'','Khối này đã được làm lại trong bản mới; comment viết trên bản cũ.','');
       by[k].forEach(c=>{parts.push('### '+(c.author||'Ẩn danh')+' · '+c.at,'',c.text||'(không có chữ)','');
-        if(c.files&&c.files.length){parts.push('Đính kèm:');c.files.forEach(f=>{const path='attachments/'+c.id+'-'+safeName(f.name);parts.push(withLinks?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});parts.push('')}});
+        if(c.files&&c.files.length){parts.push('Đính kèm:');c.files.forEach(f=>{const path=f.driveId?'https://drive.google.com/file/d/'+f.driveId+'/view':'attachments/'+c.id+'-'+safeName(f.name);parts.push(withLinks||f.driveId?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});parts.push('')}});
     });
     return parts.join('\n');
   }
@@ -1465,17 +1504,25 @@ const CHARTS={
     if(!cache.length){toast('Chưa có comment');return}
     if(!window.JSZip){toast('Không tải được thư viện zip, hãy dùng Copy md');return}
     const z=new JSZip();z.file('feedback.md',feedbackMd(true));
-    cache.forEach(c=>(c.files||[]).forEach(f=>z.file('attachments/'+c.id+'-'+safeName(f.name),f.blob)));
+    cache.forEach(c=>(c.files||[]).filter(f=>f.blob).forEach(f=>z.file('attachments/'+c.id+'-'+safeName(f.name),f.blob)));
     const blob=await z.generateAsync({type:'blob'});
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);
     a.download='feedback-'+RID+'-'+safeName(authorEl.value.trim()||'an-danh')+'-'+new Date().toISOString().slice(0,10)+'.zip';
     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);toast('Đã tải gói feedback');
   };
+  $('#bReload').onclick=async()=>{await refresh();toast('Đã tải lại')};
+  $('#bSync').onclick=async()=>{const b=$('#bSync');const loc=await lAll();if(!loc.length)return;
+    if(!authorEl.value.trim()){toast('Điền tên người góp ý trước');authorEl.focus();return}
+    b.disabled=true;let n=0;
+    for(const c of loc){try{await rPut(Object.assign({},c,{author:c.author||authorEl.value.trim()}));await lDel(c.id);n++;b.textContent='Đang gửi '+n+'/'+loc.length+'…'}catch(e){toast('Gửi lỗi ở comment '+(n+1));break}}
+    b.disabled=false;await refresh();if(n)toast('Đã gửi '+n+' comment lên chung')};
   let armed=false;
   $('#bClear').onclick=async()=>{const b=$('#bClear');
     if(!armed){armed=true;b.textContent='Bấm lần nữa để xoá';setTimeout(()=>{armed=false;b.textContent='Xoá hết'},3000);return}
     for(const c of cache)await delC(c.id);armed=false;b.textContent='Xoá hết';await refresh();toast('Đã xoá hết comment')};
+  if(API){$('#bClear').hidden=true;$('#bReload').hidden=false;$('#bZip').textContent='Tải feedback .zip (ảnh = link Drive)';$('#bZip').classList.remove('primary')}
   openDB().then(d=>{db=d;refresh()});
+  $('#bPanel').addEventListener('click',()=>{if(API&&$('#panel').classList.contains('open'))refresh()});
 
   // colour each table value against last week (in brackets): up green, down red
   document.querySelectorAll('td.n').forEach(td=>{
