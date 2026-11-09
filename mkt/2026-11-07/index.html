@@ -250,7 +250,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
 
 <main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v10</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v11</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -397,7 +397,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
       <h3 class="tk-ch">Meta Social và YouTube organic <span class="chip">Long</span><span class="chip">Tiến</span></h3>
       <div class="cards ins tk">
         <div class="card"><h4>Đổi hook 2 giây đầu, reel theo mùa BFCM có ưu đãi</h4><div class="big">2</div><div class="lbl">reel vượt 1,000 người xem trong 2–5/11 (tuần trước 1) · <span class="chip ok">có tín hiệu tốt</span></div>
-          <ul><li><b>Vì sao:</b> reel giới thiệu sản phẩm chung chung không giữ người xem.</li><li><b>Sau đó:</b> team ghi 8 reel, 4,627 người xem trong 4 ngày (76% của cả tuần trước). GA4: Organic Social 95 session (75), từ Instagram 7 (3), click-to-webapp 6 (1). Chưa gắn UTM link bio nên chưa tách được reel nào kéo traffic.</li></ul></div>
+          <ul><li><b>Vì sao:</b> reel giới thiệu sản phẩm chung chung không giữ người xem.</li><li><b>Sau đó:</b> reach Instagram 4,795 (883); 3 video ưu đãi BFCM chiếm 55% reach Instagram và 73% người xem Facebook. Nhưng 0 chạm link bio, 0 sign-up; session web từ Facebook + Instagram organic 69 (48). Chưa gắn UTM theo bài nên chưa tách được reel nào kéo traffic.</li></ul></div>
         <div class="card"><h4>YouTube: dựng file UTM, đăng 12 Shorts</h4><div class="big">19</div><div class="lbl">session từ youtube.com (tuần trước 13), 0 click-to-webapp · <span class="chip gray">chưa đo được</span></div>
           <ul><li><b>Vì sao:</b> đo traffic từ kênh YouTube về web.</li><li><b>Sau đó:</b> cột Click Link trong sheet YouTube vẫn trống, UTM chưa lên số. Chi tiết view ở mục YouTube.</li></ul></div>
       </div>
@@ -412,7 +412,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
         <tbody>
           <tr><td>Meta Ads · Vy</td><td>Đổi tệp Lookalike sang Advantage+</td><td>giảm CPM</td><td class="n">CPM 40.79 USD (236.25 USD / 5,792 impressions)</td></tr>
           <tr><td>Meta Ads · Vy</td><td>Tắt tệp Shopify merchant (8/11)</td><td>bỏ chi phí không ra landing page view</td><td class="n">33.35 USD, 0 landing page view</td></tr>
-          <tr><td>Meta Social · Long</td><td>14 reel theo công thức Social Creatives (10 khai thác với 5 cặp hook A/B, 2 khám phá, 2 BFCM); bảng điểm lọc reel</td><td>chi phí ≤ 3 USD/video; tối đa 3 reel đề xuất team Ads</td><td class="n">2 reel &gt; 1,000 người xem; IG 7 session GA4</td></tr>
+          <tr><td>Meta Social · Long</td><td>14 reel theo công thức Social Creatives (10 khai thác với 5 cặp hook A/B, 2 khám phá, 2 BFCM); bảng điểm lọc reel</td><td>chi phí ≤ 3 USD/video; tối đa 3 reel đề xuất team Ads</td><td class="n">reach IG 4,795; median người xem mỗi bài FB 34; 69 session social, 0 sign-up</td></tr>
           <tr><td>Shopify · Vy</td><td>Làm cùng CS để được feature trong stories trên Shopify App Store</td><td>tăng install từ featured</td><td class="n">báo cáo chưa tách install từ featured</td></tr>
           <tr><td>Google Ads · Hằng</td><td>Check chuyển đổi qua sign-up</td><td>sign-up, CPA</td><td class="n">45 sign-up Search, 11.4 USD mỗi sign-up</td></tr>
           <tr><td>SEO · Hiền</td><td>Publish trang hub /tools/ (9/11)</td><td>gom các trang /tools/</td><td class="n">/tools/* Organic 53 session, 17 click-to-webapp</td></tr>
@@ -687,19 +687,83 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
   <div class="block" id="meta-social">
     <section data-sid="meta-social-summary">
       <h2>Meta Social (organic)</h2>
-      <div class="chan-owner"><span class="chip">Long</span><span class="chip">Vy</span> <span class="chip warn">thiếu reach/followers</span></div>
+      <div class="chan-owner"><span class="chip">Long</span><span class="chip">Vy</span> Facebook Page Promer + Instagram @promeraiofficial · nguồn: report Meta Social 1–7/11 (Instagram + Facebook Graph API qua Composio, kéo 16:18 9/11, giờ VN) và GA4. Tuần này 29 bài: Instagram 14 (11 reel, 3 carousel), Facebook 15 (11 video, 4 ảnh).</div>
+      <div class="kpis5">
+        <div><b>4,795</b><span>reach Instagram · tuần trước 883 (×5.4)</span></div>
+        <div><b>268</b><span>tương tác Instagram · tuần trước 118 · share 21 (9), save 30 (5)</span></div>
+        <div><b>1,336</b><span>người xem Facebook, cộng theo bài · tuần trước 1,710 (−22%)</span></div>
+        <div><b>69</b><span>session web từ Facebook + Instagram organic · tuần trước 48</span></div>
+        <div><b>0</b><span>sign-up từ social · 0 lượt chạm link bio (cả 2 tuần)</span></div>
+      </div>
+    </section>
+    <section data-sid="meta-social-findings">
+      <h3>Điểm chính Meta Social</h3>
+      <div class="cards ins">
+        <div class="card"><h4>Video ưu đãi BFCM 50% đi xa nhất trên cả hai kênh</h4><div class="big">55% · 73%</div><div class="lbl">reach Instagram · người xem Facebook đến từ 3 video ưu đãi</div>
+          <ul><li>Hai reel "Your next ad starts here" (3/11, 4/11) đạt 1,483 và 1,396 reach, gấp 9–10 lần median reel (149).</li><li>Reel ưu đãi thứ ba "Product photos → video ads" (4/11 06:01) chỉ 196 reach.</li><li>Reel Halloween (1/11) thêm 1,446 reach Instagram nhưng chỉ 37 người xem Facebook.</li></ul></div>
+        <div class="card"><h4>Reach Instagram tăng thật, không còn chủ yếu là xem lặp</h4><div class="big">1.2</div><div class="lbl">lượt xem trên mỗi người reach, median reel (tuần trước 46)</div>
+          <ul><li>Views tài khoản 6,217 (5,991) gần như không đổi, còn reach tăng 5.4 lần.</li><li>Tài khoản tương tác 122 (28). Follower 40 (37 ngày 29/10).</li></ul></div>
+        <div class="card"><h4>Người xem chưa đi tiếp sang web</h4><div class="big">1</div><div class="lbl">comment cho CTA "Comment AD" trên 3 video ưu đãi (3,075 reach Instagram)</div>
+          <ul><li>Instagram: 0 chạm link bio, 0 click website; xem trang cá nhân 99 (145).</li><li>GA4: 0 sign-up từ Organic Social ở cả hai tuần.</li></ul></div>
+        <div class="card"><h4>Mỗi bài Facebook ít người xem hơn nhiều</h4><div class="big">34</div><div class="lbl">người xem median mỗi bài Facebook (tuần trước 125, −73%)</div>
+          <ul><li>Chỉ 3 video ưu đãi vượt mức tuần trước: 584, 256 và 132 người xem. Các bài khác 16–45.</li><li>Report chưa có tỷ lệ người xem là follower hay không, nên chưa rõ lý do.</li></ul></div>
+        <div class="card"><h4>3 reel cuối tuần mất người xem ngay 3 giây đầu</h4><div class="big">68–76%</div><div class="lbl">skip rate của reel 5/11 23:01, 6/11 08:00, 7/11 07:00</div>
+          <ul><li>Reach 137–148 mỗi reel. Median skip tuần này 30%.</li><li>Carousel Instagram gần như không được phân phối: 9–10 reach mỗi bài.</li></ul></div>
+      </div>
+    </section>
+    <section data-sid="meta-social-topics">
+      <h3>Theo chủ đề</h3>
+      <div class="chart viz" data-chart="msTopics"></div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>Chỉ số</th><th class="n">1–7/11</th><th class="n">25–31/10</th></tr></thead>
+        <thead><tr><th>Chủ đề</th><th class="n">Bài IG · FB</th><th class="n">Reach IG</th><th class="n">Người xem FB</th><th>Ghi chú</th></tr></thead>
         <tbody>
-          <tr><td>Bài Instagram @promeraiofficial</td><td class="n">14 (11 Reels, 3 Feed)</td><td class="n">14 (13 Reels, 1 Feed)</td></tr>
-          <tr><td>Like | comment (đo ngày 9/11)</td><td class="n">154 | 1</td><td class="n">60 | 0</td></tr>
-          <tr><td>Session GA4 Organic Social</td><td class="n">95</td><td class="n">75</td></tr>
-          <tr><td>&nbsp;&nbsp;từ facebook.com, l.facebook.com, m.facebook.com</td><td class="n">61</td><td class="n">44</td></tr>
-          <tr><td>&nbsp;&nbsp;từ Instagram (instagram.com, ig/social)</td><td class="n">7</td><td class="n">3</td></tr>
-          <tr><td>click-to-webapp (session)</td><td class="n">6</td><td class="n">1</td></tr>
+          <tr><td>Ưu đãi BFCM 50%</td><td class="n">3 · 3</td><td class="n">3,075</td><td class="n">972</td><td>2 reel "Your next ad starts here" ~1,400 reach mỗi reel</td></tr>
+          <tr><td>Halloween</td><td class="n">1 · 1</td><td class="n">1,446</td><td class="n">37</td><td>skip 20.5%, xem TB 16.7 s trên Instagram</td></tr>
+          <tr><td>Hài &amp; kể chuyện</td><td class="n">2 · 2</td><td class="n">382</td><td class="n">79</td><td>reel 6/11 có 60 like trên 149 reach</td></tr>
+          <tr><td>Mẹo &amp; demo</td><td class="n">3 · 3</td><td class="n">359</td><td class="n">81</td><td>2 reel sau skip 74–76%</td></tr>
+          <tr><td>Black Friday (không ưu đãi)</td><td class="n">2 · 2</td><td class="n">151</td><td class="n">52</td><td>reel to-do list, carousel CPM Black Friday</td></tr>
+          <tr><td>Chưa rõ</td><td class="n">1 · 1</td><td class="n">142</td><td class="n">31</td><td>"Hello! I have something important to say!", skip 68%</td></tr>
+          <tr><td>Carousel kiến thức</td><td class="n">2 · 2</td><td class="n">19</td><td class="n">54</td><td>9–10 reach mỗi bài trên Instagram</td></tr>
+          <tr><td>Sự kiện</td><td class="n">0 · 1</td><td class="n">–</td><td class="n">30</td><td>Buildathon với GemPages và ShopX Network, chỉ đăng Facebook</td></tr>
         </tbody>
       </table></div>
-      <div class="note">Like và comment đo cùng lúc vào ngày 9/11, nên bài tuần trước có nhiều thời gian hơn để tích like. Chưa có số liệu Facebook Page (bài, reach, followers) vì Meta Ads MCP không đọc được Page Insights.</div>
+      <div class="note">Cách đọc: chủ đề gán theo caption. Instagram và Facebook đăng cùng nội dung, cùng giờ. Số theo bài là số trọn đời tính tới 16:18 9/11; 2 reel Instagram và 3 bài Facebook đăng sau 16:18 6/11 chưa đủ 72 giờ. Mỗi chủ đề chỉ có 1–3 bài nên chỉ dùng để định hướng.</div>
+    </section>
+    <section data-sid="meta-social-traffic">
+      <h3>Traffic về web (GA4)</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Source / medium</th><th class="n">Session</th><th class="n">User mới</th><th class="n">Session tương tác</th></tr></thead>
+        <tbody>
+          <tr><td>facebook.com / referral</td><td class="n">27 <span class="prev">(35)</span></td><td class="n">8</td><td class="n">21</td></tr>
+          <tr><td>l.facebook.com / referral</td><td class="n">19 <span class="prev">(1)</span></td><td class="n">5</td><td class="n">15</td></tr>
+          <tr><td>m.facebook.com / referral</td><td class="n">15 <span class="prev">(8)</span></td><td class="n">10</td><td class="n">9</td></tr>
+          <tr><td>ig / social (link có UTM)</td><td class="n">5 <span class="prev">(0)</span></td><td class="n">1</td><td class="n">3</td></tr>
+          <tr><td>instagram.com / referral</td><td class="n">2 <span class="prev">(3)</span></td><td class="n">1</td><td class="n">1</td></tr>
+          <tr><td>business.facebook.com, web.facebook.com</td><td class="n">1 <span class="prev">(1)</span></td><td class="n">0</td><td class="n">0</td></tr>
+          <tr><td><b>Tổng Facebook + Instagram organic</b></td><td class="n"><b>69</b> <span class="prev">(48)</span></td><td class="n"><b>25</b></td><td class="n"><b>49</b></td></tr>
+        </tbody>
+      </table></div>
+      <ul class="plain">
+        <li>Ngày nhiều nhất là 3/11 (giờ PT) với 24 session, cùng ngày video ưu đãi đầu tiên lên Facebook.</li>
+        <li>26 trên 69 session từ Việt Nam (22 session desktop từ 7 người, 0 người mới). Bỏ Việt Nam: 43 session (24), trong đó Mỹ 29 (12).</li>
+        <li>Hành động trong app từ session social: 1 user cũ ở Canada vào từ facebook.com, upload sản phẩm 2 lần, generate 4 lần.</li>
+      </ul>
+      <div class="note">Cách đọc: organic = nguồn chứa facebook, instagram hoặc ig, đã trừ quảng cáo Meta (facebook / cpc, 130 session). Con số này khác dòng "Organic Social" ở bảng tổng quan (95 session), vì dòng đó là cả channel group Organic Social của GA4, gồm cả mạng xã hội khác. Từ 5/11 số cấp Page Facebook lẫn lượt xem quảng cáo Meta, nên mục này dùng số theo bài.</div>
+    </section>
+    <section data-sid="meta-social-next">
+      <h3>Việc tiếp theo (team Meta Social đề xuất)</h3>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Khi nào</th><th>Việc</th><th>Vì sao</th><th>Đo bằng</th></tr></thead>
+        <tbody>
+          <tr><td>10–16/11</td><td>Thêm 2–3 reel theo format "Your next ad starts here" + ưu đãi 50% Growth yearly đến hết BFCM, mỗi bản đổi 1 yếu tố (hook, nhạc hoặc giờ đăng)</td><td>2 reel này ~1,400 reach, gấp 9–10 lần median</td><td>reach IG, người xem FB mỗi bài</td></tr>
+          <tr><td>Ngay</td><td>Đổi CTA "Comment AD" sang "link in bio"; gắn UTM theo từng bài cho link bio, link trong bài Facebook và link DM</td><td>1 comment trên 3,075 reach; chưa gán được session về từng bài</td><td>chạm link bio, session GA4 theo utm_content, sign-up</td></tr>
+          <tr><td>Ngay</td><td>Viết lại 3 giây đầu cho reel mẹo và thông báo: mở bằng kết quả thay cho lời chào</td><td>skip 68%, 74%, 76% ở 3 reel cuối tuần</td><td>skip rate, thời gian xem TB</td></tr>
+          <tr><td>Ngay</td><td>Lọc traffic nội bộ trong GA4</td><td>26/69 session social từ Việt Nam</td><td>session social sau lọc</td></tr>
+          <tr><td>Tuần này</td><td>Xem tỷ lệ người xem follower / không follower trong Business Suite</td><td>median người xem mỗi bài Facebook −73%</td><td>% người xem không follower</td></tr>
+          <tr><td>Trước BFCM</td><td>Chấm 2 reel ưu đãi theo checklist Fit-to-ad trước khi chạy làm ad</td><td>bài organic tốt nhất 2 tuần qua</td><td>đạt / không đạt</td></tr>
+          <tr><td>Hằng tuần</td><td>Xuất số Page Facebook tách organic và quảng cáo từ Business Suite</td><td>công cụ hiện tại không tách được</td><td>lượt xem organic / quảng cáo</td></tr>
+        </tbody>
+      </table></div>
     </section>
   </div>
 
@@ -793,7 +857,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
         <ul class="plain">
           <li><b>Google Ads:</b> chi phí, click, conversion theo campaign. Vy hoặc Hằng xuất CSV từ giao diện Google Ads.</li>
           
-          <li><b>Meta Business Suite:</b> Facebook Page và Instagram Insights (reach, followers, link click).</li>
+          <li><b>Meta Social:</b> số Page Facebook tách organic và quảng cáo (từ 5/11 bị lẫn), tỷ lệ người xem follower / không follower, retention theo giây của reel.</li>
           <li><b>YouTube:</b> watch time và số liệu video dài chưa có trong sheet; cột Click Link đang trống.</li>
           <li><b>context.md:</b> KPI tháng của từng kênh, việc đã làm trong tuần, người phụ trách campaign YouTube Ads.</li>
           
@@ -811,7 +875,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
         <li><b>GSC</b> <span class="mono">sc-domain:promer.ai</span>, tổng theo ngày, 1–7/11 so với 25–31/10.</li>
         <li><b>Meta Ads</b>: file xuất của Vy (Meta Ads MCP), giờ VN, USD. Ad account Promer <span class="mono">8478843415526188</span>.</li>
         <li><b>Shopify App Store Ads</b>: BigQuery <span class="mono">promer-data-science.raw.spf_ads</span>, file xuất của Vy, đã dedupe theo lần sync mới nhất.</li>
-        <li><b>Instagram</b>: Meta Ads MCP (<span class="mono">ads_get_ig_media</span>), like và comment đo tại ngày 9/11.</li>
+        <li><b>Meta Social</b>: report Meta Social 1–7/11 của team (Instagram + Facebook Graph API qua Composio, kéo 16:18 9/11, giờ VN; GA4 traffic social). Số theo bài là số trọn đời tới lúc kéo.</li>
         <li><b>YouTube</b>: sheet của team YouTube (<span class="mono">1lgzysDxm28NY62T6156OeVdeD1ym6USHjleVer0qw4s</span>), tab Youtube Plan và Tháng 11/2026, YouTube API cập nhật 09/11 16:09. Tuần T2→CN.</li>
         <li><b>Task và thử nghiệm</b>: sheet [Promer] Product x Growth Changelog (<span class="mono">1Hl3hZYw8B9lXv0F8vyrUhnnXSKbyCCLmp4HjcaoM_dg</span>, tab Change Log) và Promer GTM 2026 (<span class="mono">1N_c-GhHpAmUT2tMbCtQFi2ahJifF5k_K4-1V7i9YlZo</span>, tab Direction &amp; Planning, cột Week 1/11–7/11 và Week 8/11–14/11), đọc ngày 9/11.</li>
         <li>GA4 tính theo giờ Los Angeles, Meta theo giờ VN, nên số ngày của hai bên lệch nhau khoảng nửa ngày.</li>
@@ -825,6 +889,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v11, làm lại phần Meta Social từ report Business Suite: reach, tương tác, người xem Facebook theo bài, 5 điểm chính, chart theo chủ đề, traffic GA4 theo source, việc tiếp theo. Cập nhật thẻ Meta Social trong mục Task → kết quả.</li>
         <li><span class="mono">2026-11-09</span> · v10, thêm mục "Task đã làm → chỉ số sau đó": mỗi task trong changelog và GTM tuần 1–7/11 ghi vì sao làm, chỉ số sau đó và trạng thái; thêm bảng thử nghiệm tuần 8–14/11 kèm mốc để so tuần sau.</li>
         <li><span class="mono">2026-11-09</span> · v9, làm lại phần YouTube từ sheet của team YouTube: số video đăng, view, xem tiếp, sub, đánh giá tuần 1 của team, view theo từng video, 6 video ads chờ đăng, kế hoạch tuần 2.</li>
         <li><span class="mono">2026-11-09</span> · v8, làm lại phần Shopify App từ sheet Promer Daily Control: install, gỡ, subscription, paid install, net payout (Partner API), funnel listing (GA4 listing), install theo nguồn, App Store Ads đủ 7 ngày (manual_sas), rank App Store, changelog ASO.</li>
@@ -884,6 +949,9 @@ const CHARTS={
   spfInstalls:{type:'cols',title:'Install từ Shopify App Store Ads theo ngày',sub:'Partner, ngày UTC · tab manual_sas',labels:D14,split:7,c:'--s1',v:[5,9,5,2,6,6,5,8,9,6,1,8,5,5]},
   spfFunnel:{type:'funnel',title:'Funnel Shopify App · 1–7/11',sub:'GA4 listing + Partner API · tuần trước: 708 → 98 → 111 → 11 → 10',steps:[['Listing session',645],['Add App click',111],['Install (Partner)',120],['Subscription mới',18],['Paid install',8]]},
   spfInstallDaily:{type:'line',title:'Install và gỡ cài theo ngày',sub:'Shopify Partner API · ngày UTC',labels:D14,split:7,series:[{name:'Install',c:'--s1',v:[17,24,11,9,12,21,17,21,16,15,14,17,24,13]},{name:'Gỡ cài',c:'--s2',v:[11,13,16,15,8,23,10,11,16,10,10,15,9,10]}]},
+  msTopics:{type:'barh',title:'Người xem theo chủ đề · 1–7/11',sub:'reach Instagram và người xem Facebook, cộng theo bài · số trọn đời tới 9/11',
+    cats:['Ưu đãi BFCM 50%','Halloween','Hài & kể chuyện','Mẹo & demo','Black Friday','Chưa rõ','Carousel kiến thức','Sự kiện'],
+    series:[{name:'Reach Instagram',c:'--s1',v:[3075,1446,382,359,151,142,19,0]},{name:'Người xem Facebook',c:'--s2',v:[972,37,79,81,52,31,54,30]}]},
   ytViews:{type:'barh',title:'View theo video YouTube Shorts · W45 (2–8/11)',sub:'YouTube API, đo 9/11 · S = tự làm, C = kho công ty',
     cats:['S08','C02','C07','C06','C09','C01','C10','C03','S07 (unlisted)','C05','C04','SEXT','C08'],
     series:[{name:'View',c:'--s1',v:[273,242,129,128,97,29,27,23,13,13,11,9,6]}]},
