@@ -134,6 +134,10 @@ ul.plain{margin:6px 0;padding-left:20px}
 .chip.ok{background:color-mix(in srgb,var(--up) 14%,var(--surface));color:var(--up)}
 .chip.bad{background:color-mix(in srgb,var(--down) 12%,var(--surface));color:var(--down)}
 .tk-legend{margin:8px 0 4px}
+.tabs{display:flex;gap:2px;margin:2px 0 12px;border-bottom:1px solid var(--line)}
+.tabs button{border:none;border-bottom:2px solid transparent;border-radius:0;background:none;padding:8px 14px;color:var(--muted);font-weight:500;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tabp[hidden]{display:none}
 table.tk-next{table-layout:fixed;width:100%}
 table.tk-next th,table.tk-next td{white-space:normal;text-align:left;vertical-align:top}
 table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}table.tk-next th:nth-child(3){width:20%}
@@ -250,7 +254,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
 
 <main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v11</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v12</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -263,18 +267,18 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
   <div class="block" id="overview">
     <section data-sid="overview-table">
       <h2>Tổng quan theo kênh</h2>
+<div class="tabs" role="tablist"><button data-tab="web" aria-selected="true">Web app (GA4)</button><button data-tab="shopify" aria-selected="false">Shopify App</button></div>
+      <div class="tabp" data-tab="web" data-label="Web app (GA4)">
       <div class="chan-owner">Số GA4 theo <span class="mono">Session primary channel group</span>, cả promer.ai và app. Số trong ngoặc là tuần 25–31/10.</div>
       <div class="tbl-wrap"><table>
         <thead><tr><th>Kênh</th><th>Phụ trách</th><th class="n">Chi phí</th><th class="n">Sessions</th><th class="n">click-to-webapp</th><th class="n">Sign-up</th><th class="n">Nâng gói (user)</th></tr></thead>
         <tbody>
           <tr><td>SEO · Organic Search</td><td>Hiền</td><td class="n">–</td><td class="n">1,273 <span class="prev">(1,546)</span></td><td class="n">139 <span class="prev">(111)</span></td><td class="n">23 <span class="prev">(121¹)</span></td><td class="n">0 <span class="prev">(3)</span></td></tr>
           <tr><td>SEO · AI Assistant</td><td>Hiền</td><td class="n">–</td><td class="n">334 <span class="prev">(386)</span></td><td class="n">32 <span class="prev">(46)</span></td><td class="n">13 <span class="prev">(9)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
-          <tr><td>Google Ads · Search</td><td>Vy, Hằng</td><td class="n">chờ dữ liệu</td><td class="n">369 <span class="prev">(166)</span></td><td class="n">1 <span class="prev">(4)</span></td><td class="n">45 <span class="prev">(20¹)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
-          <tr><td>Google Ads · YouTube (Cross-network)</td><td>[__]</td><td class="n">chờ dữ liệu</td><td class="n">51 <span class="prev">(2)</span></td><td class="n">3 <span class="prev">(0)</span></td><td class="n">2 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Google Ads · Search</td><td>Hằng</td><td class="n">514.53 USD²</td><td class="n">369 <span class="prev">(166)</span></td><td class="n">1 <span class="prev">(4)</span></td><td class="n">45 <span class="prev">(20¹)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Google Ads · YouTube (Cross-network)</td><td>Hằng</td><td class="n">128.17 USD²</td><td class="n">51 <span class="prev">(2)</span></td><td class="n">3 <span class="prev">(0)</span></td><td class="n">2 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
           <tr><td>Meta Ads · Paid Social</td><td>Vy</td><td class="n">236.25 USD <span class="prev">(0)</span></td><td class="n">130 <span class="prev">(0)</span></td><td class="n">18 <span class="prev">(0)</span></td><td class="n">6 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
-          <tr><td>Shopify App · Partner²</td><td>Vy</td><td class="n">–</td><td class="n">645 listing <span class="prev">(708)</span></td><td class="n">–</td><td class="n">120 install <span class="prev">(111)</span></td><td class="n">8 paid install <span class="prev">(10)</span></td></tr>
-          <tr><td>Shopify App Store Ads</td><td>Vy</td><td class="n">575.0 USD <span class="prev">(686.6)</span></td><td class="n">–</td><td class="n">161 click <span class="prev">(196)</span></td><td class="n">42 install <span class="prev">(38)</span></td><td class="n">0 paid install <span class="prev">(0)</span></td></tr>
-          <tr><td>Shopify admin · Organic Shopping</td><td>Vy</td><td class="n">–</td><td class="n">540 <span class="prev">(504)</span></td><td class="n">3 <span class="prev">(2)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">10 <span class="prev">(8)</span></td></tr>
+          <tr><td>Shopify admin → web · Organic Shopping</td><td>Vy</td><td class="n">–</td><td class="n">540 <span class="prev">(504)</span></td><td class="n">3 <span class="prev">(2)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">10 <span class="prev">(8)</span></td></tr>
           <tr><td>Meta Social · Organic Social</td><td>Long, Vy</td><td class="n">–</td><td class="n">95 <span class="prev">(75)</span></td><td class="n">6 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
           <tr><td>YouTube · youtube.com referral</td><td>Hằng, Tiến</td><td class="n">–</td><td class="n">19 <span class="prev">(13)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
           <tr><td>Direct</td><td>–</td><td class="n">–</td><td class="n">7,475 <span class="prev">(7,713)</span></td><td class="n">52 <span class="prev">(25)</span></td><td class="n">60 <span class="prev">(68)</span></td><td class="n">2 <span class="prev">(2)</span></td></tr>
@@ -282,16 +286,51 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
         </tbody>
       </table></div>
       <div class="note">Cách đọc: Sign-up = số session có <span class="mono">complete_sign_up_google</span> hoặc <span class="mono">complete_sign_up_email</span>. Nâng gói = số user có <span class="mono">complete_plan_upgrade_on_billing_detail</span>. Không cộng các dòng với nhau, vì một user có thể xuất hiện ở nhiều kênh.</div>
-      <div class="note">¹ Tuần trước có 94 sign-up mang tham số Google Ads (gclid, gad_source…) nhưng GA4 xếp vào Organic Search. Trừ phần đó ra thì Organic còn 27, còn Google Ads là 20 + 94. Xem mục Google Ads.<br>² Shopify App: listing session từ GA4 listing (property 494109069), install và paid install từ Partner API, theo sheet Promer Daily Control. Shopify App Store Ads lấy số thật theo ngày từ Partner (tab manual_sas).</div>
+      <div class="note">¹ Tuần trước có 94 sign-up mang tham số Google Ads (gclid, gad_source…) nhưng GA4 xếp vào Organic Search. Trừ phần đó ra thì Organic còn 27, còn Google Ads là 20 + 94. Xem mục Google Ads.<br>² Chi phí Google Ads lấy từ GA4 (<span class="mono">advertiserAdCost</span>, GA4 đã link Google Ads), USD. Tuần trước tổng 651.38 USD, chưa tách Search và YouTube. Shopify App xem tab Shopify App.</div>
+      </div>
+      <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
+      <div class="chan-owner">Chỉ số của app trên Shopify App Store: listing session từ GA4 listing (property 494109069), install, paid install và doanh thu từ Partner API, theo sheet Promer Daily Control. Tuần CN→T7 1–7/11. Số trong ngoặc là tuần 25–31/10.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Nguồn</th><th>Phụ trách</th><th class="n">Chi phí</th><th class="n">Listing session</th><th class="n">Install</th><th class="n">Paid install</th><th class="n">Doanh thu</th></tr></thead>
+        <tbody>
+          <tr><td><b>Tổng Shopify App (Partner)</b></td><td>Vy</td><td class="n">–</td><td class="n"><b>645</b> <span class="prev">(708)</span></td><td class="n"><b>120</b> <span class="prev">(111)</span></td><td class="n"><b>8</b> <span class="prev">(10)</span></td><td class="n"><b>881.32 USD</b> <span class="prev">(745.89)</span></td></tr>
+          <tr><td>App Store Ads</td><td>Vy</td><td class="n">575.0 USD <span class="prev">(686.6)</span></td><td class="n">91 <span class="prev">(99)</span></td><td class="n">42 <span class="prev">(38)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">–</td></tr>
+          <tr><td>Nguồn khác (cross-app, link ngoài)</td><td>Hằng</td><td class="n">–</td><td class="n">458 <span class="prev">(466)</span></td><td class="n">51 <span class="prev">(36)</span></td><td class="n">5 <span class="prev">(8)</span></td><td class="n">–</td></tr>
+          <tr><td>Category</td><td>Vy</td><td class="n">–</td><td class="n">61 <span class="prev">(78)</span></td><td class="n">11 <span class="prev">(18)</span></td><td class="n">2 <span class="prev">(0)</span></td><td class="n">–</td></tr>
+          <tr><td>Search organic (ASO)</td><td>Vy</td><td class="n">–</td><td class="n">35 <span class="prev">(65)</span></td><td class="n">9 <span class="prev">(8)</span></td><td class="n">1 <span class="prev">(2)</span></td><td class="n">–</td></tr>
+        </tbody>
+      </table></div>
+      <ul class="plain">
+        <li>Gỡ cài 81 (96), tức 67.5% so với install (tuần trước 86.5%; ngưỡng trong sheet 50%). Subscription mới 18 (11).</li>
+        <li>App Store Ads: 161 click (196), 13.69 USD mỗi install (18.07; mục tiêu 10).</li>
+      </ul>
+      <div class="note">Cách đọc: dòng tổng và dòng App Store Ads lấy install từ Partner (App Store Ads theo tab manual_sas, ngày UTC). Các dòng nguồn còn lại lấy install từ GA4 listing, chỉ thấy lượt cài đi qua trang listing (99 trên 120), nên không cộng ra dòng tổng. Paid install ghép theo kênh cài. Chi tiết ở mục Shopify App.</div>
+      </div>
     </section>
     <section data-sid="overview-chart-signup-daily">
+      <div class="tabs" role="tablist"><button data-tab="web" aria-selected="true">Web app (GA4)</button><button data-tab="shopify" aria-selected="false">Shopify App</button></div>
+      <div class="tabp" data-tab="web" data-label="Web app (GA4)">
       <div class="chart viz" data-chart="signupDaily"></div>
       <div class="note">Cách đọc: mỗi điểm là số session có sign-up trong ngày (giờ Los Angeles). Organic Search 25–28/10 gồm 94 sign-up mang tham số Google Ads. Từ 29/10, sign-up Google Ads được ghi vào Paid Search.</div>
+      </div>
+      <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
+      <div class="chart viz" data-chart="spfOverviewDaily"></div>
+      <div class="note">Cách đọc: install và gỡ cài từ Partner API, install từ App Store Ads theo tab manual_sas, ngày UTC.</div>
+      </div>
     </section>
     <section data-sid="overview-chart-channels">
+      <div class="tabs" role="tablist"><button data-tab="web" aria-selected="true">Web app (GA4)</button><button data-tab="shopify" aria-selected="false">Shopify App</button></div>
+      <div class="tabp" data-tab="web" data-label="Web app (GA4)">
       <div class="grid2">
         <div class="chart viz" data-chart="signupChannel"></div>
         <div class="chart viz" data-chart="paidChannel"></div>
+      </div>
+      </div>
+      <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
+      <div class="grid2">
+        <div class="chart viz" data-chart="spfSrcInstall"></div>
+        <div class="chart viz" data-chart="spfSrcPaid"></div>
+      </div>
       </div>
     </section>
   </div>
@@ -889,6 +928,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v12, phần tổng quan chia 2 tab Web app (GA4) và Shopify App vì hai bên đo khác chỉ số: tab Shopify có bảng theo nguồn (listing session, install, paid install, doanh thu), chart install và gỡ cài theo ngày, install và paid install theo nguồn. Thêm chi phí Google Ads từ GA4 vào bảng web.</li>
         <li><span class="mono">2026-11-09</span> · v11, làm lại phần Meta Social từ report Business Suite: reach, tương tác, người xem Facebook theo bài, 5 điểm chính, chart theo chủ đề, traffic GA4 theo source, việc tiếp theo. Cập nhật thẻ Meta Social trong mục Task → kết quả.</li>
         <li><span class="mono">2026-11-09</span> · v10, thêm mục "Task đã làm → chỉ số sau đó": mỗi task trong changelog và GTM tuần 1–7/11 ghi vì sao làm, chỉ số sau đó và trạng thái; thêm bảng thử nghiệm tuần 8–14/11 kèm mốc để so tuần sau.</li>
         <li><span class="mono">2026-11-09</span> · v9, làm lại phần YouTube từ sheet của team YouTube: số video đăng, view, xem tiếp, sub, đánh giá tuần 1 của team, view theo từng video, 6 video ads chờ đăng, kế hoạch tuần 2.</li>
@@ -949,6 +989,13 @@ const CHARTS={
   spfInstalls:{type:'cols',title:'Install từ Shopify App Store Ads theo ngày',sub:'Partner, ngày UTC · tab manual_sas',labels:D14,split:7,c:'--s1',v:[5,9,5,2,6,6,5,8,9,6,1,8,5,5]},
   spfFunnel:{type:'funnel',title:'Funnel Shopify App · 1–7/11',sub:'GA4 listing + Partner API · tuần trước: 708 → 98 → 111 → 11 → 10',steps:[['Listing session',645],['Add App click',111],['Install (Partner)',120],['Subscription mới',18],['Paid install',8]]},
   spfInstallDaily:{type:'line',title:'Install và gỡ cài theo ngày',sub:'Shopify Partner API · ngày UTC',labels:D14,split:7,series:[{name:'Install',c:'--s1',v:[17,24,11,9,12,21,17,21,16,15,14,17,24,13]},{name:'Gỡ cài',c:'--s2',v:[11,13,16,15,8,23,10,11,16,10,10,15,9,10]}]},
+  spfOverviewDaily:{type:'line',title:'Install Shopify App theo ngày · 25/10–7/11',sub:'Partner API · ngày UTC',labels:D14,split:7,series:[{name:'Install (Partner)',c:'--s1',v:[17,24,11,9,12,21,17,21,16,15,14,17,24,13]},{name:'Gỡ cài',c:'--s2',v:[11,13,16,15,8,23,10,11,16,10,10,15,9,10]},{name:'Install từ App Store Ads',c:'--s3',v:[5,9,5,2,6,6,5,8,9,6,1,8,5,5]}]},
+  spfSrcInstall:{type:'barh',title:'Install Shopify theo nguồn vào listing',sub:'GA4 listing · tuần này so với tuần trước',
+    cats:['Cross-app, link ngoài','App Store Ads','Category','Search organic'],
+    series:[{name:'1–7/11',c:'--s1',v:[51,28,11,9]},{name:'25–31/10',c:'--prev',v:[36,20,18,8]}]},
+  spfSrcPaid:{type:'barh',title:'Paid install Shopify theo kênh cài',sub:'Partner, ghép theo kênh cài',
+    cats:['Cross-app, link ngoài','Category','Search organic','App Store Ads'],
+    series:[{name:'1–7/11',c:'--s1',v:[5,2,1,0]},{name:'25–31/10',c:'--prev',v:[8,0,2,0]}]},
   msTopics:{type:'barh',title:'Người xem theo chủ đề · 1–7/11',sub:'reach Instagram và người xem Facebook, cộng theo bài · số trọn đời tới 9/11',
     cats:['Ưu đãi BFCM 50%','Halloween','Hài & kể chuyện','Mẹo & demo','Black Friday','Chưa rõ','Carousel kiến thức','Sự kiện'],
     series:[{name:'Reach Instagram',c:'--s1',v:[3075,1446,382,359,151,142,19,0]},{name:'Người xem Facebook',c:'--s2',v:[972,37,79,81,52,31,54,30]}]},
@@ -1070,6 +1117,9 @@ const CHARTS={
   const R={line,barh,cols:colsChart,funnel};
   function renderAll(){document.querySelectorAll('[data-chart]').forEach(b=>{const cfg=CHARTS[b.dataset.chart];if(cfg)R[cfg.type](b,cfg)})}
   renderAll();
+  document.addEventListener('click',e=>{const b=e.target.closest('.tabs button[data-tab]');if(!b)return;const k=b.dataset.tab;
+    document.querySelectorAll('.tabs button[data-tab]').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===k));
+    document.querySelectorAll('.tabp').forEach(p=>p.hidden=p.dataset.tab!==k);renderAll();});
   let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderAll,150)});
   if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',renderAll);
 })();
@@ -1099,6 +1149,8 @@ const CHARTS={
         const rows=[...t.rows].map(r=>[...r.cells].map(c=>inl(c).replace(/\|/g,'\\|')));
         if(rows.length){out.push(['| '+rows[0].join(' | ')+' |','|'+rows[0].map(()=>' --- ').join('|')+'|',...rows.slice(1).map(r=>'| '+r.join(' | ')+' |')].join('\n'))}
       }
+      else if(el.classList.contains('tabs')) continue;
+      else if(el.classList.contains('tabp')) out.push('#### '+el.dataset.label+'\n\n'+toMd(el));
       else if(el.classList.contains('cards')) out.push([...el.children].map(c=>toMd(c)).join('\n\n'));
       else if(el.classList.contains('big')) out.push('**'+inl(el)+'**'+(el.nextElementSibling&&el.nextElementSibling.classList.contains('lbl')?' — '+inl(el.nextElementSibling):''));
       else if(el.classList.contains('lbl')) continue;
