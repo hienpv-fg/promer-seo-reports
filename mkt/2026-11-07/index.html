@@ -240,7 +240,7 @@ ul.plain{margin:6px 0;padding-left:20px}
 
 <main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v7</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v8</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -262,7 +262,8 @@ ul.plain{margin:6px 0;padding-left:20px}
           <tr><td>Google Ads · Search</td><td>Vy, Hằng</td><td class="n">chờ dữ liệu</td><td class="n">369 <span class="prev">(166)</span></td><td class="n">1 <span class="prev">(4)</span></td><td class="n">45 <span class="prev">(20¹)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
           <tr><td>Google Ads · YouTube (Cross-network)</td><td>[__]</td><td class="n">chờ dữ liệu</td><td class="n">51 <span class="prev">(2)</span></td><td class="n">3 <span class="prev">(0)</span></td><td class="n">2 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
           <tr><td>Meta Ads · Paid Social</td><td>Vy</td><td class="n">236.25 USD <span class="prev">(0)</span></td><td class="n">130 <span class="prev">(0)</span></td><td class="n">18 <span class="prev">(0)</span></td><td class="n">6 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
-          <tr><td>Shopify App Store Ads²</td><td>Vy</td><td class="n">354 <span class="prev">(450.6)</span></td><td class="n">–</td><td class="n">–</td><td class="n">23 install <span class="prev">(21)</span></td><td class="n">–</td></tr>
+          <tr><td>Shopify App · Partner²</td><td>Vy</td><td class="n">–</td><td class="n">645 listing <span class="prev">(708)</span></td><td class="n">–</td><td class="n">120 install <span class="prev">(111)</span></td><td class="n">8 paid install <span class="prev">(10)</span></td></tr>
+          <tr><td>Shopify App Store Ads</td><td>Vy</td><td class="n">575.0 USD <span class="prev">(686.6)</span></td><td class="n">–</td><td class="n">161 click <span class="prev">(196)</span></td><td class="n">42 install <span class="prev">(38)</span></td><td class="n">0 paid install <span class="prev">(0)</span></td></tr>
           <tr><td>Shopify admin · Organic Shopping</td><td>Vy</td><td class="n">–</td><td class="n">540 <span class="prev">(504)</span></td><td class="n">3 <span class="prev">(2)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">10 <span class="prev">(8)</span></td></tr>
           <tr><td>Meta Social · Organic Social</td><td>Long, Vy</td><td class="n">–</td><td class="n">95 <span class="prev">(75)</span></td><td class="n">6 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
           <tr><td>YouTube · youtube.com referral</td><td>Hằng, Tiến</td><td class="n">–</td><td class="n">19 <span class="prev">(13)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
@@ -271,7 +272,7 @@ ul.plain{margin:6px 0;padding-left:20px}
         </tbody>
       </table></div>
       <div class="note">Cách đọc: Sign-up = số session có <span class="mono">complete_sign_up_google</span> hoặc <span class="mono">complete_sign_up_email</span>. Nâng gói = số user có <span class="mono">complete_plan_upgrade_on_billing_detail</span>. Không cộng các dòng với nhau, vì một user có thể xuất hiện ở nhiều kênh.</div>
-      <div class="note">¹ Tuần trước có 94 sign-up mang tham số Google Ads (gclid, gad_source…) nhưng GA4 xếp vào Organic Search. Trừ phần đó ra thì Organic còn 27, còn Google Ads là 20 + 94. Xem mục Google Ads.<br>² Shopify App Store Ads chỉ so 4 ngày: 1–4/11 với 25–28/10, vì BigQuery chưa có số 5–7/11. Tiền tệ không ghi trong bảng nguồn.</div>
+      <div class="note">¹ Tuần trước có 94 sign-up mang tham số Google Ads (gclid, gad_source…) nhưng GA4 xếp vào Organic Search. Trừ phần đó ra thì Organic còn 27, còn Google Ads là 20 + 94. Xem mục Google Ads.<br>² Shopify App: listing session từ GA4 listing (property 494109069), install và paid install từ Partner API, theo sheet Promer Daily Control. Shopify App Store Ads lấy số thật theo ngày từ Partner (tab manual_sas).</div>
     </section>
     <section data-sid="overview-chart-signup-daily">
       <div class="chart viz" data-chart="signupDaily"></div>
@@ -318,12 +319,11 @@ ul.plain{margin:6px 0;padding-left:20px}
           </ul>
         </div>
         <div class="card">
-          <h4>Shopify App Store Ads: chi ít hơn nhưng install nhiều hơn</h4>
-          <div class="big">15.4</div><div class="lbl">chi phí mỗi install, 1–4/11 (25–28/10: 21.5)</div>
+          <h4>Shopify App: install tăng nhẹ, gỡ cài vẫn 67.5%</h4>
+          <div class="big">120</div><div class="lbl">install (Partner), tuần trước 111</div>
           <ul>
-            <li>Chi phí 354 (450.6), install 23 (21).</li>
-            <li>Campaign Dropship Exact: 7 install với 46 chi phí (tuần trước 3 install, 54).</li>
-            <li>Ngày 4/11 chỉ có 1 install.</li>
+            <li>Gỡ 81 (96), subscription mới 18 (11), paid install 8 (10), net payout 881.32 USD (745.89).</li>
+            <li>App Store Ads: 575.0 USD, 42 install, 13.69 USD mỗi install (18.07; mục tiêu 10), 0 paid install.</li>
           </ul>
         </div>
         <div class="card">
@@ -510,16 +510,62 @@ ul.plain{margin:6px 0;padding-left:20px}
 
   <!-- SHOPIFY -->
   <div class="block" id="shopify">
-    <section data-sid="shopify-ads">
+    <section data-sid="shopify-kpi">
       <h2>Shopify App</h2>
-      <div class="chan-owner"><span class="chip">Vy</span> App <span class="mono">Promer AI Ads: Meta Ads &amp; UGC</span></div>
+      <div class="chan-owner"><span class="chip">Vy</span> App <span class="mono">Promer AI Ads: Meta Ads &amp; UGC</span> · nguồn: sheet Promer Daily Control (Partner API, GA4 listing 494109069, manual_sas), tuần CN→T7 1–7/11.</div>
+      <div class="kpis5">
+        <div><b>120</b><span>install (Partner) · tuần trước 111</span></div>
+        <div><b>81</b><span>gỡ cài · 67.5% so với install (tuần trước 96 · 86.5%)</span></div>
+        <div><b>18</b><span>subscription mới, gồm trial · tuần trước 11</span></div>
+        <div><b>8</b><span>paid install (shop trả phí lần đầu) · tuần trước 10</span></div>
+        <div><b>881.32</b><span>USD net payout (Partner) · tuần trước 745.89</span></div>
+      </div>
+    </section>
+    <section data-sid="shopify-findings">
+      <h3>Điểm chính Shopify App</h3>
+      <div class="cards ins">
+        <div class="card"><h4>Gỡ cài vẫn cao hơn ngưỡng 50%</h4><div class="big">67.5%</div><div class="lbl">81 gỡ trên 120 cài (tuần trước 86.5%, tức 96 trên 111)</div>
+          <ul><li>Ngưỡng trong sheet là 50% (MAX_UNINSTALL_RATIO).</li><li>Subscription huỷ: 9 (tuần trước 13).</li></ul></div>
+        <div class="card"><h4>Subscription mới tăng, paid install giảm</h4><div class="big">18 · 8</div><div class="lbl">subscription mới · paid install (tuần trước 11 · 10)</div>
+          <ul><li>Install → subscription: 15.0% (TB 4 tuần trước 9.8%). Subscription → paid install: 44.4% (TB 4 tuần trước 60.0%).</li><li>Paid install theo kênh cài: organic search 1, Category 2, App Store Ads 0, khác hoặc không ghép được 5.</li></ul></div>
+        <div class="card"><h4>Install qua listing: Ads và nguồn khác tăng, Category giảm</h4><div class="big">99</div><div class="lbl">install đi qua trang listing (GA4), tuần trước 82</div>
+          <ul><li>App Store Ads 28 (20) · nguồn khác 51 (36) · search organic 9 (8) · Category 11 (18).</li><li>Listing session: 645 (708). "Nguồn khác" (cross-app, link ngoài) chiếm 458 trên 645.</li><li>Sheet ghi sự kiện 29/10: bật lại push traffic extension về Shopify app.</li></ul></div>
+        <div class="card"><h4>App Store Ads: chi phí mỗi install giảm nhưng vẫn trên mục tiêu</h4><div class="big">13.69</div><div class="lbl">USD mỗi install (tuần trước 18.07; mục tiêu 10)</div>
+          <ul><li>Chi phí 575.0 USD (686.6), 42 install (38), 161 click (196).</li><li>Paid install từ App Store Ads: 0 tuần này, 1 trong 4 tuần gần nhất.</li></ul></div>
+        <div class="card"><h4>Rank App Store: số keyword top 10 tăng, nhưng số keyword crawl cũng tăng</h4><div class="big">40.4</div><div class="lbl">keyword Promer trong top 10 mỗi ngày (tuần trước 19.3)</div>
+          <ul><li>Số keyword crawl được: 1,089 (457). Hai tuần không cùng bộ keyword nên con số top 10 không so trực tiếp được.</li><li>Hạng TB của keyword có mặt: 12.4 (11.2).</li></ul></div>
+      </div>
+    </section>
+    <section data-sid="shopify-funnel">
+      <h3>Funnel và install theo ngày</h3>
+      <div class="grid2">
+        <div class="chart viz" data-chart="spfFunnel"></div>
+        <div class="chart viz" data-chart="spfInstallDaily"></div>
+      </div>
+      <div class="note">Cách đọc: funnel tính các bước trong cùng tuần, không theo cohort; install (Partner) có thể cao hơn Add App click vì Partner đếm cả lượt cài lại và cài từ link trực tiếp. Install và gỡ theo ngày UTC.</div>
+    </section>
+    <section data-sid="shopify-sources">
+      <h3>Listing theo nguồn (GA4 listing)</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Nguồn vào listing</th><th class="n">Listing session</th><th class="n">Install (GA4)</th><th class="n">Tỷ lệ install</th><th class="n">Paid install</th></tr></thead>
+        <tbody>
+          <tr><td>App Store Ads (search_ad)</td><td class="n">91 <span class="prev">(99)</span></td><td class="n">28 <span class="prev">(20)</span></td><td class="n">30.8%</td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Search organic</td><td class="n">35 <span class="prev">(65)</span></td><td class="n">9 <span class="prev">(8)</span></td><td class="n">25.7%</td><td class="n">1 <span class="prev">(2)</span></td></tr>
+          <tr><td>Category</td><td class="n">61 <span class="prev">(78)</span></td><td class="n">11 <span class="prev">(18)</span></td><td class="n">18.0%</td><td class="n">2 <span class="prev">(0)</span></td></tr>
+          <tr><td>Nguồn khác (cross-app, link ngoài)</td><td class="n">458 <span class="prev">(466)</span></td><td class="n">51 <span class="prev">(36)</span></td><td class="n">11.1%</td><td class="n">5 <span class="prev">(8)</span></td></tr>
+          <tr><td><b>Tổng</b></td><td class="n"><b>645</b> <span class="prev">(708)</span></td><td class="n"><b>99</b> <span class="prev">(82)</span></td><td class="n"><b>15.3%</b></td><td class="n"><b>8</b> <span class="prev">(10)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: listing session đã bỏ nguồn impact/expu/extension. Install (GA4) chỉ thấy lượt cài đi qua trang listing (99), Partner đếm mọi lượt cài (120). Paid install ghép theo kênh cài, chỉ ghép được ~60 ngày gần nhất.</div>
+    </section>
+    <section data-sid="shopify-ads">
+      <h3>Shopify App Store Ads</h3>
       <div class="grid2">
         <div class="chart viz" data-chart="spfInstalls"></div>
         <div class="chart viz" data-chart="spfSpend"></div>
       </div>
-      <h3>Shopify App Store Ads · 1–4/11 so với 25–28/10</h3>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>Loại / campaign</th><th class="n">Chi phí</th><th class="n">Click</th><th class="n">Install</th></tr></thead>
+        <thead><tr><th>Campaign (1–4/11 so với 25–28/10)</th><th class="n">Chi phí</th><th class="n">Click</th><th class="n">Install</th></tr></thead>
         <tbody>
           <tr><td><b>Search</b></td><td class="n">198.0 <span class="prev">(268.1)</span></td><td class="n">58 <span class="prev">(77)</span></td><td class="n">17 <span class="prev">(16)</span></td></tr>
           <tr><td><b>Display (category)</b></td><td class="n">156.0 <span class="prev">(182.5)</span></td><td class="n">44 <span class="prev">(52)</span></td><td class="n">6 <span class="prev">(5)</span></td></tr>
@@ -528,18 +574,28 @@ ul.plain{margin:6px 0;padding-left:20px}
           <tr><td>Search - Dropship - Exact</td><td class="n">46.0 <span class="prev">(54.0)</span></td><td class="n">15 <span class="prev">(17)</span></td><td class="n">7 <span class="prev">(3)</span></td></tr>
           <tr><td>Search - Dropship - Broad</td><td class="n">36.0 <span class="prev">(80.0)</span></td><td class="n">9 <span class="prev">(20)</span></td><td class="n">3 <span class="prev">(2)</span></td></tr>
           <tr><td>Search - Feature "Ad" - Exact</td><td class="n">25.0 <span class="prev">(35.0)</span></td><td class="n">5 <span class="prev">(7)</span></td><td class="n">0 <span class="prev">(3)</span></td></tr>
-          <tr><td>Cate - Selling Online</td><td class="n">24.0 <span class="prev">(16.0)</span></td><td class="n">6 <span class="prev">(4)</span></td><td class="n">0 <span class="prev">(1)</span></td></tr>
         </tbody>
       </table></div>
-      <div class="note">Cách đọc: số từ BigQuery <span class="mono">raw.spf_ads</span>, ở mức campaign. Install ở đây chỉ là install do quảng cáo mang lại, không phải tổng install của app. Revenue và customers bằng 0 ở cả hai kỳ. Ngày 5–7/11 chưa sync về BigQuery.</div>
+      <div class="note">Cách đọc: chart là số thật theo ngày UTC từ Partner (tab manual_sas): tuần này 575.0 USD, 161 click, 42 install, 16,960 impressions. Bảng campaign lấy từ BigQuery <span class="mono">raw.spf_ads</span>, mới có 1–4/11 nên so 4 ngày với 4 ngày. Install ở đây là install do quảng cáo mang lại.</div>
     </section>
     <section data-sid="shopify-admin">
-      <h3>Traffic và nâng gói từ Shopify admin (GA4)</h3>
+      <h3>Sau khi cài: Shopify admin → Promer (GA4 web)</h3>
       <ul class="plain">
         <li>Session từ <span class="mono">admin.shopify.com / referral</span>: 525 (468). Từ apps.shopify.com: 13 (13).</li>
-        <li>User nâng gói (<span class="mono">complete_plan_upgrade_on_billing_detail</span>) từ kênh Organic Shopping: 10 (8). User mua credit (<span class="mono">submit_add_credit_on_billing_detail</span>): 1 (2).</li>
-        <li>Chưa có tổng install, uninstall và doanh thu của app, vì các bảng event của app trong BigQuery ngừng cập nhật từ tháng 8–9/2026.</li>
+        <li>User nâng gói (<span class="mono">complete_plan_upgrade_on_billing_detail</span>) từ kênh Organic Shopping: 10 (8). Đây là nguồn nâng gói lớn nhất trên web tuần này.</li>
+        <li>Subscription Shopify kích hoạt (backend): 22 (12), giá trị gross 1,601.19 USD (709.38). Doanh thu Shopify chuẩn vẫn là net payout Partner (881.32).</li>
       </ul>
+    </section>
+    <section data-sid="shopify-changes">
+      <h3>Thay đổi 4 tuần gần nhất (changelog)</h3>
+      <ol class="tl">
+        <li><b>06/11</b> [ASO] Thay đổi bảng giá free plan.</li>
+        <li><b>29/10</b> [Expu] Bật lại push traffic extension về Shopify app.</li>
+        <li><b>28/10</b> [ASO] Đổi nội dung listing, thêm tên đối thủ, submit app category.</li>
+        <li><b>20/10</b> [ASO] Đổi mô tả listing.</li>
+        <li><b>16/10</b> [ASO] Đổi nội dung listing (tên, subtitle, banner, mô tả).</li>
+      </ol>
+      <div class="note">Lấy từ tab Shopify App của sheet (đọc file Promer Product x Growth Changelog). Khi so sánh trước và sau các ngày này cần tính đến thay đổi.</div>
     </section>
   </div>
 
@@ -583,11 +639,11 @@ ul.plain{margin:6px 0;padding-left:20px}
       <div class="missing">
         <ul class="plain">
           <li><b>Google Ads:</b> chi phí, click, conversion theo campaign. Vy hoặc Hằng xuất CSV từ giao diện Google Ads.</li>
-          <li><b>Shopify Partner Dashboard:</b> tổng install, uninstall, charge và doanh thu của app.</li>
+          
           <li><b>Meta Business Suite:</b> Facebook Page và Instagram Insights (reach, followers, link click).</li>
           <li><b>YouTube Studio:</b> views, watch time, subscribers, danh sách video đã đăng (Hằng, Tiến).</li>
           <li><b>context.md:</b> KPI tháng của từng kênh, việc đã làm trong tuần, người phụ trách campaign YouTube Ads.</li>
-          <li><b>Shopify App Store Ads 5–7/11:</b> chờ BigQuery sync.</li>
+          
         </ul>
       </div>
     </section>
@@ -614,6 +670,7 @@ ul.plain{margin:6px 0;padding-left:20px}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v8, làm lại phần Shopify App từ sheet Promer Daily Control: install, gỡ, subscription, paid install, net payout (Partner API), funnel listing (GA4 listing), install theo nguồn, App Store Ads đủ 7 ngày (manual_sas), rank App Store, changelog ASO.</li>
         <li><span class="mono">2026-11-09</span> · v7, làm lại phần Meta Ads theo nội dung thật: hàng số chính, 5 điểm chính, chi phí và funnel theo ngày, 3 ad set (ngân sách, tệp, kết quả), từng ad có chi phí kèm link bài đăng, đối chiếu GA4 theo ad, vị trí hiển thị và thị trường, diễn biến tuần đầu từ activity log.</li>
         <li><span class="mono">2026-11-09</span> · v6, mục SEO thay bằng nguyên deck SEO &amp; AI Search tuần 1–7/11 (21 slide, cùng format và cách tính với deck SEO hằng tuần). Comment ở mục này tự ghi số slide.</li>
         <li><span class="mono">2026-11-09</span> · v5, làm lại phần SEO theo cách tính của deck SEO: tách sign-up landing promer.ai và /sign-in (URL có tham số Google Ads), tách paid trong tuần và tài khoản cũ, click-to-webapp → sign-up và sign-up → paid tính bằng funnel GA4 theo user, tỷ lệ từ khóa top 10, session ÷ click GSC, bảng theo nhóm trang (Pages, Blogs, /winning-ad-library/). Loại /lp/* và source affiliate.</li>
@@ -667,8 +724,10 @@ const CHARTS={
   metaFunnel:{type:'funnel',title:'Funnel Meta Ads · 5–7/11',sub:'Meta Ads Manager · campaign CONV',
     steps:[['Impressions',5792],['Link click',44],['Landing page view',29],['CompleteRegistration',7]]},
   metaSpend:{type:'cols',title:'Chi phí Meta Ads theo ngày (USD)',sub:'giờ VN',labels:['5/11','6/11','7/11'],c:'--s1',v:[98.33,98.75,39.17],fmt:v=>v.toFixed(2)},
-  spfInstalls:{type:'cols',title:'Install từ Shopify App Store Ads theo ngày',sub:'BigQuery raw.spf_ads · 5–7/11 chưa sync',labels:D14.slice(0,11),split:7,c:'--s1',v:[5,9,5,2,6,6,5,8,9,5,1]},
-  spfSpend:{type:'cols',title:'Chi phí Shopify App Store Ads theo ngày',sub:'tiền tệ không ghi trong bảng nguồn',labels:D14.slice(0,11),split:7,c:'--s1',v:[141,114.51,109.6,85.5,86.5,77,72.5,87,105,94.5,67.5],fmt:v=>v.toFixed(1)}
+  spfInstalls:{type:'cols',title:'Install từ Shopify App Store Ads theo ngày',sub:'Partner, ngày UTC · tab manual_sas',labels:D14,split:7,c:'--s1',v:[5,9,5,2,6,6,5,8,9,6,1,8,5,5]},
+  spfFunnel:{type:'funnel',title:'Funnel Shopify App · 1–7/11',sub:'GA4 listing + Partner API · tuần trước: 708 → 98 → 111 → 11 → 10',steps:[['Listing session',645],['Add App click',111],['Install (Partner)',120],['Subscription mới',18],['Paid install',8]]},
+  spfInstallDaily:{type:'line',title:'Install và gỡ cài theo ngày',sub:'Shopify Partner API · ngày UTC',labels:D14,split:7,series:[{name:'Install',c:'--s1',v:[17,24,11,9,12,21,17,21,16,15,14,17,24,13]},{name:'Gỡ cài',c:'--s2',v:[11,13,16,15,8,23,10,11,16,10,10,15,9,10]}]},
+  spfSpend:{type:'cols',title:'Chi phí Shopify App Store Ads theo ngày (USD)',sub:'Partner, ngày UTC · tab manual_sas',labels:D14,split:7,c:'--s1',v:[141,114.51,109.6,85.5,86.5,77,72.5,87,105,94.5,67.5,81,75.5,64.5],fmt:v=>v.toFixed(1)}
 };
 
 /* ---------- tiny SVG chart kit ---------- */
