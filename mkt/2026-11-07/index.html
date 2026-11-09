@@ -131,6 +131,15 @@ ul.plain{margin:6px 0;padding-left:20px}
 :root[data-theme="dark"]{--up:#4ADE80;--down:#F87171}
 .dv{font-weight:600}
 .dv.up{color:var(--up)} .dv.down{color:var(--down)}
+.chip.ok{background:color-mix(in srgb,var(--up) 14%,var(--surface));color:var(--up)}
+.chip.bad{background:color-mix(in srgb,var(--down) 12%,var(--surface));color:var(--down)}
+.tk-legend{margin:8px 0 4px}
+table.tk-next{table-layout:fixed;width:100%}
+table.tk-next th,table.tk-next td{white-space:normal;text-align:left;vertical-align:top}
+table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}table.tk-next th:nth-child(3){width:20%}
+.tk-ch{margin:20px 0 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cards.ins.tk .card .lbl .chip{margin-top:6px}
+.cards.ins.tk .card ul li b{color:var(--ink)}
 .dv i{font-style:normal;font-size:9px;margin-right:3px;vertical-align:1px}
 /* feedback comments */
 [data-sid]:hover{outline:1px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:6px;border-radius:6px}
@@ -221,6 +230,7 @@ ul.plain{margin:6px 0;padding-left:20px}
   <nav id="toc">
     <a href="#overview">Tổng quan</a>
     <a href="#insights">Điểm chính</a>
+    <a href="#tasks">Task → kết quả</a>
     <a href="#seo">SEO &amp; AI Search</a>
     <a href="#gads">Google Ads</a>
     <a href="#meta-ads">Meta Ads</a>
@@ -240,7 +250,7 @@ ul.plain{margin:6px 0;padding-left:20px}
 
 <main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v9</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v10</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -336,6 +346,80 @@ ul.plain{margin:6px 0;padding-left:20px}
           </ul>
         </div>
       </div>
+    </section>
+  </div>
+
+  <!-- TASKS -->
+  <div class="block" id="tasks">
+    <section data-sid="tasks-done">
+      <h2>Task đã làm → chỉ số sau đó</h2>
+      <div class="chan-owner">Task lấy từ <b>[Promer] Product x Growth Changelog</b> và cột "Week 1/11–7/11" của <b>Promer GTM 2026</b> (tab Direction &amp; Planning). Có cả task cuối tuần trước (28–29/10), vì 1–7/11 là tuần đầu tiên đo được tác động của chúng. Product không có cập nhật nào trong 1–7/11; lần gần nhất là 28/10 (bỏ quiz và paywall, trả lại 30 credit cho user free; thêm Video vào AdPrompt).</div>
+      <div class="tk-legend"><span class="chip ok">có tín hiệu tốt</span><span class="chip bad">chưa đạt</span><span class="chip warn">chưa đủ ngày</span><span class="chip gray">chưa đo được</span></div>
+
+      <h3 class="tk-ch">SEO <span class="chip">Hiền</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Banner CTA cho blog, thêm banner Black Friday và Cyber Monday</h4><div class="big">3.0%</div><div class="lbl">session Blogs có click-to-webapp (tuần trước 1.7%) · <span class="chip ok">có tín hiệu tốt</span></div>
+          <ul><li><b>Ngày:</b> 4/11 tạo template banner theo trang tính năng, 5/11 gắn banner BF/CM.</li><li><b>Vì sao:</b> Blogs mang hơn nửa session Organic nhưng có tỷ lệ click-to-webapp thấp nhất.</li><li><b>Sau đó:</b> session Organic vào Blogs 600 (518), click-to-webapp 18 (9), sign-up 4 (3). Banner chỉ chạy nửa sau tuần, tuần 8–14/11 mới là tuần đủ.</li></ul></div>
+        <div class="card"><h4>Tối ưu lại landing page chuyển đổi tốt nhất (đang giảm)</h4><div class="big">15 · 6</div><div class="lbl">click-to-webapp /ad-prompt · /tools/ai-ugc-video-generator (tuần trước 23 · 3) · <span class="chip warn">cần xác nhận trang</span></div>
+          <ul><li><b>Ngày:</b> 2–3/11 thêm internal link, viết bài cho keyword đang có impressions, tạo LP "ugc prompt generator" link về AI UGC Generator, audit backlink.</li><li><b>Vì sao:</b> trang mang nhiều sign-up nhất đang giảm.</li><li><b>Sau đó:</b> changelog không ghi URL nên báo cáo hiện cả hai trang. /ad-prompt: session Organic 39 (39), click-to-webapp 15 (23), sign-up 1 (6). /tools/ai-ugc-video-generator: session 14 (13), click-to-webapp 6 (3), sign-up 1 (0).</li></ul></div>
+        <div class="card"><h4>Phân tích scroll_depth, tool đăng backlink, 2 bài mới</h4><div class="big">–</div><div class="lbl">chưa có thay đổi trên trang để đo · <span class="chip gray">chưa đo được</span></div>
+          <ul><li><b>Ngày:</b> 3/11 tool backlink, 5/11 scroll_depth, 6/11 2 bài viết.</li><li><b>Vì sao:</b> user rời bài sớm, dự kiến chỉnh layout và chia nhỏ nội dung; backlink để đẩy hạng trang chuyển đổi.</li><li><b>Sau đó:</b> chưa áp dụng thay đổi layout; bài mới và backlink cần vài tuần để có hạng.</li></ul></div>
+      </div>
+
+      <h3 class="tk-ch">Shopify App <span class="chip">Vy</span><span class="chip">Hằng</span><span class="chip">NaNa</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Submit category Marketplace, thêm tên đối thủ vào listing (28/10)</h4><div class="big">61 · 11</div><div class="lbl">listing session · install từ Category (tuần trước 78 · 18) · <span class="chip bad">chưa đạt</span></div>
+          <ul><li><b>Vì sao:</b> tăng traffic và install từ category; lên hạng các keyword Creatify, Zeely, Predis.</li><li><b>Sau đó:</b> Category giảm, paid install từ Category 2 (0). Search organic: 35 session (65), 9 install (8). Keyword Promer trong top 10 trung bình 40.4/ngày (19.3), nhưng bộ keyword crawl tăng từ 457 lên 1,089 nên chưa so trực tiếp được.</li><li>1–7/11 team ghi: theo dõi category Marketplace.</li></ul></div>
+        <div class="card"><h4>Cross app: sửa text, treo banner BFCM trên Transcy</h4><div class="big">51</div><div class="lbl">install qua listing từ nguồn khác, gồm cross-app (tuần trước 36) · <span class="chip ok">có tín hiệu tốt</span></div>
+          <ul><li><b>Ngày:</b> 2/11 sửa text, 7/11 banner BFCM trên Transcy, PluginHive đang chờ.</li><li><b>Vì sao:</b> chuyển merchant trong hệ sinh thái Firegroup thành paid user Promer.</li><li><b>Sau đó:</b> team ghi tỷ lệ install từ cross app tăng từ 7% lên 11%, phần install từ cross app tăng từ 8% lên 13%. Trong báo cáo, nhóm "nguồn khác" có 458 listing session (466), 51 install (36), 5 paid install (8). Team sẽ đánh giá hết tháng 11.</li></ul></div>
+        <div class="card"><h4>Bật lại nhóm keyword Roposo trên App Store Ads (29/10)</h4><div class="big">42 · 0</div><div class="lbl">install · paid install từ App Store Ads (tuần trước 38 · 0) · <span class="chip bad">chưa đạt</span></div>
+          <ul><li><b>Vì sao:</b> thử tác động lên tổng install và paid user (27/10 đã dừng Roposo vì không ra paid).</li><li><b>Sau đó:</b> chi phí 575.0 USD (686.6), 13.69 USD mỗi install (18.07; mục tiêu 10). Chưa có paid install từ quảng cáo.</li></ul></div>
+        <div class="card"><h4>Đổi wording bảng giá free plan (6/11)</h4><div class="big">15.3%</div><div class="lbl">listing session → install tuần này, mốc để so tuần sau · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> tăng install rate.</li><li><b>Sau đó:</b> mới có 6–7/11. Install Partner 2 ngày này: 24 và 13. Đo đủ ở tuần 8–14/11.</li></ul></div>
+        <div class="card"><h4>Bật lại push traffic extension về Shopify app (29/10)</h4><div class="big">–</div><div class="lbl">listing session trong báo cáo đã loại nguồn extension · <span class="chip gray">chưa đo được</span></div>
+          <ul><li><b>Vì sao:</b> đẩy thêm traffic vào listing.</li><li><b>Sau đó:</b> cần số listing session và install từ nguồn extension riêng (đang bị lọc theo quy ước của sheet Daily Control).</li></ul></div>
+      </div>
+
+      <h3 class="tk-ch">Google Ads <span class="chip">Hằng</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Sitelink BFCM và sitelink về 3 landing page có paid user, thêm negative keyword</h4><div class="big">11.4</div><div class="lbl">USD mỗi sign-up Search (514.53 USD / 45) · mục tiêu CPA 4 USD · <span class="chip bad">chưa đạt</span></div>
+          <ul><li><b>Ngày:</b> 2/11.</li><li><b>Vì sao:</b> tăng CTR, giảm CPC, tăng sign-up → subscription. Test adtext từ 22/10 đạt CTR 12–15% (trung bình 6%).</li><li><b>Sau đó:</b> sign-up GA4 từ Search 45. Tuần trước GA4 chỉ ghi 20, vì đến 28/10 phần lớn sign-up từ Ads bị ghi nhầm vào Organic, nên không so trực tiếp được. User nâng gói từ Google Ads: 0. Team ghi: đúng nước, đúng keyword nhưng chưa có tín hiệu mua.</li></ul></div>
+        <div class="card"><h4>Test YouTube Ads, tệp retarget và tệp mới (air 4/11)</h4><div class="big">128.17</div><div class="lbl">USD · 47 session, 1 sign-up (GA4) · <span class="chip bad">chưa đạt</span></div>
+          <ul><li><b>Vì sao:</b> chuyển đổi merchant thành paid; 3 video, 3 angle.</li><li><b>Sau đó:</b> team ghi tệp retarget quá nhỏ, xem hết video 45%; tệp mới xem hết 68% nhưng không click. Bước tiếp theo team ghi: đổi sang campaign chuyển đổi, goal sign-up.</li></ul></div>
+      </div>
+
+      <h3 class="tk-ch">Meta Ads <span class="chip">Vy</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Chạy Meta Ads từ 5/11: Lookalike paid merchant, danh sách Shopify merchant, sign-up chưa trả phí</h4><div class="big">7 · 6</div><div class="lbl">đăng ký (Meta) · sign-up GA4, 236.25 USD · <span class="chip ok">có tín hiệu tốt</span></div>
+          <ul><li><b>Vì sao:</b> tối ưu click CTA từ website sang webapp, gián tiếp sign-up và subscribe; US, CA, AU, NZ.</li><li><b>Sau đó:</b> Lookalike mang cả 7 đăng ký (28.99 USD mỗi đăng ký). Tệp Shopify merchant 33.35 USD, 0 landing page view, tắt ngày 8/11. Tệp sign-up chưa trả phí 0 impressions.</li></ul></div>
+      </div>
+
+      <h3 class="tk-ch">Meta Social và YouTube organic <span class="chip">Long</span><span class="chip">Tiến</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Đổi hook 2 giây đầu, reel theo mùa BFCM có ưu đãi</h4><div class="big">2</div><div class="lbl">reel vượt 1,000 người xem trong 2–5/11 (tuần trước 1) · <span class="chip ok">có tín hiệu tốt</span></div>
+          <ul><li><b>Vì sao:</b> reel giới thiệu sản phẩm chung chung không giữ người xem.</li><li><b>Sau đó:</b> team ghi 8 reel, 4,627 người xem trong 4 ngày (76% của cả tuần trước). GA4: Organic Social 95 session (75), từ Instagram 7 (3), click-to-webapp 6 (1). Chưa gắn UTM link bio nên chưa tách được reel nào kéo traffic.</li></ul></div>
+        <div class="card"><h4>YouTube: dựng file UTM, đăng 12 Shorts</h4><div class="big">19</div><div class="lbl">session từ youtube.com (tuần trước 13), 0 click-to-webapp · <span class="chip gray">chưa đo được</span></div>
+          <ul><li><b>Vì sao:</b> đo traffic từ kênh YouTube về web.</li><li><b>Sau đó:</b> cột Click Link trong sheet YouTube vẫn trống, UTM chưa lên số. Chi tiết view ở mục YouTube.</li></ul></div>
+      </div>
+      <div class="note">Cách đọc: số trong ngoặc là 25–31/10. Một tuần sau thay đổi thường chưa đủ để kết luận, nhất là khi thay đổi lên giữa tuần. Phần "Vì sao" lấy nguyên ý từ changelog và GTM, phần "Sau đó" lấy từ các mục bên dưới của báo cáo. Partnership (4/11 submit deal BFCM với Transcy, PluginHive) và Email (warm-up) chưa có chỉ số.</div>
+    </section>
+
+    <section data-sid="tasks-next">
+      <h2>Thử nghiệm tuần 8–14/11 và chỉ số sẽ đo</h2>
+      <div class="chan-owner">Từ cột "Week 8/11–14/11" của GTM 2026 và changelog 8–9/11. Mỗi thử nghiệm có một mốc từ tuần này để báo cáo tuần sau so lại.</div>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Kênh · PIC</th><th>Thử nghiệm</th><th>Mục tiêu</th><th>Mốc tuần 1–7/11</th></tr></thead>
+        <tbody>
+          <tr><td>Meta Ads · Vy</td><td>Đổi tệp Lookalike sang Advantage+</td><td>giảm CPM</td><td class="n">CPM 40.79 USD (236.25 USD / 5,792 impressions)</td></tr>
+          <tr><td>Meta Ads · Vy</td><td>Tắt tệp Shopify merchant (8/11)</td><td>bỏ chi phí không ra landing page view</td><td class="n">33.35 USD, 0 landing page view</td></tr>
+          <tr><td>Meta Social · Long</td><td>14 reel theo công thức Social Creatives (10 khai thác với 5 cặp hook A/B, 2 khám phá, 2 BFCM); bảng điểm lọc reel</td><td>chi phí ≤ 3 USD/video; tối đa 3 reel đề xuất team Ads</td><td class="n">2 reel &gt; 1,000 người xem; IG 7 session GA4</td></tr>
+          <tr><td>Shopify · Vy</td><td>Làm cùng CS để được feature trong stories trên Shopify App Store</td><td>tăng install từ featured</td><td class="n">báo cáo chưa tách install từ featured</td></tr>
+          <tr><td>Google Ads · Hằng</td><td>Check chuyển đổi qua sign-up</td><td>sign-up, CPA</td><td class="n">45 sign-up Search, 11.4 USD mỗi sign-up</td></tr>
+          <tr><td>SEO · Hiền</td><td>Publish trang hub /tools/ (9/11)</td><td>gom các trang /tools/</td><td class="n">/tools/* Organic 53 session, 17 click-to-webapp</td></tr>
+          <tr><td>Shopify · Vy</td><td>Đo tiếp bảng giá free plan (đổi 6/11)</td><td>install rate</td><td class="n">listing → install 15.3%</td></tr>
+        </tbody>
+      </table></div>
+      <div class="missing"><ul class="plain"><li><b>Chưa điền thử nghiệm 8–14/11 trong GTM:</b> Shopify Ads, Shopify ASO, Cross App, SEO (các dòng SEO/GEO/AEO), YouTube organic và YouTube Ads, Partnership, Email. Google Ads mới có một dòng.</li></ul></div>
     </section>
   </div>
 
@@ -729,6 +813,7 @@ ul.plain{margin:6px 0;padding-left:20px}
         <li><b>Shopify App Store Ads</b>: BigQuery <span class="mono">promer-data-science.raw.spf_ads</span>, file xuất của Vy, đã dedupe theo lần sync mới nhất.</li>
         <li><b>Instagram</b>: Meta Ads MCP (<span class="mono">ads_get_ig_media</span>), like và comment đo tại ngày 9/11.</li>
         <li><b>YouTube</b>: sheet của team YouTube (<span class="mono">1lgzysDxm28NY62T6156OeVdeD1ym6USHjleVer0qw4s</span>), tab Youtube Plan và Tháng 11/2026, YouTube API cập nhật 09/11 16:09. Tuần T2→CN.</li>
+        <li><b>Task và thử nghiệm</b>: sheet [Promer] Product x Growth Changelog (<span class="mono">1Hl3hZYw8B9lXv0F8vyrUhnnXSKbyCCLmp4HjcaoM_dg</span>, tab Change Log) và Promer GTM 2026 (<span class="mono">1N_c-GhHpAmUT2tMbCtQFi2ahJifF5k_K4-1V7i9YlZo</span>, tab Direction &amp; Planning, cột Week 1/11–7/11 và Week 8/11–14/11), đọc ngày 9/11.</li>
         <li>GA4 tính theo giờ Los Angeles, Meta theo giờ VN, nên số ngày của hai bên lệch nhau khoảng nửa ngày.</li>
         <li>File gốc: <span class="mono">promer-report/data/2026-11-07/</span> và <span class="mono">data/2026-10-31/</span>.</li>
       </ul>
@@ -740,6 +825,7 @@ ul.plain{margin:6px 0;padding-left:20px}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v10, thêm mục "Task đã làm → chỉ số sau đó": mỗi task trong changelog và GTM tuần 1–7/11 ghi vì sao làm, chỉ số sau đó và trạng thái; thêm bảng thử nghiệm tuần 8–14/11 kèm mốc để so tuần sau.</li>
         <li><span class="mono">2026-11-09</span> · v9, làm lại phần YouTube từ sheet của team YouTube: số video đăng, view, xem tiếp, sub, đánh giá tuần 1 của team, view theo từng video, 6 video ads chờ đăng, kế hoạch tuần 2.</li>
         <li><span class="mono">2026-11-09</span> · v8, làm lại phần Shopify App từ sheet Promer Daily Control: install, gỡ, subscription, paid install, net payout (Partner API), funnel listing (GA4 listing), install theo nguồn, App Store Ads đủ 7 ngày (manual_sas), rank App Store, changelog ASO.</li>
         <li><span class="mono">2026-11-09</span> · v7, làm lại phần Meta Ads theo nội dung thật: hàng số chính, 5 điểm chính, chi phí và funnel theo ngày, 3 ad set (ngân sách, tệp, kết quả), từng ad có chi phí kèm link bài đăng, đối chiếu GA4 theo ad, vị trí hiển thị và thị trường, diễn biến tuần đầu từ activity log.</li>
