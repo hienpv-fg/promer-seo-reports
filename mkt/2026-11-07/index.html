@@ -105,16 +105,19 @@ ul.plain{margin:6px 0;padding-left:20px}
 .seg b{font-size:20px;font-weight:700}
 .seg span{font-size:11px;opacity:.85}
 .seg em{font-style:normal;font-size:11px;color:var(--muted);margin-top:2px}
+.seg.o em,.seg.a em{color:inherit;opacity:.7}
 .seg.soft{background:var(--accent-soft);color:var(--ink)}
 .seg.o{background:var(--accent);color:#fff}
 .seg.a{background:var(--ink);color:var(--bg)}
-.seg.ol{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
-.fun-legend i.ol{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)} .fun-legend i.z{background:var(--line)}
+.seg.ol{background:color-mix(in srgb,var(--down) 12%,var(--surface));color:var(--down);box-shadow:inset 0 0 0 1.5px var(--down)}
+.seg.ol em{color:var(--down);opacity:.85}
+.fun-legend i.ol{background:color-mix(in srgb,var(--down) 15%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--down)} .fun-legend i.z{background:var(--line)}
 .seg.z{background:var(--line);color:var(--ink-2)}
-.frate{margin:5px 0 5px 144px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-2)}
+.frate{margin:6px 0 6px 144px;text-align:center;font-size:12.5px;color:var(--ink-2)}
+.frate b{color:var(--ink)} .frate .ro b{color:var(--accent)}
 .frate .ro{color:var(--accent);font-weight:500} .frate .ra{color:var(--ink);font-weight:500}
 .frate s{color:var(--muted);margin-left:6px;text-decoration:none}
-.frate s::before{content:"tt "}
+
 .fside{display:flex;flex-direction:column;gap:10px}
 .fside .card{font-size:13.5px;line-height:1.55}
 .fside .warnc{background:var(--warn-soft);border-color:transparent}
@@ -337,28 +340,28 @@ ul.plain{margin:6px 0;padding-left:20px}
 | Sign-up landing /sign-in, URL có tham số Google Ads | 0 (94) | 0 (0) |
 | Sign-up → paid, cùng user trong tuần | promer.ai 0% (7.4%, 2 trên 27) · /sign-in 0% (0%) | 0% (0%) |
 | Paid (user) | sign-up trong tuần 0 (2) · tài khoản cũ 1 (1) · nâng gói 0 (3) · mua credit 1 (1) | 0 (0) |">
-          <div class="fun-legend"><span><i class="o"></i>Organic</span><span><i class="ol"></i>Organic, landing /sign-in (URL có tham số Google Ads)</span><span><i class="z"></i>Paid, tài khoản cũ</span><span><i class="a"></i>AI Assistant</span></div>
-          <div class="frow"><div class="flab"><b>Keyword ranking</b><span>GSC · từ khóa có hiển thị</span></div>
-            <div class="fbar" style="width:100%"><div class="seg soft"><b>2,046 từ khóa · 1,413 trong top 10</b><span>top 3: 389 · 4–10: 1,024 · 11–20: 380 · 21+: 253</span><em>tuần trước 2,029 · top 10 1,448</em></div></div></div>
-          <div class="frate">Tỷ lệ từ khóa trong top 10: 69.1% <s>71.4%</s></div>
+          <div class="fun-legend"><span><i class="o"></i>Organic</span><span><i class="ol"></i>Sign-up /sign-in từ Google Ads (bị tính vào Organic)</span><span><i class="z"></i>Tài khoản cũ</span><span><i class="a"></i>AI Assistant</span></div>
+          <div class="frow"><div class="flab"><b>Từ khóa</b><span>GSC</span></div>
+            <div class="fbar" style="width:100%"><div class="seg soft"><b>2,046</b><span>từ khóa có hiển thị · 1,413 trong top 10</span><em>tuần trước 2,029 · 1,448 trong top 10</em></div></div></div>
+          <div class="frate">Top 10: <b>69.1%</b> <s>tuần trước 71.4%</s></div>
           <div class="frow"><div class="flab"><b>Impressions</b><span>GSC</span></div>
-            <div class="fbar" style="width:95%"><div class="seg soft"><b>38,722</b><span>Google</span><em>tuần trước 40,153 · −4%</em></div></div></div>
-          <div class="frate">CTR: Google 2.05% <s>1.74%</s></div>
-          <div class="frow"><div class="flab"><b>Clicks</b><span>GSC</span></div>
-            <div class="fbar" style="width:90%"><div class="seg soft"><b>794</b><span>Google</span><em>tuần trước 697 · +14%</em></div></div></div>
-          <div class="frate">session google/organic = 1.3× click GSC <s>1.3×</s></div>
-          <div class="frow"><div class="flab"><b>Sessions</b><span>GA4 · trên promer.ai</span></div>
-            <div class="fbar split" style="width:85%"><div class="seg o" style="flex:3"><b>1,080</b><span>Organic · tt 977</span></div><div class="seg a" style="flex:1.2"><b>299</b><span>AI · tt 353</span></div></div></div>
-          <div class="frate">session → click-to-webapp: <span class="ro">Organic 12.9%</span> · <span class="ra">AI 10.7%</span> <s>11.4% · 13.0%</s></div>
+            <div class="fbar" style="width:95%"><div class="seg soft"><b>38,722</b><span>lượt hiển thị trên Google</span><em>tuần trước 40,153</em></div></div></div>
+          <div class="frate">CTR: <b>2.05%</b> <s>tuần trước 1.74%</s></div>
+          <div class="frow"><div class="flab"><b>Click</b><span>GSC</span></div>
+            <div class="fbar" style="width:90%"><div class="seg soft"><b>794</b><span>click từ Google</span><em>tuần trước 697</em></div></div></div>
+          <div class="frate">AI Assistant bắt đầu vào funnel từ bước này ↓</div>
+          <div class="frow"><div class="flab"><b>Session</b><span>GA4 · trên promer.ai</span></div>
+            <div class="fbar split" style="width:85%"><div class="seg o" style="flex:3"><b>1,080</b><span>Organic</span><em>tuần trước 977</em></div><div class="seg a" style="flex:1.3"><b>299</b><span>AI</span><em>tuần trước 353</em></div></div></div>
+          <div class="frate">Chuyển sang bước dưới: <span class="ro">Organic <b>12.9%</b></span> · <span class="ra">AI <b>10.7%</b></span> <s>tuần trước 11.4% · 13.0%</s></div>
           <div class="frow"><div class="flab"><b>click-to-webapp</b><span>GA4 · session</span></div>
-            <div class="fbar split" style="width:80%"><div class="seg o" style="flex:2.4"><b>139</b><span>Organic · tt 111</span></div><div class="seg a" style="flex:1"><b>32</b><span>AI · tt 46</span></div></div></div>
-          <div class="frate">click-to-webapp → sign-up: <span class="ro">Organic 17.1%</span> · <span class="ra">AI 32.3%</span> <s>18.2% · 20.0%</s></div>
-          <div class="frow"><div class="flab"><b>Sign-up</b><span>user · google + email</span></div>
-            <div class="fbar split" style="width:76%"><div class="seg o" style="flex:1.6"><b>23</b><span>Org web · tt 27</span></div><div class="seg ol" style="flex:1"><b>0</b><span>Org /sign-in · tt 94</span></div><div class="seg a" style="flex:1.2"><b>13</b><span>AI · tt 9</span></div></div></div>
-          <div class="frate">sign-up → paid: <span class="ro">Org web 0%</span> · Org /sign-in 0% · <span class="ra">AI 0%</span> <s>7.4% · 0% · 0%</s></div>
-          <div class="frow"><div class="flab"><b>Paid</b><span>user · nâng gói + mua credit</span></div>
-            <div class="fbar split" style="width:72%"><div class="seg o" style="flex:1"><b>0</b><span>Org web · tt 2</span></div><div class="seg z" style="flex:1"><b>1</b><span>tài khoản cũ · tt 1</span></div><div class="seg a" style="flex:1"><b>0</b><span>AI · tt 0</span></div></div></div>
-          <div class="frate">nâng gói 0 · mua credit 1 <s>nâng gói 3 · mua credit 1</s></div>
+            <div class="fbar split" style="width:80%"><div class="seg o" style="flex:2.4"><b>139</b><span>Organic</span><em>tuần trước 111</em></div><div class="seg a" style="flex:1.1"><b>32</b><span>AI</span><em>tuần trước 46</em></div></div></div>
+          <div class="frate">Chuyển sang bước dưới: <span class="ro">Organic <b>17.1%</b></span> · <span class="ra">AI <b>32.3%</b></span> <s>tuần trước 18.2% · 20.0%</s></div>
+          <div class="frow"><div class="flab"><b>Sign-up</b><span>user</span></div>
+            <div class="fbar split" style="width:76%"><div class="seg o" style="flex:1.5"><b>23</b><span>Organic</span><em>tuần trước 27</em></div><div class="seg ol" style="flex:1.3"><b>0</b><span>/sign-in Google Ads</span><em>tuần trước 94</em></div><div class="seg a" style="flex:1.1"><b>13</b><span>AI</span><em>tuần trước 9</em></div></div></div>
+          <div class="frate">Paid trong tuần: <span class="ro">Organic <b>0 trên 23</b></span> · <span class="ra">AI <b>0 trên 13</b></span> <s>tuần trước 2 trên 27 · 0 trên 9</s></div>
+          <div class="frow"><div class="flab"><b>Paid</b><span>user</span></div>
+            <div class="fbar split" style="width:72%"><div class="seg o" style="flex:1"><b>0</b><span>sign-up trong tuần</span><em>tuần trước 2</em></div><div class="seg z" style="flex:1"><b>1</b><span>tài khoản cũ</span><em>tuần trước 1</em></div><div class="seg a" style="flex:1"><b>0</b><span>AI</span><em>tuần trước 0</em></div></div></div>
+          <div class="frate">Tuần này: 0 nâng gói · 1 mua credit <s>tuần trước 3 nâng gói · 1 mua credit</s></div>
         </div>
         <div class="fside">
           <div class="eyebrow">Đọc funnel</div>
