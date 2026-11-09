@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promer MKT Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F7F9; --surface:#FFFFFF; --ink:#0B0B12; --ink-2:#4A4A57; --muted:#8A8A98;
+  --line:#E6E6EC; --accent:#5B4BF0; --accent-soft:#EEEBFF; --warn:#B45309; --warn-soft:#FEF3C7;
+  --hover:rgba(91,75,240,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E0E14; --surface:#16161F; --ink:#ECECF2; --ink-2:#B4B4C2; --muted:#7C7C8C;
+    --line:#2A2A36; --accent:#8B7FFF; --accent-soft:#25214A; --warn:#F5B65A; --warn-soft:#3A2A10;
+    --hover:rgba(139,127,255,.08);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E0E14; --surface:#16161F; --ink:#ECECF2; --ink-2:#B4B4C2; --muted:#7C7C8C;
+  --line:#2A2A36; --accent:#8B7FFF; --accent-soft:#25214A; --warn:#F5B65A; --warn-soft:#3A2A10;
+  --hover:rgba(139,127,255,.08);color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+a{color:var(--accent)}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+aside{border-right:1px solid var(--line);padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--surface)}
+.brand{font-weight:700;font-size:15px;margin-bottom:2px}
+.brand-sub{color:var(--muted);font-size:12px;margin-bottom:22px}
+.nav-h{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+nav a{display:block;padding:5px 8px;border-radius:6px;color:var(--ink-2);text-decoration:none;font-size:14px}
+nav a:hover{background:var(--hover);color:var(--ink)}
+nav a.cur{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.arch{font-size:13px}
+main{padding-block:28px 120px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px));max-width:1120px;min-width:0}
+.topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.eyebrow{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:28px;line-height:1.25;margin:4px 0 6px}
+.period{color:var(--ink-2);font-size:14px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover{opacity:.9;color:#fff}
+.badge{display:inline-block;min-width:18px;padding:0 6px;border-radius:9px;background:var(--accent);color:#fff;font-size:11px;line-height:18px;text-align:center;margin-left:4px}
+h2{font-size:20px;margin:0 0 4px}
+h3{font-size:15px;margin:14px 0 6px}
+.chan-owner{font-size:13px;color:var(--muted);margin-bottom:10px}
+.chip{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;background:var(--accent-soft);color:var(--accent);margin-right:4px;font-weight:500}
+.chip.gray{background:var(--line);color:var(--ink-2)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.block{margin:34px 0 0}
+[data-sid]{position:relative}
+[data-sid]+[data-sid]{margin-top:28px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card h4{margin:0 0 6px;font-size:15px;line-height:1.35}
+.card .big{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.card .lbl{font-size:12px;color:var(--muted);margin-bottom:6px}
+.card ul{margin:6px 0 0;padding-left:18px;color:var(--ink-2);font-size:14px}
+.card ul li{margin:2px 0}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;white-space:nowrap}
+th{font-weight:600;color:var(--ink-2);font-size:12px;background:var(--bg)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+td .prev{color:var(--muted);font-size:12px}
+tr:last-child td{border-bottom:none}
+.note{font-size:13px;color:var(--ink-2);margin-top:8px}
+.note b{color:var(--ink)}
+.missing{border:1px dashed var(--warn);background:var(--warn-soft);border-radius:12px;padding:12px 16px;font-size:14px}
+.missing b{color:var(--warn)}
+ul.plain{margin:6px 0;padding-left:20px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;z-index:80;pointer-events:none}
+#toast.show{opacity:1}
+.changelog li{margin:4px 0;font-size:14px}
+/* insights as rows */
+.cards.ins{grid-template-columns:minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.cards.ins .card{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);column-gap:24px;border:none;border-radius:0;border-top:1px solid var(--line);background:none;padding:16px 18px}
+.cards.ins .card:first-child{border-top:none}
+.cards.ins .card h4{grid-column:1/-1;margin-bottom:8px}
+.cards.ins .card .big{grid-column:1;font-size:24px}
+.cards.ins .card .lbl{grid-column:1}
+.cards.ins .card ul{grid-column:2;grid-row:2/span 2;margin:0}
+@media (max-width:860px){.cards.ins .card{grid-template-columns:minmax(0,1fr)}.cards.ins .card ul{grid-column:1;grid-row:auto;margin-top:6px}}
+/* SEO funnel (motif of the SEO deck) */
+.fx{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:16px;align-items:start}
+.fun{padding:16px}
+.fun-legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;font-weight:600;margin-bottom:12px}
+.fun-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.fun-legend i.o{background:var(--accent)} .fun-legend i.a{background:var(--ink)}
+.frow+.frow{margin-top:12px}
+.frow{display:grid;grid-template-columns:132px minmax(0,1fr);align-items:center;gap:12px}
+.flab{text-align:right;line-height:1.25}
+.flab b{display:block;font-size:13.5px}
+.flab span{font-size:11px;color:var(--muted)}
+.fbar{margin:0 auto;display:flex;border-radius:8px;overflow:hidden;min-height:56px}
+.seg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6px 8px;line-height:1.2;min-width:0}
+.seg b{font-size:20px;font-weight:700}
+.seg span{font-size:11px;opacity:.85}
+.seg em{font-style:normal;font-size:11px;color:var(--muted);margin-top:2px}
+.seg.soft{background:var(--accent-soft);color:var(--ink)}
+.seg.o{background:var(--accent);color:#fff}
+.seg.a{background:var(--ink);color:var(--bg)}
+.seg.z{background:var(--line);color:var(--ink-2)}
+.frate{margin:5px 0 5px 144px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-2)}
+.frate .ro{color:var(--accent);font-weight:500} .frate .ra{color:var(--ink);font-weight:500}
+.frate s{color:var(--muted);margin-left:6px;text-decoration:none}
+.frate s::before{content:"tt "}
+.fside{display:flex;flex-direction:column;gap:10px}
+.fside .card{font-size:13.5px;line-height:1.55}
+.fside .warnc{background:var(--warn-soft);border-color:transparent}
+.fside .warnc b{color:var(--warn)}
+.src summary{cursor:pointer;font-size:12.5px;color:var(--ink-2)}
+.src .note{margin-top:6px}
+@media (max-width:860px){.fx{grid-template-columns:minmax(0,1fr)}.frow{grid-template-columns:96px minmax(0,1fr)}.frate{margin-left:108px}.fbar{width:100%!important}}
+/* feedback comments */
+[data-sid]:hover{outline:1px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:6px;border-radius:6px}
+[data-sid].has-c{outline:1px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:6px;border-radius:6px}
+.cbtn{position:absolute;top:-2px;right:-2px;z-index:5;height:28px;min-width:28px;padding:0 8px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-size:13px;line-height:26px;opacity:0;transition:opacity .12s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+[data-sid]:hover>.cbtn,.cbtn.on,.cbtn:focus-visible{opacity:1}
+.cbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.pop{position:absolute;z-index:70;width:380px;max-width:calc(100vw - 32px);background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.18);padding:14px;display:flex;flex-direction:column;gap:10px}
+.pop.drag{outline:2px dashed var(--accent);outline-offset:-6px}
+.pop .sidl{font-size:11px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.pop textarea,.pop input[type=text]{width:100%;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);color:var(--ink)}
+.pop textarea{min-height:84px;resize:vertical}
+.pop .row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pop .hint{font-size:11.5px;color:var(--muted)}
+.cm{border-left:2px solid var(--accent);padding:2px 0 2px 10px;font-size:13.5px}
+.cm .meta{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.cm .meta button{border:none;background:none;padding:0;color:var(--muted);font-size:11px}
+.cm .txt{white-space:pre-wrap;color:var(--ink)}
+.atts{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.atts:empty{display:none}
+.att{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:3px 6px;font-size:11.5px;max-width:100%;background:var(--bg)}
+.att img{width:44px;height:44px;object-fit:cover;border-radius:5px;display:block}
+.att span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px}
+.att button{border:none;background:none;padding:0 2px;color:var(--muted)}
+#panel{position:fixed;top:0;right:0;width:400px;max-width:100%;height:100%;background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .2s;z-index:80;display:flex;flex-direction:column}
+#panel.open{transform:none;box-shadow:-12px 0 32px rgba(0,0,0,.12)}
+#panel header{padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}
+#panel header input{flex:1;min-width:0;font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--bg);color:var(--ink)}
+#plist{overflow:auto;padding:8px 16px;flex:1;display:flex;flex-direction:column;gap:14px}
+.pgrp .sid{font-size:11px;color:var(--accent);font-family:"JetBrains Mono",monospace;cursor:pointer;margin-bottom:4px}
+#panel footer{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:860px){.cbtn{opacity:.9}}
+/* charts */
+.viz{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--prev:#bdbbb3;--grid:#e1e0d9;--axis:#c3c2b7;--tx:#52514e;--tx-m:#898781}
+@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .viz{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--prev:#55554f;--grid:#2c2c2a;--axis:#383835;--tx:#c3c2b7;--tx-m:#898781}}
+:root[data-theme="dark"] .viz{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--prev:#55554f;--grid:#2c2c2a;--axis:#383835;--tx:#c3c2b7;--tx-m:#898781}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 10px;margin:10px 0}
+.chart-t{font-size:14px;font-weight:600;margin-bottom:2px}
+.chart-s{font-size:12px;color:var(--muted);margin-bottom:8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart svg text{font-family:Inter,system-ui,sans-serif}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:12px}
+.grid2 .chart{margin:0}
+#tip{position:fixed;z-index:90;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.14);padding:8px 10px;font-size:12px;line-height:1.5;opacity:0;transition:opacity .08s;max-width:260px}
+#tip b{font-weight:600}
+#tip .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  main{min-width:0;max-width:100%}
+  h1{font-size:22px}
+  .note,.chan-owner,.period,ul.plain,.card,h1,h2,h3{overflow-wrap:anywhere}
+  body{overflow-x:hidden}
+  aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  main{padding-block:20px 100px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">Promer · MKT Report</div>
+  <div class="brand-sub">Báo cáo marketing theo kênh</div>
+  <div class="nav-h">Kỳ này</div>
+  <nav id="toc">
+    <a href="#overview">Tổng quan</a>
+    <a href="#insights">Điểm chính</a>
+    <a href="#seo">SEO &amp; AI Search</a>
+    <a href="#gads">Google Ads</a>
+    <a href="#meta-ads">Meta Ads</a>
+    <a href="#shopify">Shopify App</a>
+    <a href="#meta-social">Meta Social</a>
+    <a href="#youtube">YouTube</a>
+    <a href="#gaps">Dữ liệu còn thiếu</a>
+    <a href="#method">Nguồn &amp; cách tính</a>
+    <a href="#changelog">Changelog</a>
+  </nav>
+  <div class="nav-h">Lưu trữ</div>
+  <nav class="arch">
+    <a class="cur" href="#">Tuần 1–7/11/2026</a>
+  </nav>
+</aside>
+
+<main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
+  <div class="topbar">
+    <div class="eyebrow">Báo cáo tuần · bản nháp v4</div>
+    <div class="btns">
+      <button id="bCopyAll">Copy md toàn bộ</button>
+      <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
+    </div>
+  </div>
+  <h1>Marketing Promer · tuần 1–7/11/2026</h1>
+  <div class="period">So với tuần 25–31/10/2026. Rê chuột vào một khối rồi bấm 💬 để góp ý, có thể dán ảnh hoặc đính kèm file.</div>
+
+  <!-- OVERVIEW -->
+  <div class="block" id="overview">
+    <section data-sid="overview-table">
+      <h2>Tổng quan theo kênh</h2>
+      <div class="chan-owner">Số GA4 theo <span class="mono">Session primary channel group</span>, cả promer.ai và app. Số trong ngoặc là tuần 25–31/10.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Kênh</th><th>Phụ trách</th><th class="n">Chi phí</th><th class="n">Sessions</th><th class="n">click-to-webapp</th><th class="n">Sign-up</th><th class="n">Nâng gói (user)</th></tr></thead>
+        <tbody>
+          <tr><td>SEO · Organic Search</td><td>Hiền</td><td class="n">–</td><td class="n">1,273 <span class="prev">(1,546)</span></td><td class="n">139 <span class="prev">(111)</span></td><td class="n">23 <span class="prev">(121¹)</span></td><td class="n">0 <span class="prev">(3)</span></td></tr>
+          <tr><td>SEO · AI Assistant</td><td>Hiền</td><td class="n">–</td><td class="n">334 <span class="prev">(386)</span></td><td class="n">32 <span class="prev">(46)</span></td><td class="n">13 <span class="prev">(9)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Google Ads · Search</td><td>Vy, Hằng</td><td class="n">chờ dữ liệu</td><td class="n">369 <span class="prev">(166)</span></td><td class="n">1 <span class="prev">(4)</span></td><td class="n">45 <span class="prev">(20¹)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Google Ads · YouTube (Cross-network)</td><td>[__]</td><td class="n">chờ dữ liệu</td><td class="n">51 <span class="prev">(2)</span></td><td class="n">3 <span class="prev">(0)</span></td><td class="n">2 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Meta Ads · Paid Social</td><td>Vy</td><td class="n">236.25 USD <span class="prev">(0)</span></td><td class="n">130 <span class="prev">(0)</span></td><td class="n">18 <span class="prev">(0)</span></td><td class="n">6 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Shopify App Store Ads²</td><td>Vy</td><td class="n">354 <span class="prev">(450.6)</span></td><td class="n">–</td><td class="n">–</td><td class="n">23 install <span class="prev">(21)</span></td><td class="n">–</td></tr>
+          <tr><td>Shopify admin · Organic Shopping</td><td>Vy</td><td class="n">–</td><td class="n">540 <span class="prev">(504)</span></td><td class="n">3 <span class="prev">(2)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">10 <span class="prev">(8)</span></td></tr>
+          <tr><td>Meta Social · Organic Social</td><td>Long, Vy</td><td class="n">–</td><td class="n">95 <span class="prev">(75)</span></td><td class="n">6 <span class="prev">(1)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>YouTube · youtube.com referral</td><td>Hằng, Tiến</td><td class="n">–</td><td class="n">19 <span class="prev">(13)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>Direct</td><td>–</td><td class="n">–</td><td class="n">7,475 <span class="prev">(7,713)</span></td><td class="n">52 <span class="prev">(25)</span></td><td class="n">60 <span class="prev">(68)</span></td><td class="n">2 <span class="prev">(2)</span></td></tr>
+          <tr><td>Unassigned</td><td>–</td><td class="n">–</td><td class="n">1,171 <span class="prev">(1,421)</span></td><td class="n">28 <span class="prev">(14)</span></td><td class="n">37 <span class="prev">(49)</span></td><td class="n">6 <span class="prev">(3)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: Sign-up = số session có <span class="mono">complete_sign_up_google</span> hoặc <span class="mono">complete_sign_up_email</span>. Nâng gói = số user có <span class="mono">complete_plan_upgrade_on_billing_detail</span>. Không cộng các dòng với nhau, vì một user có thể xuất hiện ở nhiều kênh.</div>
+      <div class="note">¹ Tuần trước có 94 sign-up mang tham số Google Ads (gclid, gad_source…) nhưng GA4 xếp vào Organic Search. Trừ phần đó ra thì Organic còn 27, còn Google Ads là 20 + 94. Xem mục Google Ads.<br>² Shopify App Store Ads chỉ so 4 ngày: 1–4/11 với 25–28/10, vì BigQuery chưa có số 5–7/11. Tiền tệ không ghi trong bảng nguồn.</div>
+    </section>
+    <section data-sid="overview-chart-signup-daily">
+      <div class="chart viz" data-chart="signupDaily"></div>
+      <div class="note">Cách đọc: mỗi điểm là số session có sign-up trong ngày (giờ Los Angeles). Organic Search 25–28/10 gồm 94 sign-up mang tham số Google Ads. Từ 29/10, sign-up Google Ads được ghi vào Paid Search.</div>
+    </section>
+    <section data-sid="overview-chart-channels">
+      <div class="grid2">
+        <div class="chart viz" data-chart="signupChannel"></div>
+        <div class="chart viz" data-chart="paidChannel"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="block" id="insights">
+    <section data-sid="insights">
+      <h2>Điểm chính tuần này</h2>
+      <div class="chan-owner">Chỉ ghi số đo được. Những chỗ chưa rõ nguyên nhân đều ghi là chưa rõ.</div>
+      <div class="cards ins">
+        <div class="card">
+          <h4>Google Ads: sign-up tuần này nằm đúng ở Paid Search</h4>
+          <div class="big">45</div><div class="lbl">sign-up từ Paid Search (tuần trước 20)</div>
+          <ul>
+            <li>Tuần trước có thêm 94 sign-up mang tham số Google Ads nhưng nằm trong Organic Search, cả 94 đều landing trên app /sign-in. Tuần này con số đó là 0.</li>
+            <li>Nếu tính cả 94 sign-up đó vào Google Ads thì tuần trước là 114, tuần này là 45.</li>
+            <li>Chưa có chi phí Google Ads nên chưa tính được chi phí mỗi sign-up.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Nâng gói đến nhiều nhất từ Shopify admin</h4>
+          <div class="big">10</div><div class="lbl">user nâng gói từ Organic Shopping (admin.shopify.com), tuần trước 8</div>
+          <ul>
+            <li>Các kênh còn lại: Unassigned 6 user (tuần trước 3), Direct 2 (2), Organic Search 0 (3), AI Assistant 0 (0).</li>
+            <li>Kênh Organic Shopping không ghi nhận sign-up nào.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Meta Ads: chạy 3 ngày, một video chiếm hơn nửa chi phí</h4>
+          <div class="big">236.25 USD</div><div class="lbl">chi phí 5–7/11 (tuần trước không chạy)</div>
+          <ul>
+            <li>Meta ghi 7 CompleteRegistration, GA4 ghi 6 sign-up từ Paid Social.</li>
+            <li>Ad <span class="mono">Pillar3_Angle1_Ad02_Video</span>: 139.38 USD (59% chi phí) và 5 trên 7 đăng ký.</li>
+            <li>Ad set SPF-MERCHANT: 33.35 USD, 1 link click, 0 đăng ký.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Shopify App Store Ads: chi ít hơn nhưng install nhiều hơn</h4>
+          <div class="big">15.4</div><div class="lbl">chi phí mỗi install, 1–4/11 (25–28/10: 21.5)</div>
+          <ul>
+            <li>Chi phí 354 (450.6), install 23 (21).</li>
+            <li>Campaign Dropship Exact: 7 install với 46 chi phí (tuần trước 3 install, 54).</li>
+            <li>Ngày 4/11 chỉ có 1 install.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>SEO: click Google tăng, session AI giảm</h4>
+          <div class="big">794</div><div class="lbl">click GSC (tuần trước 697, +14%)</div>
+          <ul>
+            <li>CTR tăng từ 1.74% lên 2.05%. Impressions giảm từ 40,153 xuống 38,722.</li>
+            <li>Session AI Assistant trên promer.ai: 299 (353). Sign-up AI: 13 (9).</li>
+            <li>Organic Search: 0 user nâng gói (tuần trước 3).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SEO -->
+  <div class="block" id="seo">
+    <section data-sid="seo-funnel">
+      <h2>SEO &amp; AI Search</h2>
+      <div class="chan-owner"><span class="chip">Hiền</span> Funnel 1–7/11, số nhỏ bên dưới là tuần 25–31/10. Chi tiết theo trang và theo quốc gia nằm trong deck SEO tuần.</div>
+      <div class="fx">
+        <div class="chart fun" data-md="**Chart: Funnel SEO &amp; AI Search · 1–7/11 (tuần trước)**
+
+| Stage | Organic | AI Assistant |
+| --- | --- | --- |
+| Từ khóa có hiển thị (GSC) | 2,046 (2,029) · top 3: 389, 4–10: 1,024, 11–20: 380, 21+: 253 | – |
+| Impressions (GSC) | 38,722 (40,153) | – |
+| Click (GSC) | 794 (697) · CTR 2.05% (1.74%) | – |
+| Session promer.ai (GA4) | 1,080 (977) | 299 (353) |
+| click-to-webapp (session) | 139 (111) · 12.9% (11.4%) | 32 (46) · 10.7% (13.0%) |
+| Sign-up | 23 (27) · 16.5% (24.3%) | 13 (9) · 40.6% (19.6%) |
+| Paid (user) | nâng gói 0 (3) · mua credit 1 (1) | 0 (0) |">
+          <div class="fun-legend"><span><i class="o"></i>Google / Organic Search</span><span><i class="a"></i>AI Assistant (ChatGPT, Claude, Gemini…)</span></div>
+          <div class="frow"><div class="flab"><b>Keyword ranking</b><span>GSC · từ khóa có hiển thị</span></div>
+            <div class="fbar" style="width:100%"><div class="seg soft"><b>2,046 từ khóa</b><span>top 3: 389 · 4–10: 1,024 · 11–20: 380 · 21+: 253</span><em>tuần trước 2,029 · top 3: 364</em></div></div></div>
+          <div class="frow"><div class="flab"><b>Impressions</b><span>GSC</span></div>
+            <div class="fbar" style="width:90%"><div class="seg soft"><b>38,722</b><span>lượt hiển thị trên Google</span><em>tuần trước 40,153</em></div></div></div>
+          <div class="frate">CTR 2.05% <s>1.74%</s></div>
+          <div class="frow"><div class="flab"><b>Clicks</b><span>GSC</span></div>
+            <div class="fbar" style="width:80%"><div class="seg soft"><b>794</b><span>click từ Google</span><em>tuần trước 697</em></div></div></div>
+          <div class="frate mono-s">AI Assistant vào funnel từ bước này ↓</div>
+          <div class="frow"><div class="flab"><b>Sessions</b><span>GA4 · trên promer.ai</span></div>
+            <div class="fbar split" style="width:70%"><div class="seg o" style="flex:3"><b>1,080</b><span>Organic · tt 977</span></div><div class="seg a" style="flex:1.2"><b>299</b><span>AI · tt 353</span></div></div></div>
+          <div class="frate"><span class="ro">Organic 12.9%</span> · <span class="ra">AI 10.7%</span> <s>11.4% · 13.0%</s></div>
+          <div class="frow"><div class="flab"><b>click-to-webapp</b><span>GA4 · session</span></div>
+            <div class="fbar split" style="width:60%"><div class="seg o" style="flex:2.4"><b>139</b><span>Organic · tt 111</span></div><div class="seg a" style="flex:1"><b>32</b><span>AI · tt 46</span></div></div></div>
+          <div class="frate"><span class="ro">Organic 16.5%</span> · <span class="ra">AI 40.6%</span> <s>24.3% · 19.6%</s></div>
+          <div class="frow"><div class="flab"><b>Sign-up</b><span>google + email</span></div>
+            <div class="fbar split" style="width:50%"><div class="seg o" style="flex:1.5"><b>23</b><span>Organic · tt 27</span></div><div class="seg a" style="flex:1"><b>13</b><span>AI · tt 9</span></div></div></div>
+          <div class="frate">nâng gói ÷ sign-up: <span class="ro">Organic 0%</span> · <span class="ra">AI 0%</span></div>
+          <div class="frow"><div class="flab"><b>Paid users</b><span>nâng gói · mua credit</span></div>
+            <div class="fbar split" style="width:40%"><div class="seg o" style="flex:1.3"><b>0 · 1</b><span>Organic · tt 3 · 1</span></div><div class="seg z" style="flex:1"><b>0</b><span>AI · tt 0</span></div></div></div>
+        </div>
+        <div class="fside">
+          <div class="eyebrow">Đọc funnel</div>
+          <div class="card"><b>Google</b><br>Click 794 (+14%), CTR 2.05% (1.74%). Top 3: 389 từ khóa (364). Sign-up 23 (27), 0 nâng gói (3).</div>
+          <div class="card"><b>AI Assistant</b><br>Session 299 (353), click-to-webapp 32 (46). Sign-up 13 (9). Hai tuần liền 0 paid.</div>
+          <div class="card warnc"><b>Lưu ý</b><br>Sign-up Organic tuần trước đã trừ 94 sign-up mang gclid. Số GSC ngày 7/11 có thể chưa đủ.</div>
+          <details class="src"><summary>Nguồn &amp; cách tính</summary><div class="note">GSC sc-domain:promer.ai. GA4 517415274: sessionPrimaryChannelGroup, session_start trên hostName promer.ai, đã loại source arrm/artt/ahrm/ahtt. Tỷ lệ = bước dưới ÷ bước trên. Session Organic gồm cả Bing/Yahoo nên không so trực tiếp với click GSC. Sign-up và paid xảy ra trên app.</div></details>
+        </div>
+      </div>
+    </section>
+    <section data-sid="seo-charts">
+      <div class="grid2">
+        <div class="chart viz" data-chart="gscDaily"></div>
+        <div class="chart viz" data-chart="webSessions"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- GOOGLE ADS -->
+  <div class="block" id="gads">
+    <section data-sid="gads-campaigns">
+      <h2>Google Ads</h2>
+      <div class="chan-owner"><span class="chip">Vy</span><span class="chip">Hằng</span> <span class="chip warn">thiếu chi phí</span> Mới có số GA4, chưa có file xuất từ Google Ads.</div>
+      <div class="chart viz" data-chart="gadsCampaign"></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Campaign (GA4)</th><th class="n">Sessions</th><th class="n">Sign-up</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">GENERIC_AD-AI_TIER2_C1</td><td class="n">93 <span class="prev">(45)</span></td><td class="n">13 <span class="prev">(8)</span></td></tr>
+          <tr><td class="mono">GENERIC_AI VIDEO GENERATOR_TIER1_C3</td><td class="n">74 <span class="prev">(35)</span></td><td class="n">10 <span class="prev">(5)</span></td></tr>
+          <tr><td class="mono">GENERIC_AI VIDEO GENERATOR_TIER2_C3</td><td class="n">53 <span class="prev">(16)</span></td><td class="n">7 <span class="prev">(3)</span></td></tr>
+          <tr><td class="mono">BRAND_PROMER_TIER1</td><td class="n">52 <span class="prev">(25)</span></td><td class="n">5 <span class="prev">(1)</span></td></tr>
+          <tr><td class="mono">GENERIC_AI VIDEO UGC_TIER2_C2</td><td class="n">37 <span class="prev">(13)</span></td><td class="n">4 <span class="prev">(1)</span></td></tr>
+          <tr><td class="mono">GENERIC_AI VIDEO UGC_TIER1_C2</td><td class="n">30 <span class="prev">(9)</span></td><td class="n">3 <span class="prev">(1)</span></td></tr>
+          <tr><td class="mono">GENERIC_AD-AI_TIER1_C1</td><td class="n">10 <span class="prev">(10)</span></td><td class="n">3 <span class="prev">(1)</span></td></tr>
+          <tr><td class="mono">YOUTUBE_NEW_OPT VIEW_GOAL SIGNUP_4/11 (Cross-network)</td><td class="n">47 <span class="prev">(0)</span></td><td class="n">1 <span class="prev">(0)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: tên campaign đã rút gọn (bỏ phần <span class="mono">PROMER_CONV_SEM_</span>, <span class="mono">_MMA_/_MMC_</span>, ngày). Sign-up = session có complete_sign_up_google hoặc complete_sign_up_email. Campaign YouTube bắt đầu có traffic từ ngày 5/11.</div>
+    </section>
+    <section data-sid="gads-organic-leak">
+      <h3>Sign-up Google Ads bị GA4 xếp vào Organic (tuần trước)</h3>
+      <ul class="plain">
+        <li>25–31/10: 94 sign-up trong Organic Search có URL mang tham số Google Ads (gclid, gad_source, gbraid hoặc utm_medium=cpc), cả 94 đều landing trên app /sign-in.</li>
+        <li>1–7/11: 0 sign-up như vậy. Paid Search ghi 45 sign-up.</li>
+        <li>Cách kiểm tra: <span class="mono">landingPagePlusQueryString</span> của các event sign-up.</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- META ADS -->
+  <div class="block" id="meta-ads">
+    <section data-sid="meta-ads-summary">
+      <h2>Meta Ads</h2>
+      <div class="chan-owner"><span class="chip">Vy</span> Ad account Promer, USD, giờ VN. Tuần 25–31/10 không chạy campaign nào.</div>
+      <div class="grid2">
+        <div class="chart viz" data-chart="metaFunnel"></div>
+        <div class="chart viz" data-chart="metaSpend"></div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Ngày</th><th class="n">Chi phí (USD)</th><th class="n">Impressions</th><th class="n">Link click</th><th class="n">Landing page view</th><th class="n">CompleteRegistration</th></tr></thead>
+        <tbody>
+          <tr><td>5/11</td><td class="n">98.33</td><td class="n">1,759</td><td class="n">19</td><td class="n">13</td><td class="n">4</td></tr>
+          <tr><td>6/11</td><td class="n">98.75</td><td class="n">2,416</td><td class="n">19</td><td class="n">12</td><td class="n">2</td></tr>
+          <tr><td>7/11</td><td class="n">39.17</td><td class="n">1,617</td><td class="n">6</td><td class="n">4</td><td class="n">1</td></tr>
+          <tr><td><b>Tổng</b></td><td class="n"><b>236.25</b></td><td class="n"><b>5,792</b></td><td class="n"><b>44</b></td><td class="n"><b>29</b></td><td class="n"><b>7</b></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Campaign duy nhất có phân phối: <span class="mono">FB_PROMER_CONV_US-CA-AU-NZ_LOF_260826</span>, do Vy tạo ngày 5/11. Pixel ghi 10 <span class="mono">click_to_webapp</span>, 4 <span class="mono">signup_google_success</span> và 6 AddToCart. Chi phí ngày 7/11 thấp hơn hẳn 5–6/11, nhưng activity log không ghi thay đổi nào vào ngày đó. Chưa rõ nguyên nhân.</div>
+    </section>
+    <section data-sid="meta-ads-adsets">
+      <h3>Theo ad set và ad</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Ad set / ad</th><th class="n">Chi phí</th><th class="n">Impressions</th><th class="n">Link click</th><th class="n">Đăng ký</th></tr></thead>
+        <tbody>
+          <tr><td><b>MASS-LAL</b> (CTAWEB)</td><td class="n">202.90</td><td class="n">3,944</td><td class="n">43</td><td class="n">7</td></tr>
+          <tr><td>&nbsp;&nbsp;Pillar3_Angle1_Ad02_Video</td><td class="n">139.38</td><td class="n">2,128</td><td class="n">29</td><td class="n">5</td></tr>
+          <tr><td>&nbsp;&nbsp;Pillar2_Angle1_Ad01_Image</td><td class="n">22.11</td><td class="n">784</td><td class="n">2</td><td class="n">0</td></tr>
+          <tr><td>&nbsp;&nbsp;Pillar3_Angle1_Ad01_Image</td><td class="n">17.89</td><td class="n">429</td><td class="n">7</td><td class="n">2</td></tr>
+          <tr><td><b>SPF-MERCHANT</b> (CTAWEB - Copy)</td><td class="n">33.35</td><td class="n">1,848</td><td class="n">1</td><td class="n">0</td></tr>
+          <tr><td><b>RTG-SIGNUP-NOTPAID</b> (campaign REA)</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Meta không trả về UTM của ad, nên chưa đối chiếu được từng ad với GA4. Ở mức campaign, GA4 ghi 130 session, 18 session click-to-webapp và 6 sign-up (giờ Los Angeles).</div>
+    </section>
+  </div>
+
+  <!-- SHOPIFY -->
+  <div class="block" id="shopify">
+    <section data-sid="shopify-ads">
+      <h2>Shopify App</h2>
+      <div class="chan-owner"><span class="chip">Vy</span> App <span class="mono">Promer AI Ads: Meta Ads &amp; UGC</span></div>
+      <div class="grid2">
+        <div class="chart viz" data-chart="spfInstalls"></div>
+        <div class="chart viz" data-chart="spfSpend"></div>
+      </div>
+      <h3>Shopify App Store Ads · 1–4/11 so với 25–28/10</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Loại / campaign</th><th class="n">Chi phí</th><th class="n">Click</th><th class="n">Install</th></tr></thead>
+        <tbody>
+          <tr><td><b>Search</b></td><td class="n">198.0 <span class="prev">(268.1)</span></td><td class="n">58 <span class="prev">(77)</span></td><td class="n">17 <span class="prev">(16)</span></td></tr>
+          <tr><td><b>Display (category)</b></td><td class="n">156.0 <span class="prev">(182.5)</span></td><td class="n">44 <span class="prev">(52)</span></td><td class="n">6 <span class="prev">(5)</span></td></tr>
+          <tr><td>Cate - Sales Channels</td><td class="n">119.0 <span class="prev">(147.0)</span></td><td class="n">34 <span class="prev">(42)</span></td><td class="n">5 <span class="prev">(4)</span></td></tr>
+          <tr><td>Search - Dropship_App - BRO</td><td class="n">54.0 <span class="prev">(66.0)</span></td><td class="n">18 <span class="prev">(22)</span></td><td class="n">3 <span class="prev">(3)</span></td></tr>
+          <tr><td>Search - Dropship - Exact</td><td class="n">46.0 <span class="prev">(54.0)</span></td><td class="n">15 <span class="prev">(17)</span></td><td class="n">7 <span class="prev">(3)</span></td></tr>
+          <tr><td>Search - Dropship - Broad</td><td class="n">36.0 <span class="prev">(80.0)</span></td><td class="n">9 <span class="prev">(20)</span></td><td class="n">3 <span class="prev">(2)</span></td></tr>
+          <tr><td>Search - Feature "Ad" - Exact</td><td class="n">25.0 <span class="prev">(35.0)</span></td><td class="n">5 <span class="prev">(7)</span></td><td class="n">0 <span class="prev">(3)</span></td></tr>
+          <tr><td>Cate - Selling Online</td><td class="n">24.0 <span class="prev">(16.0)</span></td><td class="n">6 <span class="prev">(4)</span></td><td class="n">0 <span class="prev">(1)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: số từ BigQuery <span class="mono">raw.spf_ads</span>, ở mức campaign. Install ở đây chỉ là install do quảng cáo mang lại, không phải tổng install của app. Revenue và customers bằng 0 ở cả hai kỳ. Ngày 5–7/11 chưa sync về BigQuery.</div>
+    </section>
+    <section data-sid="shopify-admin">
+      <h3>Traffic và nâng gói từ Shopify admin (GA4)</h3>
+      <ul class="plain">
+        <li>Session từ <span class="mono">admin.shopify.com / referral</span>: 525 (468). Từ apps.shopify.com: 13 (13).</li>
+        <li>User nâng gói (<span class="mono">complete_plan_upgrade_on_billing_detail</span>) từ kênh Organic Shopping: 10 (8). User mua credit (<span class="mono">submit_add_credit_on_billing_detail</span>): 1 (2).</li>
+        <li>Chưa có tổng install, uninstall và doanh thu của app, vì các bảng event của app trong BigQuery ngừng cập nhật từ tháng 8–9/2026.</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- META SOCIAL -->
+  <div class="block" id="meta-social">
+    <section data-sid="meta-social-summary">
+      <h2>Meta Social (organic)</h2>
+      <div class="chan-owner"><span class="chip">Long</span><span class="chip">Vy</span> <span class="chip warn">thiếu reach/followers</span></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Chỉ số</th><th class="n">1–7/11</th><th class="n">25–31/10</th></tr></thead>
+        <tbody>
+          <tr><td>Bài Instagram @promeraiofficial</td><td class="n">14 (11 Reels, 3 Feed)</td><td class="n">14 (13 Reels, 1 Feed)</td></tr>
+          <tr><td>Like | comment (đo ngày 9/11)</td><td class="n">154 | 1</td><td class="n">60 | 0</td></tr>
+          <tr><td>Session GA4 Organic Social</td><td class="n">95</td><td class="n">75</td></tr>
+          <tr><td>&nbsp;&nbsp;từ facebook.com, l.facebook.com, m.facebook.com</td><td class="n">61</td><td class="n">44</td></tr>
+          <tr><td>&nbsp;&nbsp;từ Instagram (instagram.com, ig/social)</td><td class="n">7</td><td class="n">3</td></tr>
+          <tr><td>click-to-webapp (session)</td><td class="n">6</td><td class="n">1</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Like và comment đo cùng lúc vào ngày 9/11, nên bài tuần trước có nhiều thời gian hơn để tích like. Chưa có số liệu Facebook Page (bài, reach, followers) vì Meta Ads MCP không đọc được Page Insights.</div>
+    </section>
+  </div>
+
+  <!-- YOUTUBE -->
+  <div class="block" id="youtube">
+    <section data-sid="youtube-summary">
+      <h2>YouTube</h2>
+      <div class="chan-owner"><span class="chip">Hằng</span><span class="chip">Tiến</span> <span class="chip warn">chờ YouTube Studio</span></div>
+      <ul class="plain">
+        <li>Session GA4 từ <span class="mono">youtube.com / referral</span>: 19 (13), 0 click-to-webapp.</li>
+        <li>Kênh Organic Video trong GA4 có 34 session (22), nhưng trong đó có 14 (9) từ netflix.com. Phần netflix.com không phải traffic YouTube, nên không tính vào kênh này.</li>
+        <li>Campaign quảng cáo YouTube trên Google Ads nằm ở mục Google Ads (47 session, 1 sign-up).</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- GAPS -->
+  <div class="block" id="gaps">
+    <section data-sid="gaps">
+      <h2>Dữ liệu còn thiếu</h2>
+      <div class="missing">
+        <ul class="plain">
+          <li><b>Google Ads:</b> chi phí, click, conversion theo campaign. Vy hoặc Hằng xuất CSV từ giao diện Google Ads.</li>
+          <li><b>Shopify Partner Dashboard:</b> tổng install, uninstall, charge và doanh thu của app.</li>
+          <li><b>Meta Business Suite:</b> Facebook Page và Instagram Insights (reach, followers, link click).</li>
+          <li><b>YouTube Studio:</b> views, watch time, subscribers, danh sách video đã đăng (Hằng, Tiến).</li>
+          <li><b>context.md:</b> KPI tháng của từng kênh, việc đã làm trong tuần, người phụ trách campaign YouTube Ads.</li>
+          <li><b>Shopify App Store Ads 5–7/11:</b> chờ BigQuery sync.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- METHOD -->
+  <div class="block" id="method">
+    <section data-sid="method">
+      <h2>Nguồn &amp; cách tính</h2>
+      <ul class="plain">
+        <li><b>GA4</b> property 517415274, giờ Los Angeles, dimension <span class="mono">sessionPrimaryChannelGroup</span>. Kéo ngày 9/11/2026.</li>
+        <li><b>GSC</b> <span class="mono">sc-domain:promer.ai</span>, tổng theo ngày, 1–7/11 so với 25–31/10.</li>
+        <li><b>Meta Ads</b>: file xuất của Vy (Meta Ads MCP), giờ VN, USD. Ad account Promer <span class="mono">8478843415526188</span>.</li>
+        <li><b>Shopify App Store Ads</b>: BigQuery <span class="mono">promer-data-science.raw.spf_ads</span>, file xuất của Vy, đã dedupe theo lần sync mới nhất.</li>
+        <li><b>Instagram</b>: Meta Ads MCP (<span class="mono">ads_get_ig_media</span>), like và comment đo tại ngày 9/11.</li>
+        <li>GA4 tính theo giờ Los Angeles, Meta theo giờ VN, nên số ngày của hai bên lệch nhau khoảng nửa ngày.</li>
+        <li>File gốc: <span class="mono">promer-report/data/2026-11-07/</span> và <span class="mono">data/2026-10-31/</span>.</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- CHANGELOG -->
+  <div class="block" id="changelog">
+    <section data-sid="changelog">
+      <h2>Changelog</h2>
+      <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v3, bỏ bảng SEO, thay bằng funnel từng stage theo kiểu deck SEO cũ (keyword ranking → impressions → click → session → click-to-webapp → sign-up → paid, chia Organic và AI). Thêm số từ khóa theo nhóm thứ hạng từ GSC.</li>
+        <li><span class="mono">2026-11-09</span> · v2, thêm 10 chart: sign-up theo ngày và theo kênh, nâng gói theo kênh, GSC và session theo ngày, campaign Google Ads, funnel và chi phí Meta Ads, install và chi phí Shopify Ads. Mỗi chart có tooltip khi rê chuột, khi copy md thì chart xuất ra dạng bảng.</li>
+        <li><span class="mono">2026-11-09</span> · v1, bản nháp đầu tiên. Số GA4 và GSC kéo ngày 9/11, số Meta và Shopify Ads lấy từ file xuất của Vy ngày 9/11.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+</div>
+
+<div id="panel" aria-label="Comment">
+  <header><b>Comment</b><input id="author" type="text" placeholder="Tên người góp ý" aria-label="Tên người góp ý"><button id="bClose">Đóng</button></header>
+  <div id="plist"></div>
+  <footer>
+    <button id="bZip" class="primary">Tải feedback .zip</button>
+    <button id="bCopyC">Copy md (chỉ chữ)</button>
+    <button id="bClear">Xoá hết</button>
+  </footer>
+</div>
+<div id="toast"></div>
+<div id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+/* ---------- chart data (all numbers from the tables in this page) ---------- */
+const D14=['25/10','26/10','27/10','28/10','29/10','30/10','31/10','1/11','2/11','3/11','4/11','5/11','6/11','7/11'];
+const CHARTS={
+  signupDaily:{type:'line',title:'Sign-up theo ngày theo kênh · 25/10–7/11',sub:'GA4 · session có complete_sign_up_google/email',labels:D14,split:7,
+    series:[
+      {name:'Organic Search',c:'--s1',v:[24,23,22,39,2,1,10,4,3,4,2,5,2,3]},
+      {name:'Google Ads (Paid Search)',c:'--s2',v:[0,0,0,0,8,6,6,7,8,9,7,5,3,6]},
+      {name:'AI Assistant',c:'--s3',v:[0,2,1,2,2,2,0,2,1,3,2,2,3,0]},
+      {name:'Meta Ads (Paid Social)',c:'--s4',v:[0,0,0,0,0,0,0,0,0,0,4,0,2,0]}]},
+  signupChannel:{type:'barh',title:'Sign-up theo kênh',sub:'GA4 · tuần này so với tuần trước',
+    cats:['Direct','Google Ads · Search','Unassigned','Organic Search','AI Assistant','Meta Ads','Google Ads · YouTube'],
+    series:[{name:'1–7/11',c:'--s1',v:[60,45,37,23,13,6,2]},{name:'25–31/10',c:'--prev',v:[68,20,49,121,9,0,1]}],
+    notes:{'Organic Search':'Tuần trước gồm 94 sign-up mang tham số Google Ads'}},
+  paidChannel:{type:'barh',title:'User nâng gói theo kênh',sub:'GA4 · complete_plan_upgrade_on_billing_detail',
+    cats:['Shopify admin','Unassigned','Direct','Organic Search','AI Assistant'],
+    series:[{name:'1–7/11',c:'--s1',v:[10,6,2,0,0]},{name:'25–31/10',c:'--prev',v:[8,3,2,3,0]}]},
+  gscDaily:{type:'line',title:'Click Google Search Console theo ngày',sub:'sc-domain:promer.ai · 7/11 có thể chưa đủ',labels:D14,split:7,
+    series:[{name:'Click GSC',c:'--s1',v:[97,108,102,108,100,109,73,106,122,153,143,121,91,58]}]},
+  webSessions:{type:'line',title:'Session trên promer.ai theo ngày',sub:'GA4 · session_start, hostName promer.ai',labels:D14,split:7,
+    series:[{name:'Organic Search',c:'--s1',v:[115,153,154,154,181,131,89,137,172,184,197,170,131,89]},
+            {name:'AI Assistant',c:'--s3',v:[45,61,55,67,53,49,23,44,46,51,48,45,47,18]}]},
+  gadsCampaign:{type:'barh',title:'Sign-up Google Ads theo campaign',sub:'GA4 · Paid Search và Cross-network',
+    cats:['GENERIC_AD-AI_T2_C1','AI VIDEO GEN_T1_C3','AI VIDEO GEN_T2_C3','BRAND_PROMER_T1','AI VIDEO UGC_T2_C2','AI VIDEO UGC_T1_C2','GENERIC_AD-AI_T1_C1','YOUTUBE_SIGNUP_4/11'],
+    series:[{name:'1–7/11',c:'--s1',v:[13,10,7,5,4,3,3,1]},{name:'25–31/10',c:'--prev',v:[8,5,3,1,1,1,1,0]}]},
+  metaFunnel:{type:'funnel',title:'Funnel Meta Ads · 5–7/11',sub:'Meta Ads Manager · campaign CONV',
+    steps:[['Impressions',5792],['Link click',44],['Landing page view',29],['CompleteRegistration',7]]},
+  metaSpend:{type:'cols',title:'Chi phí Meta Ads theo ngày (USD)',sub:'giờ VN',labels:['5/11','6/11','7/11'],c:'--s1',v:[98.33,98.75,39.17],fmt:v=>v.toFixed(2)},
+  spfInstalls:{type:'cols',title:'Install từ Shopify App Store Ads theo ngày',sub:'BigQuery raw.spf_ads · 5–7/11 chưa sync',labels:D14.slice(0,11),split:7,c:'--s1',v:[5,9,5,2,6,6,5,8,9,5,1]},
+  spfSpend:{type:'cols',title:'Chi phí Shopify App Store Ads theo ngày',sub:'tiền tệ không ghi trong bảng nguồn',labels:D14.slice(0,11),split:7,c:'--s1',v:[141,114.51,109.6,85.5,86.5,77,72.5,87,105,94.5,67.5],fmt:v=>v.toFixed(1)}
+};
+
+/* ---------- tiny SVG chart kit ---------- */
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const tip=document.getElementById('tip');
+  const css=(el,v)=>getComputedStyle(el).getPropertyValue(v).trim();
+  const fmtN=v=>Number.isInteger(v)?v.toLocaleString('en-US'):v.toLocaleString('en-US',{maximumFractionDigits:2});
+  function E(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+  function nice(max){if(max<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(max)));const m=max/p;return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p}
+  function showTip(html,x,y){tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth,h=tip.offsetHeight;let l=x+14,t=y+14;if(l+w>innerWidth-8)l=x-w-14;if(t+h>innerHeight-8)t=y-h-14;tip.style.left=l+'px';tip.style.top=t+'px'}
+  function hideTip(){tip.style.opacity=0}
+  function head(box,cfg,legend){
+    box.innerHTML='';
+    const t=document.createElement('div');t.className='chart-t';t.textContent=cfg.title;box.appendChild(t);
+    const s=document.createElement('div');s.className='chart-s';s.textContent=cfg.sub||'';box.appendChild(s);
+    if(legend&&legend.length>1){const lg=document.createElement('div');lg.className='legend';legend.forEach(([n,c])=>{const sp=document.createElement('span');sp.innerHTML='<i style="background:'+c+'"></i>';sp.appendChild(document.createTextNode(n));lg.appendChild(sp)});box.appendChild(lg)}
+  }
+  function mdTable(cfg,head,rows){return '**Chart: '+cfg.title+'** ('+(cfg.sub||'')+')\n\n| '+head.join(' | ')+' |\n|'+head.map(()=>' --- ').join('|')+'|\n'+rows.map(r=>'| '+r.join(' | ')+' |').join('\n')}
+
+  function line(box,cfg){
+    const cols=cfg.series.map(s=>css(box,s.c));
+    head(box,cfg,cfg.series.map((s,i)=>[s.name,cols[i]]));
+    const W=Math.max(300,box.clientWidth-32),H=230,L=34,R=cfg.series.length>1?120:44,T=10,B=26;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const n=cfg.labels.length,max=nice(Math.max(...cfg.series.flatMap(s=>s.v))*1.05);
+    const x=i=>L+(W-L-R)*i/(n-1),y=v=>T+(H-T-B)*(1-v/max);
+    for(let k=0;k<=4;k++){const v=max*k/4;E('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:css(box,k?'--grid':'--axis'),'stroke-width':1},svg);E('text',{x:L-6,y:y(v)+4,'text-anchor':'end','font-size':11,fill:css(box,'--tx-m')},svg,fmtN(v))}
+    cfg.labels.forEach((lb,i)=>{if(i%2===0||i===n-1)E('text',{x:x(i),y:H-8,'text-anchor':'middle','font-size':11,fill:css(box,'--tx-m')},svg,lb)});
+    if(cfg.split){const sx=(x(cfg.split-1)+x(cfg.split))/2;E('line',{x1:sx,x2:sx,y1:T,y2:H-B,stroke:css(box,'--axis'),'stroke-dasharray':'3 3'},svg);E('text',{x:sx-6,y:T+10,'text-anchor':'end','font-size':11,fill:css(box,'--tx-m')},svg,'tuần trước');E('text',{x:sx+6,y:T+10,'font-size':11,fill:css(box,'--tx-m')},svg,'tuần này')}
+    const ends=[];
+    cfg.series.forEach((s,si)=>{
+      E('path',{d:s.v.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' '),fill:'none',stroke:cols[si],'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+      ends.push({y:y(s.v[n-1]),name:s.name,c:cols[si]});
+    });
+    if(cfg.series.length>1){ends.sort((a,b)=>b.y-a.y);ends[0].y=Math.min(ends[0].y,H-B-4);for(let i=1;i<ends.length;i++)if(ends[i-1].y-ends[i].y<13)ends[i].y=ends[i-1].y-13;
+      ends.forEach(e=>{E('text',{x:W-R+8,y:e.y+4,'font-size':11,fill:css(box,'--tx')},svg,e.name.replace(/ \(.*\)/,''))})}
+    const cross=E('line',{y1:T,y2:H-B,stroke:css(box,'--axis'),'stroke-width':1,opacity:0},svg);
+    const dots=cfg.series.map((s,si)=>E('circle',{r:4,fill:cols[si],stroke:css(box,'--surface')||'#fff','stroke-width':2,opacity:0},svg));
+    const hit=E('rect',{x:L,y:T,width:W-L-R,height:H-T-B,fill:'transparent'},svg);
+    hit.addEventListener('mousemove',ev=>{
+      const r=svg.getBoundingClientRect(),px=(ev.clientX-r.left)*W/r.width;
+      const i=Math.max(0,Math.min(n-1,Math.round((px-L)/((W-L-R)/(n-1)))));
+      cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));cross.setAttribute('opacity',1);
+      dots.forEach((d,si)=>{d.setAttribute('cx',x(i));d.setAttribute('cy',y(cfg.series[si].v[i]));d.setAttribute('opacity',1)});
+      showTip('<b>'+cfg.labels[i]+'</b><br>'+cfg.series.map((s,si)=>'<span class="sw" style="background:'+cols[si]+'"></span>'+s.name+': <b>'+fmtN(s.v[i])+'</b>').join('<br>'),ev.clientX,ev.clientY);
+    });
+    hit.addEventListener('mouseleave',()=>{cross.setAttribute('opacity',0);dots.forEach(d=>d.setAttribute('opacity',0));hideTip()});
+    box.dataset.md=mdTable(cfg,['Ngày',...cfg.series.map(s=>s.name)],cfg.labels.map((lb,i)=>[lb,...cfg.series.map(s=>s.v[i])]));
+  }
+
+  function barh(box,cfg){
+    const cols=cfg.series.map(s=>css(box,s.c));
+    head(box,cfg,cfg.series.map((s,i)=>[s.name,cols[i]]));
+    const W=Math.max(300,box.clientWidth-32),bh=9,gap=2,grp=cfg.series.length*(bh+gap)+12,T=4,LW=Math.min(170,W*0.42),R=40;
+    const H=T+grp*cfg.cats.length+4;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const max=Math.max(...cfg.series.flatMap(s=>s.v))||1,x=v=>(W-LW-R)*v/max;
+    E('line',{x1:LW,x2:LW,y1:T,y2:H-4,stroke:css(box,'--axis')},svg);
+    cfg.cats.forEach((cat,ci)=>{
+      const gy=T+ci*grp;
+      E('text',{x:LW-8,y:gy+grp/2,'text-anchor':'end','font-size':12,fill:css(box,'--tx')},svg,cat);
+      cfg.series.forEach((s,si)=>{
+        const v=s.v[ci],by=gy+4+si*(bh+gap),w=Math.max(v?2:0,x(v));
+        const p=E('path',{d:w>4?`M${LW} ${by}h${w-4}a4 4 0 0 1 4 4v${bh-8}a4 4 0 0 1-4 4h-${w-4}z`:`M${LW} ${by}h${w}v${bh}h-${w}z`,fill:cols[si]},svg);
+        E('text',{x:LW+w+5,y:by+bh-1,'font-size':11,fill:css(box,si?'--tx-m':'--tx')},svg,fmtN(v));
+        const hit=E('rect',{x:LW,y:by-1,width:W-LW,height:bh+2,fill:'transparent'},svg);
+        const note=cfg.notes&&cfg.notes[cat]&&si===1?'<br><span style="color:var(--muted)">'+cfg.notes[cat]+'</span>':'';
+        hit.addEventListener('mousemove',ev=>showTip('<b>'+cat+'</b><br>'+cfg.series.map((ss,k)=>'<span class="sw" style="background:'+cols[k]+'"></span>'+ss.name+': <b>'+fmtN(ss.v[ci])+'</b>').join('<br>')+note,ev.clientX,ev.clientY));
+        hit.addEventListener('mouseleave',hideTip);
+      });
+    });
+    box.dataset.md=mdTable(cfg,['Mục',...cfg.series.map(s=>s.name)],cfg.cats.map((c,i)=>[c,...cfg.series.map(s=>s.v[i])]));
+  }
+
+  function colsChart(box,cfg){
+    const c=css(box,cfg.c);head(box,cfg);
+    const W=Math.max(300,box.clientWidth-32),H=200,L=40,R=8,T=16,B=26,n=cfg.v.length;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const max=nice(Math.max(...cfg.v)*1.08),y=v=>T+(H-T-B)*(1-v/max),slot=(W-L-R)/n,bw=Math.min(36,slot*0.6);
+    const f=cfg.fmt||fmtN;
+    for(let k=0;k<=4;k++){const v=max*k/4;E('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:css(box,k?'--grid':'--axis')},svg);E('text',{x:L-6,y:y(v)+4,'text-anchor':'end','font-size':11,fill:css(box,'--tx-m')},svg,fmtN(+v.toFixed(1)))}
+    if(cfg.split){const sx=L+slot*cfg.split;E('line',{x1:sx,x2:sx,y1:T-8,y2:H-B,stroke:css(box,'--axis'),'stroke-dasharray':'3 3'},svg);E('text',{x:sx+5,y:T-2,'font-size':11,fill:css(box,'--tx-m')},svg,'tuần này')}
+    const mi=cfg.v.indexOf(Math.max(...cfg.v));
+    cfg.v.forEach((v,i)=>{
+      const cx=L+slot*i+slot/2,h=(H-T-B)*v/max,top=H-B-h;
+      E('path',{d:h>4?`M${cx-bw/2} ${H-B}v-${h-4}a4 4 0 0 1 4-4h${bw-8}a4 4 0 0 1 4 4v${h-4}z`:`M${cx-bw/2} ${H-B}v-${h}h${bw}v${h}z`,fill:c},svg);
+      if(i===mi||i===n-1)E('text',{x:cx,y:top-4,'text-anchor':'middle','font-size':11,fill:css(box,'--tx')},svg,f(v));
+      E('text',{x:cx,y:H-8,'text-anchor':'middle','font-size':11,fill:css(box,'--tx-m')},svg,cfg.labels[i]);
+      const hit=E('rect',{x:L+slot*i,y:T,width:slot,height:H-T-B,fill:'transparent'},svg);
+      hit.addEventListener('mousemove',ev=>showTip('<b>'+cfg.labels[i]+'</b><br>'+f(v),ev.clientX,ev.clientY));
+      hit.addEventListener('mouseleave',hideTip);
+    });
+    box.dataset.md=mdTable(cfg,['Ngày','Giá trị'],cfg.labels.map((l,i)=>[l,cfg.v[i]]));
+  }
+
+  function funnel(box,cfg){
+    const c=css(box,'--s1');head(box,cfg);
+    const W=Math.max(300,box.clientWidth-32),rowH=34,gapH=20,LW=150,n=cfg.steps.length,H=n*rowH+(n-1)*gapH;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const full=W-LW-70;
+    cfg.steps.forEach(([name,v],i)=>{
+      const w=full*(1-i*0.18),y=i*(rowH+gapH);
+      E('text',{x:LW-8,y:y+rowH/2+4,'text-anchor':'end','font-size':12,fill:css(box,'--tx')},svg,name);
+      E('rect',{x:LW,y:y+6,width:w,height:rowH-12,rx:4,fill:c},svg);
+      E('text',{x:LW+w+6,y:y+rowH/2+4,'font-size':12,'font-weight':600,fill:css(box,'--tx')},svg,fmtN(v));
+      if(i<n-1){const nx=cfg.steps[i+1][1],r=(nx/v*100);E('text',{x:LW+8,y:y+rowH+gapH/2+4,'font-size':11,fill:css(box,'--tx-m')},svg,'↓ '+(r<1?r.toFixed(2):r.toFixed(1))+'% sang bước sau')}
+    });
+    box.dataset.md=mdTable(cfg,['Bước','Số','% sang bước sau'],cfg.steps.map(([nm,v],i)=>[nm,v,i<n-1?(cfg.steps[i+1][1]/v*100).toFixed(2)+'%':'']));
+  }
+
+  const R={line,barh,cols:colsChart,funnel};
+  function renderAll(){document.querySelectorAll('[data-chart]').forEach(b=>{const cfg=CHARTS[b.dataset.chart];if(cfg)R[cfg.type](b,cfg)})}
+  renderAll();
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderAll,150)});
+  if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',renderAll);
+})();
+</script>
+
+<script>
+(function(){
+  const root=document.getElementById('report');
+  const RID=root.dataset.report, FILE=root.dataset.file, KEY='mkt-comments:'+RID;
+  const $=s=>document.querySelector(s);
+  const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
+  const secs=[...document.querySelectorAll('[data-sid]')];
+
+  // ---- md conversion ----
+  const clean=s=>s.replace(/\s+/g,' ').trim();
+  function inl(el){return clean(el.textContent)}
+  function toMd(node){
+    let out=[];
+    for(const el of node.children){
+      const tag=el.tagName;
+      if(tag==='H2') out.push('## '+inl(el));
+      else if(tag==='H3') out.push('### '+inl(el));
+      else if(tag==='H4') out.push('#### '+inl(el));
+      else if(tag==='UL') out.push([...el.children].map(li=>'- '+inl(li)).join('\n'));
+      else if(el.classList.contains('tbl-wrap')||tag==='TABLE'){
+        const t=tag==='TABLE'?el:el.querySelector('table');
+        const rows=[...t.rows].map(r=>[...r.cells].map(c=>inl(c).replace(/\|/g,'\\|')));
+        if(rows.length){out.push(['| '+rows[0].join(' | ')+' |','|'+rows[0].map(()=>' --- ').join('|')+'|',...rows.slice(1).map(r=>'| '+r.join(' | ')+' |')].join('\n'))}
+      }
+      else if(el.classList.contains('cards')) out.push([...el.children].map(c=>toMd(c)).join('\n\n'));
+      else if(el.classList.contains('big')) out.push('**'+inl(el)+'**'+(el.nextElementSibling&&el.nextElementSibling.classList.contains('lbl')?' — '+inl(el.nextElementSibling):''));
+      else if(el.classList.contains('lbl')) continue;
+      else if(['missing','grid2','fx','fside'].some(c=>el.classList.contains(c))) out.push(toMd(el));
+      else if(el.classList.contains('chart')) out.push(el.dataset.md||'');
+      else { const t=inl(el); if(t) out.push(t); }
+    }
+    return out.filter(Boolean).join('\n\n');
+  }
+  function fullMd(){
+    const h=['# '+inl($('h1')),inl($('.period'))];
+    secs.forEach(s=>h.push('<!-- section: '+s.dataset.sid+' -->\n'+toMd(s)));
+    return h.join('\n\n')+'\n';
+  }
+  async function copy(text,msg){
+    try{await navigator.clipboard.writeText(text)}catch(e){
+      const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy')}catch(_){} ta.remove();
+    }
+    toast(msg);
+  }
+
+
+  // ---- feedback comments: IndexedDB, with images and files ----
+  const DBN='promer-mkt-feedback',ST='comments',MAXF=15*1024*1024;
+  let db=null,mem=[],cache=[];
+  const openDB=()=>new Promise(res=>{try{const r=indexedDB.open(DBN,1);r.onupgradeneeded=()=>r.result.createObjectStore(ST,{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>res(null)}catch(e){res(null)}});
+  const store=m=>db.transaction(ST,m).objectStore(ST);
+  const allC=()=>!db?Promise.resolve(mem.filter(c=>c.rid===RID)):new Promise(res=>{const r=store('readonly').getAll();r.onsuccess=()=>res(r.result.filter(c=>c.rid===RID).sort((a,b)=>a.at.localeCompare(b.at)));r.onerror=()=>res([])});
+  const putC=c=>{if(!db){mem=mem.filter(x=>x.id!==c.id).concat(c);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').put(c);r.onsuccess=r.onerror=()=>res()})};
+  const delC=id=>{if(!db){mem=mem.filter(x=>x.id!==id);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').delete(id);r.onsuccess=r.onerror=()=>res()})};
+  const lsGet=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}};
+  const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+  const authorEl=$('#author'); authorEl.value=lsGet('promer-mkt-author');
+  authorEl.addEventListener('input',()=>lsSet('promer-mkt-author',authorEl.value.trim()));
+  const fmtT=iso=>new Date(iso).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+  const safeName=n=>n.replace(/[^\w.\-]+/g,'_').slice(-80);
+  function attEl(f,onRemove){
+    const d=document.createElement('div');d.className='att';
+    if(f.type.startsWith('image/')){const im=document.createElement('img');im.src=URL.createObjectURL(f.blob);im.alt=f.name;d.appendChild(im)}
+    else{const ic=document.createElement('span');ic.textContent='📎';d.appendChild(ic)}
+    const n=document.createElement('span');n.textContent=f.name;n.title=f.name;d.appendChild(n);
+    if(onRemove){const x=document.createElement('button');x.type='button';x.textContent='✕';x.title='Bỏ file';x.onclick=onRemove;d.appendChild(x)}
+    return d;
+  }
+  function cmEl(c,onDel){
+    const d=document.createElement('div');d.className='cm';
+    d.innerHTML='<div class="meta"><span></span></div><div class="txt"></div>';
+    d.querySelector('.meta span').textContent=(c.author||'Ẩn danh')+' · '+fmtT(c.at);
+    if(onDel){const b=document.createElement('button');b.type='button';b.textContent='Xoá';b.onclick=e=>{e.stopPropagation();onDel()};d.querySelector('.meta').appendChild(b)}
+    d.querySelector('.txt').textContent=c.text;
+    if(c.files&&c.files.length){const a=document.createElement('div');a.className='atts';c.files.forEach(f=>a.appendChild(attEl(f)));d.appendChild(a)}
+    return d;
+  }
+  async function refresh(){
+    cache=await allC();
+    const by={};cache.forEach(c=>(by[c.sid]=by[c.sid]||[]).push(c));
+    secs.forEach(s=>{const n=(by[s.dataset.sid]||[]).length;s.classList.toggle('has-c',n>0);const b=s.querySelector(':scope>.cbtn');b.classList.toggle('on',n>0);b.textContent=n?'💬 '+n:'💬'});
+    $('#cCount').textContent=cache.length;
+    const pl=$('#plist');pl.innerHTML='';
+    if(!cache.length){pl.innerHTML='<p class="note">Chưa có comment. Rê chuột vào một khối rồi bấm 💬. Comment chỉ lưu trong trình duyệt này. Muốn gửi cho người khác thì bấm "Tải feedback .zip".</p>';return}
+    secs.forEach(s=>{const list=by[s.dataset.sid];if(!list)return;
+      const g=document.createElement('div');g.className='pgrp';
+      const h=document.createElement('div');h.className='sid';h.textContent='#'+s.dataset.sid;
+      h.onclick=()=>{s.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>openPop(s),350)};g.appendChild(h);
+      list.forEach(c=>g.appendChild(cmEl(c)));pl.appendChild(g)});
+  }
+  let pop=null;
+  function closePop(){if(pop){pop.remove();pop=null}}
+  function openPop(s){
+    closePop();
+    const sid=s.dataset.sid,pending=[];
+    pop=document.createElement('div');pop.className='pop';pop.setAttribute('role','dialog');
+    pop.innerHTML='<div class="sidl"></div><div class="exist"></div>'+
+      '<textarea id="cText" placeholder="Góp ý cho khối này… (Ctrl+V để dán ảnh)"></textarea>'+
+      '<div class="atts pend"></div>'+
+      '<div class="row"><span><input id="cFile" type="file" multiple hidden><button type="button" class="att-b">📎 Đính kèm ảnh / file</button></span><span class="hint">hoặc kéo thả file vào đây</span></div>'+
+      '<div class="row"><span class="hint">Ctrl+Enter để lưu</span><span><button type="button" class="c">Huỷ</button> <button type="button" class="primary s">Lưu</button></span></div>';
+    pop.querySelector('.sidl').textContent='#'+sid;
+    const ex=pop.querySelector('.exist');
+    cache.filter(c=>c.sid===sid).forEach(c=>ex.appendChild(cmEl(c,async()=>{await delC(c.id);await refresh();openPop(s)})));
+    const ta=pop.querySelector('textarea'),pend=pop.querySelector('.pend'),fi=pop.querySelector('#cFile');
+    const drawPend=()=>{pend.innerHTML='';pending.forEach((f,i)=>pend.appendChild(attEl(f,()=>{pending.splice(i,1);drawPend()})))};
+    const addFiles=list=>{for(const f of list){if(f.size>MAXF){toast('File quá 15MB: '+f.name);continue}
+      pending.push({name:f.name,type:f.type||'application/octet-stream',size:f.size,blob:f})}drawPend()};
+    pop.querySelector('.att-b').onclick=()=>fi.click();
+    fi.onchange=()=>{addFiles(fi.files);fi.value=''};
+    ta.addEventListener('paste',e=>{
+      const fs=[...((e.clipboardData&&e.clipboardData.items)||[])].filter(it=>it.kind==='file').map(it=>it.getAsFile()).filter(Boolean);
+      if(!fs.length)return;e.preventDefault();
+      addFiles(fs.map((f,i)=>new File([f],'anh-dan-'+Date.now()+'-'+i+'.'+((f.type.split('/')[1]||'png').replace('jpeg','jpg')),{type:f.type})));
+    });
+    pop.addEventListener('dragover',e=>{e.preventDefault();pop.classList.add('drag')});
+    pop.addEventListener('dragleave',()=>pop.classList.remove('drag'));
+    pop.addEventListener('drop',e=>{e.preventDefault();pop.classList.remove('drag');addFiles(e.dataTransfer.files)});
+    pop.querySelector('.c').onclick=closePop;
+    pop.querySelector('.s').onclick=async()=>{
+      const v=ta.value.trim();if(!v&&!pending.length){closePop();return}
+      await putC({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),rid:RID,sid,author:authorEl.value.trim(),text:v,at:new Date().toISOString(),files:pending.slice()});
+      await refresh();closePop();toast('Đã lưu comment');
+    };
+    ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey))pop.querySelector('.s').click();if(e.key==='Escape')closePop()});
+    pop.addEventListener('click',e=>e.stopPropagation());
+    document.body.appendChild(pop);
+    const r=s.getBoundingClientRect(),w=pop.offsetWidth,vw=document.documentElement.clientWidth;
+    pop.style.left=Math.max(window.scrollX+16,Math.min(window.scrollX+r.right-w,window.scrollX+vw-w-16))+'px';
+    pop.style.top=(window.scrollY+r.top+30)+'px';
+    ta.focus();
+  }
+  secs.forEach(s=>{const b=document.createElement('button');b.type='button';b.className='cbtn';b.title='Góp ý cho khối này';
+    b.setAttribute('aria-label','Góp ý cho khối '+s.dataset.sid);b.textContent='💬';b.onclick=e=>{e.stopPropagation();openPop(s)};s.appendChild(b)});
+  document.addEventListener('click',closePop);
+  function feedbackMd(withLinks){
+    const who=authorEl.value.trim()||'Ẩn danh';
+    const parts=['# Feedback cho report '+RID,'','- Người góp ý: '+who,'- Xuất lúc: '+new Date().toISOString(),'- File report: `'+FILE+'`',''];
+    const by={};cache.forEach(c=>(by[c.sid]=by[c.sid]||[]).push(c));
+    secs.forEach(s=>{const list=by[s.dataset.sid];if(!list)return;
+      const body=toMd(s).replace(/```/g,"'''");
+      parts.push('## Section `#'+s.dataset.sid+'`','','Nội dung hiện tại:','','```md',body,'```','');
+      list.forEach(c=>{parts.push('### '+(c.author||'Ẩn danh')+' · '+c.at,'',c.text||'(không có chữ)','');
+        if(c.files&&c.files.length){parts.push('Đính kèm:');
+          c.files.forEach(f=>{const path='attachments/'+c.id+'-'+safeName(f.name);
+            parts.push(withLinks?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});
+          parts.push('')}});
+    });
+    return parts.join('\n');
+  }
+  $('#bPanel').onclick=e=>{e.stopPropagation();$('#panel').classList.toggle('open')};
+  $('#bClose').onclick=()=>$('#panel').classList.remove('open');
+  $('#panel').addEventListener('click',e=>e.stopPropagation());
+  $('#bCopyC').onclick=()=>{if(!cache.length){toast('Chưa có comment');return}copy(feedbackMd(false),'Đã copy md, paste vào Claude Code')};
+  $('#bZip').onclick=async()=>{
+    if(!cache.length){toast('Chưa có comment');return}
+    if(!window.JSZip){toast('Không tải được thư viện zip, hãy dùng Copy md');return}
+    const z=new JSZip();z.file('feedback.md',feedbackMd(true));
+    cache.forEach(c=>(c.files||[]).forEach(f=>z.file('attachments/'+c.id+'-'+safeName(f.name),f.blob)));
+    const blob=await z.generateAsync({type:'blob'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='feedback-'+RID+'-'+safeName(authorEl.value.trim()||'an-danh')+'-'+new Date().toISOString().slice(0,10)+'.zip';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);toast('Đã tải gói feedback');
+  };
+  let armed=false;
+  $('#bClear').onclick=async()=>{const b=$('#bClear');
+    if(!armed){armed=true;b.textContent='Bấm lần nữa để xoá';setTimeout(()=>{armed=false;b.textContent='Xoá hết'},3000);return}
+    for(const c of cache)await delC(c.id);armed=false;b.textContent='Xoá hết';await refresh();toast('Đã xoá hết comment')};
+  openDB().then(d=>{db=d;refresh()});
+  $('#bCopyAll').onclick=()=>copy(fullMd(),'Đã copy md toàn bộ report');
+  // highlight current nav item
+  const links=[...document.querySelectorAll('#toc a')];
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.toggle('cur',l.getAttribute('href')==='#'+en.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('main>.block').forEach(b=>io.observe(b));
+})();
+</script>
+</body>
+</html>
