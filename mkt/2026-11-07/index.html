@@ -108,6 +108,8 @@ ul.plain{margin:6px 0;padding-left:20px}
 .seg.soft{background:var(--accent-soft);color:var(--ink)}
 .seg.o{background:var(--accent);color:#fff}
 .seg.a{background:var(--ink);color:var(--bg)}
+.seg.ol{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.fun-legend i.ol{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)} .fun-legend i.z{background:var(--line)}
 .seg.z{background:var(--line);color:var(--ink-2)}
 .frate{margin:5px 0 5px 144px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-2)}
 .frate .ro{color:var(--accent);font-weight:500} .frate .ra{color:var(--ink);font-weight:500}
@@ -213,7 +215,7 @@ ul.plain{margin:6px 0;padding-left:20px}
 
 <main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v4</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v5</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -316,48 +318,70 @@ ul.plain{margin:6px 0;padding-left:20px}
   <div class="block" id="seo">
     <section data-sid="seo-funnel">
       <h2>SEO &amp; AI Search</h2>
-      <div class="chan-owner"><span class="chip">Hiền</span> Funnel 1–7/11, số nhỏ bên dưới là tuần 25–31/10. Chi tiết theo trang và theo quốc gia nằm trong deck SEO tuần.</div>
+      <div class="chan-owner"><span class="chip">Hiền</span> Performance funnel toàn site · Organic và AI Assistant · 1–7/11, số nhỏ là tuần 25–31/10. Đã loại /lp/* và source affiliate (arrm/artt/ahrm/ahtt).</div>
       <div class="fx">
-        <div class="chart fun" data-md="**Chart: Funnel SEO &amp; AI Search · 1–7/11 (tuần trước)**
+        <div class="chart fun" data-md="**Chart: Performance funnel toàn site · Organic và AI Assistant · 1–7/11 (tuần trước 25–31/10)**
 
 | Stage | Organic | AI Assistant |
 | --- | --- | --- |
-| Từ khóa có hiển thị (GSC) | 2,046 (2,029) · top 3: 389, 4–10: 1,024, 11–20: 380, 21+: 253 | – |
+| Từ khóa có hiển thị (GSC) | 2,046 (2,029), top 10: 1,413 = 69.1% (1,448 = 71.4%) | – |
 | Impressions (GSC) | 38,722 (40,153) | – |
-| Click (GSC) | 794 (697) · CTR 2.05% (1.74%) | – |
-| Session promer.ai (GA4) | 1,080 (977) | 299 (353) |
-| click-to-webapp (session) | 139 (111) · 12.9% (11.4%) | 32 (46) · 10.7% (13.0%) |
-| Sign-up | 23 (27) · 16.5% (24.3%) | 13 (9) · 40.6% (19.6%) |
-| Paid (user) | nâng gói 0 (3) · mua credit 1 (1) | 0 (0) |">
-          <div class="fun-legend"><span><i class="o"></i>Google / Organic Search</span><span><i class="a"></i>AI Assistant (ChatGPT, Claude, Gemini…)</span></div>
+| CTR | 2.05% (1.74%) | – |
+| Click (GSC) | 794 (697) | – |
+| Session google/organic ÷ click GSC | 1.3× (1.3×) | – |
+| Session promer.ai | 1,080 (977) | 299 (353) |
+| Session → click-to-webapp | 12.9% (11.4%) | 10.7% (13.0%) |
+| click-to-webapp (session) | 139 (111) | 32 (46) |
+| click-to-webapp → sign-up (user, funnel) | 17.1% (18.2%) | 32.3% (20.0%) |
+| Sign-up landing promer.ai (user) | 23 (27) | 13 (9) |
+| Sign-up landing /sign-in, URL có tham số Google Ads | 0 (94) | 0 (0) |
+| Sign-up → paid, cùng user trong tuần | promer.ai 0% (7.4%, 2 trên 27) · /sign-in 0% (0%) | 0% (0%) |
+| Paid (user) | sign-up trong tuần 0 (2) · tài khoản cũ 1 (1) · nâng gói 0 (3) · mua credit 1 (1) | 0 (0) |">
+          <div class="fun-legend"><span><i class="o"></i>Organic</span><span><i class="ol"></i>Organic, landing /sign-in (URL có tham số Google Ads)</span><span><i class="z"></i>Paid, tài khoản cũ</span><span><i class="a"></i>AI Assistant</span></div>
           <div class="frow"><div class="flab"><b>Keyword ranking</b><span>GSC · từ khóa có hiển thị</span></div>
-            <div class="fbar" style="width:100%"><div class="seg soft"><b>2,046 từ khóa</b><span>top 3: 389 · 4–10: 1,024 · 11–20: 380 · 21+: 253</span><em>tuần trước 2,029 · top 3: 364</em></div></div></div>
+            <div class="fbar" style="width:100%"><div class="seg soft"><b>2,046 từ khóa · 1,413 trong top 10</b><span>top 3: 389 · 4–10: 1,024 · 11–20: 380 · 21+: 253</span><em>tuần trước 2,029 · top 10 1,448</em></div></div></div>
+          <div class="frate">Tỷ lệ từ khóa trong top 10: 69.1% <s>71.4%</s></div>
           <div class="frow"><div class="flab"><b>Impressions</b><span>GSC</span></div>
-            <div class="fbar" style="width:90%"><div class="seg soft"><b>38,722</b><span>lượt hiển thị trên Google</span><em>tuần trước 40,153</em></div></div></div>
-          <div class="frate">CTR 2.05% <s>1.74%</s></div>
+            <div class="fbar" style="width:95%"><div class="seg soft"><b>38,722</b><span>Google</span><em>tuần trước 40,153 · −4%</em></div></div></div>
+          <div class="frate">CTR: Google 2.05% <s>1.74%</s></div>
           <div class="frow"><div class="flab"><b>Clicks</b><span>GSC</span></div>
-            <div class="fbar" style="width:80%"><div class="seg soft"><b>794</b><span>click từ Google</span><em>tuần trước 697</em></div></div></div>
-          <div class="frate mono-s">AI Assistant vào funnel từ bước này ↓</div>
+            <div class="fbar" style="width:90%"><div class="seg soft"><b>794</b><span>Google</span><em>tuần trước 697 · +14%</em></div></div></div>
+          <div class="frate">session google/organic = 1.3× click GSC <s>1.3×</s></div>
           <div class="frow"><div class="flab"><b>Sessions</b><span>GA4 · trên promer.ai</span></div>
-            <div class="fbar split" style="width:70%"><div class="seg o" style="flex:3"><b>1,080</b><span>Organic · tt 977</span></div><div class="seg a" style="flex:1.2"><b>299</b><span>AI · tt 353</span></div></div></div>
-          <div class="frate"><span class="ro">Organic 12.9%</span> · <span class="ra">AI 10.7%</span> <s>11.4% · 13.0%</s></div>
+            <div class="fbar split" style="width:85%"><div class="seg o" style="flex:3"><b>1,080</b><span>Organic · tt 977</span></div><div class="seg a" style="flex:1.2"><b>299</b><span>AI · tt 353</span></div></div></div>
+          <div class="frate">session → click-to-webapp: <span class="ro">Organic 12.9%</span> · <span class="ra">AI 10.7%</span> <s>11.4% · 13.0%</s></div>
           <div class="frow"><div class="flab"><b>click-to-webapp</b><span>GA4 · session</span></div>
-            <div class="fbar split" style="width:60%"><div class="seg o" style="flex:2.4"><b>139</b><span>Organic · tt 111</span></div><div class="seg a" style="flex:1"><b>32</b><span>AI · tt 46</span></div></div></div>
-          <div class="frate"><span class="ro">Organic 16.5%</span> · <span class="ra">AI 40.6%</span> <s>24.3% · 19.6%</s></div>
-          <div class="frow"><div class="flab"><b>Sign-up</b><span>google + email</span></div>
-            <div class="fbar split" style="width:50%"><div class="seg o" style="flex:1.5"><b>23</b><span>Organic · tt 27</span></div><div class="seg a" style="flex:1"><b>13</b><span>AI · tt 9</span></div></div></div>
-          <div class="frate">nâng gói ÷ sign-up: <span class="ro">Organic 0%</span> · <span class="ra">AI 0%</span></div>
-          <div class="frow"><div class="flab"><b>Paid users</b><span>nâng gói · mua credit</span></div>
-            <div class="fbar split" style="width:40%"><div class="seg o" style="flex:1.3"><b>0 · 1</b><span>Organic · tt 3 · 1</span></div><div class="seg z" style="flex:1"><b>0</b><span>AI · tt 0</span></div></div></div>
+            <div class="fbar split" style="width:80%"><div class="seg o" style="flex:2.4"><b>139</b><span>Organic · tt 111</span></div><div class="seg a" style="flex:1"><b>32</b><span>AI · tt 46</span></div></div></div>
+          <div class="frate">click-to-webapp → sign-up: <span class="ro">Organic 17.1%</span> · <span class="ra">AI 32.3%</span> <s>18.2% · 20.0%</s></div>
+          <div class="frow"><div class="flab"><b>Sign-up</b><span>user · google + email</span></div>
+            <div class="fbar split" style="width:76%"><div class="seg o" style="flex:1.6"><b>23</b><span>Org web · tt 27</span></div><div class="seg ol" style="flex:1"><b>0</b><span>Org /sign-in · tt 94</span></div><div class="seg a" style="flex:1.2"><b>13</b><span>AI · tt 9</span></div></div></div>
+          <div class="frate">sign-up → paid: <span class="ro">Org web 0%</span> · Org /sign-in 0% · <span class="ra">AI 0%</span> <s>7.4% · 0% · 0%</s></div>
+          <div class="frow"><div class="flab"><b>Paid</b><span>user · nâng gói + mua credit</span></div>
+            <div class="fbar split" style="width:72%"><div class="seg o" style="flex:1"><b>0</b><span>Org web · tt 2</span></div><div class="seg z" style="flex:1"><b>1</b><span>tài khoản cũ · tt 1</span></div><div class="seg a" style="flex:1"><b>0</b><span>AI · tt 0</span></div></div></div>
+          <div class="frate">nâng gói 0 · mua credit 1 <s>nâng gói 3 · mua credit 1</s></div>
         </div>
         <div class="fside">
           <div class="eyebrow">Đọc funnel</div>
-          <div class="card"><b>Google</b><br>Click 794 (+14%), CTR 2.05% (1.74%). Top 3: 389 từ khóa (364). Sign-up 23 (27), 0 nâng gói (3).</div>
-          <div class="card"><b>AI Assistant</b><br>Session 299 (353), click-to-webapp 32 (46). Sign-up 13 (9). Hai tuần liền 0 paid.</div>
-          <div class="card warnc"><b>Lưu ý</b><br>Sign-up Organic tuần trước đã trừ 94 sign-up mang gclid. Số GSC ngày 7/11 có thể chưa đủ.</div>
-          <details class="src"><summary>Nguồn &amp; cách tính</summary><div class="note">GSC sc-domain:promer.ai. GA4 517415274: sessionPrimaryChannelGroup, session_start trên hostName promer.ai, đã loại source arrm/artt/ahrm/ahtt. Tỷ lệ = bước dưới ÷ bước trên. Session Organic gồm cả Bing/Yahoo nên không so trực tiếp với click GSC. Sign-up và paid xảy ra trên app.</div></details>
+          <div class="card"><b>Click +14%, tăng ở Blogs</b><br>Blogs 529 click (430), Pages 167 (143), /winning-ad-library/ 100 (125). Top 10 chiếm 69.1% từ khóa (71.4%).</div>
+          <div class="card"><b>/sign-in có tham số Google Ads: 0 (94)</b><br>Tuần trước 94 sign-up Google Ads bị GA4 xếp vào Organic. Tuần này sign-up Google Ads nằm đúng ở Paid Search (45). Sign-up Organic trên promer.ai: 23 (27).</div>
+          <div class="card"><b>AI: session −15%, /winning-ad-library/ chiếm 73%</b><br>217 trên 299 session AI vào /winning-ad-library/, 8 click-to-webapp. Sign-up AI 13 (9), 0 paid cả hai tuần.</div>
+          <div class="card warnc"><b>Paid Organic: 1 user, tài khoản cũ</b><br>Mua credit, 0 nâng gói (tuần trước 3). 0 trên 23 người sign-up trên promer.ai trong tuần đã paid (tuần trước 2 trên 27).</div>
+          <details class="src"><summary>Nguồn &amp; cách tính</summary><div class="note">GSC sc-domain:promer.ai, báo cáo theo ngày; từ khóa theo query-level. GA4 517415274: sessionPrimaryChannelGroup; session = session có session_start trên promer.ai; click-to-webapp = số session có event; click-to-webapp → sign-up và sign-up → paid = funnel GA4 đếm cùng user trong tuần; sign-up = complete_sign_up_google + complete_sign_up_email (user); paid = complete_plan_upgrade_on_billing_detail + submit_add_credit_on_billing_detail (user). Org /sign-in = sign-up landing app /sign-in có gclid, gad_source, gbraid hoặc utm_medium=cpc trong URL. Đã loại landing /lp/* và source arrm/artt/ahrm/ahtt.</div></details>
         </div>
       </div>
+    </section>
+    <section data-sid="seo-groups">
+      <h3>Theo nhóm trang</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Nhóm</th><th class="n">Click GSC</th><th class="n">Session Organic</th><th class="n">Session AI</th><th class="n">click-to-webapp Organic</th><th class="n">click-to-webapp AI</th></tr></thead>
+        <tbody>
+          <tr><td>Pages</td><td class="n">167 <span class="prev">(143)</span></td><td class="n">230 <span class="prev">(186)</span></td><td class="n">50 <span class="prev">(65)</span></td><td class="n">87 <span class="prev">(66)</span></td><td class="n">23 <span class="prev">(38)</span></td></tr>
+          <tr><td>Blogs</td><td class="n">529 <span class="prev">(430)</span></td><td class="n">600 <span class="prev">(518)</span></td><td class="n">13 <span class="prev">(11)</span></td><td class="n">18 <span class="prev">(9)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr>
+          <tr><td>/winning-ad-library/</td><td class="n">100 <span class="prev">(125)</span></td><td class="n">145 <span class="prev">(163)</span></td><td class="n">217 <span class="prev">(250)</span></td><td class="n">28 <span class="prev">(34)</span></td><td class="n">8 <span class="prev">(7)</span></td></tr>
+          <tr><td>Khác</td><td class="n">1 <span class="prev">(1)</span></td><td class="n">106 <span class="prev">(109)</span></td><td class="n">19 <span class="prev">(27)</span></td><td class="n">6 <span class="prev">(2)</span></td><td class="n">1 <span class="prev">(1)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: Pages = trang trong sitemap pages.xml, /tools/* và /ai-ugc-examples. Click GSC tính theo trang (page-level) nên tổng lệch vài click so với số toàn site. Session và click-to-webapp tính theo landing page trên promer.ai.</div>
     </section>
     <section data-sid="seo-charts">
       <div class="grid2">
@@ -541,6 +565,7 @@ ul.plain{margin:6px 0;padding-left:20px}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v5, làm lại phần SEO theo cách tính của deck SEO: tách sign-up landing promer.ai và /sign-in (URL có tham số Google Ads), tách paid trong tuần và tài khoản cũ, click-to-webapp → sign-up và sign-up → paid tính bằng funnel GA4 theo user, tỷ lệ từ khóa top 10, session ÷ click GSC, bảng theo nhóm trang (Pages, Blogs, /winning-ad-library/). Loại /lp/* và source affiliate.</li>
         <li><span class="mono">2026-11-09</span> · v3, bỏ bảng SEO, thay bằng funnel từng stage theo kiểu deck SEO cũ (keyword ranking → impressions → click → session → click-to-webapp → sign-up → paid, chia Organic và AI). Thêm số từ khóa theo nhóm thứ hạng từ GSC.</li>
         <li><span class="mono">2026-11-09</span> · v2, thêm 10 chart: sign-up theo ngày và theo kênh, nâng gói theo kênh, GSC và session theo ngày, campaign Google Ads, funnel và chi phí Meta Ads, install và chi phí Shopify Ads. Mỗi chart có tooltip khi rê chuột, khi copy md thì chart xuất ra dạng bảng.</li>
         <li><span class="mono">2026-11-09</span> · v1, bản nháp đầu tiên. Số GA4 và GSC kéo ngày 9/11, số Meta và Shopify Ads lấy từ file xuất của Vy ngày 9/11.</li>
