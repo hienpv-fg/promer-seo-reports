@@ -240,7 +240,7 @@ ul.plain{margin:6px 0;padding-left:20px}
 
 <main id="report" data-report="mkt-2026-11-07" data-file="reports/mkt-hub/index.html">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v8</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v9</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -623,12 +623,81 @@ ul.plain{margin:6px 0;padding-left:20px}
   <div class="block" id="youtube">
     <section data-sid="youtube-summary">
       <h2>YouTube</h2>
-      <div class="chan-owner"><span class="chip">Hằng</span><span class="chip">Tiến</span> <span class="chip warn">chờ YouTube Studio</span></div>
+      <div class="chan-owner"><span class="chip">Hằng</span><span class="chip">Tiến</span> Kênh Promer Shorts · nguồn: sheet YouTube của team (tab Youtube Plan và Tháng 11/2026, YouTube API cập nhật 09/11 16:09). Tuần trong sheet là <b>T2→CN 2–8/11 (W45)</b>, lệch 1 ngày so với tuần của báo cáo.</div>
+      <div class="kpis5">
+        <div><b>12 / 16</b><span>video đã đăng trên số lên lịch trong W45 (10 từ kho công ty, 2 tự làm)</span></div>
+        <div><b>1,000</b><span>view của các video lên lịch W45, đo ngày 9/11 (cộng dồn từ lúc đăng)</span></div>
+        <div><b>1,313</b><span>view toàn kênh 1–7/11, sheet ghi +179% so với 7 ngày trước</span></div>
+        <div><b>+1</b><span>người đăng ký trong 7 ngày, tổng 51</span></div>
+        <div><b>37.4%</b><span>xem tiếp TB (viewed vs swiped) của video W45</span></div>
+      </div>
       <ul class="plain">
-        <li>Session GA4 từ <span class="mono">youtube.com / referral</span>: 19 (13), 0 click-to-webapp.</li>
-        <li>Kênh Organic Video trong GA4 có 34 session (22), nhưng trong đó có 14 (9) từ netflix.com. Phần netflix.com không phải traffic YouTube, nên không tính vào kênh này.</li>
-        <li>Campaign quảng cáo YouTube trên Google Ads nằm ở mục Google Ads (47 session, 1 sign-up).</li>
+        <li>Session GA4 từ <span class="mono">youtube.com / referral</span> 1–7/11: 19 (13), 0 click-to-webapp. Cột "Click Link" trong sheet đang trống hoặc bằng 0.</li>
+        <li>Campaign quảng cáo YouTube trên Google Ads nằm ở mục Google Ads (47 session, 1 sign-up), không thuộc kênh organic này.</li>
       </ul>
+    </section>
+    <section data-sid="youtube-findings">
+      <h3>Đánh giá tuần 1 (team YouTube tự ghi trong sheet)</h3>
+      <div class="cards ins">
+        <div class="card"><h4>Đăng lại S08 không tick nhãn AI: video nhiều view nhất tuần</h4><div class="big">273</div><div class="lbl">view S08 (bản cũ có tick AI: 23)</div>
+          <ul><li>Feed mang 92.7% view, nhưng xem tiếp chỉ 5.5%.</li><li>Đăng ngày 3/11, video tự làm, pillar Mùa vụ, tính năng Video Prompt.</li></ul></div>
+        <div class="card"><h4>Short 14 giây một ý được xem lặp</h4><div class="big">242</div><div class="lbl">view C02, thời lượng xem TB 58 giây (APV 421%)</div>
+          <ul><li>Video kho công ty, đăng 3/11 20:30, feed 64.5%.</li><li>C03 cũng có APV 278% nhưng chỉ 23 view.</li></ul></div>
+        <div class="card"><h4>Video được feed đẩy thì bị lướt nhiều</h4><div class="big">4.5–7.9%</div><div class="lbl">xem tiếp của S08, C06, C07, C09 (mỗi video 97–273 view)</div>
+          <ul><li>Ngược lại C03, C04, C05 xem tiếp 43–88% nhưng chỉ 11–23 view.</li><li>Hướng sửa team ghi: khung đầu thấy thành phẩm, chữ to tối đa 8 từ, mục tiêu xem tiếp ≥ 25% trên video feed.</li></ul></div>
+        <div class="card"><h4>Kho công ty kéo trung bình xuống</h4><div class="big">5 / 10</div><div class="lbl">video kho công ty dưới 25 view</div>
+          <ul><li>C05 52 giây, 13 view; C08 6 view. Team đề xuất chỉ dùng video kho ≤ 20 giây để lấp ca trống.</li></ul></div>
+        <div class="card"><h4>Vận hành: lỡ lịch và chưa có video dài</h4><div class="big">0</div><div class="lbl">video dài trong tuần</div>
+          <ul><li>S07 lỡ lịch 06/11, vẫn Unlisted (13 view qua link), chờ quyết định đăng hay bỏ.</li><li>SEXT (Chrome Extension) đăng 06/11 20:30: 9 view, 75% từ trang kênh.</li><li>S04, S05, S06 chưa đăng (đang dựng hoặc mới có kịch bản).</li></ul></div>
+      </div>
+    </section>
+    <section data-sid="youtube-videos">
+      <h3>View và xem tiếp theo video (W45)</h3>
+      <div class="chart viz" data-chart="ytViews"></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Mã · video</th><th>Ngày đăng</th><th>Nguồn</th><th class="n">View</th><th class="n">Xem tiếp</th><th class="n">APV</th><th class="n">Like</th></tr></thead>
+        <tbody>
+          <tr><td>S08 · The Easiest Way to Give Every Colorway Its Own Ad</td><td>03/11</td><td>Tự làm</td><td class="n">273</td><td class="n">5.5%</td><td class="n">53%</td><td class="n">3</td></tr>
+          <tr><td>C02 · Never Made a Video Ad for Your Store? Try This AI Workflow</td><td>03/11</td><td>Kho</td><td class="n">242</td><td class="n">20.0%</td><td class="n">421%</td><td class="n">3</td></tr>
+          <tr><td>C07 · 6 Products. 6 Video Ads. All Made With AI</td><td>07/11</td><td>Kho</td><td class="n">129</td><td class="n">5.3%</td><td class="n">19%</td><td class="n">4</td></tr>
+          <tr><td>C06 · The Secret to High-Converting Video Ads in 2026</td><td>05/11</td><td>Kho</td><td class="n">128</td><td class="n">4.5%</td><td class="n">95%</td><td class="n">2</td></tr>
+          <tr><td>C09 · TikTok Shop Sales Up 66%. Here's the Video Habit Behind It</td><td>08/11</td><td>Kho</td><td class="n">97</td><td class="n">7.9%</td><td class="n">61%</td><td class="n">0</td></tr>
+          <tr><td>C01 · How Top Stores Turn 1 Photo Into Endless Video Ads</td><td>03/11</td><td>Kho</td><td class="n">29</td><td class="n">30.3%</td><td class="n">34%</td><td class="n">1</td></tr>
+          <tr><td>C10 · Stop Doing These 3 Things on Your First Ad</td><td>08/11</td><td>Kho</td><td class="n">27</td><td class="n">–</td><td class="n">–</td><td class="n">0</td></tr>
+          <tr><td>C03 · You Don't Need a Better Black Friday Ad — You Need This</td><td>04/11</td><td>Kho</td><td class="n">23</td><td class="n">42.9%</td><td class="n">278%</td><td class="n">2</td></tr>
+          <tr><td>S07 · The Ring Waited in a Pocket for Months (Unlisted)</td><td>lỡ lịch 06/11</td><td>Tự làm</td><td class="n">13</td><td class="n">88.9%</td><td class="n">59%</td><td class="n">0</td></tr>
+          <tr><td>C05 · Stop Filming New Video Ads Every Week. Use AI Instead</td><td>05/11</td><td>Kho</td><td class="n">13</td><td class="n">87.5%</td><td class="n">16%</td><td class="n">2</td></tr>
+          <tr><td>C04 · How Top Brands Drop New Video Ads Every Single Day</td><td>04/11</td><td>Kho</td><td class="n">11</td><td class="n">62.5%</td><td class="n">59%</td><td class="n">3</td></tr>
+          <tr><td>SEXT · Your Competitor's Best Ads Are Public</td><td>06/11</td><td>Tự làm</td><td class="n">9</td><td class="n">60.0%</td><td class="n">59%</td><td class="n">1</td></tr>
+          <tr><td>C08 · New Ad, New Creator, Same Product (Black Friday 50% Off)</td><td>07/11</td><td>Kho</td><td class="n">6</td><td class="n">33.3%</td><td class="n">29%</td><td class="n">1</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: view đo cùng lúc ngày 9/11, nên video đăng sớm có nhiều ngày tích view hơn (C09, C10 đăng 8/11 mới có 1 ngày). Xem tiếp = tỷ lệ người xem không lướt qua (viewed vs swiped). APV = thời lượng xem TB chia độ dài video, trên 100% là có người xem lặp. Ba short tự làm đăng trước W45 vẫn đang có view: S01 248 (đăng 1/11), S03 229 (31/10), S02 179 (29/10, xem tiếp 57.4%, tốt nhất kênh). Tổng view Shorts toàn kênh: 1,656.</div>
+    </section>
+    <section data-sid="youtube-pipeline">
+      <h3>Video ads chuyển đổi và kế hoạch tuần 2</h3>
+      <div class="grid2">
+        <div>
+          <p><b>6 video ads chạy chuyển đổi đã xuất xong, chưa đăng</b> (16:9, 29–34 giây)</p>
+          <ul class="plain">
+            <li>AD01 · Thảm chân cây thông in tên, "Turn any product into AI UGC videos" (Giáng sinh)</li>
+            <li>AD02 · Hộp khăn giấy ông già Noel, "1 link → this" (Giáng sinh)</li>
+            <li>AD03 · "She is not real", áo len cà phê Noel</li>
+            <li>AD04 · "They're not real", 3 người cùng hũ kem dưỡng</li>
+            <li>AD05 · "You don't need a new idea, start from winning ad" (Spy / Clone ads)</li>
+            <li>AD06 · "You don't need a brief. Just a link."</li>
+          </ul>
+        </div>
+        <div>
+          <p><b>Tuần 2 (9–15/11): 6 video lên lịch</b>, 0 đã đăng lúc 9/11</p>
+          <ul class="plain">
+            <li>5 video kho công ty, 9–11/11 (UGC video ads, BFCM Ads, "Have you try Promer"…).</li>
+            <li>Shorts L01 (tự làm), 12/11, chờ duyệt storyboard.</li>
+            <li>Ưu tiên team ghi: hoàn thiện và đăng video dài L01 (3 tính năng, máy sấy tóc) rồi đo sub từ L01; đặt tiêu đề theo từ khóa (AI UGC ads, AI marketing video generator, AI product video), mục tiêu ≥ 30% view từ search; 7/7 ngày có video.</li>
+            <li>Mục tiêu tháng 11 trong sheet chưa điền.</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </div>
 
@@ -641,7 +710,7 @@ ul.plain{margin:6px 0;padding-left:20px}
           <li><b>Google Ads:</b> chi phí, click, conversion theo campaign. Vy hoặc Hằng xuất CSV từ giao diện Google Ads.</li>
           
           <li><b>Meta Business Suite:</b> Facebook Page và Instagram Insights (reach, followers, link click).</li>
-          <li><b>YouTube Studio:</b> views, watch time, subscribers, danh sách video đã đăng (Hằng, Tiến).</li>
+          <li><b>YouTube:</b> watch time và số liệu video dài chưa có trong sheet; cột Click Link đang trống.</li>
           <li><b>context.md:</b> KPI tháng của từng kênh, việc đã làm trong tuần, người phụ trách campaign YouTube Ads.</li>
           
         </ul>
@@ -659,6 +728,7 @@ ul.plain{margin:6px 0;padding-left:20px}
         <li><b>Meta Ads</b>: file xuất của Vy (Meta Ads MCP), giờ VN, USD. Ad account Promer <span class="mono">8478843415526188</span>.</li>
         <li><b>Shopify App Store Ads</b>: BigQuery <span class="mono">promer-data-science.raw.spf_ads</span>, file xuất của Vy, đã dedupe theo lần sync mới nhất.</li>
         <li><b>Instagram</b>: Meta Ads MCP (<span class="mono">ads_get_ig_media</span>), like và comment đo tại ngày 9/11.</li>
+        <li><b>YouTube</b>: sheet của team YouTube (<span class="mono">1lgzysDxm28NY62T6156OeVdeD1ym6USHjleVer0qw4s</span>), tab Youtube Plan và Tháng 11/2026, YouTube API cập nhật 09/11 16:09. Tuần T2→CN.</li>
         <li>GA4 tính theo giờ Los Angeles, Meta theo giờ VN, nên số ngày của hai bên lệch nhau khoảng nửa ngày.</li>
         <li>File gốc: <span class="mono">promer-report/data/2026-11-07/</span> và <span class="mono">data/2026-10-31/</span>.</li>
       </ul>
@@ -670,6 +740,7 @@ ul.plain{margin:6px 0;padding-left:20px}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-09</span> · v9, làm lại phần YouTube từ sheet của team YouTube: số video đăng, view, xem tiếp, sub, đánh giá tuần 1 của team, view theo từng video, 6 video ads chờ đăng, kế hoạch tuần 2.</li>
         <li><span class="mono">2026-11-09</span> · v8, làm lại phần Shopify App từ sheet Promer Daily Control: install, gỡ, subscription, paid install, net payout (Partner API), funnel listing (GA4 listing), install theo nguồn, App Store Ads đủ 7 ngày (manual_sas), rank App Store, changelog ASO.</li>
         <li><span class="mono">2026-11-09</span> · v7, làm lại phần Meta Ads theo nội dung thật: hàng số chính, 5 điểm chính, chi phí và funnel theo ngày, 3 ad set (ngân sách, tệp, kết quả), từng ad có chi phí kèm link bài đăng, đối chiếu GA4 theo ad, vị trí hiển thị và thị trường, diễn biến tuần đầu từ activity log.</li>
         <li><span class="mono">2026-11-09</span> · v6, mục SEO thay bằng nguyên deck SEO &amp; AI Search tuần 1–7/11 (21 slide, cùng format và cách tính với deck SEO hằng tuần). Comment ở mục này tự ghi số slide.</li>
@@ -727,6 +798,9 @@ const CHARTS={
   spfInstalls:{type:'cols',title:'Install từ Shopify App Store Ads theo ngày',sub:'Partner, ngày UTC · tab manual_sas',labels:D14,split:7,c:'--s1',v:[5,9,5,2,6,6,5,8,9,6,1,8,5,5]},
   spfFunnel:{type:'funnel',title:'Funnel Shopify App · 1–7/11',sub:'GA4 listing + Partner API · tuần trước: 708 → 98 → 111 → 11 → 10',steps:[['Listing session',645],['Add App click',111],['Install (Partner)',120],['Subscription mới',18],['Paid install',8]]},
   spfInstallDaily:{type:'line',title:'Install và gỡ cài theo ngày',sub:'Shopify Partner API · ngày UTC',labels:D14,split:7,series:[{name:'Install',c:'--s1',v:[17,24,11,9,12,21,17,21,16,15,14,17,24,13]},{name:'Gỡ cài',c:'--s2',v:[11,13,16,15,8,23,10,11,16,10,10,15,9,10]}]},
+  ytViews:{type:'barh',title:'View theo video YouTube Shorts · W45 (2–8/11)',sub:'YouTube API, đo 9/11 · S = tự làm, C = kho công ty',
+    cats:['S08','C02','C07','C06','C09','C01','C10','C03','S07 (unlisted)','C05','C04','SEXT','C08'],
+    series:[{name:'View',c:'--s1',v:[273,242,129,128,97,29,27,23,13,13,11,9,6]}]},
   spfSpend:{type:'cols',title:'Chi phí Shopify App Store Ads theo ngày (USD)',sub:'Partner, ngày UTC · tab manual_sas',labels:D14,split:7,c:'--s1',v:[141,114.51,109.6,85.5,86.5,77,72.5,87,105,94.5,67.5,81,75.5,64.5],fmt:v=>v.toFixed(1)}
 };
 
