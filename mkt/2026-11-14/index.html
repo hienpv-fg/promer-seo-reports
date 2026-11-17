@@ -38,7 +38,7 @@ nav a{display:block;padding:5px 8px;border-radius:6px;color:var(--ink-2);text-de
 nav a:hover{background:var(--hover);color:var(--ink)}
 nav a.cur{background:var(--accent-soft);color:var(--accent);font-weight:600}
 .arch{font-size:13px}
-main{padding-block:28px 120px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px));max-width:1120px;min-width:0}
+main{padding-block:28px 120px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px));max-width:1480px;min-width:0}
 .topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:8px}
 .eyebrow{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 h1{font-size:28px;line-height:1.25;margin:4px 0 6px}
@@ -138,6 +138,14 @@ ul.plain{margin:6px 0;padding-left:20px}
 .tabs button{border:none;border-bottom:2px solid transparent;border-radius:0;background:none;padding:8px 14px;color:var(--muted);font-weight:500;margin-bottom:-1px}
 .tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
 .tabp[hidden]{display:none}
+.tabs{flex-wrap:wrap}
+.ins-sum td{vertical-align:top}
+.ins-sum td:nth-child(4),.ins-sum td:nth-child(5){white-space:normal}
+.ins-sum td:nth-child(4){min-width:170px;max-width:220px}
+.ins-sum td:nth-child(5){min-width:360px}
+.ins-sum td.muted{color:var(--muted);font-size:12.5px}
+.ins-sum .chip{white-space:nowrap}
+.cards.ins .card{grid-template-columns:minmax(0,260px) minmax(0,1fr)}
 table.wrapnote{width:100%}
 table.wrapnote th:last-child,table.wrapnote td:last-child{white-space:normal;width:48%;min-width:220px}
 table.tk-next{table-layout:fixed;width:100%}
@@ -259,7 +267,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
 
 <main id="report" data-report="mkt-2026-11-14" data-file="reports/mkt-hub/index.html" data-api="https://script.google.com/macros/s/AKfycbyYfYKow93G7q5pjY9P8IG69jdNWe7QHxmPP-L_JLiV11_h6Wq1EaOz9WarqLVb89JsuQ/exec">
   <div class="topbar">
-    <div class="eyebrow">Báo cáo tuần · bản nháp v2</div>
+    <div class="eyebrow">Báo cáo tuần · bản nháp v5</div>
     <div class="btns">
       <button id="bCopyAll">Copy md toàn bộ</button>
       <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
@@ -278,18 +286,28 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
       <div class="tbl-wrap"><table>
         <thead><tr><th>Kênh</th><th>Phụ trách</th><th class="n">Chi phí</th><th class="n">Sessions</th><th class="n">click-to-webapp</th><th class="n">Sign-up</th><th class="n">Nâng gói (user)</th></tr></thead>
         <tbody>
-          <tr><td>SEO · Organic Search</td><td>Hiền</td><td class="n inv">–</td><td class="n">1,179 <span class="prev">(1,273)</span></td><td class="n">111 <span class="prev">(139)</span></td><td class="n">22 <span class="prev">(23)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>SEO · AI Assistant</td><td>Hiền</td><td class="n inv">–</td><td class="n">324 <span class="prev">(334)</span></td><td class="n">37 <span class="prev">(32)</span></td><td class="n">15 <span class="prev">(13)</span></td><td class="n">1 <span class="prev">(0)</span></td></tr><tr><td>Google Ads · Search</td><td>Hằng</td><td class="n inv">6.35M₫¹ <span class="prev">(13.23M₫)</span></td><td class="n">334 <span class="prev">(369)</span></td><td class="n">4 <span class="prev">(1)</span></td><td class="n">36 <span class="prev">(45)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Google Ads · YouTube (Cross-network)</td><td>Hằng</td><td class="n inv">5.69M₫¹ <span class="prev">(3.27M₫)</span></td><td class="n">687 <span class="prev">(51)</span></td><td class="n">35 <span class="prev">(3)</span></td><td class="n">11 <span class="prev">(2)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Meta Ads · Paid Social</td><td>Vy</td><td class="n inv">–²</td><td class="n">209 <span class="prev">(130)</span></td><td class="n">22 <span class="prev">(18)</span></td><td class="n">8 <span class="prev">(6)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Shopify admin → web · Organic Shopping</td><td>Vy</td><td class="n inv">–</td><td class="n">523 <span class="prev">(540)</span></td><td class="n">0 <span class="prev">(3)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">11 <span class="prev">(10)</span></td></tr><tr><td>Meta Social · Organic Social</td><td>Long, Vy</td><td class="n inv">–</td><td class="n">173 <span class="prev">(95)</span></td><td class="n">15 <span class="prev">(6)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>YouTube organic · youtube.com, youtube/shorts</td><td>Hằng, Tiến</td><td class="n">–</td><td class="n">25 <span class="prev">(20)</span></td><td class="n">1 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Direct</td><td>–</td><td class="n inv">–</td><td class="n">7,183 <span class="prev">(7,475)</span></td><td class="n">28 <span class="prev">(52)</span></td><td class="n">49 <span class="prev">(60)</span></td><td class="n">1 <span class="prev">(2)</span></td></tr><tr><td>Unassigned</td><td>–</td><td class="n inv">–</td><td class="n">1,035 <span class="prev">(1,171)</span></td><td class="n">2 <span class="prev">(28)</span></td><td class="n">32 <span class="prev">(37)</span></td><td class="n">1 <span class="prev">(6)</span></td></tr>
+          <tr><td>SEO · Organic Search</td><td>Hiền</td><td class="n inv">–</td><td class="n">1,179 <span class="prev">(1,273)</span></td><td class="n">111 <span class="prev">(139)</span></td><td class="n">22 <span class="prev">(23)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>SEO · AI Assistant</td><td>Hiền</td><td class="n inv">–</td><td class="n">324 <span class="prev">(334)</span></td><td class="n">37 <span class="prev">(32)</span></td><td class="n">15 <span class="prev">(13)</span></td><td class="n">1 <span class="prev">(0)</span></td></tr><tr><td>Google Ads · Search</td><td>Hằng</td><td class="n inv">6.35M₫¹ <span class="prev">(13.23M₫)</span></td><td class="n">334 <span class="prev">(369)</span></td><td class="n">4 <span class="prev">(1)</span></td><td class="n">36 <span class="prev">(45)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Google Ads · YouTube (Cross-network)</td><td>Hằng</td><td class="n inv">5.69M₫¹ <span class="prev">(3.27M₫)</span></td><td class="n">687 <span class="prev">(51)</span></td><td class="n">35 <span class="prev">(3)</span></td><td class="n">11 <span class="prev">(2)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Meta Ads · Paid Social</td><td>Vy</td><td class="n inv">349 USD²</td><td class="n">209 <span class="prev">(130)</span></td><td class="n">22 <span class="prev">(18)</span></td><td class="n">8 <span class="prev">(6)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Shopify admin → web · Organic Shopping</td><td>Vy</td><td class="n inv">–</td><td class="n">523 <span class="prev">(540)</span></td><td class="n">0 <span class="prev">(3)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">11 <span class="prev">(10)</span></td></tr><tr><td>Meta Social · Organic Social</td><td>Long, Vy</td><td class="n inv">–</td><td class="n">173 <span class="prev">(95)</span></td><td class="n">15 <span class="prev">(6)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>YouTube organic · youtube.com, youtube/shorts</td><td>Hằng, Tiến</td><td class="n">–</td><td class="n">25 <span class="prev">(20)</span></td><td class="n">1 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td><td class="n">0 <span class="prev">(0)</span></td></tr><tr><td>Direct</td><td>–</td><td class="n inv">–</td><td class="n">7,183 <span class="prev">(7,475)</span></td><td class="n">28 <span class="prev">(52)</span></td><td class="n">49 <span class="prev">(60)</span></td><td class="n">1 <span class="prev">(2)</span></td></tr><tr><td>Unassigned</td><td>–</td><td class="n inv">–</td><td class="n">1,035 <span class="prev">(1,171)</span></td><td class="n">2 <span class="prev">(28)</span></td><td class="n">32 <span class="prev">(37)</span></td><td class="n">1 <span class="prev">(6)</span></td></tr>
         </tbody>
       </table></div>
       <div class="note">Cách đọc: Sign-up = số session có <span class="mono">complete_sign_up_google</span> hoặc <span class="mono">complete_sign_up_email</span>. Nâng gói = số user có <span class="mono">complete_plan_upgrade_on_billing_detail</span>. Không cộng các dòng với nhau, vì một user có thể xuất hiện ở nhiều kênh.</div>
-      <div class="note">¹ Chi phí và Sign Up theo report Google Ads của team (VND, ≈ 26,300₫/USD): Search 42 Sign Up (56), YouTube 9 (1). Cột chi phí tô ngược màu: giảm là xanh.<br>² Chưa có file xuất Meta Ads tuần này. Team Meta Ads ghi trong GTM: test Advantage+ 10–11/11 chi 170.73 USD.<br>Số SEO ở bảng này tính cả app.promer.ai, nên lớn hơn số trong deck SEO (deck chỉ tính promer.ai, đã loại /lp/ và nguồn affiliate).</div>
+      <div class="note">¹ Chi phí và Sign Up theo report Google Ads của team (VND, ≈ 26,300₫/USD): Search 42 Sign Up (56), YouTube 9 (1). Cột chi phí tô ngược màu: giảm là xanh.<br>² Chi phí Meta Ads 8–13/11 theo report Meta Ads của Vy (ngày 14/11 đợt 2: 47.62 USD). Cả đợt 1 (5–13/11): 585.43 USD, 12 đăng ký theo Meta.<br>Số SEO ở bảng này tính cả app.promer.ai, nên lớn hơn số trong deck SEO (deck chỉ tính promer.ai, đã loại /lp/ và nguồn affiliate).</div>
       </div>
       <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
-      <div class="chan-owner">Tuần này chưa có file <b>Promer Daily Control</b> (Partner API, GA4 listing, App Store Ads) và report Shopify App Store Ads, nên chưa có bảng theo nguồn.</div>
-      <ul class="plain">
-        <li>Team Shopify ASO ghi trong GTM, giai đoạn 6–11/11: install khoảng 15/ngày (14.9 → 15.2), install rate 22.1% (tuần trước 24.9%).</li>
-        <li>Cross App: Transcy có 2 visit; PluginHive lên ngày 11/11, chưa có số.</li>
-      </ul>
+      <div class="chan-owner">Số GA4 app listing (traffic thật, đã loại Impact và expu) theo bản tóm tắt của Vy. Số trong ngoặc là tuần 1–7/11.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Nguồn listing</th><th>Phụ trách</th><th class="n">Chi phí</th><th class="n">Visit</th><th class="n">Tỷ lệ bấm Install</th></tr></thead>
+        <tbody>
+          <tr><td>Search Ads · roposo</td><td>Vy</td><td class="n inv">147 USD <span class="prev">(126 USD)</span></td><td class="n">74 <span class="prev">(45)</span></td><td class="n">35.1%</td></tr>
+          <tr><td>Search Ads · keyword khác</td><td>Vy</td><td class="n">–</td><td class="n">42 <span class="prev">(45)</span></td><td class="n">45.2%</td></tr>
+          <tr><td>Category (ads + organic)</td><td>Vy</td><td class="n">–</td><td class="n">68 <span class="prev">(60)</span></td><td class="n">44.1%</td></tr>
+          <tr><td>Search organic</td><td>Vy</td><td class="n">–</td><td class="n">43 <span class="prev">(33)</span></td><td class="n">16.3%</td></tr>
+          <tr><td>Cross App</td><td>Vy</td><td class="n">–</td><td class="n">64 <span class="prev">(62)</span></td><td class="n">20.3%</td></tr>
+          <tr><td>Direct / unknown</td><td>–</td><td class="n">–</td><td class="n">179 <span class="prev">(123)</span></td><td class="n">10.1%</td></tr>
+          <tr><td>Khác</td><td>–</td><td class="n">–</td><td class="n">11 <span class="prev">(32)</span></td><td class="n">27.3%</td></tr>
+          <tr><td><b>Tổng</b></td><td></td><td class="n"></td><td class="n">481 <span class="prev">(400)</span></td><td class="n">24.1% <span class="prev">(25.5%)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Toàn app: 113 installs mọi nguồn (106), 105 installs traffic thật (99), 12 shop trả phí trong tuần (18). Install và paid chưa tách được theo nguồn. Chưa có net payout và gỡ cài (thiếu file Promer Daily Control).</div>
       </div>
     </section>
     <section data-sid="overview-chart-signup-daily">
@@ -299,7 +317,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
       <div class="note">Cách đọc: mỗi điểm là số session có sign-up trong ngày (giờ Los Angeles). Google Ads YouTube có sign-up từ 8/11, cùng ngày campaign retarget mới chạy.</div>
       </div>
       <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
-      <div class="note">Chưa có số install theo ngày tuần này (thiếu file Promer Daily Control).</div>
+      <div class="note">Chưa có số install theo ngày tuần này (thiếu file Promer Daily Control). Cả tuần: 113 installs mọi nguồn (106).</div>
       </div>
     </section>
     <section data-sid="overview-chart-channels">
@@ -311,7 +329,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
       </div>
       </div>
       <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
-      <div class="note">Chưa có số install và paid install theo nguồn tuần này.</div>
+      <div class="note">Install và paid chưa tách được theo nguồn listing (nhiều install hoàn tất ở session khác). Visit theo nguồn xem bảng phía trên.</div>
       </div>
     </section>
   </div>
@@ -321,57 +339,7 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
     <section data-sid="insights">
       <h2>Điểm chính tuần này</h2>
       <div class="chan-owner">Chỉ ghi số đo được. Những chỗ chưa rõ nguyên nhân đều ghi là chưa rõ.</div>
-      <div class="cards ins">
-        <div class="card">
-          <h4>YouTube Ads bắt đầu có Sign Up, gần hết từ campaign retarget</h4>
-          <div class="big">9</div><div class="lbl">Sign Up YouTube / Demand Gen (tuần trước 1) · 632K₫ mỗi Sign Up (3.27M₫)</div>
-          <ul>
-            <li>Campaign retarget (từ 8/11): 1.72M₫, 8 Sign Up, 215K₫ mỗi Sign Up.</li>
-            <li>Campaign khách mới: 3.56M₫, 1 Sign Up; 68% chi phí YouTube vào US, US có 1 Sign Up.</li>
-            <li>0 purchase.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Google Ads Search: rẻ hơn 36% mỗi Sign Up, nhưng ít Sign Up hơn</h4>
-          <div class="big">151K₫</div><div class="lbl">mỗi Sign Up Search (tuần trước 236K₫)</div>
-          <ul>
-            <li>Chi phí 6.35M₫ (13.23M₫), Sign Up 42 (56), CTR 16.3% (13.5%).</li>
-            <li>Sign Up giảm ở nhóm nước Tier 1: 25 → 9, chi phí Tier 1 còn 1.54M₫.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Meta Ads: Advantage+ giảm CPM nhưng sign-up đắt hơn</h4>
-          <div class="big">85.37 USD</div><div class="lbl">mỗi sign-up với Advantage+ 10–11/11 (Lookalike 5–9/11: 36.28 USD)</div>
-          <ul>
-            <li>Team ghi: CPM giảm 54% (50.16 → 23.21 USD), chi phí mỗi click CTA giảm 11%. Dừng campaign 11/11 để review.</li>
-            <li>GA4 Paid Social: 209 session (130), 8 sign-up (6).</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Meta Social: view Instagram giảm, Facebook tăng, chưa ra sign-up</h4>
-          <div class="big">9,378</div><div class="lbl">view Instagram tuần 9–15/11 (tuần trước 11,781) · Facebook 5,279 (4,938)</div>
-          <ul>
-            <li>Reel "Look how far AI UGC has come (Amy)": 2,746 view Instagram, 846 view Facebook.</li>
-            <li>Session web từ Facebook + Instagram organic 157 (69), 0 sign-up ở cả hai tuần.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>SEO: click Google giảm 8%, phần lớn ở từ khóa brand từ Vietnam</h4>
-          <div class="big">727</div><div class="lbl">click GSC (tuần trước 794)</div>
-          <ul>
-            <li>Click từ khóa "promer" ở Vietnam: 33 → 6, thấp nhất 5 tuần.</li>
-            <li>"ugc ads" ở US rớt từ top 3 xuống hạng 15 trong 8–12/11, hồi về khoảng 9.</li>
-            <li>Sign-up AI Assistant 15 (13), 1 user nâng gói từ AI.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Nâng gói vẫn đến nhiều nhất từ Shopify admin</h4>
-          <div class="big">11</div><div class="lbl">user nâng gói từ Organic Shopping (admin.shopify.com), tuần trước 10</div>
-          <ul>
-            <li>Các kênh còn lại: Unassigned 1 (6), Direct 1 (2), AI Assistant 1 (0), Organic Search 0 (0).</li>
-          </ul>
-        </div>
-      </div>
+      <div class="tabs" role="tablist" data-group="ins"><button data-tab="all" aria-selected="true">Tổng</button><button data-tab="seo" aria-selected="false">SEO</button><button data-tab="gads" aria-selected="false">Google Ads Search</button><button data-tab="yt" aria-selected="false">YouTube Ads</button><button data-tab="meta" aria-selected="false">Meta Ads</button><button data-tab="social" aria-selected="false">Meta Social</button><button data-tab="shop" aria-selected="false">Shopify App</button></div><div class="tabp" data-group="ins" data-tab="all" data-label="Tổng"><div class="tbl-wrap"><table class="ins-sum"><thead><tr><th>Kênh</th><th>Phụ trách</th><th class="n">Số chính</th><th>Đo gì (tuần trước)</th><th>Điểm chính</th><th>Xu hướng</th></tr></thead><tbody><tr><td><a href="#" class="ins-go" data-go="seo">SEO</a></td><td>Hiền</td><td class="n"><b>727</b></td><td class="muted">click GSC (794)</td><td>Click Google giảm 8%, phần lớn ở từ khóa brand "promer" từ Vietnam (33 → 6). AI Assistant: 15 sign-up (13), 1 nâng gói.</td><td><span class="chip bad">giảm</span></td></tr><tr><td><a href="#" class="ins-go" data-go="gads">Google Ads · Search</a></td><td>Hằng</td><td class="n"><b>151K₫</b></td><td class="muted">mỗi Sign Up (236K₫)</td><td>Rẻ hơn 36% mỗi Sign Up, nhưng Sign Up 56 → 42; phần giảm nằm ở Tier 1 (25 → 9).</td><td><span class="chip warn">có tăng có giảm</span></td></tr><tr><td><a href="#" class="ins-go" data-go="yt">Google Ads · YouTube</a></td><td>Hằng</td><td class="n"><b>9</b></td><td class="muted">Sign Up (1)</td><td>Bắt đầu có Sign Up, 8 trên 9 từ campaign retarget (215K₫ mỗi Sign Up). Campaign khách mới: 3.56M₫, 1 Sign Up.</td><td><span class="chip ok">tốt lên</span></td></tr><tr><td><a href="#" class="ins-go" data-go="meta">Meta Ads</a></td><td>Vy</td><td class="n"><b>$48.79</b></td><td class="muted">mỗi đăng ký, đợt 1 5–13/11 ($585, 12 đăng ký)</td><td>Funnel rơi nhiều nhất ở click (0.74%), bấm CTA sau khi vào trang (26%) và trả tiền (0/7). Tệp rộng Advantage+ thua LAL ($85.36 so với $36.28 mỗi đăng ký). Đợt 2 chạy từ 14/11.</td><td><span class="chip warn">có tăng có giảm</span></td></tr><tr><td><a href="#" class="ins-go" data-go="social">Meta Social</a></td><td>Long, Vy</td><td class="n"><b>9,378</b></td><td class="muted">view Instagram (11,781)</td><td>Instagram giảm, Facebook tăng 5,279 (4,938). Session web 157 (69), 0 sign-up.</td><td><span class="chip warn">có tăng có giảm</span></td></tr><tr><td><a href="#" class="ins-go" data-go="shop">Shopify App</a></td><td>Vy</td><td class="n"><b>113</b></td><td class="muted">installs (106)</td><td>Visit 481 (400) nhờ roposo và Direct. Shop mới bấm nâng cấp 23.1% → 9.9%; paid trong tuần 12 (18).</td><td><span class="chip warn">có tăng có giảm</span></td></tr></tbody></table></div><div class="note">Cách đọc: bấm tên kênh hoặc tab bên trên để xem chi tiết. Số trong ngoặc là tuần 1–7/11.</div></div><div class="tabp" data-group="ins" data-tab="seo" data-label="SEO" hidden><div class="cards ins"><div class="card"><h4>Click Google giảm 8%, phần lớn ở từ khóa brand từ Vietnam</h4><div class="big">727</div><div class="lbl">click GSC (tuần trước 794)</div><ul><li>Click từ khóa "promer" ở Vietnam 5 tuần gần nhất: 22, 27, 13, 33, 6.</li><li>Từ khóa brand đã có campaign Google Ads chạy.</li></ul></div><div class="card"><h4>"ugc ads" ở US rớt từ top 3 xuống hạng 15, đã hồi về khoảng 9</h4><div class="big">14 → 10</div><div class="lbl">click bài what-are-ugc-ads</div><ul><li>Hạng theo ngày: 3.0–3.5 (4–6/11), 13.6–15.8 (8–12/11), 8.6–9.4 (13–15/11).</li><li>Action: tối ưu lại bài; viết thêm bài về chủ đề UGC khác, gắn link về bài (đã làm).</li></ul></div><div class="card"><h4>Bài perfume và shoe vẫn top 3 nhưng ít click hơn</h4><div class="big">200 → 167</div><div class="lbl">click 2 bài</div><ul><li>perfume: tuần này lên hạng ở "perfume video prompt" thay vì "perfume prompts". Action: tối ưu thêm cho "perfume video prompt".</li><li>shoe: kết quả tìm kiếm có AI Overview đứng trên.</li></ul></div><div class="card"><h4>Bài Black Friday, Cyber Monday tụt hạng</h4><div class="big">27/11</div><div class="lbl">Black Friday, còn 2 tuần</div><ul><li>Bài chỉ có 10–20 mẫu; Magnific, Etsy đang đẩy mạnh chủ đề này.</li><li>Đã tăng số mẫu lên 50, theo dõi hạng tuần tới.</li></ul></div><div class="card"><h4>AI Assistant: sign-up tăng, /winning-ad-library/ chưa ra sign-up</h4><div class="big">15</div><div class="lbl">sign-up AI Assistant (13) · 1 nâng gói (0)</div><ul><li>product-image-to-video-ai mang 8 trên 15 sign-up AI.</li><li>/winning-ad-library/: 186 session AI (217), 0 sign-up; người vào chủ yếu tìm mẫu ad creative.</li></ul></div></div></div><div class="tabp" data-group="ins" data-tab="gads" data-label="Google Ads Search" hidden><div class="cards ins"><div class="card"><h4>Search: rẻ hơn nhiều nhưng ít Sign Up hơn</h4><div class="big">151K₫</div><div class="lbl">mỗi Sign Up Search (tuần trước 236K₫, −36%)</div><ul><li>Chi phí 6.35M₫ (13.23M₫), CPC giảm 45%, CTR 16.3% (13.5%).</li><li>Sign Up 56 → 42 (−25%).</li></ul></div><div class="card"><h4>Search: Sign Up giảm nằm ở nhóm nước Tier 1</h4><div class="big">25 → 9</div><div class="lbl">Sign Up từ Tier 1, chi phí 1.54M₫</div><ul><li>Chi phí mỗi Sign Up Tier 1: 302K₫ → 172K₫; tỷ lệ click → Sign Up 20.9%, cao hơn Tier 2 (15.9%).</li><li>Tier 2 (Egypt, Indonesia, Bangladesh, Philippines): 33 Sign Up (31), 146K₫ mỗi Sign Up.</li></ul></div><div class="card"><h4>Search: campaign Tier 2 mất phần lớn impression share vì ngân sách</h4><div class="big">86–90%</div><div class="lbl">impression share mất vì ngân sách ở C1, C2, C3 Tier 2</div><ul><li>C1 AD-AI Tier 2 rẻ nhất: 16 Sign Up, 132K₫ mỗi Sign Up.</li><li>Brand "promer": 822K₫, 5 Sign Up (164K₫ mỗi Sign Up).</li></ul></div></div></div><div class="tabp" data-group="ins" data-tab="yt" data-label="YouTube Ads" hidden><div class="cards ins"><div class="card"><h4>YouTube Ads bắt đầu có Sign Up, gần hết từ campaign retarget</h4><div class="big">9</div><div class="lbl">Sign Up YouTube / Demand Gen (tuần trước 1) · 632K₫ mỗi Sign Up</div><ul><li>Campaign retarget (từ 8/11): 1.72M₫, 8 Sign Up, 215K₫ mỗi Sign Up. Sign Up từ Algeria 3, Bangladesh 2, Indonesia 1.</li><li>Campaign khách mới: 3.56M₫ (63% chi phí), 1 Sign Up; 68% chi phí YouTube vào US, US có 1 Sign Up.</li><li>0 purchase.</li></ul></div><div class="card"><h4>Người click ít khi ở lại trang</h4><div class="big">5.1%</div><div class="lbl">người click có thời gian trên trang từ 60 giây (42 trên 817)</div><ul><li>Sau đó 38 click nút trên web, 9 Sign Up.</li><li>Video View: 411K₫, 0 click, 0 Sign Up.</li></ul></div></div></div><div class="tabp" data-group="ins" data-tab="meta" data-label="Meta Ads" hidden><div class="cards ins"><div class="card"><h4>Đợt 1: 12 đăng ký, 7 người xem bảng giá, 0 paid</h4><div class="big">$48.79</div><div class="lbl">mỗi đăng ký, 5–13/11 ($585.43)</div><ul><li>Click 0.74% (Feed 1.08%); 3 trên 4 người vào trang không bấm CTA; 7 người xem bảng giá, 1 bấm nâng gói, 0 paid (GA4).</li><li>Người đã đăng ký phần lớn có dùng thử: 75% có generate.</li><li>GA4 Paid Social cả kênh 8–14/11: 209 session (130), 8 sign-up (6).</li></ul></div><div class="card"><h4>Tệp rộng Advantage+ CPM rẻ một nửa nhưng đăng ký đắt gấp 2.35 lần</h4><div class="big">$85.36</div><div class="lbl">mỗi đăng ký, tệp rộng 10–11/11 (LAL 5–9/11: $36.28)</div><ul><li>LPV → đăng ký: LAL 18.5%, tệp rộng 4.3%.</li><li>Advantage+ có gợi ý LAL (5/11): $24.58 mỗi đăng ký, 4 đăng ký, mới là tín hiệu. Đợt 2 dùng cấu hình này.</li></ul></div><div class="card"><h4>Right column chiếm 39% hiển thị, 0 đăng ký</h4><div class="big">12/12</div><div class="lbl">đăng ký đến từ Feed</div><ul><li>Right column làm CPM tổng ($33) và CTR tổng (0.74%) thấp hơn số Feed ($54.07, 1.08%).</li><li>Video P3 nhận 65% chi phí, chỉ 8% người xem tới 25% video; ngày đầu đợt 2, hook mới đạt 36–40%.</li></ul></div></div></div><div class="tabp" data-group="ins" data-tab="social" data-label="Meta Social" hidden><div class="cards ins"><div class="card"><h4>View Instagram giảm, Facebook tăng, chưa ra sign-up</h4><div class="big">9,378</div><div class="lbl">view Instagram tuần 9–15/11 (tuần trước 11,781) · Facebook 5,279 (4,938)</div><ul><li>Session web từ Facebook + Instagram organic 157 (69), 0 sign-up ở cả hai tuần.</li></ul></div><div class="card"><h4>Reel so sánh và kể chuyện dẫn đầu tuần</h4><div class="big">2,746</div><div class="lbl">view Instagram reel "Look how far AI UGC has come (Amy)", 846 view Facebook</div><ul><li>4 reel đứng đầu đều là dạng so sánh: "What if your next product ad didn't need a shoot?" 1,422 view, "Ranking the best app for shopify seller" 1,156, "AI ads has come a long way in 2 years" 1,012.</li></ul></div><div class="card"><h4>Reach người lạ tốt, nhưng chưa ai vào trang cá nhân</h4><div class="big">85–98%</div><div class="lbl">người xem mỗi reel chưa follow page</div><ul><li>11 reel tuần 9–15/11: 0 lượt vào trang cá nhân, 0 follow.</li></ul></div></div></div><div class="tabp" data-group="ins" data-tab="shop" data-label="Shopify App" hidden><div class="cards ins"><div class="card"><h4>Installs tăng 7% nhờ visit hồi, nhưng tỷ lệ hoàn tất cài theo session giảm</h4><div class="big">113</div><div class="lbl">installs mọi nguồn (tuần trước 106, TB 125)</div><ul><li>Visit 481 (400): roposo 45 → 74 (chi $126 → $147), Direct 123 → 179. Cross App vẫn thiếu 32 visit so với TB.</li><li>Bấm Install → cài theo session 97.1% → 90.5%; theo user 74.0% → 82.9%. Mỗi user bấm nhiều lần hơn, trên mobile 1.19 → 2.02 lần.</li></ul></div><div class="card"><h4>Shop mới bấm nâng cấp giảm mạnh</h4><div class="big">9.9%</div><div class="lbl">shop mới bấm nâng cấp trong 3 ngày đầu (tuần trước 23.1%, TB 12.7%)</div><ul><li>Giảm ở nhóm mở bảng giá ngay khi vào app: 44% → 18% bấm nâng cấp ngay; nhóm này chiếm 9 trên 11 lượt mất đi.</li><li>Bảng giá, ưu đãi, billing không đổi; generate giữ 41%. Chưa rõ nguyên nhân, Vy kiểm tra log billing và ghi hình phiên.</li><li>Paid trong tuần 12 (18), bằng TB.</li></ul></div><div class="card"><h4>Nâng gói trên web vẫn đến nhiều nhất từ Shopify admin</h4><div class="big">11</div><div class="lbl">user nâng gói từ Organic Shopping (admin.shopify.com), tuần trước 10</div><ul><li>Các kênh còn lại: Unassigned 1 (6), Direct 1 (2), AI Assistant 1 (0), Organic Search 0 (0).</li></ul></div></div></div>
     </section>
   </div>
 
@@ -405,17 +373,19 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
       <h3 class="tk-ch">Meta Ads <span class="chip">Vy</span></h3>
       <div class="cards ins tk">
         <div class="card"><h4>Tắt tệp Shopify merchant (8/11)</h4><div class="big">0</div><div class="lbl">chi phí cho tệp không tạo landing page view · <span class="chip ok">đã dừng</span></div>
-          <ul><li><b>Vì sao:</b> 3 ngày test, 0 landing page view.</li></ul></div>
+          <ul><li><b>Vì sao:</b> 3 ngày test, 0 landing page view.</li><li><b>Số liệu 6–8/11:</b> $51.92, 3,148 hiển thị tới 695 người, 1 click, 0 LPV. Retarget RTG-SIGNUP-NOTPAID: 0 hiển thị cả đợt.</li></ul></div>
         <div class="card"><h4>Đổi Lookalike sang Advantage+ (10–11/11)</h4><div class="big">−54%</div><div class="lbl">CPM theo team (50.16 → 23.21 USD) · <span class="chip bad">sign-up đắt hơn</span></div>
-          <ul><li><b>Vì sao:</b> giảm CPM, để Meta tự tìm khách.</li><li><b>Sau đó:</b> chi 170.73 USD, dừng theo stop rule. Chi phí mỗi sign-up 85.37 USD (2 sign-up), Lookalike 36.28 USD. Team ghi: Right column chiếm 47% impression, nhóm 65+ chiếm 68% click, CA/NZ chiếm 59% impression.</li><li>Dừng campaign 11/11 để review, triển khai lại từ 13/11.</li></ul></div>
+          <ul><li><b>Vì sao:</b> giảm CPM, để Meta tự tìm khách.</li><li><b>Sau đó:</b> chi 170.73 USD, dừng theo stop rule. Chi phí mỗi đăng ký 85.36 USD (2 đăng ký, 0 generate), LAL 36.28 USD. LPV → bấm CTA 31% → 19%, CTA → đăng ký 59% → 22%. 47% hiển thị ở Right column.</li><li>Dừng 23:42 11/11 để review; đợt 2 chạy từ 07:32 14/11.</li></ul></div>
+        <div class="card"><h4>Đợt 2 ADV-LAL (từ 14/11): Advantage+ gợi ý LAL 1% paid merchant, tối ưu đăng ký, 4 hook mới</h4><div class="big">$47.62</div><div class="lbl">chi ngày đầu, 0 đăng ký · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> áp dụng T1–T6 của đợt 1: tệp theo LPV → đăng ký, tối ưu CompleteRegistration thay vì bấm CTA, thay hook video.</li><li><b>Sau đó:</b> Clone_Ad02 40% và Clone_Ad01 36% người xem tới 25% video; video P3 14% (đợt 1: 8%). CPM $52.44, CTR 0.88%. Chấm 21/11.</li></ul></div>
       </div>
 
       <h3 class="tk-ch">Shopify App <span class="chip">Vy</span><span class="chip">Hằng</span></h3>
       <div class="cards ins tk">
-        <div class="card"><h4>Đổi thẻ gói Free trên bảng giá listing thành "Free Forever" (6/11)</h4><div class="big">22.1%</div><div class="lbl">install rate 6–11/11 theo team (tuần trước 24.9%) · <span class="chip warn">chưa đủ ngày</span></div>
-          <ul><li><b>Vì sao:</b> tăng tỷ lệ visitor listing cài app.</li><li><b>Sau đó:</b> team ghi chênh lệch nằm trong biên dao động ±5.8 điểm %, cần 3–4 tuần dữ liệu. Install khoảng 15/ngày.</li></ul></div>
-        <div class="card"><h4>Cross App Transcy và PluginHive; ticket xin feature trong stories</h4><div class="big">2</div><div class="lbl">visit từ Transcy theo team · <span class="chip gray">chưa đo được</span></div>
-          <ul><li>PluginHive lên ngày 11/11, chưa có số. Thay banner listing (brand identity mới) chưa ghi ngày.</li></ul></div>
+        <div class="card"><h4>T3 · Đổi thẻ gói Free trên bảng giá listing thành "Free Forever" (6/11)</h4><div class="big">21.7%</div><div class="lbl">install / visit 6–14/11 (30/10–5/11: 24.9%) · <span class="chip gray">chưa ghi nhận tác động</span></div>
+          <ul><li><b>Vì sao:</b> tăng tỷ lệ visitor listing cài app.</li><li><b>Sau đó:</b> bấm Install 23.0% (26.8%), installs/ngày 14.1 (14.9). Chênh −3.2 ± 5.3 điểm, chưa ghi nhận tác động; chỉ khoảng 7% session cuộn tới 90% trang, bảng giá nằm giữa trang.</li><li>Vy đóng T3, chuyển sang đo banner listing mới.</li></ul></div>
+        <div class="card"><h4>T13 · Cross App PluginHive WebsitePartner, campaign BFCM (8/11)</h4><div class="big">0</div><div class="lbl">install (3 user, 14 session, 0 bấm Install) · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li>Chưa có trong changelog, Vy ghi nhận từ GA4. Next step: ghi vào changelog, đặt mục tiêu và UTM chuẩn cho placement WebsitePartner.</li><li>Cross App cả tuần 64 visit (62), TB 96; Transcy theo team 2 visit.</li></ul></div>
       </div>
 
       <h3 class="tk-ch">Meta Social <span class="chip">Long</span></h3>
@@ -439,14 +409,18 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
           <tr><td>SEO · Hiền</td><td>Landing /tools/ mới từ keyword có sẵn trong GSC; thêm video vào /tools/product-link-to-video-ai</td><td>click, sign-up từ /tools/</td><td class="n">/tools/* Organic 57 session, 12 có click-to-webapp</td></tr>
           <tr><td>Google Ads · Hằng</td><td>Lọc lại adtext và sitelink; nâng bid nhóm Tier 1; trỏ adtext và sitelink về app/sign-in</td><td>tăng sign-up, giảm chi phí mỗi sign-up</td><td class="n">Search 42 Sign Up, 151K₫ mỗi Sign Up; Tier 1 9 Sign Up</td></tr>
           <tr><td>YouTube Ads · Hằng</td><td>Giữ tệp retarget (300K₫/ngày), chuyển ngân sách sang Demand Gen chỉ YouTube trên PC, tắt Video View, tắt Ad05 và Ad03</td><td>sign-up và paid user</td><td class="n">9 Sign Up, 632K₫ mỗi Sign Up; retarget 8 Sign Up, 215K₫</td></tr>
-          <tr><td>Meta Ads · Vy</td><td>Advantage+ có Lookalike 1% paid merchant làm gợi ý, chỉ Facebook Feed desktop, 70 USD/ngày</td><td>chi phí mỗi sign-up ≤ 28 USD</td><td class="n">Lookalike 36.28 USD, Advantage+ broad 85.37 USD</td></tr>
+          <tr><td>Meta Ads · Vy</td><td>Đợt 2 ADV-LAL (từ 14/11): Advantage+ gợi ý LAL 1% paid merchant, tối ưu CompleteRegistration, $70/ngày, desktop US/CA/AU/NZ. Test A tệp + tối ưu, B 4 hook mới, C trang /tools/ theo hook. Không đổi cấu hình 18–20/11</td><td>≤ $28 mỗi đăng ký, ≤ $56 mỗi generate; chấm 21/11</td><td class="n">đợt 1 $48.79 mỗi ĐK (LAL $36.28); CTR Feed 1.08%; LPV → CTA 26%; video P3 8% xem ≥25%</td></tr>
+          <tr><td>Meta Ads · Vy</td><td>D: so tỷ lệ xem bảng giá → paid của người từ Meta với người từ Google Ads</td><td>biết nút thắt paid nằm ở kênh hay sản phẩm</td><td class="n">Meta: 7 người xem bảng giá, 1 bấm nâng gói, 0 paid</td></tr>
           <tr><td>Meta Social · Long</td><td>4–5 reel so sánh / kể chuyện, 3–4 reel BFCM; CTA comment từ khóa, sửa bio có link UTM; Facebook trả lời comment trong ngày</td><td>kéo người xem về trang cá nhân và web</td><td class="n">IG 9,378 view, FB 5,279 view; 157 session social, 0 sign-up</td></tr>
           <tr><td>YouTube organic · Tiến</td><td>Giảm còn khoảng 5 Shorts/tuần lấy từ reel đã thắng; thêm 1 video dài hướng dẫn/tuần (đề xuất trong report Meta Social)</td><td>view từ YouTube Search, xem tiếp</td><td class="n">25 session GA4 từ YouTube; chưa có số view tuần này</td></tr>
-          <tr><td>Shopify ASO · Vy</td><td>Giữ copy gói Free thêm 3 tuần; test phần đầu listing (ảnh, video, intro)</td><td>install rate</td><td class="n">22.1% (team, 6–11/11)</td></tr>
+          <tr><td>Shopify ASO · Chị Na, Vy</td><td>Banner listing mới từ 16/11 (brand identity mới, "ads that sell"), đo 16–22/11; kiểm tra nút Install trên mobile</td><td>install rate</td><td class="n">install/visit 21.8%, bấm Install 24.1%, install/bấm 90.5%</td></tr>
+          <tr><td>Shopify ASO · Growth, CS</td><td>Submit 2 story trên Shopify App Store, cuốn chiếu</td><td>visit</td><td class="n">481 visit, 0 session từ story</td></tr>
+          <tr><td>Shopify Ads · Vy</td><td>Tăng chi roposo, giữ "dropshipping" broad; hỏi Zopi về placement manage-product</td><td>visit, installs Cross App</td><td class="n">roposo 74 visit ($147), CPI Search $10.7, Cross App 10 installs (TB 20.3)</td></tr>
+          <tr><td>Shopify App · Vy</td><td>Kiểm tra log billing và ghi hình phiên ở bảng giá với shop mới; báo product lỗi UGC</td><td>bấm nâng cấp</td><td class="n">9.9% shop mới bấm nâng cấp; 18% bấm ngay sau mở bảng giá</td></tr>
           <tr><td>Partnership · Hằng</td><td>Nhắc partner</td><td>–</td><td class="n">–</td></tr>
         </tbody>
       </table></div>
-      <div class="missing"><ul class="plain"><li><b>Chưa điền thử nghiệm tuần 16/11 trong GTM:</b> Shopify Ads, Featured App, Cross App, Meta Ads (đã có "Next testing" trong ô tuần trước), Meta Social, YouTube organic, Affiliate, Email.</li></ul></div>
+      <div class="missing"><ul class="plain"><li><b>Chưa điền thử nghiệm tuần 16/11 trong GTM:</b> Shopify Ads, Featured App, Cross App, Meta Social, YouTube organic, Affiliate, Email.</li></ul></div>
     </section>
   </div>
 
@@ -566,19 +540,127 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
   <div class="block" id="meta-ads">
     <section data-sid="meta-ads-kpi">
       <h2>Meta Ads</h2>
-      <div class="chan-owner"><span class="chip">Vy</span> Tuần này chưa có file xuất Meta Ads (Meta Ads Manager, activity log), nên mục này dùng GA4 và số team ghi trong GTM.</div>
+      <div class="chan-owner"><span class="chip">Vy</span> Nguồn: report Meta Ads của Vy (Meta Ads act 8478843415526188 và GA4, giờ VN, desktop US/CA/AU/NZ, campaign FB_PROMER_CONV). <b>Kỳ khác với report:</b> đợt 1 = 5/11 → 13/11 (chi 5–7/11 $236, 8–13/11 $349); đợt 2 chạy từ 07:32 14/11. Chuyển đổi theo Meta (7 ngày click + 1 ngày xem), bảng giá và paid theo GA4.</div>
       <div class="kpis5">
-        <div><b>209</b><span>session Paid Social (GA4) · tuần trước 130</span></div>
-        <div><b>22</b><span>session có click-to-webapp · tuần trước 18</span></div>
-        <div><b>8</b><span>sign-up (GA4) · tuần trước 6</span></div>
-        <div><b>170.73 USD</b><span>chi phí test Advantage+ 10–11/11 (team)</span></div>
-        <div><b>0</b><span>user nâng gói · cả 2 tuần</span></div>
+        <div><b>$585</b><span>chi đợt 1 (5–13/11) · trong đó 8–13/11 $349</span></div>
+        <div><b>12</b><span>đăng ký theo Meta · GA4 10 người</span></div>
+        <div><b>$48.79</b><span>mỗi đăng ký, đợt 1</span></div>
+        <div><b>9</b><span>lượt generate theo Meta · GA4 7 người</span></div>
+        <div><b>0</b><span>paid · 7 người xem bảng giá, 1 bấm nâng gói</span></div>
       </div>
+      <h3>Funnel đợt 1: rơi nhiều nhất ở click, bấm CTA sau khi vào trang và trả tiền</h3>
+      <div class="tbl-wrap"><table class="wrapnote">
+        <thead><tr><th>Bước</th><th class="n">Đợt 1</th><th class="n">Tỷ lệ chuyển</th><th class="n">$ / kết quả</th><th class="n">GA4</th><th>Đọc</th></tr></thead>
+        <tbody>
+          <tr><td>Hiển thị</td><td class="n">17,738</td><td class="n">–</td><td class="n">CPM $33.00</td><td class="n">–</td><td>39% hiển thị ở Right column, kéo CPM tổng xuống.</td></tr>
+          <tr><td>Click link</td><td class="n">132</td><td class="n">CTR 0.74%</td><td class="n">$4.44</td><td class="n">–</td><td>Riêng Feed: CTR 1.08%.</td></tr>
+          <tr><td>Landing page view</td><td class="n">101</td><td class="n">77% click</td><td class="n">$5.80</td><td class="n">–</td><td>Không phải điểm nghẽn.</td></tr>
+          <tr><td>Bấm CTA vào app</td><td class="n">26</td><td class="n">26% LPV</td><td class="n">$22.52</td><td class="n">20 người</td><td>3 trên 4 người vào trang không bấm CTA.</td></tr>
+          <tr><td>Đăng ký</td><td class="n">12</td><td class="n">46% CTA</td><td class="n">$48.79</td><td class="n">10 người</td><td>Dao động 22–100% theo tệp và ngày.</td></tr>
+          <tr><td>Upload sản phẩm</td><td class="n">11 lượt</td><td class="n">0.9 / đăng ký</td><td class="n">$53.22</td><td class="n">8 người</td><td></td></tr>
+          <tr><td>Generate</td><td class="n">9 lượt</td><td class="n">75% đăng ký</td><td class="n">$65.05</td><td class="n">7 người</td><td>Người đã đăng ký phần lớn có dùng thử.</td></tr>
+          <tr><td>Xem bảng giá</td><td class="n">–</td><td class="n">70% đăng ký GA4</td><td class="n">–</td><td class="n">7 người</td><td></td></tr>
+          <tr><td>Bấm nâng gói</td><td class="n">–</td><td class="n">1/7</td><td class="n">–</td><td class="n">1 người</td><td></td></tr>
+          <tr><td>Paid</td><td class="n">0</td><td class="n">0/7</td><td class="n">–</td><td class="n">0</td><td>Nút thắt cuối funnel, nằm sau sản phẩm.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">GA4 Paid Social cả kênh, tuần 8–14/11: 209 session (130), 22 session có click-to-webapp (18), 8 sign-up (6), 0 user nâng gói. Số GA4 trong bảng trên chỉ tính desktop US/CA/AU/NZ có first user campaign FB_PROMER_CONV, đợt 1. 12 đăng ký gồm 1 đăng ký Meta gắn trễ vào 13/11.</div>
+    </section>
+
+    <section data-sid="meta-ads-audience">
+      <h3>Theo tệp: CPM rẻ nhất lại cho chi phí mỗi đăng ký đắt nhất</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Tệp (ad set)</th><th>Ngày</th><th class="n">Spent</th><th class="n">CPM</th><th class="n">CTR</th><th class="n">CTA / LPV</th><th class="n">ĐK / CTA</th><th class="n">$ / ĐK</th></tr></thead>
+        <tbody>
+          <tr><td>MASS-LAL · Advantage+ gợi ý LAL 1% (đến 18:34 5/11)</td><td>5/11</td><td class="n">$98.33</td><td class="n">$55.90</td><td class="n">1.08%</td><td class="n">31%</td><td class="n">4/4</td><td class="n">$24.58</td></tr>
+          <tr><td>MASS-LAL · LAL 1% cố định</td><td>6–9/11</td><td class="n">$264.47</td><td class="n">$48.31</td><td class="n">0.95%</td><td class="n">32%</td><td class="n">46%</td><td class="n">$44.08</td></tr>
+          <tr><td>ADVANTAGE · tệp rộng, không gợi ý</td><td>10–11/11</td><td class="n">$170.73</td><td class="n">$23.21</td><td class="n">0.82%</td><td class="n">19%</td><td class="n">22%</td><td class="n">$85.36</td></tr>
+          <tr><td>SPF-MERCHANT · danh sách khách hàng, tối ưu LPV</td><td>6–8/11</td><td class="n">$51.92</td><td class="n">$16.49</td><td class="n">0.03%</td><td class="n">0 LPV</td><td class="n">–</td><td class="n">0 ĐK</td></tr>
+          <tr><td>RTG-SIGNUP-NOTPAID · retarget, Reach $4/ngày</td><td>5–13/11</td><td class="n">$0</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">0 phân phối</td></tr>
+          <tr><td>Đợt 1</td><td></td><td class="n">$585.43</td><td class="n">$33.00</td><td class="n">0.74%</td><td class="n">26%</td><td class="n">46%</td><td class="n">$48.79</td></tr>
+        </tbody>
+      </table></div>
       <ul class="plain">
-        <li>8/11: tắt tệp Shopify merchant (0 landing page view sau 3 ngày).</li>
-        <li>9/11: tạm dừng Lookalike, chạy Advantage+ 70 USD/ngày, mở thêm Right column, Marketplace, In-stream, Search. Dừng 11/11 theo stop rule.</li>
-        <li>Kết quả theo team: CPM 23.21 USD (Lookalike 50.16), chi phí mỗi click CTA 18.97 USD (21.34), chi phí mỗi sign-up 85.37 USD (Lookalike 36.28).</li>
-        <li>Team ghi: test này đổi tệp, vị trí hiển thị và ad set cùng lúc, nên test sau chỉ đổi một biến.</li>
+        <li>LPV → đăng ký: LAL 18.5% (10/54), tệp rộng 4.3% (2/47). Tệp rộng có CPM bằng một nửa nhưng mất 3/4 số người ở các bước sau click.</li>
+        <li>Ngày rẻ nhất là 5/11, khi LAL còn bật Advantage+ có gợi ý: $24.58 mỗi đăng ký, so với $44.08 lúc LAL cố định. Mẫu chỉ 4 đăng ký nên mới là tín hiệu.</li>
+      </ul>
+      <h3>Theo vị trí: Right column chiếm 39% hiển thị, 0 đăng ký</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Vị trí</th><th class="n">% hiển thị</th><th class="n">Spent</th><th class="n">CPM</th><th class="n">CTR</th><th class="n">LPV</th><th class="n">ĐK</th><th class="n">$ / ĐK</th></tr></thead>
+        <tbody>
+          <tr><td>Feed</td><td class="n">58%</td><td class="n">$553.94</td><td class="n">$54.07</td><td class="n">1.08%</td><td class="n">88</td><td class="n">12</td><td class="n">$46.16</td></tr>
+          <tr><td>Right column</td><td class="n">39%</td><td class="n">$24.52</td><td class="n">$3.56</td><td class="n">0.29%</td><td class="n">12</td><td class="n">0</td><td class="n">–</td></tr>
+          <tr><td>Marketplace</td><td class="n">3%</td><td class="n">$6.83</td><td class="n">$11.40</td><td class="n">0.17%</td><td class="n">1</td><td class="n">0</td><td class="n">–</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cả 12 đăng ký đến từ Feed. Right column chỉ tốn 4% chi phí nhưng làm CPM tổng ($33) và CTR tổng (0.74%) thấp hơn số của Feed ($54.07, 1.08%), nên khi đánh giá phải đọc số Feed. Instream và Search tổng 15 hiển thị, không liệt kê.</div>
+    </section>
+
+    <section data-sid="meta-ads-creative">
+      <h3>Theo creative: video P3 nhận 65% tiền; ảnh P3 có tín hiệu tốt nhưng ít tiền</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Creative</th><th class="n">Spent · % đợt</th><th class="n">CTR trong LAL</th><th class="n">Xem ≥25%</th><th class="n">LPV</th><th class="n">ĐK</th><th class="n">Gen</th><th class="n">$ / ĐK</th></tr></thead>
+        <tbody>
+          <tr><td>Video P3 "50% Off Yearly"</td><td class="n">$379.02 · 65%</td><td class="n">1.07%</td><td class="n">8%</td><td class="n">51</td><td class="n">8</td><td class="n">7</td><td class="n">$47.38</td></tr>
+          <tr><td>Ảnh P2 "AI Creator Ads"</td><td class="n">$87.94 · 15%</td><td class="n">0.40%</td><td class="n">ảnh</td><td class="n">33</td><td class="n">2</td><td class="n">0</td><td class="n">$43.97</td></tr>
+          <tr><td>Ảnh P3 "Start Making Ads"</td><td class="n">$47.09 · 8%</td><td class="n">1.44%</td><td class="n">ảnh</td><td class="n">7</td><td class="n">2</td><td class="n">2</td><td class="n">$23.55</td></tr>
+          <tr><td>Ảnh P1 "Static Ads $0.16"</td><td class="n">$26.74 · 5%</td><td class="n">0.88%</td><td class="n">ảnh</td><td class="n">3</td><td class="n">0</td><td class="n">0</td><td class="n">–</td></tr>
+          <tr><td>Video P2 "Black Friday Plan"</td><td class="n">$23.11 · 4%</td><td class="n">0.62%</td><td class="n">24%</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">–</td></tr>
+          <tr><td>Video P1 "Clone Video Ads" (partnership ad, page Theo Bennett)</td><td class="n">$21.55 · 4%</td><td class="n">0.89%</td><td class="n">10%</td><td class="n">5</td><td class="n">0</td><td class="n">0</td><td class="n">–</td></tr>
+        </tbody>
+      </table></div>
+      <ul class="plain">
+        <li>Video P3 là ad duy nhất đủ dữ liệu: 8 đăng ký, 7 generate, nhưng chỉ 8% người xem tới 25% video; CTR không vượt khoảng 1%.</li>
+        <li>4 creative còn lại tổng $118 (20%), mỗi cái dưới $30, nên chưa chấm được. Ảnh P3 trong LAL: $27.39, 2 đăng ký, 2 generate, CTR 1.44% (mẫu nhỏ).</li>
+      </ul>
+      <div class="note">CTR trong LAL so các creative trên cùng một tệp: video P3 4,679 hiển thị, các ad còn lại 225–1,011.</div>
+    </section>
+
+    <section data-sid="meta-ads-tests">
+      <h3>Testing đợt 1 và áp dụng cho đợt 2</h3>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Test</th><th>Số liệu</th><th>Kết quả</th><th>Áp dụng đợt 2</th></tr></thead>
+        <tbody>
+          <tr><td><b>T1</b> · Tệp rộng Advantage+ không gợi ý (10–11/11) so với LAL 1% (5–9/11)</td><td>CPM $50.16 → $23.21 (−54%), nhưng LPV → CTA 31% → 19%, CTA → ĐK 59% → 22%. $ mỗi ĐK $36.28 → $85.36 (×2.35); 0 generate. Cùng video P3: LAL 8 ĐK, tệp rộng 0 ĐK sau $95. 47% hiển thị nằm ở Right column.</td><td><span class="chip bad">thua</span></td><td>Không dùng tệp rộng không gợi ý; chọn tệp theo LPV → ĐK, không theo CPM.</td></tr>
+          <tr><td><b>T2</b> · Advantage+ gợi ý LAL (5/11) so với LAL cố định (6–9/11)</td><td>$98.33 → 4 ĐK ($24.58), 5 generate, CTR 1.08%; LAL cố định $264.47 → 6 ĐK ($44.08). CPM đắt hơn 16%. Chênh nằm ở CTA → ĐK (4/4 so với 6/13).</td><td><span class="chip warn">tín hiệu, 4 ĐK</span></td><td>Dùng Advantage+ có gợi ý LAL 1% paid merchant làm tệp chính.</td></tr>
+          <tr><td><b>T3</b> · Tệp nhỏ: danh sách khách hàng (~25–29k, $18/ngày, 6–8/11) và retarget</td><td>Merchant: $51.92, 3,148 hiển thị tới 695 người (tần suất 4.5), 1 click, 0 LPV; 8/11 có 71% hiển thị ở Right column. Retarget: 0 hiển thị.</td><td><span class="chip bad">dừng 8/11</span></td><td>Danh sách khách hàng chỉ làm nguồn cho LAL; không chạy retarget riêng tới khi tệp có khoảng 1,000 người khớp.</td></tr>
+          <tr><td><b>T4</b> · Tối ưu theo bấm CTA (click_to_webapp)</td><td>CTA → ĐK: 100% (5/11), 46% (LAL 6–9/11), 22% (tệp rộng); trung bình 46% (12/26). CTA rẻ nhất ở tệp rộng ($18.97).</td><td><span class="chip warn">không ổn định</span></td><td>Tối ưu CompleteRegistration; vẫn theo dõi bấm CTA để đọc trang đích.</td></tr>
+          <tr><td><b>T5</b> · 6 creative trong 1 ad set</td><td>Video P3 nhận 65% chi phí, ra 8/12 ĐK và 7/9 generate; 4 creative nhận dưới $30 mỗi cái.</td><td><span class="chip warn">phân bổ lệch</span></td><td>4 creative hook mới, giữ video P3 làm đối chứng và giữ ảnh P3. Ad dưới $25 sau 7 ngày ghi "chưa chấm".</td></tr>
+          <tr><td><b>T6</b> · Vị trí tự động có Right column</td><td>Right column 6,880 hiển thị (39%), $24.52, CTR 0.29%, 12 LPV, 0 ĐK. Feed 58% hiển thị, 12/12 ĐK.</td><td><span class="chip warn">nhiễu số liệu</span></td><td>Bỏ Right column ở ad set kế tiếp (ad set đợt 2 vẫn còn, không sửa giữa đợt để tránh học lại); trong lúc đó đọc số theo Feed.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Các so sánh chạy ở khoảng ngày khác nhau, dưới 15 đăng ký mỗi nhóm; Vy chỉ coi là khác biệt khi chênh từ 2 lần trở lên (ước tính Poisson). T1 (×2.35) vượt ngưỡng; T2 (×0.56) mới là tín hiệu.</div>
+    </section>
+
+    <section data-sid="meta-ads-next">
+      <h3>Đợt 2 (từ 14/11): thiết lập, test và ngưỡng chấm</h3>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Hạng mục</th><th>Đợt 1</th><th>Đợt 2 (ADV-LAL)</th><th>Từ test</th></tr></thead>
+        <tbody>
+          <tr><td>Cấu trúc</td><td>3 ad set prospecting lần lượt + retarget</td><td>1 ad set, gom toàn bộ tín hiệu</td><td>T3</td></tr>
+          <tr><td>Ngân sách</td><td>$70/ngày LAL hoặc tệp rộng + $18 merchant</td><td>$70/ngày, khoảng $490 cho 7 ngày; Highest volume, không cost cap</td><td>–</td></tr>
+          <tr><td>Sự kiện tối ưu</td><td>Bấm CTA</td><td>CompleteRegistration</td><td>T4</td></tr>
+          <tr><td>Tệp</td><td>LAL cố định → tệp rộng không gợi ý</td><td>Advantage+ có gợi ý LAL 1% paid merchant, US/CA/AU/NZ, desktop</td><td>T1, T2</td></tr>
+          <tr><td>Vị trí</td><td>Tự động</td><td>Feed + Marketplace + Right column (bỏ Right column ở ad set sau)</td><td>T6</td></tr>
+          <tr><td>Creative</td><td>6 ad, cùng trỏ homepage</td><td>4 hook mới + video P3 (đối chứng) + ảnh P3; mỗi ad một trang đích</td><td>T5</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Test đợt 2</th><th>Bước đo</th><th>Ngưỡng</th><th>Chấm</th></tr></thead>
+        <tbody>
+          <tr><td>A · Tệp + tối ưu đăng ký: giữ LPV → ĐK như LAL (khoảng 18%) và rẻ hơn $36.28</td><td>LPV → CTA, CTA → ĐK, ĐK → generate</td><td>Giữ nếu ≤ $28 mỗi ĐK và ≤ $56 mỗi generate. Dừng sớm nếu ≥ $56 mà 0 ĐK, hoặc ≥ $112 mà 0 generate.</td><td>21/11 07:32 hoặc khi đủ 10 ĐK</td></tr>
+          <tr><td>B · 4 hook mới giữ người xem tốt hơn video P3 (8% xem ≥ 25%), CTR Feed vượt 1.08%</td><td>CTR, xem ≥ 25%</td><td>Thắng: ≥ 3 ĐK và ≤ $28 mỗi ĐK. Tắt ad: ≥ $56 mà 0 ĐK, hoặc ≤ 3 click sau khoảng 1,000 hiển thị.</td><td>21/11; dưới $25 = chưa chấm</td></tr>
+          <tr><td>C · Trang /tools/ khớp hook so với homepage (LPV → CTA 26%)</td><td>LPV → CTA</td><td>Chỉ đọc tham khảo: đổi cùng lúc với creative nên không tách được.</td><td>21/11</td></tr>
+          <tr><td>D · Paid: so tỷ lệ xem bảng giá → paid của người từ Meta với người từ Google Ads (ngoài tài khoản Meta)</td><td>Bảng giá → paid</td><td>–</td><td>trước review 21/11</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">18–20/11 không đổi ngân sách, tệp, vị trí, không thêm ad; chỉ tắt ad khi chạm rule cấp ad. Đợt 2 đổi cùng lúc tệp, sự kiện tối ưu, creative và trang đích, nên so với đợt 1 chỉ kết luận khi chênh từ 2 lần trở lên.</div>
+      <h3>Ngày đầu đợt 2 (14/11, 07:32 → 24:00): $47.62, chưa chấm</h3>
+      <ul class="plain">
+        <li>Meta dồn 51% chi phí ngày đầu vào Clone_Ad02 ($24.39).</li>
+        <li>Hook mới: Clone_Ad02 có 40% người xem tới 25% video, Clone_Ad01 36%; cùng ngày video P3 14% (đợt 1: 8%).</li>
+        <li>Right column vẫn chiếm 15% hiển thị (134/908), 0 click.</li>
+        <li>CPM $52.44, CTR 0.88%, 5 LPV, 1 CTA, 0 ĐK. Chưa chạm rule dừng sớm; ad set đang trong learning. Ad P4 (phỏng vấn) và P5 (Black Friday) nhận tổng $1.40.</li>
       </ul>
     </section>
   </div>
@@ -587,11 +669,82 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
   <div class="block" id="shopify">
     <section data-sid="shopify-kpi">
       <h2>Shopify App</h2>
-      <div class="chan-owner"><span class="chip">Vy</span><span class="chip">Hằng</span> Tuần này chưa có file Promer Daily Control và report Shopify App Store Ads, nên chưa có install, paid install, doanh thu và chi phí App Store Ads.</div>
-      <ul class="plain">
-        <li>GA4 web: 523 session từ Shopify admin (540), 11 user nâng gói (10).</li>
-        <li>Team ASO ghi (6–11/11): install khoảng 15/ngày, install rate 22.1% (24.9%).</li>
-      </ul>
+      <div class="chan-owner"><span class="chip">Vy</span><span class="chip">Hằng</span> Nguồn: bản tóm tắt Shopify App tuần 8–14/11 của Vy (GA4 app listing 494109069, GA4 webapp 517415274 theo shop, Shopify App Ads BigQuery đồng bộ 16/11, đọc 17/11). Số trong ngoặc là tuần 1–7/11; TB = trung bình 13/9–24/10. Traffic thật = đã loại Impact và expu.</div>
+      <div class="kpis5">
+        <div><b>113</b><span>installs, mọi nguồn · tuần trước 106 · TB 125</span></div>
+        <div><b>481</b><span>visit listing · tuần trước 400 · TB 498</span></div>
+        <div><b>21.8%</b><span>install / visit · tuần trước 24.8% · TB 24.9%</span></div>
+        <div><b>9.9%</b><span>shop mới bấm nâng cấp · tuần trước 23.1% · TB 12.7%</span></div>
+        <div><b>12</b><span>shop trả phí trong tuần · tuần trước 18 · TB 12.0</span></div>
+      </div>
+      <h3>Funnel listing → install → trả phí</h3>
+      <div class="tbl-wrap"><table class="wrapnote">
+        <thead><tr><th>Bước</th><th class="n">8–14/11</th><th class="n">Tỷ lệ từ bước trước</th><th class="n">TB</th><th>Đọc</th></tr></thead>
+        <tbody>
+          <tr><td>Visit (sessions xem listing)</td><td class="n">481 <span class="prev">(400)</span></td><td class="n">–</td><td class="n">498</td><td>Roposo +29, Direct +56 so với tuần trước; vẫn thấp hơn TB 3%.</td></tr>
+          <tr><td>Bấm Install (sessions)</td><td class="n">116 <span class="prev">(102)</span></td><td class="n">24.1% <span class="prev">(25.5%)</span></td><td class="n">25.7%</td><td>Gần TB. Direct (10%) và Search organic (16%) kéo tỷ lệ chung xuống.</td></tr>
+          <tr><td>Install (traffic thật)</td><td class="n">105 <span class="prev">(99)</span></td><td class="n">90.5% <span class="prev">(97.1%)</span></td><td class="n">96.9%</td><td>Tính theo user thì không giảm: 82.9% user bấm có cài (tuần trước 74.0%). Tỷ lệ theo session thấp vì mỗi user bấm nhiều lần hơn (1.13 → 1.52).</td></tr>
+          <tr><td>Mở app (shop mới)</td><td class="n">101 <span class="prev">(91)</span></td><td class="n">89.4% <span class="prev">(85.8%)</span></td><td class="n">85.2%</td><td>Cao hơn TB.</td></tr>
+          <tr><td>Generate trong 3 ngày đầu</td><td class="n">41 <span class="prev">(41)</span></td><td class="n">40.6% <span class="prev">(45.1%)</span></td><td class="n">36.2%</td><td>Cao hơn TB 4.4 điểm; UI app mới chạy từ 5/11.</td></tr>
+          <tr><td>Bấm nâng cấp trong 3 ngày đầu</td><td class="n">10 <span class="prev">(21)</span></td><td class="n">24.4% <span class="prev">(51.2%)</span></td><td class="n">35.1%</td><td>Bước giảm mạnh nhất, xem điểm ③ bên dưới.</td></tr>
+          <tr><td>Trả phí trong 3 ngày đầu</td><td class="n">6 <span class="prev">(12)</span></td><td class="n">60.0% <span class="prev">(57.1%)</span></td><td class="n">49.4%</td><td>Shop đã bấm nâng cấp vẫn trả phí tốt; số paid giảm vì ít shop bấm.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: Bấm Install = số session có <span class="mono">add_to_cart</span> trên listing. Các bước trong app tính theo cohort shop mới (ngày đầu shop xuất hiện trong GA4 webapp, đã loại 26 store test), đếm trong ngày 0–2. Các bước trong app không lồng nhau hoàn toàn. Tuần 1–7/11 đã tính lại theo cách này: 102 session bấm Install, 25.5% (bản tuần trước ghi 110 lần bấm, 27.5%).</div>
+    </section>
+
+    <section data-sid="shopify-sources">
+      <h3>Visit và bấm Install theo nguồn listing</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Nguồn</th><th class="n">Visit</th><th class="n">TB visit</th><th class="n">Tỷ lệ bấm Install</th><th class="n">TB tỷ lệ</th></tr></thead>
+        <tbody>
+          <tr><td>Search Ads · roposo</td><td class="n">74 <span class="prev">(45)</span></td><td class="n">88</td><td class="n">35.1%</td><td class="n">34.7%</td></tr>
+          <tr><td>Search Ads · keyword khác</td><td class="n">42 <span class="prev">(45)</span></td><td class="n">59</td><td class="n">45.2%</td><td class="n">30.4%</td></tr>
+          <tr><td>Category (ads + organic)</td><td class="n">68 <span class="prev">(60)</span></td><td class="n">70</td><td class="n">44.1%</td><td class="n">39.7%</td></tr>
+          <tr><td>Search organic</td><td class="n">43 <span class="prev">(33)</span></td><td class="n">51</td><td class="n">16.3%</td><td class="n">28.3%</td></tr>
+          <tr><td>Direct / unknown</td><td class="n">179 <span class="prev">(123)</span></td><td class="n">104</td><td class="n">10.1%</td><td class="n">6.6%</td></tr>
+          <tr><td>Cross App</td><td class="n">64 <span class="prev">(62)</span></td><td class="n">96</td><td class="n">20.3%</td><td class="n">26.7%</td></tr>
+          <tr><td>Khác</td><td class="n">11 <span class="prev">(32)</span></td><td class="n">30</td><td class="n">27.3%</td><td class="n">16.0%</td></tr>
+          <tr><td><b>Tổng (traffic thật)</b></td><td class="n">481 <span class="prev">(400)</span></td><td class="n">498</td><td class="n">24.1%</td><td class="n">25.7%</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Chi phí roposo $147 (tuần trước $126). Install và paid chưa tách được theo nguồn: nhiều install hoàn tất ở session khác, và GA4 webapp không biết nguồn listing.</div>
+    </section>
+
+    <section data-sid="shopify-findings">
+      <h3>Điểm chính</h3>
+      <div class="cards ins">
+        <div class="card"><h4>① Visit hồi nhờ roposo và Direct; còn thiếu ở Cross App và Search keyword khác</h4><div class="big">481</div><div class="lbl">visit (tuần trước 400, TB 498)</div>
+          <ul><li>Roposo 45 → 74 visit (chi $126 → $147), Direct 123 → 179.</li><li>So với TB: Cross App thiếu 32 visit, Search keyword khác thiếu 17.</li><li>Số session bấm Install thiếu 12 so với TB: do visit −20, do tỷ lệ +8.</li></ul></div>
+        <div class="card"><h4>② Hoàn tất cài: theo user không giảm, số 90.5% thấp vì bấm lặp</h4><div class="big">82.9%</div><div class="lbl">user bấm Install có cài (tuần trước 74.0%)</div>
+          <ul><li>Ngang 18–24/10 (84.0%) và 25–31/10 (83.8%).</li><li>Số lần bấm mỗi user 1.13 → 1.52; trên mobile 1.19 → 2.02. Số session có bấm mỗi user giữ 1.05.</li><li>Không mất install. Cần kiểm tra nút Install trên mobile.</li></ul></div>
+        <div class="card"><h4>③ Bấm nâng cấp giảm ở nhóm shop mở bảng giá ngay khi vào app</h4><div class="big">44% → 18%</div><div class="lbl">shop mở bảng giá trước khi generate rồi bấm nâng cấp ngay</div>
+          <ul><li>87% shop bấm nâng cấp trong 3 ngày đầu, nên số tuần này đã đủ để đọc.</li><li>33% shop mở bảng giá trước khi generate (tuần trước 37%). Nhóm này chiếm 9 trên 11 lượt nâng cấp mất đi. Giảm ở cả desktop và mobile, cả Tier 1 và nước khác.</li><li>Tỷ lệ generate (41%) và có output (19%) giữ nguyên. Bảng giá, ưu đãi, billing không đổi. Shop không thấy modal BFCM cũng chỉ 19% bấm ngay (tuần trước 48%).</li><li>Lỗi UGC tăng (6 shop mới), giải thích tối đa khoảng 2 lượt.</li><li>Chưa rõ nguyên nhân. Cần log billing và ghi hình phiên ở trang bảng giá để xác nhận.</li></ul></div>
+      </div>
+    </section>
+
+    <section data-sid="shopify-tests">
+      <h3>Testing tuần này</h3>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Testing</th><th>Kết quả</th><th>Đánh giá</th><th>Next step</th></tr></thead>
+        <tbody>
+          <tr><td><b>T3</b> · Wording gói Free trên bảng giá listing (6/11)</td><td>Install/visit 21.7% (6–14/11) so với 24.9% (30/10–5/11); bấm Install 23.0% so với 26.8%; installs/ngày 14.1 so với 14.9.</td><td><span class="chip gray">chưa ghi nhận tác động</span> Chênh −3.2 ± 5.3 điểm. Với khoảng 450 visit/tuần cần 2–3 tuần để đo được chênh 5 điểm. Chỉ khoảng 7% session cuộn tới 90% trang; bảng giá nằm giữa trang.</td><td>Đóng T3. Đo riêng banner listing mới (16–22/11 so với 8–14/11), giữ nguyên bảng giá trong lúc đo.</td></tr>
+          <tr><td><b>T13</b> · PluginHive WebsitePartner, campaign BFCM (8/11, chưa có trong changelog)</td><td>3 user, 14 session, 0 bấm Install, 0 install.</td><td><span class="chip warn">cần thêm thời gian</span> Traffic nhỏ, chủ yếu session lặp của cùng 3 user.</td><td>Ghi vào changelog; đặt mục tiêu và UTM chuẩn cho các placement WebsitePartner.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section data-sid="shopify-next">
+      <h3>Ưu tiên tuần 15–21/11</h3>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Mục tiêu</th><th>Việc</th><th>Phụ trách</th><th>Mốc tuần 8–14/11</th></tr></thead>
+        <tbody>
+          <tr><td>Tối ưu visit</td><td>Submit 2 story trên Shopify App Store ("Acquire your first customers", "Get started dropshipping"), cuốn chiếu theo material từ team CS. Tăng chi roposo, giữ "dropshipping" broad; hỏi Zopi về placement manage-product.</td><td>Growth · team CS (anh Luân)</td><td class="n">session từ story 0; visit 481; visit roposo 74; CPI Search $10.7; installs Cross App 10 (TB 20.3)</td></tr>
+          <tr><td>Tối ưu install rate</td><td>Banner listing mới từ 16/11 (brand identity mới, nội dung "ads that sell"), đo 16–22/11. Vy chuẩn bị idea banner cho tuần 22–28/11. Kiểm tra nút Install trên mobile.</td><td>Chị Na · Vy</td><td class="n">install/visit 21.8%; bấm Install 24.1%; install/bấm 90.5%; bấm/user mobile 2.02</td></tr>
+          <tr><td>Bấm nâng cấp</td><td>Kiểm tra log billing và ghi hình phiên ở trang bảng giá với shop mới; báo product lỗi UGC; đo lại sau Black Friday.</td><td>Vy</td><td class="n">18% shop mở bảng giá trước generate rồi bấm nâng cấp ngay (tuần trước 44%)</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">GA4 web (promer.ai + app): 523 session từ Shopify admin (540), 11 user nâng gói (10).</div>
     </section>
   </div>
 
@@ -685,8 +838,8 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
       <h2>Dữ liệu còn thiếu</h2>
       <div class="missing">
         <ul class="plain">
-          <li><b>Meta Ads:</b> file xuất của Vy (campaign theo ngày, ad, activity log).</li>
-          <li><b>Shopify App:</b> file Promer Daily Control (install, gỡ cài, paid install, doanh thu, App Store Ads theo ngày) và report Shopify App Store Ads.</li>
+          <li><b>Meta Ads:</b> đã có report của Vy, nhưng tính theo đợt (5–13/11, đợt 2 từ 14/11), không theo tuần 8–14/11. Chưa có tuần 1–7/11 để so cùng kỳ.</li>
+          <li><b>Shopify App:</b> đã có funnel listing và trong app từ bản tóm tắt của Vy. Còn thiếu: install và gỡ cài theo ngày, net payout, install theo nguồn (file Promer Daily Control), và bản đầy đủ <span class="mono">Promer_Shopify_App_Report_Tuan_8-14_11_2026.html</span>.</li>
           <li><b>YouTube:</b> sheet YouTube cần chia sẻ lại "Anyone with the link" hoặc chia sẻ cho service account.</li>
           <li><b>Meta Social:</b> thời gian xem TB, skip rate, lượt vào trang cá nhân từ Facebook.</li>
           <li><b>SEO:</b> số Google Discover (để làm mốc cho thử nghiệm bài top-list).</li>
@@ -703,6 +856,8 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
         <li><b>GA4</b> property 517415274, giờ Los Angeles, dimension <span class="mono">sessionPrimaryChannelGroup</span>. Kéo ngày 16/11/2026.</li>
         <li><b>Google Ads</b>: report Google Ads W46 (8–14/11) của team, phần Search và YouTube / Demand Gen. Đơn vị VND, tỷ giá ≈ 26,300₫/USD.</li>
         <li><b>GSC</b> <span class="mono">sc-domain:promer.ai</span>, 8–14/11 so với 1–7/11; chi tiết trong deck SEO.</li>
+        <li><b>Meta Ads</b>: report Meta Ads của Vy (comment ngày 17/11, bản md): Meta Ads act 8478843415526188 (campaign, ad set, ad, breakdown vị trí, activity log; giờ VN 5–14/11), attribution 7 ngày click + 1 ngày xem gắn vào ngày hiển thị. GA4 517415274: desktop US/CA/AU/NZ, first user campaign FB_PROMER_CONV.</li>
+        <li><b>Shopify App</b>: bản tóm tắt tuần 8–14/11 của Vy (comment ngày 17/11): GA4 app listing 494109069 (traffic thật, loại Impact và expu), GA4 webapp 517415274 theo shop (loại 26 store test, đếm ngày 0–2), Shopify App Ads BigQuery đồng bộ 16/11, changelog đọc 17/11. TB = 13/9–24/10.</li>
         <li><b>Meta Social</b>: file "Promer Meta Social Report 8-16_11_2026.xlsx" của team (IG Insights từng reel, FB trang Reels, số đọc 16/11). Tuần T2→CN.</li>
         <li><b>Task và thử nghiệm</b>: sheet [Promer] Product x Growth Changelog (<span class="mono">1Hl3hZYw8B9lXv0F8vyrUhnnXSKbyCCLmp4HjcaoM_dg</span>, tab Change Log) và Promer GTM 2026 (<span class="mono">1N_c-GhHpAmUT2tMbCtQFi2ahJifF5k_K4-1V7i9YlZo</span>, tab Direction &amp; Planning, cột Week 8/11–14/11 và Week 16/11), đọc ngày 16/11. Số "theo team" trong báo cáo là số team ghi ở đây.</li>
       </ul>
@@ -714,6 +869,9 @@ table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}
     <section data-sid="changelog">
       <h2>Changelog</h2>
       <ul class="changelog plain">
+        <li><span class="mono">2026-11-17</span> · v5, theo comment của Vy ở khối Meta Ads: làm lại phần Meta Ads từ report đợt 1 (5–13/11) và plan đợt 2: funnel hiển thị → paid, theo tệp, vị trí, creative, 6 test và áp dụng, thiết lập và ngưỡng chấm đợt 2, signal ngày đầu 14/11. Cập nhật chi phí ở Tổng quan, Điểm chính, Task và thử nghiệm. Sửa 85.37 thành 85.36 USD theo số của Vy.</li>
+        <li><span class="mono">2026-11-17</span> · v4, theo comment của Vy ở khối Shopify App: làm lại phần Shopify App từ bản tóm tắt tuần 8–14/11 (5 chỉ số, funnel listing → paid, visit theo nguồn, 3 điểm chính, testing T3 và T13, ưu tiên 15–21/11). Cập nhật tab Shopify ở Tổng quan, Điểm chính, Task và thử nghiệm.</li>
+        <li><span class="mono">2026-11-17</span> · v3, Điểm chính chia tab: Tổng (1 dòng mỗi kênh) và tab chi tiết từng kênh; nới rộng vùng nội dung.</li>
         <li><span class="mono">2026-11-16</span> · v2, làm lại phần Google Ads từ report W46 của team: bảng Search và YouTube, Sign Up theo ngày, 5 điểm chính, campaign Search kèm impression share, tệp và video YouTube, quốc gia, việc tiếp theo. Cập nhật bảng tổng quan, Điểm chính, Task và thử nghiệm theo số Google Ads. Deck SEO mở bằng link seo/index.html.</li>
         <li><span class="mono">2026-11-16</span> · v1, bản nháp đầu tiên tuần 8–14/11. Có số GA4 theo kênh, deck SEO 11 slide, Meta Social từ report của team, task và thử nghiệm từ changelog và GTM. Google Ads, Meta Ads và Shopify App chỉ có GA4 và số team ghi trong GTM, chờ file nguồn.</li>
       </ul>
@@ -873,9 +1031,11 @@ const CHARTS={
   const R={line,barh,cols:colsChart,funnel};
   function renderAll(){document.querySelectorAll('[data-chart]').forEach(b=>{const cfg=CHARTS[b.dataset.chart];if(cfg)R[cfg.type](b,cfg)})}
   renderAll();
-  document.addEventListener('click',e=>{const b=e.target.closest('.tabs button[data-tab]');if(!b)return;const k=b.dataset.tab;
-    document.querySelectorAll('.tabs button[data-tab]').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===k));
-    document.querySelectorAll('.tabp').forEach(p=>p.hidden=p.dataset.tab!==k);renderAll();});
+  function setTab(g,k){const sel=g?'[data-group="'+g+'"]':':not([data-group])';
+    document.querySelectorAll('.tabs'+sel+' button[data-tab]').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===k));
+    document.querySelectorAll('.tabp'+sel).forEach(p=>p.hidden=p.dataset.tab!==k);renderAll();}
+  document.addEventListener('click',e=>{const go=e.target.closest('.ins-go');if(go){e.preventDefault();setTab('ins',go.dataset.go);return;}
+    const b=e.target.closest('.tabs button[data-tab]');if(!b)return;setTab(b.closest('.tabs').dataset.group||'',b.dataset.tab);});
   let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderAll,150)});
   if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',renderAll);
 })();
