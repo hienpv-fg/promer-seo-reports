@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promer MKT Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F7F9; --surface:#FFFFFF; --ink:#0B0B12; --ink-2:#4A4A57; --muted:#8A8A98;
+  --line:#E6E6EC; --accent:#5B4BF0; --accent-soft:#EEEBFF; --warn:#B45309; --warn-soft:#FEF3C7;
+  --hover:rgba(91,75,240,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E0E14; --surface:#16161F; --ink:#ECECF2; --ink-2:#B4B4C2; --muted:#7C7C8C;
+    --line:#2A2A36; --accent:#8B7FFF; --accent-soft:#25214A; --warn:#F5B65A; --warn-soft:#3A2A10;
+    --hover:rgba(139,127,255,.08);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E0E14; --surface:#16161F; --ink:#ECECF2; --ink-2:#B4B4C2; --muted:#7C7C8C;
+  --line:#2A2A36; --accent:#8B7FFF; --accent-soft:#25214A; --warn:#F5B65A; --warn-soft:#3A2A10;
+  --hover:rgba(139,127,255,.08);color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+a{color:var(--accent)}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+aside{border-right:1px solid var(--line);padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--surface)}
+.brand{font-weight:700;font-size:15px;margin-bottom:2px}
+.brand-sub{color:var(--muted);font-size:12px;margin-bottom:22px}
+.nav-h{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+nav a{display:block;padding:5px 8px;border-radius:6px;color:var(--ink-2);text-decoration:none;font-size:14px}
+nav a:hover{background:var(--hover);color:var(--ink)}
+nav a.cur{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.arch{font-size:13px}
+main{padding-block:28px 120px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px));max-width:1480px;min-width:0}
+.topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.eyebrow{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:28px;line-height:1.25;margin:4px 0 6px}
+.period{color:var(--ink-2);font-size:14px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover{opacity:.9;color:#fff}
+.badge{display:inline-block;min-width:18px;padding:0 6px;border-radius:9px;background:var(--accent);color:#fff;font-size:11px;line-height:18px;text-align:center;margin-left:4px}
+h2{font-size:20px;margin:0 0 4px}
+h3{font-size:15px;margin:14px 0 6px}
+.chan-owner{font-size:13px;color:var(--muted);margin-bottom:10px}
+.chip{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;background:var(--accent-soft);color:var(--accent);margin-right:4px;font-weight:500}
+.chip.gray{background:var(--line);color:var(--ink-2)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.block{margin:34px 0 0}
+[data-sid]{position:relative}
+[data-sid]+[data-sid]{margin-top:28px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card h4{margin:0 0 6px;font-size:15px;line-height:1.35}
+.card .big{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.card .lbl{font-size:12px;color:var(--muted);margin-bottom:6px}
+.card ul{margin:6px 0 0;padding-left:18px;color:var(--ink-2);font-size:14px}
+.card ul li{margin:2px 0}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;white-space:nowrap}
+th{font-weight:600;color:var(--ink-2);font-size:12px;background:var(--bg)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+td .prev{color:var(--muted);font-size:12px}
+tr:last-child td{border-bottom:none}
+.note{font-size:13px;color:var(--ink-2);margin-top:8px}
+.note b{color:var(--ink)}
+.missing{border:1px dashed var(--warn);background:var(--warn-soft);border-radius:12px;padding:12px 16px;font-size:14px}
+.missing b{color:var(--warn)}
+ul.plain{margin:6px 0;padding-left:20px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;z-index:80;pointer-events:none}
+#toast.show{opacity:1}
+.changelog li{margin:4px 0;font-size:14px}
+/* insights as rows */
+.cards.ins{grid-template-columns:minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.cards.ins .card{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);column-gap:24px;border:none;border-radius:0;border-top:1px solid var(--line);background:none;padding:16px 18px}
+.cards.ins .card:first-child{border-top:none}
+.cards.ins .card h4{grid-column:1/-1;margin-bottom:8px}
+.cards.ins .card .big{grid-column:1;font-size:24px}
+.cards.ins .card .lbl{grid-column:1}
+.cards.ins .card ul{grid-column:2;grid-row:2/span 2;margin:0}
+@media (max-width:860px){.cards.ins .card{grid-template-columns:minmax(0,1fr)}.cards.ins .card ul{grid-column:1;grid-row:auto;margin-top:6px}}
+/* SEO funnel (motif of the SEO deck) */
+.fx{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:16px;align-items:start}
+.fun{padding:16px}
+.fun-legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;font-weight:600;margin-bottom:12px}
+.fun-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.fun-legend i.o{background:var(--accent)} .fun-legend i.a{background:var(--ink)}
+.frow+.frow{margin-top:12px}
+.frow{display:grid;grid-template-columns:132px minmax(0,1fr);align-items:center;gap:12px}
+.flab{text-align:right;line-height:1.25}
+.flab b{display:block;font-size:13.5px}
+.flab span{font-size:11px;color:var(--muted)}
+.fbar{margin:0 auto;display:flex;border-radius:8px;overflow:hidden;min-height:56px}
+.seg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6px 8px;line-height:1.2;min-width:0}
+.seg b{font-size:20px;font-weight:700}
+.seg span{font-size:11px;opacity:.85}
+.seg em{font-style:normal;font-size:11px;color:var(--muted);margin-top:2px}
+.seg.o em,.seg.a em{color:inherit;opacity:.7}
+.seg.soft{background:var(--accent-soft);color:var(--ink)}
+.seg.o{background:var(--accent);color:#fff}
+.seg.a{background:var(--ink);color:var(--bg)}
+.seg.ol{background:color-mix(in srgb,var(--down) 12%,var(--surface));color:var(--down);box-shadow:inset 0 0 0 1.5px var(--down)}
+.seg.ol em{color:var(--down);opacity:.85}
+.fun-legend i.ol{background:color-mix(in srgb,var(--down) 15%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--down)} .fun-legend i.z{background:var(--line)}
+.seg.z{background:var(--line);color:var(--ink-2)}
+.frate{margin:6px 0 6px 144px;text-align:center;font-size:12.5px;color:var(--ink-2)}
+.frate b{color:var(--ink)} .frate .ro b{color:var(--accent)}
+.frate .ro{color:var(--accent);font-weight:500} .frate .ra{color:var(--ink);font-weight:500}
+.frate s{color:var(--muted);margin-left:6px;text-decoration:none}
+
+.fside{display:flex;flex-direction:column;gap:10px}
+.fside .card{font-size:13.5px;line-height:1.55}
+.fside .warnc{background:var(--warn-soft);border-color:transparent}
+.fside .warnc b{color:var(--warn)}
+.src summary{cursor:pointer;font-size:12.5px;color:var(--ink-2)}
+.src .note{margin-top:6px}
+@media (max-width:860px){.fx{grid-template-columns:minmax(0,1fr)}.frow{grid-template-columns:96px minmax(0,1fr)}.frate{margin-left:108px}.fbar{width:100%!important}}
+/* week-over-week colour: up green, down red */
+:root{--up:#0F7B3E;--down:#C0262D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--up:#4ADE80;--down:#F87171}}
+:root[data-theme="dark"]{--up:#4ADE80;--down:#F87171}
+.dv{font-weight:600}
+.dv.up{color:var(--up)} .dv.down{color:var(--down)}
+.chip.ok{background:color-mix(in srgb,var(--up) 14%,var(--surface));color:var(--up)}
+.chip.bad{background:color-mix(in srgb,var(--down) 12%,var(--surface));color:var(--down)}
+.tk-legend{margin:8px 0 4px}
+.tabs{display:flex;gap:2px;margin:2px 0 12px;border-bottom:1px solid var(--line)}
+.tabs button{border:none;border-bottom:2px solid transparent;border-radius:0;background:none;padding:8px 14px;color:var(--muted);font-weight:500;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tabp[hidden]{display:none}
+.tabs{flex-wrap:wrap}
+.ins-sum td{vertical-align:top}
+.ins-sum td:nth-child(4),.ins-sum td:nth-child(5){white-space:normal}
+.ins-sum td:nth-child(4){min-width:170px;max-width:220px}
+.ins-sum td:nth-child(5){min-width:360px}
+.ins-sum td.muted{color:var(--muted);font-size:12.5px}
+.ins-sum .chip{white-space:nowrap}
+.cards.ins .card{grid-template-columns:minmax(0,260px) minmax(0,1fr)}
+table.wrapnote{width:100%}
+table.wrapnote th:last-child,table.wrapnote td:last-child{white-space:normal;width:48%;min-width:220px}
+table.tk-next{table-layout:fixed;width:100%}
+table.tk-next th,table.tk-next td{white-space:normal;text-align:left;vertical-align:top}
+table.tk-next th:nth-child(1){width:16%}table.tk-next th:nth-child(2){width:38%}table.tk-next th:nth-child(3){width:20%}
+.tk-ch{margin:20px 0 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cards.ins.tk .card .lbl .chip{margin-top:6px}
+.cards.ins.tk .card ul li b{color:var(--ink)}
+.dv i{font-style:normal;font-size:9px;margin-right:3px;vertical-align:1px}
+/* feedback comments */
+[data-sid]:hover{outline:1px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:6px;border-radius:6px}
+[data-sid].has-c{outline:1px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:6px;border-radius:6px}
+.cbtn{position:absolute;top:-2px;right:-2px;z-index:5;height:28px;min-width:28px;padding:0 8px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-size:13px;line-height:26px;opacity:0;transition:opacity .12s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+[data-sid]:hover>.cbtn,.cbtn.on,.cbtn:focus-visible{opacity:1}
+.cbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.pop{position:absolute;z-index:70;width:380px;max-width:calc(100vw - 32px);background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.18);padding:14px;display:flex;flex-direction:column;gap:10px}
+.pop.drag{outline:2px dashed var(--accent);outline-offset:-6px}
+.pop .sidl{font-size:11px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.pop textarea,.pop input[type=text]{width:100%;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);color:var(--ink)}
+.pop textarea{min-height:84px;resize:vertical}
+.pop .row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pop .hint{font-size:11.5px;color:var(--muted)}
+.cm{border-left:2px solid var(--accent);padding:2px 0 2px 10px;font-size:13.5px}
+.cm .meta{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.cm .meta button{border:none;background:none;padding:0;color:var(--muted);font-size:11px}
+.cm .txt{white-space:pre-wrap;color:var(--ink)}
+.atts{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.atts:empty{display:none}
+.att{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:3px 6px;font-size:11.5px;max-width:100%;background:var(--bg)}
+.att img{width:44px;height:44px;object-fit:cover;border-radius:5px;display:block}
+.att a{display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
+.cm .st{font-size:11px;color:var(--muted);margin-left:6px}
+.att span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px}
+.att button{border:none;background:none;padding:0 2px;color:var(--muted)}
+#panel{position:fixed;top:0;right:0;width:400px;max-width:100%;height:100%;background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .2s;z-index:80;display:flex;flex-direction:column}
+#panel.open{transform:none;box-shadow:-12px 0 32px rgba(0,0,0,.12)}
+#panel header{padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}
+#panel header input{flex:1;min-width:0;font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--bg);color:var(--ink)}
+#plist{overflow:auto;padding:8px 16px;flex:1;display:flex;flex-direction:column;gap:14px}
+.pgrp .sid{font-size:11px;color:var(--accent);font-family:"JetBrains Mono",monospace;cursor:pointer;margin-bottom:4px}
+#panel footer{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:860px){.cbtn{opacity:.9}}
+.deck{padding:0;overflow:hidden;aspect-ratio:16/9;max-width:100%}
+.deck iframe{display:block;width:100%;height:100%;border:0}
+/* meta ads blocks */
+.kpis5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+.kpis5>div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.kpis5 b{font-size:24px;line-height:1.15;font-variant-numeric:tabular-nums}
+.kpis5 span{font-size:12px;color:var(--muted);line-height:1.35}
+.grid3{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+.grid3 th,.grid3 td{padding:8px 10px}
+.grid2+.tbl-wrap{margin-top:12px}
+.sub{font-size:11.5px;color:var(--muted);font-weight:400}
+.fmt{display:inline-block;font-size:10.5px;font-weight:600;border-radius:5px;padding:0 6px;margin-left:4px;vertical-align:1px}
+.fmt.v{background:var(--accent-soft);color:var(--accent)} .fmt.i{background:var(--line);color:var(--ink-2)}
+.adt td:nth-child(3){min-width:170px;font-variant-numeric:tabular-nums}
+.sbar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);margin-right:8px;vertical-align:0;max-width:110px}
+.sbar.s{background:var(--muted)}
+.adt td:nth-child(3) .sbar{width:calc(var(--w,0) * 1px)}
+.tl{list-style:none;margin:6px 0 0;padding:0 0 0 18px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.tl li{position:relative;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.tl li::before{content:"";position:absolute;left:-24px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.tl b{color:var(--ink);margin-right:6px}
+@media (max-width:860px){.kpis5{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:minmax(0,1fr)}}
+/* charts */
+.viz{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--prev:#bdbbb3;--grid:#e1e0d9;--axis:#c3c2b7;--tx:#52514e;--tx-m:#898781}
+@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .viz{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--prev:#55554f;--grid:#2c2c2a;--axis:#383835;--tx:#c3c2b7;--tx-m:#898781}}
+:root[data-theme="dark"] .viz{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--prev:#55554f;--grid:#2c2c2a;--axis:#383835;--tx:#c3c2b7;--tx-m:#898781}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 10px;margin:10px 0}
+.chart-t{font-size:14px;font-weight:600;margin-bottom:2px}
+.chart-s{font-size:12px;color:var(--muted);margin-bottom:8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart svg text{font-family:Inter,system-ui,sans-serif}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:12px}
+.grid2 .chart{margin:0}
+#tip{position:fixed;z-index:90;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.14);padding:8px 10px;font-size:12px;line-height:1.5;opacity:0;transition:opacity .08s;max-width:260px}
+#tip b{font-weight:600}
+#tip .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  main{min-width:0;max-width:100%}
+  h1{font-size:22px}
+  .note,.chan-owner,.period,ul.plain,.card,h1,h2,h3{overflow-wrap:anywhere}
+  body{overflow-x:hidden}
+  aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  main{padding-block:20px 100px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+table.wrap th,table.wrap td{white-space:normal}table.wrap td:first-child{min-width:220px}
+/* v1 2026-11-28: interim rows and kpi markers */
+tr.grp td{background:var(--bg);color:var(--ink-2);font-size:12px;font-weight:600;padding-top:10px}
+.cmp{color:var(--muted);font-size:12px}
+.kpis5 .up{color:var(--up)} .kpis5 .down{color:var(--down)}
+@media (max-width:860px){table.interim td:first-child{white-space:normal;min-width:150px}table.interim th:last-child,table.interim td:last-child{min-width:180px}}</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">Promer · MKT Report</div>
+  <div class="brand-sub">Báo cáo marketing theo kênh</div>
+  <div class="nav-h">Kỳ này</div>
+  <nav id="toc">
+    <a href="#overview">Tổng quan</a>
+    <a href="#insights">Điểm chính</a>
+    <a href="#tasks">Task → kết quả</a>
+    <a href="#seo">SEO &amp; AI Search</a>
+    <a href="#gads">Google Ads</a>
+    <a href="#meta-ads">Meta Ads</a>
+    <a href="#shopify">Shopify App</a>
+    <a href="#meta-social">Meta Social</a>
+    <a href="#youtube">YouTube</a>
+    <a href="#email">Email marketing</a>
+    <a href="#partnership">Partnership</a>
+    <a href="#user-insight">Insight user</a>
+    <a href="#gaps">Dữ liệu còn thiếu</a>
+    <a href="#method">Nguồn &amp; cách tính</a>
+    <a href="#changelog">Changelog</a>
+  </nav>
+  <div class="nav-h">Lưu trữ</div>
+  <nav class="arch">
+    <a class="cur" href="#">Tuần 22–28/11/2026</a>
+    <a href="../2026-11-21/">Tuần 15–21/11/2026</a>
+    <a href="../2026-11-14/">Tuần 8–14/11/2026</a>
+    <a href="../2026-11-07/">Tuần 1–7/11/2026</a>
+    <a href="../">Tất cả các tuần →</a>
+  </nav>
+</aside>
+
+<main id="report" data-report="mkt-2026-11-28" data-file="reports/mkt-hub/2026-11-28/index.html" data-api="https://script.google.com/macros/s/AKfycbyYfYKow93G7q5pjY9P8IG69jdNWe7QHxmPP-L_JLiV11_h6Wq1EaOz9WarqLVb89JsuQ/exec">
+  <div class="topbar">
+    <div class="eyebrow">Báo cáo tuần · bản nháp v1</div>
+    <div class="btns">
+      <button id="bCopyAll">Copy md toàn bộ</button>
+      <button id="bPanel" class="primary">Comment <span class="badge" id="cCount">0</span></button>
+    </div>
+  </div>
+  <h1>Marketing Promer · tuần 22–28/11/2026</h1>
+  <div class="period">So với tuần 15–21/11/2026. Rê chuột vào một khối rồi bấm 💬 để góp ý, có thể dán ảnh hoặc đính kèm file. Góp ý được lưu chung, mọi người mở report đều thấy.</div>
+
+  <div class="missing" style="margin:0 0 18px"><b>Bản nháp v1 (27/11), tuần chưa kết thúc:</b> đã có task của tuần kèm mốc đo, và số tạm tính đầu tuần (22–26/11 từ Promer Daily Control, Search 23–27/11 từ dashboard Google Ads của Hằng). Số cả tuần và report từng kênh điền sau 28/11. Tuần này có Black Friday (27/11); Cyber Monday là 30/11.</div>
+
+  <!-- OVERVIEW -->
+  <div class="block" id="overview">
+    <section data-sid="overview-interim">
+      <h2>Số tạm tính 5 ngày đầu tuần</h2>
+      <div class="chan-owner">CN 22/11 → T5 26/11, so với cùng 5 ngày tuần trước (15–19/11). Nguồn: Promer Daily Control, tab Weekly, đọc 27/11. Số trong ngoặc là cùng kỳ; dòng không có ngoặc là không so được.</div>
+      <div class="tbl-wrap"><table class="wrapnote interim">
+        <thead><tr><th>Chỉ số</th><th class="n">22–26/11</th><th>Ghi chú</th></tr></thead>
+        <tbody>
+          <tr class="grp"><td colspan="3">Paid user (North Star)</td></tr>
+          <tr><td>Shop trả phí lần đầu (Shopify Partner)</td><td class="n">5 <span class="prev">(7)</span></td><td>mẫu nhỏ</td></tr>
+          <tr><td>User web trả phí lần đầu (tin billing trên Google Chat)</td><td class="n">1 <span class="prev">(4)</span></td><td>mẫu nhỏ</td></tr>
+          <tr class="grp"><td colspan="3">Chi phí quảng cáo</td></tr>
+          <tr><td>Google Ads (Search + YouTube)</td><td class="n inv">355 USD <span class="prev">(365 USD)</span></td><td>Search 321 USD, YouTube / Demand Gen 34 USD</td></tr>
+          <tr><td>Meta Ads</td><td class="n inv">344 USD <span class="prev">(383 USD)</span></td><td>khoảng 69 USD/ngày</td></tr>
+          <tr><td>Shopify App Store Ads</td><td class="n inv">344 USD <span class="prev">(392 USD)</span></td><td></td></tr>
+          <tr class="grp"><td colspan="3">Sign-up web (GA4)</td></tr>
+          <tr><td>Từ Paid Search (Google Ads)</td><td class="n">22 <span class="prev">(96)</span></td><td>dashboard Google Ads 23–27/11 cũng giảm: 87 → 28 Signup Search (mục Google Ads)</td></tr>
+          <tr><td>Từ Paid Social (Meta Ads)</td><td class="n">11 <span class="prev">(18)</span></td><td>đăng ký theo pixel 25 → 17</td></tr>
+          <tr><td>Từ Organic Search + AI Assistant</td><td class="n">31 <span class="prev">(35)</span></td><td></td></tr>
+          <tr><td>Tổng sign-up GA4</td><td class="n">165 <span class="cmp">· cùng kỳ 340</span></td><td>không so: 16–18/11 có đợt extension tự mở tab app.promer.ai (¹)</td></tr>
+          <tr class="grp"><td colspan="3">SEO</td></tr>
+          <tr><td>Click GSC</td><td class="n">701 <span class="prev">(742)</span></td><td>1–2 ngày gần nhất của GSC có thể còn tăng</td></tr>
+          <tr><td>Impressions GSC</td><td class="n">34,340 <span class="prev">(34,731)</span></td><td></td></tr>
+          <tr class="grp"><td colspan="3">Meta Ads</td></tr>
+          <tr><td>Click link</td><td class="n">81 <span class="prev">(161)</span></td><td></td></tr>
+          <tr><td>Đăng ký theo pixel (7 ngày click + 1 ngày xem)</td><td class="n">17 <span class="prev">(25)</span></td><td></td></tr>
+          <tr><td>Chi phí mỗi đăng ký (pixel)</td><td class="n inv">20.22 USD <span class="prev">(15.32 USD)</span></td><td></td></tr>
+          <tr class="grp"><td colspan="3">Shopify App</td></tr>
+          <tr><td>Listing sessions (đã loại impact, extension)</td><td class="n">280 <span class="prev">(392)</span></td><td></td></tr>
+          <tr><td>Install (Shopify Partner)</td><td class="n">79 <span class="prev">(85)</span></td><td></td></tr>
+          <tr><td>Install từ App Store Ads</td><td class="n">25 <span class="prev">(23)</span></td><td>CPI 13.71 USD (17.03 USD)</td></tr>
+          <tr><td>Uninstall</td><td class="n inv">57 <span class="prev">(49)</span></td><td></td></tr>
+          <tr class="grp"><td colspan="3">Social (Graph API, cấp trang)</td></tr>
+          <tr><td>View Facebook</td><td class="n">7,774 <span class="prev">(11,795)</span></td><td>tính mọi bài đăng, khác cách đếm theo reel của team</td></tr>
+          <tr><td>View Instagram</td><td class="n">2,530 <span class="prev">(2,739)</span></td><td></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: tăng tô xanh, giảm tô đỏ; riêng chi phí, chi phí mỗi đăng ký và uninstall thì ngược lại. Không nhân số này lên thành số cả tuần, vì 2 ngày còn lại (27–28/11) rơi vào dịp Black Friday.<br>
+      ¹ Daily Control ghi 3 mốc làm lệch số trong kỳ so sánh. (1) 16–18/11: bản update extension tự mở tab app.promer.ai làm tăng session và sign-up Direct/Unassigned; đây là phần Direct tăng ở báo cáo tuần 15–21/11. Tỷ lệ sign-up / click của Google Ads, GA4 Paid Search và Meta không đổi trong 3 ngày này, nên các dòng theo kênh vẫn so được. (2) Từ 20/11 user free trên web còn 0 credit (paywall), nên generate, activation, người xem bảng giá không so thẳng với trước. (3) Từ 23/11 GA4 đổi session timeout lên 1 giờ và loại referral đăng nhập Google/Microsoft, nên bản này không so session.<br>
+      GA4 trong Daily Control đã loại Vietnam và các nguồn extension, impact, expu, cross-app. Install Partner của Daily Control khác cách đếm trong bản tóm tắt của Vy (tuần 15–21/11: 118 so với 98 installs), nên chỉ so trong cùng nguồn.</div>
+      <h3>Đọc nhanh</h3>
+      <ul class="plain">
+        <li><b>Google Ads Search giảm nhiều nhất:</b> sign-up GA4 Paid Search 96 → 22. Dashboard của Hằng (23–27/11 so với 18–22/11): Signup 87 → 28, CPC 50,890₫ → 77,595₫; 4 nhánh test value-based nhận 50% chi Search và ra 6 trên 28 Signup. Chưa rõ nguyên nhân, chờ report W48.</li>
+        <li><b>Meta Ads:</b> chi gần như giữ (383 → 344 USD) nhưng click link giảm một nửa (161 → 81); mỗi đăng ký theo pixel 15.32 → 20.22 USD. Chi khoảng 69 USD/ngày, thấp hơn mức 125–140 USD/ngày trong plan đợt 3.</li>
+        <li><b>Shopify App:</b> listing sessions 392 → 280, install Partner 85 → 79. App Store Ads ra 25 installs (23) với chi ít hơn, CPI 17.03 → 13.71 USD.</li>
+        <li><b>SEO:</b> click GSC 742 → 701 (−6%), sign-up Organic + AI 35 → 31.</li>
+        <li><b>Paid user:</b> shop trả phí lần đầu 7 → 5, user web trả phí lần đầu 4 → 1. Mẫu nhỏ, chờ số cả tuần.</li>
+      </ul>
+    </section>
+
+    <section data-sid="overview-table">
+      <h2>Tổng quan theo kênh (cả tuần)</h2>
+      <div class="tabs" role="tablist"><button data-tab="web" aria-selected="true">Web app (GA4)</button><button data-tab="shopify" aria-selected="false">Shopify App</button></div>
+      <div class="tabp" data-tab="web" data-label="Web app (GA4)">
+      <div class="chan-owner">Số GA4 theo <span class="mono">Session primary channel group</span>, cả promer.ai và app. Cột tuần 22–28/11 để trống tới khi kéo số sau 28/11; số trong ngoặc là tuần 15–21/11.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Kênh</th><th>Phụ trách</th><th class="n">Chi phí</th><th class="n">Sessions</th><th class="n">click-to-webapp</th><th class="n">Sign-up</th><th class="n">Nâng gói (user)</th></tr></thead>
+        <tbody>
+          <tr><td>SEO · Organic Search</td><td>Hiền</td><td class="n">–</td><td class="n">– <span class="prev">(1,584)</span></td><td class="n">– <span class="prev">(156)</span></td><td class="n">– <span class="prev">(29)</span></td><td class="n">– <span class="prev">(0)</span></td></tr>
+          <tr><td>SEO · AI Assistant</td><td>Hiền</td><td class="n">–</td><td class="n">– <span class="prev">(303)</span></td><td class="n">– <span class="prev">(34)</span></td><td class="n">– <span class="prev">(15)</span></td><td class="n">– <span class="prev">(0)</span></td></tr>
+          <tr><td>Google Ads · Search</td><td>Hằng</td><td class="n">– <span class="prev">(10.98M₫)</span></td><td class="n">– <span class="prev">(484)</span></td><td class="n">– <span class="prev">(4)</span></td><td class="n">– <span class="prev">(126)</span></td><td class="n">– <span class="prev">(1)</span></td></tr>
+          <tr><td>Google Ads · YouTube (Cross-network)</td><td>Hằng</td><td class="n">– <span class="prev">(2.03M₫)</span></td><td class="n">– <span class="prev">(61)</span></td><td class="n">– <span class="prev">(2)</span></td><td class="n">– <span class="prev">(0)</span></td><td class="n">– <span class="prev">(0)</span></td></tr>
+          <tr><td>Meta Ads · Paid Social</td><td>Vy</td><td class="n">– <span class="prev">(488 USD)</span></td><td class="n">– <span class="prev">(243)</span></td><td class="n">– <span class="prev">(27)</span></td><td class="n">– <span class="prev">(22)</span></td><td class="n">– <span class="prev">(0)</span></td></tr>
+          <tr><td>Shopify admin → web · Organic Shopping</td><td>Vy</td><td class="n">–</td><td class="n">– <span class="prev">(533)</span></td><td class="n">– <span class="prev">(3)</span></td><td class="n">– <span class="prev">(0)</span></td><td class="n">– <span class="prev">(9)</span></td></tr>
+          <tr><td>Meta Social · Organic Social</td><td>Long, Vy</td><td class="n">–</td><td class="n">– <span class="prev">(216)</span></td><td class="n">– <span class="prev">(10)</span></td><td class="n">– <span class="prev">(9)</span></td><td class="n">– <span class="prev">(0)</span></td></tr>
+          <tr><td>YouTube organic</td><td>Hằng, Tiến</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">–</td></tr>
+          <tr><td>Direct</td><td>–</td><td class="n">–</td><td class="n">– <span class="prev">(63,042)</span></td><td class="n">– <span class="prev">(36)</span></td><td class="n">– <span class="prev">(175)</span></td><td class="n">– <span class="prev">(6)</span></td></tr>
+          <tr><td>Unassigned</td><td>–</td><td class="n">–</td><td class="n">– <span class="prev">(6,079)</span></td><td class="n">– <span class="prev">(2)</span></td><td class="n">– <span class="prev">(39)</span></td><td class="n">– <span class="prev">(4)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: Sign-up = số session có <span class="mono">complete_sign_up_google</span> hoặc <span class="mono">complete_sign_up_email</span>. Nâng gói = số user có <span class="mono">complete_plan_upgrade_on_billing_detail</span>. Khi điền số: từ 23/11 GA4 đổi session timeout và loại referral đăng nhập, nên cột Sessions không so thẳng với tuần 15–21/11; Direct và Unassigned tuần 15–21/11 cao do đợt extension 16–18/11.</div>
+      </div>
+      <div class="tabp" data-tab="shopify" data-label="Shopify App" hidden>
+      <div class="chan-owner">Chờ bản tóm tắt Shopify App tuần 22–28/11 của Vy (GA4 app listing theo nguồn, traffic thật đã loại Impact và expu).</div>
+      <div class="note">Mốc tuần 15–21/11 theo Vy: 434 visit listing, 20.5% session bấm Install, 98 installs mọi nguồn, 14 shop trả phí trong tuần. Shopify App Ads: chi $541, 157 click, 32 installs.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="block" id="insights">
+    <section data-sid="insights">
+      <h2>Điểm chính tuần này</h2>
+      <div class="chan-owner">Viết khi có số cả tuần. Mỗi kênh chấm theo chỉ số chính như tuần trước; số tạm tính xem ở mục Tổng quan.</div>
+      <div class="tbl-wrap"><table class="ins-sum"><thead><tr><th>Kênh</th><th>Phụ trách</th><th class="n">Mốc 15–21/11</th><th>Chỉ số chính</th><th>Điểm chính</th></tr></thead><tbody>
+        <tr><td><a href="#seo">SEO</a></td><td>Hiền</td><td class="n"><b>992</b></td><td class="muted">click GSC</td><td class="muted">chờ số cả tuần và deck SEO</td></tr>
+        <tr><td><a href="#gads">Google Ads · Search</a></td><td>Hằng</td><td class="n"><b>135</b></td><td class="muted">Sign Up</td><td class="muted">chờ report W48</td></tr>
+        <tr><td><a href="#gads">Google Ads · YouTube</a></td><td>Hằng</td><td class="n"><b>2</b></td><td class="muted">Sign Up</td><td class="muted">chờ report W48</td></tr>
+        <tr><td><a href="#meta-ads">Meta Ads</a></td><td>Vy</td><td class="n"><b>$15.77</b></td><td class="muted">mỗi đăng ký (đợt 2); generate / đăng ký 29%</td><td class="muted">chờ report đợt 3</td></tr>
+        <tr><td><a href="#meta-social">Meta Social</a></td><td>Long, Vy</td><td class="n"><b>3,791</b></td><td class="muted">người xem Instagram</td><td class="muted">chờ report 23–29/11</td></tr>
+        <tr><td><a href="#shopify">Shopify App</a></td><td>Vy</td><td class="n"><b>98</b></td><td class="muted">installs</td><td class="muted">chờ bản tóm tắt tuần</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+
+  <!-- TASKS -->
+  <div class="block" id="tasks">
+    <section data-sid="tasks-done">
+      <h2>Task đã làm → chỉ số sau đó</h2>
+      <div class="chan-owner">Task lấy từ bảng "Thử nghiệm tuần 22–28/11" ở báo cáo tuần 15–21/11, cột "Week: 23/11 - 29/11" của <b>Promer GTM 2026</b> và <b>[Promer] Product x Growth Changelog</b>, đọc ngày 27/11. Kết quả điền khi có report từng kênh; số tạm tính ghi rõ kỳ và nguồn.</div>
+      <div class="tk-legend"><span class="chip ok">có tín hiệu tốt</span><span class="chip bad">chưa đạt</span><span class="chip warn">chưa đủ ngày</span><span class="chip gray">chưa đo được</span></div>
+
+      <div class="tabs" role="tablist" data-group="tk"><button data-tab="seo" aria-selected="true">SEO (4)</button><button data-tab="gads" aria-selected="false">Google Ads (4)</button><button data-tab="meta" aria-selected="false">Meta Ads (4)</button><button data-tab="shop" aria-selected="false">Shopify App (4)</button><button data-tab="social" aria-selected="false">Meta Social (4)</button><button data-tab="other" aria-selected="false">Email · Partnership · Insight (4)</button></div>
+      <div class="tabp" data-group="tk" data-tab="seo" data-label="SEO">
+      <h3 class="tk-ch">SEO <span class="chip">Hiền</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Tối ưu bài đang giảm theo cách đã làm với photography, fashion: ai-prompts-for-photoshoot (bản 18/11), what-are-ugc-ads, different-styles-of-ugc-ads</h4><div class="big">–</div><div class="lbl">click Google mỗi bài · mốc 15–21/11: photoshoot 24, what-are-ugc-ads 12, different-styles 7 · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> photography và fashion tăng 65 → 134 và 98 → 164 click sau khi tối ưu ngày 13/11.</li><li><b>Đo bằng:</b> click Google từng bài, đọc 2 tuần sau ngày đăng.</li></ul></div>
+        <div class="card"><h4>CTA đầu bài: gắn cho shoe và beauty brands, đổi CTA bài fashion theo mẫu perfume</h4><div class="big">–</div><div class="lbl">người bấm CTA mỗi tuần · mốc: shoe 95 click, 0 bấm CTA; fashion 2.3% bấm CTA (perfume 8.6%) · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> CTA đầu / giữa bài tăng 8 → 26 lượt bấm tuần 15–21/11.</li><li><b>Đo bằng:</b> người bấm CTA, đọc 03/12.</li></ul></div>
+        <div class="card"><h4>Tối ưu title/meta và nội dung 6 landing page có keyword ở vị trí 4–10; backlink free (directory AI tool) cho trang ở vị trí 11–20</h4><div class="big">–</div><div class="lbl">click Google · mốc: 10 click trên 2,390 impressions / 2 tuần · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Trang:</b> tiktok-ad-ai-generator, /ad-prompt, instagram-ad-generator, furniture, bakery, /ad-clone.</li><li><b>Đo bằng:</b> click và vị trí Google 2 tuần sau khi sửa.</li></ul></div>
+        <div class="card"><h4>Trang creative WAL: sửa sitemap (dev), thêm chữ "ad" vào title/meta cho 1 batch nhỏ, internal link về trang niche / product type</h4><div class="big">–</div><div class="lbl">mốc: 12,971 / 23,043 trang trong sitemap; 36% impressions có ad/ads; 162 session AI/tuần · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> session AI vào trang creative giảm từ đỉnh 264 (18–24/10) còn 162; 1 file sitemap trả về 404 (SEO-1123-01).</li><li><b>Đo bằng:</b> số trang creative trong sitemap, impressions có query ad/ads, session AI; đo lại 07/12 và 21/12.</li></ul></div>
+      </div>
+      <div class="note">Cả site 22–26/11 (Daily Control): 701 click GSC, cùng kỳ 742. Số theo trang chờ deck SEO.</div>
+      </div>
+      <div class="tabp" data-group="tk" data-tab="gads" data-label="Google Ads" hidden>
+      <h3 class="tk-ch">Google Ads <span class="chip">Hằng</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Search: ngân sách 1.5M₫/ngày, dồn cho nhóm AI Ad (C1); hạ bid hoặc chuyển exact cho "ai ad generator"</h4><div class="big">28</div><div class="lbl">Signup Search tạm tính 23–27/11 (18–22/11: 87) · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Mốc 15–21/11:</b> 135 Sign Up, 81K₫ mỗi Sign Up; C1 50 Sign Up, 111K₫; "ai ad generator" 311K₫ mỗi Sign Up.</li><li><b>Tạm tính 23–27/11</b> (dashboard của Hằng): chi 6.91M₫ (8.75M₫), CPC 77,595₫ (50,890₫), 246,640₫ mỗi Signup (100,611₫). 4 campaign C1 nhận 61% chi Search, ra 9 Signup. GA4 Paid Search 22–26/11: 22 sign-up (cùng kỳ 96).</li></ul></div>
+        <div class="card"><h4>Search: test value-based bidding trên 4 campaign (C1, C2, C3 Tier 2 từ 18/11; C1 Tier 1 từ 19/11), chấm 02/12</h4><div class="big">50%</div><div class="lbl">chi Search vào 4 nhánh thử, 23–27/11 (3.46M₫), ra 6 trên 28 Signup · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Mốc 15–21/11:</b> nhánh thử chi 826K₫ (7.5% chi Search), 12 Sign Up, 0 generate.</li><li><b>Tạm tính 23–27/11:</b> nhánh thử 576K₫ mỗi Signup, campaign gốc 157K₫. Nhánh thử C1 Tier 2 chi 1.40M₫, 6 click, 0 Signup.</li><li><b>Team ghi (GTM 23–29/11):</b> 1 camp UGC có value cao hơn 216%, các camp còn lại giảm 50–75%; chờ đủ dữ liệu, chấm theo chi phí mỗi generate.</li></ul></div>
+        <div class="card"><h4>Thứ 4: test paywall</h4><div class="big">0</div><div class="lbl">purchase từ Search, tạm tính 23–27/11 (18–22/11: 1) · <span class="chip gray">chưa đo được</span></div>
+          <ul><li><b>Vì sao:</b> mong tỷ lệ sang paid cao hơn; mốc 15–21/11: 1 paid từ Search (Brand).</li><li>Changelog chưa có dòng test paywall trong tuần. Dòng gần nhất là 20/11: user free trên web về 0 credit, hiện paywall khi dùng tính năng.</li></ul></div>
+        <div class="card"><h4>YouTube: giữ retarget Engage 14 ngày và Sign-up 60 ngày, 150K₫/ngày, tần suất 5/tuần, mỗi tuần 2 creative mới làm lại từ Facebook</h4><div class="big">–</div><div class="lbl">Sign Up YouTube · mốc 15–21/11: 2 Sign Up, 1.01M₫ mỗi Sign Up; Ad06 380K₫ · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Tạm tính 22–26/11</b> (Daily Control): chi YouTube / Demand Gen 34 USD (≈ 0.89M₫).</li><li>Báo cáo 15–21/11 ghi tệp Re-signup 30 ngày và 2 creative về Ad Concept; GTM tuần 23–29/11 ghi Sign-up 60 ngày và creative làm lại từ Facebook.</li></ul></div>
+      </div>
+      </div>
+      <div class="tabp" data-group="tk" data-tab="meta" data-label="Meta Ads" hidden>
+      <h3 class="tk-ch">Meta Ads <span class="chip">Vy</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Đợt 3: giữ ADV-LAL và Clone_Ad02, tăng 20% ngân sách nếu ≤ $56 mỗi generate; thêm 20% cho Black Friday → Cyber Monday</h4><div class="big">$20.22</div><div class="lbl">mỗi đăng ký theo pixel, tạm tính 22–26/11 (cùng kỳ 15–19/11: $15.32) · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Mốc đợt 2 (14–21/11):</b> $15.77 mỗi đăng ký, $53.60 mỗi generate, 29% đăng ký đi tới generate.</li><li><b>Tạm tính 22–26/11</b> (Daily Control, cả tài khoản): chi $343.79 ($383.02), khoảng $69/ngày; 81 click link (161); 17 đăng ký pixel (25); GA4 Paid Social 11 sign-up (18).</li><li><b>Đo bằng:</b> $ mỗi generate, generate / đăng ký ≥ 50%.</li></ul></div>
+        <div class="card"><h4>Test trang đích Clone_Ad02: homepage so với /tools/ai-ugc-video-generator, $30/ngày, 21–27/11</h4><div class="big">–</div><div class="lbl">generate / đăng ký, LPV → sign-up · mốc: homepage 17% bấm CTA (30/180), /tools/ 19% (4/21) · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> đợt 2 đăng ký gần gấp 3 nhưng generate chỉ 9 → 10.</li><li><b>Đo bằng:</b> chấm định hướng 28/11, quyết định 5/12.</li></ul></div>
+        <div class="card"><h4>Creative testing ~$20/ngày, 7 ngày, từ 21/11</h4><div class="big">–</div><div class="lbl">CTR ≥ 1.2%, $ mỗi generate ≤ $56 · mốc: 3 ad dưới $10 chưa chấm · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Plan đợt 3:</b> Pillar4, Pillar5 (Black Friday, tới 30/11), Pillar3 cắt 15–20s, 2 concept mới cho chủ shop 25–44.</li><li><b>Changelog 21/11:</b> 4 creative mới để tối ưu lower funnel sau signup: Drama ads, Sitcom ad, Podcast ad, Remake best practice ad.</li><li><b>Đo bằng:</b> rule creative test, chấm 28/11.</li></ul></div>
+        <div class="card"><h4>Retarget offer BFCM → /pricing, $5/ngày; đo cohort trả phí</h4><div class="big">–</div><div class="lbl">người xem bảng giá, nâng gói · mốc đợt 2: 8 người xem bảng giá, 0 nâng gói, 0 Subscribe · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li>Cohort trả phí 14 và 30 ngày của đợt 2, lần đầu đọc 5/12; so người trả phí từ Meta với Google Ads (test D).</li></ul></div>
+      </div>
+      </div>
+      <div class="tabp" data-group="tk" data-tab="shop" data-label="Shopify App" hidden>
+      <h3 class="tk-ch">Shopify App <span class="chip">Vy</span><span class="chip">NaNa</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Shopify Ads: nâng bid "ads" exact lên $7–8, giữ "dropshipping" broad và roposo, dừng "media"</h4><div class="big">25</div><div class="lbl">install từ App Store Ads, tạm tính 22–26/11 (cùng kỳ 23) · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Mốc 15–21/11:</b> Shopify Ads 157 click, 32 installs, chi $541; "ads" exact 4 click.</li><li><b>Tạm tính 22–26/11</b> (Daily Control): chi $344.12 ($391.60), CPI $13.71 ($17.03).</li><li><b>Đo bằng:</b> visit listing và installs từ Search Ads; theo dõi CTR và lượt hiển thị Category tuần Black Friday.</li></ul></div>
+        <div class="card"><h4>Giữ banner listing (16/11) tới 6/12; idea banner tiếp theo chuẩn bị sẵn</h4><div class="big">–</div><div class="lbl">install rate · mốc: install/visit 21.0%; bấm Install desktop 17.4%, mobile 30.6% · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Tạm tính 22–26/11</b> (Daily Control, cách đếm khác Vy): listing sessions 280 (cùng kỳ 392), install Partner 79 (85), bấm Add App / listing session 26.1% (24.7%).</li><li><b>Đo bằng:</b> cần 3–4 tuần; đọc riêng desktop, mobile và nhóm từ khóa "ads".</li></ul></div>
+        <div class="card"><h4>Theo dõi ticket featured app (gửi 18/11)</h4><div class="big">0</div><div class="lbl">session từ hạng mục featured, mốc 15–21/11 · <span class="chip gray">chưa đo được</span></div>
+          <ul><li>Khi được duyệt: ghi ngày vào changelog, đo visit, install, install → paid theo hạng mục.</li></ul></div>
+        <div class="card"><h4>Extension chuyển traffic sang test 5 static ads (24/11)</h4><div class="big">–</div><div class="lbl">traffic Shopify app, nguồn trên GA4 · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao (changelog, NaNa):</b> test 5 static ads; team dự kiến traffic Shopify app giảm, theo dõi GA4 có ghi sai vào nguồn khác không.</li><li>Daily Control đã loại nguồn gắn mã extension khỏi listing sessions (280, cùng kỳ 392), nên chưa đo được phần traffic extension bị chuyển đi.</li></ul></div>
+      </div>
+      </div>
+      <div class="tabp" data-group="tk" data-tab="social" data-label="Meta Social" hidden>
+      <h3 class="tk-ch">Meta Social <span class="chip">Long</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Series kể chuyện 30–45s (Cinderella phần 3 / cổ tích mới), Promer vào sau giây 5, ưu tiên Facebook</h4><div class="big">–</div><div class="lbl">người xem, follow · mốc 16–22/11: Bond 546, Cinderella 1,236 người xem Instagram; 2 follow từ reel · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> reel kể chuyện có Promer làm nhân vật dẫn đầu tuần 16–22/11.</li><li>Báo cáo 15–21/11 ghi bản dài 45–60s; phần Next trong GTM (cập nhật sau) ghi 30–45s.</li></ul></div>
+        <div class="card"><h4>Black Friday lồng vào series: 1 reel 27/11, 1 reel Cyber Monday 30/11, ưu đãi chỉ ở CTA</h4><div class="big">–</div><div class="lbl">người xem, share + save · mốc: reel mùa lễ Christmas 277 người xem · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> tuần cao điểm mua sắm của merchant; tuần trước reel trend mùa đi kém reel kể chuyện.</li></ul></div>
+        <div class="card"><h4>2 reel nỗi đau merchant ưu tiên Facebook, caption gắn UTM để đo sign-up theo reel</h4><div class="big">–</div><div class="lbl">view Facebook, session và sign-up theo UTM · mốc: view Facebook 76–418 mỗi reel; 1 sign-up từ link UTM · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li><b>Vì sao:</b> team ghi Facebook phản hồi tốt hơn Instagram với nhóm reel này.</li></ul></div>
+        <div class="card"><h4>3 video cho team Ads từ Cinderella 2 và "How many products", bản 15–30s, hook → proof chặt</h4><div class="big">–</div><div class="lbl">hook rate, CTR, chi phí mỗi sign-up (team Ads đọc) · <span class="chip gray">chưa đo được</span></div>
+          <ul><li><b>Vì sao:</b> dùng format đã có tín hiệu thật trên page cho quảng cáo.</li></ul></div>
+      </div>
+      <div class="note">Cả trang 22–26/11 (Daily Control, Graph API): view Facebook 7,774 (cùng kỳ 11,795), view Instagram 2,530 (2,739). Số cấp trang tính mọi bài đăng, khác cách đếm theo reel trong report của team.</div>
+      </div>
+      <div class="tabp" data-group="tk" data-tab="other" data-label="Email · Partnership · Insight" hidden>
+      <h3 class="tk-ch">Email, Partnership, Insight user <span class="chip">Hằng</span></h3>
+      <div class="cards ins tk">
+        <div class="card"><h4>Email: dev chốt event, đẩy data 30 ngày (nhóm sign-up) và 3 tháng (nhóm paid), rồi chạy luồng</h4><div class="big">0</div><div class="lbl">email đã gửi (mốc 15–21/11: chưa gửi) · <span class="chip gray">chưa đo được</span></div>
+          <ul><li><b>GTM 23–29/11:</b> đã verify domain, dựng mẫu email, đã mua tài khoản Customer.io, chia vai trò từng loại email (email giao dịch gửi từ hệ thống). Còn thiếu event, dev cần đẩy thêm và lookback data.</li></ul></div>
+        <div class="card"><h4>Thu feedback của user về tính năng: đã set-up 25/11</h4><div class="big">–</div><div class="lbl">số feedback thu được · mốc: chưa có kênh thu feedback · <span class="chip warn">chưa đủ ngày</span></div>
+          <ul><li>GTM 23–29/11: set-up ngày 25/11, chờ data đổ về. Báo cáo 15–21/11 đề xuất pop-up 👍/👎 kèm ô feedback khi user thoát màn hình generate.</li></ul></div>
+        <div class="card"><h4>Xác định lại ICP, churn và retention của nhóm trả phí</h4><div class="big">65%</div><div class="lbl">shop mua gói là shop nhỏ (team ghi trong GTM) · <span class="chip gray">chưa đo được</span></div>
+          <ul><li>Hai câu hỏi: làm sao để shop trả tiền, và trả tiếp qua các tháng. Team ghi shop nhỏ churn cao vì không trụ được trên Shopify.</li><li>Đang kiểm tra: store lâu năm dùng tính năng gì chính, vì sao ít chạy Meta Ads; giả thuyết ICP là shop mới có doanh thu, đang bắt đầu chạy ads.</li></ul></div>
+        <div class="card"><h4>Partnership: theo dõi partner (Shoplazza); Affiliate tạm dừng</h4><div class="big">–</div><div class="lbl">chốt hợp tác · <span class="chip gray">chưa đo được</span></div>
+          <ul><li>GTM 23–29/11: Partnership "Follow partner", Affiliate "Pending". Báo cáo 15–21/11: Shoplazza hẹn phản hồi sau họp nội bộ, trao đổi qua Slack.</li></ul></div>
+      </div>
+      </div>
+      <div class="note">Cách đọc: số trong ngoặc ở phần tạm tính là cùng kỳ tuần trước. Phần "Vì sao" lấy nguyên ý từ báo cáo tuần 15–21/11, GTM và changelog. Bấm tab để xem từng kênh; số trong ngoặc ở tên tab là số task.</div>
+    </section>
+
+    <section data-sid="tasks-next">
+      <h2>Mốc đã hẹn và thử nghiệm tuần 29/11–5/12</h2>
+      <div class="chan-owner">Các ngày chấm đã ghi trong report từng kênh tuần 15–21/11. Bảng thử nghiệm tuần 29/11–5/12 điền từ phần next step của report tuần 22–28/11.</div>
+      <ul class="tl">
+        <li><b>T7 28/11</b>Hết tuần báo cáo. Meta Ads chấm test trang đích Clone_Ad02 (định hướng) và creative test 7 ngày.</li>
+        <li><b>T2 30/11</b>Cyber Monday: Meta Social đăng 1 reel; Meta Ads tắt Pillar5 sau ngày này.</li>
+        <li><b>T3 1/12</b>Hết đợt 3 Meta Ads (từ 21/11).</li>
+        <li><b>T4 2/12</b>Google Ads chấm test value-based bidding sau 2 tuần, theo chi phí mỗi generate.</li>
+        <li><b>T5 3/12</b>SEO đọc số người bấm CTA đầu bài (shoe, beauty brands, fashion).</li>
+        <li><b>T7 5/12</b>Meta Ads quyết định test trang đích; đọc cohort trả phí 14 ngày của đợt 2.</li>
+        <li><b>CN 6/12</b>Shopify App hết thời gian giữ banner listing (từ 16/11), đọc install rate.</li>
+        <li><b>T2 7/12</b>SEO đo lại session AI vào trang creative WAL (lần sau: 21/12).</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- SEO -->
+  <div class="block" id="seo">
+    <section data-sid="seo-deck">
+      <h2>SEO &amp; AI Search</h2>
+      <div class="chan-owner"><span class="chip">Hiền</span> Deck SEO tuần 22–28/11 chưa làm: cần GSC đủ số tới 28/11 (GSC trễ 2–3 ngày). Bảng dưới là số tạm tính 22–26/11 từ Promer Daily Control (GSC <span class="mono">sc-domain:promer.ai</span> và GA4), so với cùng kỳ 15–19/11.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Chỉ số</th><th class="n">22–26/11</th></tr></thead>
+        <tbody>
+          <tr><td>Click GSC</td><td class="n">701 <span class="prev">(742)</span></td></tr>
+          <tr><td>· Non-brand</td><td class="n">677 <span class="prev">(710)</span></td></tr>
+          <tr><td>· Brand (promer, alihunter)</td><td class="n">24 <span class="prev">(32)</span></td></tr>
+          <tr><td>Impressions GSC</td><td class="n">34,340 <span class="prev">(34,731)</span></td></tr>
+          <tr><td>CTR GSC</td><td class="n">2.0% <span class="prev">(2.1%)</span></td></tr>
+          <tr><td>Vị trí TB (thấp là tốt)</td><td class="n inv">7.7 <span class="prev">(7.4)</span></td></tr>
+          <tr><td>Sign-up Organic Search + AI Assistant (GA4)</td><td class="n">31 <span class="prev">(35)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: cả tuần 15–21/11 có 992 click và 46,266 impressions. Bản này không so session Organic và AI vì từ 23/11 GA4 đổi cách tính session. Số theo trang (bài đã tối ưu, /tools/, trang creative WAL) chờ deck SEO.</div>
+    </section>
+  </div>
+
+  <!-- GOOGLE ADS -->
+  <div class="block" id="gads">
+    <section data-sid="gads-kpi">
+      <h2>Google Ads</h2>
+      <div class="chan-owner"><span class="chip">Hằng</span> Chờ report W48 (22–28/11) của Hằng. Số tạm tính dưới đây lấy từ dashboard Google Ads của Hằng (sheet Promer - Google ads, tab Dashboard, đọc 27/11): kỳ <b>23–27/11</b> so với 18–22/11, chỉ Search, đơn vị VND. Kỳ này lệch 1 ngày so với tuần báo cáo, và 27/11 chưa hết ngày.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Chỉ số</th><th class="n">Search 23–27/11</th></tr></thead>
+        <tbody>
+          <tr><td>Chi phí</td><td class="n inv">6.91M₫ <span class="prev">(8.75M₫)</span></td></tr>
+          <tr><td>Click</td><td class="n">89 <span class="prev">(172)</span></td></tr>
+          <tr><td>CTR</td><td class="n">15.45% <span class="prev">(15.10%)</span></td></tr>
+          <tr><td>CPC</td><td class="n inv">77,595₫ <span class="prev">(50,890₫)</span></td></tr>
+          <tr><td>Signup</td><td class="n">28 <span class="prev">(87)</span></td></tr>
+          <tr><td>Chi phí mỗi Signup</td><td class="n inv">246,640₫ <span class="prev">(100,611₫)</span></td></tr>
+          <tr><td>Purchase</td><td class="n">0 <span class="prev">(1)</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: Signup trên dashboard = <span class="mono">Signup_success_email</span> + <span class="mono">Signup_success_google</span>. Mốc tuần 15–21/11 theo report W47: Search 10.98M₫, 313 click, 135 Sign Up, 81K₫ mỗi Sign Up, 1 paid.<br>
+      Promer Daily Control 22–26/11 (cùng kỳ 15–19/11): GA4 Paid Search 22 sign-up (96); chi Google Ads 355 USD (365 USD), trong đó YouTube / Demand Gen 34 USD (≈ 0.89M₫).</div>
+    </section>
+    <section data-sid="gads-campaigns">
+      <h3>Search theo campaign, 23–27/11: 4 nhánh test value-based nhận 50% chi phí</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Campaign</th><th>Nhánh</th><th class="n">Chi phí</th><th class="n">% chi</th><th class="n">Click</th><th class="n">Signup</th></tr></thead>
+        <tbody>
+          <tr><td>C1 AI Ad · Tier 2</td><td>thử (value)</td><td class="n">1.40M₫</td><td class="n">20%</td><td class="n">6</td><td class="n">0</td></tr>
+          <tr><td>C1 AI Ad · Tier 1</td><td>thử (value)</td><td class="n">1.23M₫</td><td class="n">18%</td><td class="n">7</td><td class="n">1</td></tr>
+          <tr><td>C1 AI Ad · Tier 1</td><td>gốc</td><td class="n">964K₫</td><td class="n">14%</td><td class="n">6</td><td class="n">2</td></tr>
+          <tr><td>C1 AI Ad · Tier 2</td><td>gốc</td><td class="n">595K₫</td><td class="n">9%</td><td class="n">12</td><td class="n">6</td></tr>
+          <tr><td>C3 AI Video Generator · Tier 2</td><td>thử (value)</td><td class="n">505K₫</td><td class="n">7%</td><td class="n">9</td><td class="n">3</td></tr>
+          <tr><td>C3 AI Video Generator · Tier 1</td><td>gốc</td><td class="n">491K₫</td><td class="n">7%</td><td class="n">11</td><td class="n">7</td></tr>
+          <tr><td>C2 AI Video UGC · Tier 1</td><td>gốc</td><td class="n">490K₫</td><td class="n">7%</td><td class="n">4</td><td class="n">1</td></tr>
+          <tr><td>Brand · Promer</td><td>gốc</td><td class="n">480K₫</td><td class="n">7%</td><td class="n">15</td><td class="n">1</td></tr>
+          <tr><td>C2 AI Video UGC · Tier 2</td><td>thử (value)</td><td class="n">324K₫</td><td class="n">5%</td><td class="n">7</td><td class="n">2</td></tr>
+          <tr><td>C2 AI Video UGC · Tier 2</td><td>gốc</td><td class="n">262K₫</td><td class="n">4%</td><td class="n">8</td><td class="n">4</td></tr>
+          <tr><td>C3 AI Video Generator · Tier 2</td><td>gốc</td><td class="n">166K₫</td><td class="n">2%</td><td class="n">4</td><td class="n">1</td></tr>
+          <tr><td><b>4 nhánh thử</b></td><td></td><td class="n"><b>3.46M₫</b></td><td class="n"><b>50%</b></td><td class="n"><b>29</b></td><td class="n"><b>6</b></td></tr>
+          <tr><td><b>7 campaign gốc</b></td><td></td><td class="n"><b>3.45M₫</b></td><td class="n"><b>50%</b></td><td class="n"><b>60</b></td><td class="n"><b>22</b></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Cách đọc: tên campaign rút gọn từ tên trên Google Ads. "thử (value)" là nhánh test value-based bidding (C1, C2, C3 Tier 2 từ 18/11; C1 Tier 1 từ 19/11), "gốc" là campaign chạy từ trước. Mỗi Signup: nhánh thử 576K₫, campaign gốc 157K₫. Nhóm C1 nhận 61% chi Search (tuần 15–21/11: 51%). Dashboard chưa có generate, nên chưa chấm được theo chi phí mỗi generate như team định ngày 02/12.</div>
+    </section>
+  </div>
+
+  <!-- META ADS -->
+  <div class="block" id="meta-ads">
+    <section data-sid="meta-ads-kpi">
+      <h2>Meta Ads</h2>
+      <div class="chan-owner"><span class="chip">Vy</span> Chờ report đợt 3 của Vy (21/11 → 1/12, qua Black Friday và Cyber Monday). Số tạm tính 22–26/11 lấy từ Promer Daily Control (Graph API, cả tài khoản act 8478843415526188, giờ VN), so với cùng kỳ 15–19/11 của đợt 2.</div>
+      <div class="kpis5">
+        <div><b>$344</b><span>chi 22–26/11 · cùng kỳ $383 · khoảng $69/ngày</span></div>
+        <div><b>81</b><span>click link · cùng kỳ 161 <span class="down">▼ 50%</span></span></div>
+        <div><b>17</b><span>đăng ký theo pixel (7 ngày click + 1 ngày xem) · cùng kỳ 25 <span class="down">▼ 32%</span></span></div>
+        <div><b>$20.22</b><span>mỗi đăng ký theo pixel · cùng kỳ $15.32 <span class="down">▲ 32%</span></span></div>
+        <div><b>11</b><span>sign-up GA4 Paid Social · cùng kỳ 18 <span class="down">▼ 39%</span></span></div>
+      </div>
+      <h3>Kế hoạch đợt 3 trong tuần (từ report đợt 2 của Vy)</h3>
+      <div class="tbl-wrap"><table class="tk-next">
+        <thead><tr><th>Khi nào</th><th>Việc</th><th>Đo bằng</th></tr></thead>
+        <tbody>
+          <tr><td>21/11</td><td>Chấm ADV-LAL sau 7 ngày: ≤ $56 mỗi generate thì giữ nguyên, tăng ngân sách 20% ($70 → $84). Không sửa tệp, vị trí, event</td><td>$ / generate, $ / đăng ký cộng dồn</td></tr>
+          <tr><td>21–27/11</td><td>Test trang đích Clone_Ad02: homepage so với /tools/ai-ugc-video-generator, $30/ngày, 2 bản nhân bản chỉ khác URL</td><td>generate / đăng ký, LPV → sign-up</td></tr>
+          <tr><td>21/11</td><td>Creative testing ~$20/ngày, 7 ngày: Pillar4, Pillar5 (tới 30/11), Pillar3 cắt 15–20s. Nếu không chạy được 2 bài test cùng lúc thì ưu tiên test trang đích</td><td>CTR, xem ≥ 25%, đăng ký, generate</td></tr>
+          <tr><td>21–24/11</td><td>Retarget: 2 ảnh offer BFCM → /pricing, $5/ngày. Sản xuất 2 concept mới cho 25–44</td><td>tần suất, người xem bảng giá, nâng gói</td></tr>
+          <tr><td>27–30/11</td><td>Black Friday → Cyber Monday: ADV-LAL vẫn ≤ $56 mỗi generate thì tăng thêm 20%. Tắt Pillar5 sau 30/11</td><td>$ / generate theo ngày</td></tr>
+          <tr><td>28/11</td><td>Chấm test trang đích (định hướng) và creative test 7 ngày</td><td>rule creative test</td></tr>
+          <tr><td>5/12</td><td>Quyết định cuối test trang đích; cohort 14 ngày của đợt 2</td><td>GA4 + database</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Report đợt 2 ghi ngân sách đợt 3 khoảng $125–140/ngày và tuần BFCM cần duyệt ngân sách mới. Chi thực tế 22–26/11 khoảng $69/ngày, gần bằng đợt 2 ($70/ngày); chưa rõ lý do. Changelog 21/11 ghi creative testing với 4 creative mới (Drama ads, Sitcom ad, Podcast ad, Remake best practice ad), khác danh sách Pillar trong plan.</div>
+    </section>
+  </div>
+
+  <!-- SHOPIFY -->
+  <div class="block" id="shopify">
+    <section data-sid="shopify-kpi">
+      <h2>Shopify App</h2>
+      <div class="chan-owner"><span class="chip">Vy</span><span class="chip">Hằng</span> Chờ bản tóm tắt Shopify App tuần 22–28/11 của Vy. Số tạm tính 22–26/11 từ Promer Daily Control (Shopify Partner, GA4 listing đã loại impact và extension, App Store Ads), so với cùng kỳ 15–19/11. Daily Control đếm khác bản tóm tắt của Vy (tuần 15–21/11: 118 install Partner, Vy 98 installs mọi nguồn), nên chỉ so trong cùng nguồn.</div>
+      <div class="kpis5">
+        <div><b>280</b><span>listing sessions · cùng kỳ 392 <span class="down">▼ 29%</span></span></div>
+        <div><b>79</b><span>install (Partner) · cùng kỳ 85 <span class="down">▼ 7%</span></span></div>
+        <div><b>26.1%</b><span>bấm Add App / listing session · cùng kỳ 24.7%</span></div>
+        <div><b>25</b><span>install từ App Store Ads · cùng kỳ 23 · CPI $13.71 ($17.03) <span class="up">▼ 19%</span></span></div>
+        <div><b>5</b><span>shop trả phí lần đầu · cùng kỳ 7 · mẫu nhỏ</span></div>
+      </div>
+      <div class="note">Uninstall 57 (cùng kỳ 49). Chi App Store Ads $344.12 ($391.60). Changelog 24/11 ghi extension chuyển traffic sang test 5 static ads, team dự kiến traffic Shopify app giảm (NaNa). Mốc tuần 15–21/11 theo Vy: 434 visit, 20.5% session bấm Install, 98 installs, 14 shop trả phí trong tuần. Task của tuần xem ở tab Shopify App trong mục Task.</div>
+    </section>
+  </div>
+
+  <!-- META SOCIAL -->
+  <div class="block" id="meta-social">
+    <section data-sid="meta-social-summary">
+      <h2>Meta Social (organic)</h2>
+      <div class="chan-owner"><span class="chip">Long</span><span class="chip">Vy</span> Chờ report Meta Social 23–29/11 của team (tuần T2→CN, IG Insights từng reel). Số dưới đây là số cấp trang 22–26/11 từ Promer Daily Control (Graph API), so với cùng kỳ 15–19/11. Số cấp trang tính mọi bài đăng, không cùng cách đếm theo reel trong report của team.</div>
+      <div class="kpis5">
+        <div><b>7,774</b><span>view Facebook · cùng kỳ 11,795 <span class="down">▼ 34%</span></span></div>
+        <div><b>129</b><span>tương tác Facebook · cùng kỳ 282 <span class="down">▼ 54%</span></span></div>
+        <div><b>3</b><span>follow Facebook mới · cùng kỳ 7</span></div>
+        <div><b>2,530</b><span>view Instagram · cùng kỳ 2,739 <span class="down">▼ 8%</span></span></div>
+        <div><b>34</b><span>tương tác Instagram · cùng kỳ 82 <span class="down">▼ 59%</span></span></div>
+      </div>
+      <div class="note">Mốc tuần 16–22/11 theo report của team: 9 reel, 3,791 người xem Instagram, 2 follow từ reel. GA4 15–21/11: 177 session và 8 sign-up từ Facebook + Instagram organic. Kế hoạch tuần 23–29/11 xem ở tab Meta Social trong mục Task.</div>
+    </section>
+  </div>
+
+  <!-- YOUTUBE -->
+  <div class="block" id="youtube">
+    <section data-sid="youtube-summary">
+      <h2>YouTube</h2>
+      <div class="chan-owner"><span class="chip">Hằng</span><span class="chip">Tiến</span> YouTube organic tạm bỏ qua như tuần 15–21/11 (Daily Control có số YouTube Analytics tới 24/11). YouTube Ads nằm ở mục <a href="#gads">Google Ads</a>.</div>
+    </section>
+  </div>
+
+  <!-- EMAIL / PARTNERSHIP / INSIGHT USER -->
+  <div class="block" id="email">
+    <section data-sid="email-summary">
+      <h2>Email marketing</h2>
+      <div class="chan-owner"><span class="chip">Hằng</span> Nguồn: Promer GTM 2026, cột Week 23/11–29/11 (đọc 27/11); chờ report W48 của Hằng. Chưa gửi email nào, nên chưa có số đo.</div>
+      <ul class="plain">
+        <li><b>Đã làm:</b> verify domain, dựng các mẫu email cần gửi; đã mua tài khoản Customer.io (tuần trước đang trial 14 ngày); chia vai trò từng loại email, email giao dịch gửi từ hệ thống.</li>
+        <li><b>Vướng:</b> còn thiếu event, dev cần đẩy thêm và lookback data.</li>
+        <li><b>Tuần sau:</b> dev chốt event, đẩy data 30 ngày cho nhóm sign-up và 3 tháng cho nhóm paid; chạy luồng.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="block" id="partnership">
+    <section data-sid="partnership-summary">
+      <h2>Partnership</h2>
+      <div class="chan-owner"><span class="chip">Hằng</span> Nguồn: Promer GTM 2026, cột Week 23/11–29/11 (đọc 27/11).</div>
+      <ul class="plain">
+        <li><b>Partnership:</b> theo dõi partner. Báo cáo 15–21/11 ghi Shoplazza hẹn phản hồi thứ 2 hoặc thứ 3 tuần này, sau họp nội bộ; trao đổi qua Slack.</li>
+        <li><b>Affiliate:</b> tạm dừng (Pending).</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="block" id="user-insight">
+    <section data-sid="user-insight-summary">
+      <h2>Insight user</h2>
+      <div class="chan-owner"><span class="chip">Hằng</span> Nguồn: Promer GTM 2026, mục New insight audience, cột Week 23/11–29/11 (đọc 27/11).</div>
+      <ul class="plain">
+        <li><b>Feedback về tính năng:</b> đã set-up ngày 25/11, chờ data đổ về.</li>
+        <li><b>ICP:</b> hai câu hỏi là làm sao để shop trả tiền, và trả tiếp qua các tháng. Team ghi 65% shop mua gói là shop nhỏ, churn cao vì không trụ được trên Shopify.</li>
+        <li><b>Đang kiểm tra:</b> store lâu năm dùng tính năng gì chính (ảnh sản phẩm cho landing page hay creative chạy ads), vì sao ít chạy Meta Ads. Giả thuyết của team: ICP là shop mới có doanh thu, đang bắt đầu chạy ads; shop lâu năm đã có quy trình làm creative ổn định nên chỉ đổi khi tool tốt hơn hẳn.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="block" id="gaps">
+    <section data-sid="gaps">
+      <h2>Dữ liệu còn thiếu</h2>
+      <div class="missing">
+        <ul class="plain">
+          <li><b>Cả tuần 22–28/11:</b> tuần kết thúc thứ 7 28/11. Bảng GA4 theo kênh (517415274), chart và GSC kéo sau ngày này; GSC trễ 2–3 ngày.</li>
+          <li><b>SEO:</b> deck SEO tuần 22–28/11, số theo trang cho 4 task SEO.</li>
+          <li><b>Google Ads:</b> report W48 (22–28/11) của Hằng. Dashboard đang xem 23–27/11, lệch 1 ngày với tuần báo cáo; chưa có generate cho test value-based bidding.</li>
+          <li><b>Meta Ads:</b> report đợt 3 của Vy (21/11 → 1/12, kỳ khác tuần báo cáo), kết quả chấm test trang đích và creative test ngày 28/11. Lý do chi 22–26/11 chỉ khoảng $69/ngày so với plan $125–140/ngày.</li>
+          <li><b>Shopify App:</b> bản tóm tắt tuần 22–28/11 của Vy (visit theo nguồn listing, funnel install → paid), số charge backend.</li>
+          <li><b>Meta Social:</b> report 23–29/11 của team (tuần T2→CN); thời gian xem TB và skip rate (còn thiếu từ tuần trước).</li>
+          <li><b>YouTube organic:</b> tạm bỏ qua như tuần trước.</li>
+          <li><b>Email, Partnership, Insight user:</b> report W48 của Hằng.</li>
+          <li><b>Cách đo đổi trong tuần:</b> từ 23/11 GA4 đổi session timeout lên 1 giờ và loại referral đăng nhập Google/Microsoft. Khi kéo số cả tuần, cột Sessions không so thẳng với tuần 15–21/11.</li>
+          <li><b>Đã có câu trả lời:</b> Direct / Unassigned tăng từ 16/11 (câu hỏi ở báo cáo 15–21/11) là do bản update extension tự mở tab app.promer.ai 16–18/11; sign-up Direct/Unassigned là user extension, kênh paid và organic không bị lệch (ghi chú trong Promer Daily Control, 23/11).</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- METHOD -->
+  <div class="block" id="method">
+    <section data-sid="method">
+      <h2>Nguồn &amp; cách tính</h2>
+      <ul class="plain">
+        <li><b>Số tạm tính 22–26/11</b>: sheet Promer Daily Control 2026 (<span class="mono">14sRZqaoN460lrq8P3EPvJFqJhk0FmkYzu18ZL0xsWjQ</span>), tab Weekly, đọc 27/11. Cột "Tuần này (CN→hôm qua)" = 22–26/11, "Cùng kỳ tuần trước" = 15–19/11, giờ VN. Nguồn trong sheet: GA4 517415274 (đã loại Vietnam và nguồn extension, impact, expu, cross-app), Search Console <span class="mono">sc-domain:promer.ai</span>, Google Ads (quy đổi 1₫ = 0.000038 USD), Meta Ads act 8478843415526188, Shopify Partner và GA4 listing (qua Promer_Keyword_Tracking), App Store Ads (extension Promer Ads Sync), Facebook / Instagram Graph API. Các mốc đổi cách đo lấy từ tab Config (ANNOTATIONS, SPIKE_DAYS).</li>
+        <li><b>Google Ads tạm tính</b>: sheet Promer - Google ads của Hằng, tab Dashboard, đọc 27/11: kỳ 23–27/11 so với 18–22/11, kênh SEM (Search), VND. Signup = <span class="mono">Signup_success_email</span> + <span class="mono">Signup_success_google</span>.</li>
+        <li><b>Task và thử nghiệm</b>: báo cáo tuần 15–21/11 (v7: bảng "Thử nghiệm tuần 22–28/11", plan đợt 3 Meta Ads, ưu tiên Shopify App); Promer GTM 2026 (<span class="mono">1N_c-GhHpAmUT2tMbCtQFi2ahJifF5k_K4-1V7i9YlZo</span>, tab Direction &amp; Planning, cột "Week: 23/11 - 29/11" và phần Next của Meta Social); [Promer] Product x Growth Changelog (<span class="mono">1Hl3hZYw8B9lXv0F8vyrUhnnXSKbyCCLmp4HjcaoM_dg</span>, tab Change Log, dòng 20–24/11). Đọc ngày 27/11.</li>
+        <li><b>Mốc tuần 15–21/11</b>: lấy nguyên số trong báo cáo tuần 15–21/11.</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- CHANGELOG -->
+  <div class="block" id="changelog">
+    <section data-sid="changelog">
+      <h2>Changelog</h2>
+      <ul class="changelog plain">
+        <li><span class="mono">2026-11-27</span> · v1, bản nháp tuần 22–28/11, dựng khi tuần chưa kết thúc. Có: số tạm tính 22–26/11 so với cùng kỳ (Promer Daily Control) và Search 23–27/11 theo campaign (dashboard Google Ads của Hằng); 24 task của tuần kèm mốc tuần 15–21/11; lịch mốc đã hẹn tới 7/12; Email, Partnership, Insight user theo GTM. Bảng GA4 theo kênh, chart, deck SEO và report từng kênh làm khi có số cả tuần.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+</div>
+
+<div id="panel" aria-label="Comment">
+  <header><b>Comment</b><input id="author" type="text" placeholder="Tên người góp ý" aria-label="Tên người góp ý"><button id="bClose">Đóng</button></header>
+  <div id="plist"></div>
+  <footer>
+    <button id="bSync" class="primary" hidden>Gửi comment trên máy này lên chung</button>
+    <button id="bReload" hidden>Tải lại</button>
+    <button id="bZip" class="primary">Tải feedback .zip</button>
+    <button id="bCopyC">Copy md (chỉ chữ)</button>
+    <button id="bClear">Xoá hết</button>
+  </footer>
+</div>
+<div id="toast"></div>
+<div id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+/* ---------- chart data: bản v1 chưa có chart, thêm khi có số cả tuần ---------- */
+const CHARTS={};
+
+/* ---------- tiny SVG chart kit ---------- */
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const tip=document.getElementById('tip');
+  const css=(el,v)=>getComputedStyle(el).getPropertyValue(v).trim();
+  const fmtN=v=>Number.isInteger(v)?v.toLocaleString('en-US'):v.toLocaleString('en-US',{maximumFractionDigits:2});
+  function E(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+  function nice(max){if(max<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(max)));const m=max/p;return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p}
+  function showTip(html,x,y){tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth,h=tip.offsetHeight;let l=x+14,t=y+14;if(l+w>innerWidth-8)l=x-w-14;if(t+h>innerHeight-8)t=y-h-14;tip.style.left=l+'px';tip.style.top=t+'px'}
+  function hideTip(){tip.style.opacity=0}
+  function head(box,cfg,legend){
+    box.innerHTML='';
+    const t=document.createElement('div');t.className='chart-t';t.textContent=cfg.title;box.appendChild(t);
+    const s=document.createElement('div');s.className='chart-s';s.textContent=cfg.sub||'';box.appendChild(s);
+    if(legend&&legend.length>1){const lg=document.createElement('div');lg.className='legend';legend.forEach(([n,c])=>{const sp=document.createElement('span');sp.innerHTML='<i style="background:'+c+'"></i>';sp.appendChild(document.createTextNode(n));lg.appendChild(sp)});box.appendChild(lg)}
+  }
+  function mdTable(cfg,head,rows){return '**Chart: '+cfg.title+'** ('+(cfg.sub||'')+')\n\n| '+head.join(' | ')+' |\n|'+head.map(()=>' --- ').join('|')+'|\n'+rows.map(r=>'| '+r.join(' | ')+' |').join('\n')}
+
+  function line(box,cfg){
+    const cols=cfg.series.map(s=>css(box,s.c));
+    head(box,cfg,cfg.series.map((s,i)=>[s.name,cols[i]]));
+    const W=Math.max(300,box.clientWidth-32),H=230,L=34,R=cfg.series.length>1?120:44,T=10,B=26;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const n=cfg.labels.length,max=nice(Math.max(...cfg.series.flatMap(s=>s.v))*1.05);
+    const x=i=>L+(W-L-R)*i/(n-1),y=v=>T+(H-T-B)*(1-v/max);
+    for(let k=0;k<=4;k++){const v=max*k/4;E('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:css(box,k?'--grid':'--axis'),'stroke-width':1},svg);E('text',{x:L-6,y:y(v)+4,'text-anchor':'end','font-size':11,fill:css(box,'--tx-m')},svg,fmtN(v))}
+    cfg.labels.forEach((lb,i)=>{if(i%2===0||i===n-1)E('text',{x:x(i),y:H-8,'text-anchor':'middle','font-size':11,fill:css(box,'--tx-m')},svg,lb)});
+    if(cfg.split){const sx=(x(cfg.split-1)+x(cfg.split))/2;E('line',{x1:sx,x2:sx,y1:T,y2:H-B,stroke:css(box,'--axis'),'stroke-dasharray':'3 3'},svg);E('text',{x:sx-6,y:T+10,'text-anchor':'end','font-size':11,fill:css(box,'--tx-m')},svg,'tuần trước');E('text',{x:sx+6,y:T+10,'font-size':11,fill:css(box,'--tx-m')},svg,'tuần này')}
+    const ends=[];
+    cfg.series.forEach((s,si)=>{
+      E('path',{d:s.v.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' '),fill:'none',stroke:cols[si],'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+      ends.push({y:y(s.v[n-1]),name:s.name,c:cols[si]});
+    });
+    if(cfg.series.length>1){ends.sort((a,b)=>b.y-a.y);ends[0].y=Math.min(ends[0].y,H-B-4);for(let i=1;i<ends.length;i++)if(ends[i-1].y-ends[i].y<13)ends[i].y=ends[i-1].y-13;
+      ends.forEach(e=>{E('text',{x:W-R+8,y:e.y+4,'font-size':11,fill:css(box,'--tx')},svg,e.name.replace(/ \(.*\)/,''))})}
+    const cross=E('line',{y1:T,y2:H-B,stroke:css(box,'--axis'),'stroke-width':1,opacity:0},svg);
+    const dots=cfg.series.map((s,si)=>E('circle',{r:4,fill:cols[si],stroke:css(box,'--surface')||'#fff','stroke-width':2,opacity:0},svg));
+    const hit=E('rect',{x:L,y:T,width:W-L-R,height:H-T-B,fill:'transparent'},svg);
+    hit.addEventListener('mousemove',ev=>{
+      const r=svg.getBoundingClientRect(),px=(ev.clientX-r.left)*W/r.width;
+      const i=Math.max(0,Math.min(n-1,Math.round((px-L)/((W-L-R)/(n-1)))));
+      cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));cross.setAttribute('opacity',1);
+      dots.forEach((d,si)=>{d.setAttribute('cx',x(i));d.setAttribute('cy',y(cfg.series[si].v[i]));d.setAttribute('opacity',1)});
+      showTip('<b>'+cfg.labels[i]+'</b><br>'+cfg.series.map((s,si)=>'<span class="sw" style="background:'+cols[si]+'"></span>'+s.name+': <b>'+fmtN(s.v[i])+'</b>').join('<br>'),ev.clientX,ev.clientY);
+    });
+    hit.addEventListener('mouseleave',()=>{cross.setAttribute('opacity',0);dots.forEach(d=>d.setAttribute('opacity',0));hideTip()});
+    box.dataset.md=mdTable(cfg,['Ngày',...cfg.series.map(s=>s.name)],cfg.labels.map((lb,i)=>[lb,...cfg.series.map(s=>s.v[i])]));
+  }
+
+  function barh(box,cfg){
+    const cols=cfg.series.map(s=>css(box,s.c));
+    head(box,cfg,cfg.series.map((s,i)=>[s.name,cols[i]]));
+    const W=Math.max(300,box.clientWidth-32),bh=9,gap=2,grp=cfg.series.length*(bh+gap)+12,T=4,LW=Math.min(170,W*0.42),R=40;
+    const H=T+grp*cfg.cats.length+4;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const max=Math.max(...cfg.series.flatMap(s=>s.v))||1,x=v=>(W-LW-R)*v/max;
+    E('line',{x1:LW,x2:LW,y1:T,y2:H-4,stroke:css(box,'--axis')},svg);
+    cfg.cats.forEach((cat,ci)=>{
+      const gy=T+ci*grp;
+      E('text',{x:LW-8,y:gy+grp/2,'text-anchor':'end','font-size':12,fill:css(box,'--tx')},svg,cat);
+      cfg.series.forEach((s,si)=>{
+        const v=s.v[ci],by=gy+4+si*(bh+gap),w=Math.max(v?2:0,x(v));
+        const p=E('path',{d:w>4?`M${LW} ${by}h${w-4}a4 4 0 0 1 4 4v${bh-8}a4 4 0 0 1-4 4h-${w-4}z`:`M${LW} ${by}h${w}v${bh}h-${w}z`,fill:cols[si]},svg);
+        E('text',{x:LW+w+5,y:by+bh-1,'font-size':11,fill:css(box,si?'--tx-m':'--tx')},svg,fmtN(v));
+        const hit=E('rect',{x:LW,y:by-1,width:W-LW,height:bh+2,fill:'transparent'},svg);
+        const note=cfg.notes&&cfg.notes[cat]&&si===1?'<br><span style="color:var(--muted)">'+cfg.notes[cat]+'</span>':'';
+        hit.addEventListener('mousemove',ev=>showTip('<b>'+cat+'</b><br>'+cfg.series.map((ss,k)=>'<span class="sw" style="background:'+cols[k]+'"></span>'+ss.name+': <b>'+fmtN(ss.v[ci])+'</b>').join('<br>')+note,ev.clientX,ev.clientY));
+        hit.addEventListener('mouseleave',hideTip);
+      });
+    });
+    box.dataset.md=mdTable(cfg,['Mục',...cfg.series.map(s=>s.name)],cfg.cats.map((c,i)=>[c,...cfg.series.map(s=>s.v[i])]));
+  }
+
+  function colsChart(box,cfg){
+    const c=css(box,cfg.c);head(box,cfg);
+    const W=Math.max(300,box.clientWidth-32),H=200,L=40,R=8,T=16,B=26,n=cfg.v.length;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const max=nice(Math.max(...cfg.v)*1.08),y=v=>T+(H-T-B)*(1-v/max),slot=(W-L-R)/n,bw=Math.min(36,slot*0.6);
+    const f=cfg.fmt||fmtN;
+    for(let k=0;k<=4;k++){const v=max*k/4;E('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:css(box,k?'--grid':'--axis')},svg);E('text',{x:L-6,y:y(v)+4,'text-anchor':'end','font-size':11,fill:css(box,'--tx-m')},svg,fmtN(+v.toFixed(1)))}
+    if(cfg.split){const sx=L+slot*cfg.split;E('line',{x1:sx,x2:sx,y1:T-8,y2:H-B,stroke:css(box,'--axis'),'stroke-dasharray':'3 3'},svg);E('text',{x:sx+5,y:T-2,'font-size':11,fill:css(box,'--tx-m')},svg,'tuần này')}
+    const mi=cfg.v.indexOf(Math.max(...cfg.v));
+    cfg.v.forEach((v,i)=>{
+      const cx=L+slot*i+slot/2,h=(H-T-B)*v/max,top=H-B-h;
+      E('path',{d:h>4?`M${cx-bw/2} ${H-B}v-${h-4}a4 4 0 0 1 4-4h${bw-8}a4 4 0 0 1 4 4v${h-4}z`:`M${cx-bw/2} ${H-B}v-${h}h${bw}v${h}z`,fill:c},svg);
+      if(i===mi||i===n-1)E('text',{x:cx,y:top-4,'text-anchor':'middle','font-size':11,fill:css(box,'--tx')},svg,f(v));
+      E('text',{x:cx,y:H-8,'text-anchor':'middle','font-size':11,fill:css(box,'--tx-m')},svg,cfg.labels[i]);
+      const hit=E('rect',{x:L+slot*i,y:T,width:slot,height:H-T-B,fill:'transparent'},svg);
+      hit.addEventListener('mousemove',ev=>showTip('<b>'+cfg.labels[i]+'</b><br>'+f(v),ev.clientX,ev.clientY));
+      hit.addEventListener('mouseleave',hideTip);
+    });
+    box.dataset.md=mdTable(cfg,['Ngày','Giá trị'],cfg.labels.map((l,i)=>[l,cfg.v[i]]));
+  }
+
+  function funnel(box,cfg){
+    const c=css(box,'--s1');head(box,cfg);
+    const W=Math.max(300,box.clientWidth-32),rowH=34,gapH=20,LW=150,n=cfg.steps.length,H=n*rowH+(n-1)*gapH;
+    const svg=E('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.title},box);
+    const full=W-LW-70;
+    cfg.steps.forEach(([name,v],i)=>{
+      const w=full*(1-i*0.18),y=i*(rowH+gapH);
+      E('text',{x:LW-8,y:y+rowH/2+4,'text-anchor':'end','font-size':12,fill:css(box,'--tx')},svg,name);
+      E('rect',{x:LW,y:y+6,width:w,height:rowH-12,rx:4,fill:c},svg);
+      E('text',{x:LW+w+6,y:y+rowH/2+4,'font-size':12,'font-weight':600,fill:css(box,'--tx')},svg,fmtN(v));
+      if(i<n-1){const nx=cfg.steps[i+1][1],r=(nx/v*100);E('text',{x:LW+8,y:y+rowH+gapH/2+4,'font-size':11,fill:css(box,'--tx-m')},svg,'↓ '+(r<1?r.toFixed(2):r.toFixed(1))+'% sang bước sau')}
+    });
+    box.dataset.md=mdTable(cfg,['Bước','Số','% sang bước sau'],cfg.steps.map(([nm,v],i)=>[nm,v,i<n-1?(cfg.steps[i+1][1]/v*100).toFixed(2)+'%':'']));
+  }
+
+  const R={line,barh,cols:colsChart,funnel};
+  function renderAll(){document.querySelectorAll('[data-chart]').forEach(b=>{const cfg=CHARTS[b.dataset.chart];if(cfg)R[cfg.type](b,cfg)})}
+  renderAll();
+  function setTab(g,k){const sel=g?'[data-group="'+g+'"]':':not([data-group])';
+    document.querySelectorAll('.tabs'+sel+' button[data-tab]').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===k));
+    document.querySelectorAll('.tabp'+sel).forEach(p=>p.hidden=p.dataset.tab!==k);renderAll();}
+  document.addEventListener('click',e=>{const go=e.target.closest('.ins-go');if(go){e.preventDefault();setTab('ins',go.dataset.go);return;}
+    const b=e.target.closest('.tabs button[data-tab]');if(!b)return;setTab(b.closest('.tabs').dataset.group||'',b.dataset.tab);});
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderAll,150)});
+  if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',renderAll);
+})();
+</script>
+
+<script>
+(function(){
+  const root=document.getElementById('report');
+  const RID=root.dataset.report, FILE=root.dataset.file, KEY='mkt-comments:'+RID;
+  const $=s=>document.querySelector(s);
+  const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
+  const secs=[...document.querySelectorAll('[data-sid]')];
+
+  // ---- md conversion ----
+  const clean=s=>s.replace(/\s+/g,' ').trim();
+  function inl(el){return clean(el.textContent)}
+  function toMd(node){
+    let out=[];
+    for(const el of node.children){
+      const tag=el.tagName;
+      if(tag==='H2') out.push('## '+inl(el));
+      else if(tag==='H3') out.push('### '+inl(el));
+      else if(tag==='H4') out.push('#### '+inl(el));
+      else if(tag==='UL') out.push([...el.children].map(li=>'- '+inl(li)).join('\n'));
+      else if(el.classList.contains('tbl-wrap')||tag==='TABLE'){
+        const t=tag==='TABLE'?el:el.querySelector('table');
+        const rows=[...t.rows].map(r=>[...r.cells].map(c=>inl(c).replace(/\|/g,'\\|')));
+        if(rows.length){out.push(['| '+rows[0].join(' | ')+' |','|'+rows[0].map(()=>' --- ').join('|')+'|',...rows.slice(1).map(r=>'| '+r.join(' | ')+' |')].join('\n'))}
+      }
+      else if(el.classList.contains('tabs')) continue;
+      else if(el.classList.contains('tabp')) out.push('#### '+el.dataset.label+'\n\n'+toMd(el));
+      else if(el.classList.contains('cards')) out.push([...el.children].map(c=>toMd(c)).join('\n\n'));
+      else if(el.classList.contains('big')) out.push('**'+inl(el)+'**'+(el.nextElementSibling&&el.nextElementSibling.classList.contains('lbl')?' — '+inl(el.nextElementSibling):''));
+      else if(el.classList.contains('lbl')) continue;
+      else if(['missing','grid2','fx','fside'].some(c=>el.classList.contains(c))) out.push(toMd(el));
+      else if(el.classList.contains('chart')) out.push(el.dataset.md||'');
+      else { const t=inl(el); if(t) out.push(t); }
+    }
+    return out.filter(Boolean).join('\n\n');
+  }
+  function fullMd(){
+    const h=['# '+inl($('h1')),inl($('.period'))];
+    secs.forEach(s=>h.push('<!-- section: '+s.dataset.sid+' -->\n'+toMd(s)));
+    return h.join('\n\n')+'\n';
+  }
+  async function copy(text,msg){
+    try{await navigator.clipboard.writeText(text)}catch(e){
+      const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy')}catch(_){} ta.remove();
+    }
+    toast(msg);
+  }
+
+
+  // ---- feedback comments: IndexedDB, with images and files ----
+  const DBN='promer-mkt-feedback',ST='comments',MAXF=15*1024*1024;
+  let db=null,mem=[],cache=[];
+  const openDB=()=>new Promise(res=>{try{const r=indexedDB.open(DBN,1);r.onupgradeneeded=()=>r.result.createObjectStore(ST,{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>res(null)}catch(e){res(null)}});
+  const store=m=>db.transaction(ST,m).objectStore(ST);
+  const API=(root.dataset.api||'').trim();
+  const TOKK='promer-mkt-tokens';
+  const tokens=()=>{try{return JSON.parse(localStorage.getItem(TOKK)||'{}')}catch(e){return {}}};
+  const saveTok=(id,t)=>{const m=tokens();m[id]=t;try{localStorage.setItem(TOKK,JSON.stringify(m))}catch(e){}};
+  const canDel=c=>!API||!!tokens()[c.id];
+  const b64=blob=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]||'');r.onerror=rej;r.readAsDataURL(blob)});
+  let remoteOk=false;
+  async function rAll(){
+    const r=await fetch(API+'?rid='+encodeURIComponent(RID),{cache:'no-store'});const j=await r.json();
+    if(!j.ok)throw new Error(j.error||'api');remoteOk=true;
+    return j.comments.sort((a,b)=>String(a.at).localeCompare(String(b.at)));
+  }
+  async function rPost(body){
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+    const j=await r.json();if(!j.ok)throw new Error(j.error||'api');return j;
+  }
+  async function rPut(c){
+    const token=Math.random().toString(36).slice(2)+Date.now().toString(36);
+    const files=[];for(const f of (c.files||[]))files.push({name:f.name,type:f.type,size:f.size,b64:await b64(f.blob)});
+    await rPost({action:'add',id:c.id,rid:c.rid,sid:c.sid,author:c.author,text:c.text,at:c.at,token,files});
+    saveTok(c.id,token);
+  }
+  const lAll=()=>!db?Promise.resolve(mem.filter(c=>c.rid===RID)):new Promise(res=>{const r=store('readonly').getAll();r.onsuccess=()=>res(r.result.filter(c=>c.rid===RID).sort((a,b)=>a.at.localeCompare(b.at)));r.onerror=()=>res([])});
+  const allC=async()=>{if(!API)return lAll();try{return await rAll()}catch(e){remoteOk=false;toast('Không tải được comment chung, đang dùng bản trên máy');return lAll()}};
+  const lPut=c=>{if(!db){mem=mem.filter(x=>x.id!==c.id).concat(c);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').put(c);r.onsuccess=r.onerror=()=>res()})};
+  const putC=async c=>{if(API&&remoteOk){await rPut(c);return}return lPut(c)};
+  const lDel=id=>{if(!db){mem=mem.filter(x=>x.id!==id);return Promise.resolve()}return new Promise(res=>{const r=store('readwrite').delete(id);r.onsuccess=r.onerror=()=>res()})};
+  const delC=async id=>{if(API&&remoteOk){const t=tokens()[id];if(!t){toast('Chỉ xoá được comment do máy này gửi');return}await rPost({action:'delete',id,token:t});return}return lDel(id)};
+  const lsGet=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}};
+  const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+  const authorEl=$('#author'); authorEl.value=lsGet('promer-mkt-author');
+  authorEl.addEventListener('input',()=>lsSet('promer-mkt-author',authorEl.value.trim()));
+  const fmtT=iso=>new Date(iso).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+  const safeName=n=>n.replace(/[^\w.\-]+/g,'_').slice(-80);
+  function attEl(f,onRemove){
+    const d=document.createElement('div');d.className='att';
+    const host=f.driveId?document.createElement('a'):d;
+    if(f.driveId){host.href='https://drive.google.com/file/d/'+encodeURIComponent(f.driveId)+'/view';host.target='_blank';host.rel='noopener';d.appendChild(host)}
+    const isImg=(f.type||'').startsWith('image/');
+    if(isImg&&(f.blob||f.driveId)){const im=document.createElement('img');im.src=f.blob?URL.createObjectURL(f.blob):'https://drive.google.com/thumbnail?id='+encodeURIComponent(f.driveId)+'&sz=w400';im.alt=f.name;im.loading='lazy';host.appendChild(im)}
+    else{const ic=document.createElement('span');ic.textContent='📎';host.appendChild(ic)}
+    const n=document.createElement('span');n.textContent=f.name;n.title=f.name;host.appendChild(n);
+    if(onRemove){const x=document.createElement('button');x.type='button';x.textContent='✕';x.title='Bỏ file';x.onclick=onRemove;d.appendChild(x)}
+    return d;
+  }
+  function cmEl(c,onDel){
+    const d=document.createElement('div');d.className='cm';
+    d.innerHTML='<div class="meta"><span></span></div><div class="txt"></div>';
+    d.querySelector('.meta span').textContent=(c.author||'Ẩn danh')+' · '+fmtT(c.at);
+    if(c.status){const st=document.createElement('span');st.className='st';st.textContent='✓ '+c.status;d.querySelector('.meta').appendChild(st)}
+    if(onDel&&canDel(c)){const b=document.createElement('button');b.type='button';b.textContent='Xoá';b.onclick=e=>{e.stopPropagation();onDel()};d.querySelector('.meta').appendChild(b)}
+    d.querySelector('.txt').textContent=c.text;
+    if(c.files&&c.files.length){const a=document.createElement('div');a.className='atts';c.files.forEach(f=>a.appendChild(attEl(f)));d.appendChild(a)}
+    return d;
+  }
+  async function refresh(){
+    cache=await allC();
+    const by={};cache.forEach(c=>(by[c.sid]=by[c.sid]||[]).push(c));
+    secs.forEach(s=>{const n=(by[s.dataset.sid]||[]).length;s.classList.toggle('has-c',n>0);const b=s.querySelector(':scope>.cbtn');b.classList.toggle('on',n>0);b.textContent=n?'💬 '+n:'💬'});
+    $('#cCount').textContent=cache.length;
+    const pl=$('#plist');pl.innerHTML='';
+    if(API&&remoteOk){const loc=await lAll();const sb=$('#bSync');sb.hidden=!loc.length;sb.textContent='Gửi '+loc.length+' comment trên máy này lên chung'}
+    if(!cache.length){pl.innerHTML=API&&remoteOk?'<p class="note">Chưa có comment. Rê chuột vào một khối rồi bấm 💬. Comment được lưu chung: mọi người mở report đều thấy.</p>':'<p class="note">Chưa có comment. Rê chuột vào một khối rồi bấm 💬. Comment chỉ lưu trong trình duyệt này. Muốn gửi cho người khác thì bấm "Tải feedback .zip".</p>';return}
+    if(API&&remoteOk){const t=document.createElement('p');t.className='note';t.textContent='Comment lưu chung: mọi người đều thấy. Chỉ xoá được comment do máy này gửi.';pl.appendChild(t)}
+    secs.forEach(s=>{const list=by[s.dataset.sid];if(!list)return;
+      const g=document.createElement('div');g.className='pgrp';
+      const h=document.createElement('div');h.className='sid';h.textContent='#'+s.dataset.sid;
+      h.onclick=()=>{s.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>openPop(s),350)};g.appendChild(h);
+      list.forEach(c=>g.appendChild(cmEl(c)));pl.appendChild(g)});
+    // comments whose block id no longer exists (block was rebuilt in a newer version): keep them visible
+    const live=new Set(secs.map(s=>s.dataset.sid));
+    const orphan=Object.keys(by).filter(k=>!live.has(k));
+    if(orphan.length){
+      const t=document.createElement('p');t.className='note';t.textContent='Khối cũ: các khối dưới đây đã được làm lại trong bản mới. Comment vẫn giữ nguyên.';pl.appendChild(t);
+      orphan.forEach(k=>{
+        const g=document.createElement('div');g.className='pgrp';
+        const h=document.createElement('div');h.className='sid';const to=SID_MOVED[k];
+        h.textContent='#'+k+(to?' → nay là #'+to:' (đã bỏ)');
+        if(to){const s=document.querySelector('[data-sid="'+to+'"]');if(s)h.onclick=()=>s.scrollIntoView({behavior:'smooth',block:'center'})}
+        g.appendChild(h);
+        by[k].forEach(c=>g.appendChild(cmEl(c,async()=>{await delC(c.id);await refresh()})));pl.appendChild(g);
+      });
+    }
+  }
+  const SID_MOVED={};
+  let pop=null;
+  function closePop(){if(pop){pop.remove();pop=null}}
+  function openPop(s){
+    closePop();
+    const sid=s.dataset.sid,pending=[];
+    pop=document.createElement('div');pop.className='pop';pop.setAttribute('role','dialog');
+    pop.innerHTML='<div class="sidl"></div><div class="exist"></div>'+
+      '<textarea id="cText" placeholder="Góp ý cho khối này… (Ctrl+V để dán ảnh)"></textarea>'+
+      '<div class="atts pend"></div>'+
+      '<div class="row"><span><input id="cFile" type="file" multiple hidden><button type="button" class="att-b">📎 Đính kèm ảnh / file</button></span><span class="hint">hoặc kéo thả file vào đây</span></div>'+
+      '<div class="row"><span class="hint">Ctrl+Enter để lưu</span><span><button type="button" class="c">Huỷ</button> <button type="button" class="primary s">Lưu</button></span></div>';
+    pop.querySelector('.sidl').textContent='#'+sid;
+    const ex=pop.querySelector('.exist');
+    cache.filter(c=>c.sid===sid).forEach(c=>ex.appendChild(cmEl(c,async()=>{await delC(c.id);await refresh();openPop(s)})));
+    const ta=pop.querySelector('textarea'),pend=pop.querySelector('.pend'),fi=pop.querySelector('#cFile');
+    const drawPend=()=>{pend.innerHTML='';pending.forEach((f,i)=>pend.appendChild(attEl(f,()=>{pending.splice(i,1);drawPend()})))};
+    const addFiles=list=>{for(const f of list){if(f.size>MAXF){toast('File quá 15MB: '+f.name);continue}
+      pending.push({name:f.name,type:f.type||'application/octet-stream',size:f.size,blob:f})}drawPend()};
+    pop.querySelector('.att-b').onclick=()=>fi.click();
+    fi.onchange=()=>{addFiles(fi.files);fi.value=''};
+    ta.addEventListener('paste',e=>{
+      const fs=[...((e.clipboardData&&e.clipboardData.items)||[])].filter(it=>it.kind==='file').map(it=>it.getAsFile()).filter(Boolean);
+      if(!fs.length)return;e.preventDefault();
+      addFiles(fs.map((f,i)=>new File([f],'anh-dan-'+Date.now()+'-'+i+'.'+((f.type.split('/')[1]||'png').replace('jpeg','jpg')),{type:f.type})));
+    });
+    pop.addEventListener('dragover',e=>{e.preventDefault();pop.classList.add('drag')});
+    pop.addEventListener('dragleave',()=>pop.classList.remove('drag'));
+    pop.addEventListener('drop',e=>{e.preventDefault();pop.classList.remove('drag');addFiles(e.dataTransfer.files)});
+    pop.querySelector('.c').onclick=closePop;
+    pop.querySelector('.s').onclick=async()=>{
+      const v=ta.value.trim();if(!v&&!pending.length){closePop();return}
+      let slideNo='';const fr=s.querySelector('iframe');if(fr){try{slideNo=(fr.contentWindow.location.hash||'').replace('#','')}catch(_){}}
+      if(API&&remoteOk&&!authorEl.value.trim()){toast('Điền tên người góp ý ở khung Comment trước');$('#panel').classList.add('open');authorEl.focus();return}
+      const sb=pop.querySelector('.s');sb.disabled=true;sb.textContent='Đang gửi…';
+      try{await putC({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),rid:RID,sid,author:authorEl.value.trim(),text:(slideNo?'[Slide '+slideNo+'] ':'')+v,at:new Date().toISOString(),files:pending.slice()})}
+      catch(e){sb.disabled=false;sb.textContent='Lưu';toast('Gửi không được, thử lại');return}
+      await refresh();closePop();toast(API&&remoteOk?'Đã gửi comment, mọi người đều thấy':'Đã lưu comment');
+    };
+    ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey))pop.querySelector('.s').click();if(e.key==='Escape')closePop()});
+    pop.addEventListener('click',e=>e.stopPropagation());
+    document.body.appendChild(pop);
+    const r=s.getBoundingClientRect(),w=pop.offsetWidth,vw=document.documentElement.clientWidth;
+    pop.style.left=Math.max(window.scrollX+16,Math.min(window.scrollX+r.right-w,window.scrollX+vw-w-16))+'px';
+    pop.style.top=(window.scrollY+r.top+30)+'px';
+    ta.focus();
+  }
+  secs.forEach(s=>{const b=document.createElement('button');b.type='button';b.className='cbtn';b.title='Góp ý cho khối này';
+    b.setAttribute('aria-label','Góp ý cho khối '+s.dataset.sid);b.textContent='💬';b.onclick=e=>{e.stopPropagation();openPop(s)};s.appendChild(b)});
+  document.addEventListener('click',closePop);
+  function feedbackMd(withLinks){
+    const who=authorEl.value.trim()||'Ẩn danh';
+    const parts=['# Feedback cho report '+RID,'','- Người góp ý: '+who,'- Xuất lúc: '+new Date().toISOString(),'- File report: `'+FILE+'`',''];
+    const by={};cache.forEach(c=>(by[c.sid]=by[c.sid]||[]).push(c));
+    secs.forEach(s=>{const list=by[s.dataset.sid];if(!list)return;
+      const body=toMd(s).replace(/```/g,"'''");
+      parts.push('## Section `#'+s.dataset.sid+'`','','Nội dung hiện tại:','','```md',body,'```','');
+      list.forEach(c=>{parts.push('### '+(c.author||'Ẩn danh')+' · '+c.at,'',c.text||'(không có chữ)','');
+        if(c.files&&c.files.length){parts.push('Đính kèm:');
+          c.files.forEach(f=>{const path=f.driveId?'https://drive.google.com/file/d/'+f.driveId+'/view':'attachments/'+c.id+'-'+safeName(f.name);
+            parts.push(withLinks||f.driveId?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});
+          parts.push('')}});
+    });
+    const live=new Set(secs.map(s=>s.dataset.sid));
+    Object.keys(by).filter(k=>!live.has(k)).forEach(k=>{
+      parts.push('## Section cũ `#'+k+'`'+(SID_MOVED[k]?' (nay là `#'+SID_MOVED[k]+'`)':' (đã bỏ)'),'','Khối này đã được làm lại trong bản mới; comment viết trên bản cũ.','');
+      by[k].forEach(c=>{parts.push('### '+(c.author||'Ẩn danh')+' · '+c.at,'',c.text||'(không có chữ)','');
+        if(c.files&&c.files.length){parts.push('Đính kèm:');c.files.forEach(f=>{const path=f.driveId?'https://drive.google.com/file/d/'+f.driveId+'/view':'attachments/'+c.id+'-'+safeName(f.name);parts.push(withLinks||f.driveId?(f.type.startsWith('image/')?'- !['+f.name+']('+path+')':'- ['+f.name+']('+path+')'):'- '+f.name+' (chỉ có trong gói .zip)')});parts.push('')}});
+    });
+    return parts.join('\n');
+  }
+  $('#bPanel').onclick=e=>{e.stopPropagation();$('#panel').classList.toggle('open')};
+  $('#bClose').onclick=()=>$('#panel').classList.remove('open');
+  $('#panel').addEventListener('click',e=>e.stopPropagation());
+  $('#bCopyC').onclick=()=>{if(!cache.length){toast('Chưa có comment');return}copy(feedbackMd(false),'Đã copy md, paste vào Claude Code')};
+  $('#bZip').onclick=async()=>{
+    if(!cache.length){toast('Chưa có comment');return}
+    if(!window.JSZip){toast('Không tải được thư viện zip, hãy dùng Copy md');return}
+    const z=new JSZip();z.file('feedback.md',feedbackMd(true));
+    cache.forEach(c=>(c.files||[]).filter(f=>f.blob).forEach(f=>z.file('attachments/'+c.id+'-'+safeName(f.name),f.blob)));
+    const blob=await z.generateAsync({type:'blob'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='feedback-'+RID+'-'+safeName(authorEl.value.trim()||'an-danh')+'-'+new Date().toISOString().slice(0,10)+'.zip';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);toast('Đã tải gói feedback');
+  };
+  $('#bReload').onclick=async()=>{await refresh();toast('Đã tải lại')};
+  $('#bSync').onclick=async()=>{const b=$('#bSync');const loc=await lAll();if(!loc.length)return;
+    if(!authorEl.value.trim()){toast('Điền tên người góp ý trước');authorEl.focus();return}
+    b.disabled=true;let n=0;
+    for(const c of loc){try{await rPut(Object.assign({},c,{author:c.author||authorEl.value.trim()}));await lDel(c.id);n++;b.textContent='Đang gửi '+n+'/'+loc.length+'…'}catch(e){toast('Gửi lỗi ở comment '+(n+1));break}}
+    b.disabled=false;await refresh();if(n)toast('Đã gửi '+n+' comment lên chung')};
+  let armed=false;
+  $('#bClear').onclick=async()=>{const b=$('#bClear');
+    if(!armed){armed=true;b.textContent='Bấm lần nữa để xoá';setTimeout(()=>{armed=false;b.textContent='Xoá hết'},3000);return}
+    for(const c of cache)await delC(c.id);armed=false;b.textContent='Xoá hết';await refresh();toast('Đã xoá hết comment')};
+  if(API){$('#bClear').hidden=true;$('#bReload').hidden=false;$('#bZip').textContent='Tải feedback .zip (ảnh = link Drive)';$('#bZip').classList.remove('primary')}
+  openDB().then(d=>{db=d;refresh()});
+  $('#bPanel').addEventListener('click',()=>{if(API&&$('#panel').classList.contains('open'))refresh()});
+
+  // colour each table value against last week (in brackets): up green, down red
+  document.querySelectorAll('td.n').forEach(td=>{
+    const p=td.querySelector('.prev'),t=td.firstChild;
+    if(!p||!t||t.nodeType!==3)return;
+    const cur=parseFloat(t.textContent.replace(/,/g,'')),prev=parseFloat(p.textContent.replace(/[()¹²³,\s]/g,''));
+    if(isNaN(cur)||isNaN(prev)||cur===prev)return;
+    const up=cur>prev,good=td.classList.contains('inv')?!up:up,sp=document.createElement('span');
+    sp.className='dv '+(good?'up':'down');sp.innerHTML='<i aria-hidden="true">'+(up?'▲':'▼')+'</i>';
+    sp.appendChild(document.createTextNode(t.textContent.trimEnd()));
+    sp.title=(up?'Tăng':'Giảm')+' so với tuần trước';
+    td.replaceChild(sp,t);td.insertBefore(document.createTextNode(' '),p);
+  });
+  $('#bCopyAll').onclick=()=>copy(fullMd(),'Đã copy md toàn bộ report');
+  // highlight current nav item
+  const links=[...document.querySelectorAll('#toc a')];
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.toggle('cur',l.getAttribute('href')==='#'+en.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('main>.block').forEach(b=>io.observe(b));
+})();
+</script>
+</body>
+</html>
